@@ -205,7 +205,7 @@ Each ECA rule is a function f: {0,1}³ → {0,1}, identified by its Wolfram code
 |---|---|---|
 | I | Converges to uniform fixed point | A |
 | II | Fixed points or small periodic attractors | B |
-| III/IV/LC | Chaotic / complex / long-lived transients | C |
+| III/IV | Chaotic / complex  | C |
 
 ---
 
