@@ -1,0 +1,3090 @@
+[
+    {
+      "id": 1,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "An elementary cellular automaton (ECA) is a one-dimensional, discrete-time system where each cell has:",
+      "choices": {
+        "A": "Binary state (0 or 1) and a 3-cell neighbourhood (left, centre, right)",
+        "B": "Ternary state (0, 1, or 2) and a 5-cell neighbourhood",
+        "C": "Real-valued state and no neighbourhood",
+        "D": "Binary state and a 5-cell neighbourhood"
+      },
+      "answer": "A",
+      "explanation": "ECA: binary cells, radius r=1 giving a 3-cell neighbourhood (i-1, i, i+1). Wolfram (1983)."
+    },
+    {
+      "id": 2,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How many distinct ECA rules exist in total?",
+      "choices": {
+        "A": "128",
+        "B": "64",
+        "C": "256",
+        "D": "512"
+      },
+      "answer": "C",
+      "explanation": "2^3=8 neighbourhood patterns, each mapped to 0 or 1: 2^8 = 256 possible rules."
+    },
+    {
+      "id": 3,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a traditional (synchronous) ECA, how are cells updated at each time step?",
+      "choices": {
+        "A": "One randomly chosen cell is updated",
+        "B": "All cells are updated simultaneously using a global clock",
+        "C": "Cells are updated one by one from left to right",
+        "D": "Only cells in state 1 are updated"
+      },
+      "answer": "B",
+      "explanation": "Traditional ECA uses a global clock: all n cells are updated in parallel at every discrete time step t."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under ECA rule R, the next state of cell i at time t+1 depends on which cells?",
+      "choices": {
+        "A": "Only cell i itself",
+        "B": "Cells i-1, i, and i+1 at time t",
+        "C": "All cells in the lattice at time t",
+        "D": "Cells i-2, i-1, i, i+1, i+2 at time t"
+      },
+      "answer": "B",
+      "explanation": "ECA uses radius r=1: the neighbourhood of cell i is {i-1, i, i+1}, so the next state x_i(t+1) = R(x_{i-1}(t), x_i(t), x_{i+1}(t))."
+    },
+    {
+      "id": 5,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does ECA stand for, and what are the three defining properties of an ECA?",
+      "answer": "ECA stands for Elementary Cellular Automaton. The three defining properties are: (1) one-dimensional lattice of cells, (2) each cell has a binary state (0 or 1), and (3) each cell updates based on a 3-cell neighbourhood (itself and its two immediate neighbours) using a uniform rule R.",
+      "explanation": "These three properties distinguish ECA from more general cellular automata (higher dimensions, larger alphabets, larger neighbourhoods)."
+    },
+    {
+      "id": 6,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a spatially stochastic ECA, how many rules are active simultaneously?",
+      "choices": {
+        "A": "One rule only",
+        "B": "Two rules R1 and R2",
+        "C": "Up to 256 rules",
+        "D": "A rule chosen fresh each time step"
+      },
+      "answer": "B",
+      "explanation": "Stochastic noise introduces exactly two rules R1 and R2 whose application is governed by the mixing rate \u03bb."
+    },
+    {
+      "id": 7,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the standard notation used to denote a spatially stochastic ECA with rules R1, R2 and mixing rate \u03bb?",
+      "choices": {
+        "A": "(R1 + R2)[\u03bb]",
+        "B": "(R1, R2)[\u03bb]",
+        "C": "R1 \u00d7 R2 / \u03bb",
+        "D": "{R1 | R2 : \u03bb}"
+      },
+      "answer": "B",
+      "explanation": "The notation (R1, R2)[\u03bb] is standard: R1 is the base rule applied with probability 1\u2212\u03bb and R2 is the noise rule applied with probability \u03bb, per cell per time step."
+    },
+    {
+      "id": 8,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The mixing (noise) rate \u03bb in stochastic noise belongs to which domain?",
+      "choices": {
+        "A": "[0, n] where n is the lattice size",
+        "B": "{0, 1} only",
+        "C": "[0, 1]",
+        "D": "(0, \u221e)"
+      },
+      "answer": "C",
+      "explanation": "\u03bb \u2208 [0,1] is a probability. \u03bb=0 means all cells always use R1 (pure R1); \u03bb=1 means all cells always use R2 (pure R2)."
+    },
+    {
+      "id": 9,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In stochastic noise (spatial), the choice of which rule a cell uses at a given time step is:",
+      "choices": {
+        "A": "The same for every cell (decided globally per time step)",
+        "B": "Made independently per cell",
+        "C": "Determined by the cell's current state",
+        "D": "Alternated deterministically between R1 and R2"
+      },
+      "answer": "B",
+      "explanation": "This is the defining spatial feature: each cell i independently draws its rule at each time step. Cell i may use R1 while cell i+1 uses R2 at the same time t."
+    },
+    {
+      "id": 10,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Define the spatially stochastic noise model for an ECA. What are its parameters and what does each represent?",
+      "answer": "In spatially stochastic noise, two rules R1 and R2 coexist in the lattice. The model has one parameter \u03bb \u2208 [0,1] called the mixing noise rate. At each time step t, every cell i independently applies rule R1 with probability 1\u2212\u03bb and rule R2 with probability \u03bb. The notation is (R1, R2)[\u03bb]. \u03bb=0 recovers a pure R1 system; \u03bb=1 recovers a pure R2 system.",
+      "explanation": "The key parameters are the two rules and the scalar \u03bb. Independence across cells is the spatial (as opposed to temporal) character of this noise."
+    },
+    {
+      "id": 11,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Given a stochastic ECA (R1, R2)[\u03bb], with what probability does cell i apply rule R1 at a given time step?",
+      "choices": {
+        "A": "\u03bb",
+        "B": "1 \u2212 \u03bb",
+        "C": "\u03bb/2",
+        "D": "0.5 regardless of \u03bb"
+      },
+      "answer": "B",
+      "explanation": "By definition of the model, cell i applies R1 with probability 1\u2212\u03bb and R2 with probability \u03bb."
+    },
+    {
+      "id": 12,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Given a stochastic ECA (R1, R2)[\u03bb], with what probability does cell i apply rule R2 at a given time step?",
+      "choices": {
+        "A": "1 \u2212 \u03bb",
+        "B": "0",
+        "C": "\u03bb",
+        "D": "1/2"
+      },
+      "answer": "C",
+      "explanation": "Cell i applies R2 with probability \u03bb, where \u03bb \u2208 [0,1] is the noise rate."
+    },
+    {
+      "id": 13,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], are rule choices for different cells at the same time step independent of each other?",
+      "choices": {
+        "A": "No, all cells must use the same rule at any given time step",
+        "B": "Yes, each cell independently samples its rule",
+        "C": "Only adjacent cells share their rule choice",
+        "D": "Independence depends on the specific rules R1 and R2"
+      },
+      "answer": "B",
+      "explanation": "Spatial stochasticity means the rule-selection random variables for different cells are i.i.d. Bernoulli(\u03bb) at each time step. This is what makes the noise spatial rather than temporal."
+    },
+    {
+      "id": 14,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At time step t in a stochastic ECA (R1, R2)[\u03bb] with lattice size n, what is the expected number of cells that apply rule R2?",
+      "choices": {
+        "A": "n(1 \u2212 \u03bb)",
+        "B": "n\u03bb\u00b2",
+        "C": "n\u03bb",
+        "D": "n/2"
+      },
+      "answer": "C",
+      "explanation": "Each of the n cells independently applies R2 with probability \u03bb, so by linearity of expectation, E[#cells using R2] = n\u03bb."
+    },
+    {
+      "id": 15,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What happens to the stochastic ECA (R1, R2)[\u03bb] when \u03bb = 0?",
+      "choices": {
+        "A": "Every cell applies R2 deterministically",
+        "B": "Every cell applies R1 deterministically \u2014 the system is a pure R1 ECA",
+        "C": "Cells alternate between R1 and R2",
+        "D": "The system becomes undefined"
+      },
+      "answer": "B",
+      "explanation": "\u03bb=0 means each cell applies R1 with probability 1\u22120=1 and R2 with probability 0. The stochastic system collapses to the deterministic ECA under rule R1."
+    },
+    {
+      "id": 16,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What happens to the stochastic ECA (R1, R2)[\u03bb] when \u03bb = 1?",
+      "choices": {
+        "A": "Every cell applies R1 deterministically",
+        "B": "Every cell applies R2 deterministically \u2014 the system is a pure R2 ECA",
+        "C": "Each cell randomly chooses R1 or R2 with equal probability",
+        "D": "The lattice freezes and no cell updates"
+      },
+      "answer": "B",
+      "explanation": "\u03bb=1 means each cell applies R2 with probability 1 and R1 with probability 0. The system becomes the deterministic ECA under rule R2."
+    },
+    {
+      "id": 17,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Write the update equation for cell i at time t+1 in a stochastic ECA (R1, R2)[\u03bb], carefully indicating the random variable involved.",
+      "answer": "Let B_i(t) ~ Bernoulli(\u03bb) be drawn independently for each cell i at each time step t. Then: x_i(t+1) = R1(x_{i-1}(t), x_i(t), x_{i+1}(t)) if B_i(t) = 0, and x_i(t+1) = R2(x_{i-1}(t), x_i(t), x_{i+1}(t)) if B_i(t) = 1. Equivalently: x_i(t+1) = (1 \u2212 B_i(t)) \u00b7 R1(N_i(t)) + B_i(t) \u00b7 R2(N_i(t)), where N_i(t) = (x_{i-1}(t), x_i(t), x_{i+1}(t)).",
+      "explanation": "The random variables B_i(t) are i.i.d. across both cells i and time steps t, capturing the independent, per-cell nature of spatial stochastic noise."
+    },
+    {
+      "id": 18,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], is the global clock (synchronous update) preserved? Explain briefly.",
+      "answer": "Yes. The global clock is preserved in stochastic noise. All n cells are still updated simultaneously at every time step t. The stochasticity only affects which rule (R1 or R2) each cell uses for its update, not whether or when the cell is updated. This distinguishes stochastic noise from asynchronous noise models like \u03b1-noise or s-skewed noise.",
+      "explanation": "Stochastic noise perturbs the rule space, not the update schedule. The synchronous update structure of the standard ECA is retained."
+    },
+    {
+      "id": 19,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In temporal stochastic noise (R1, R2)[\u03c4], what decides which rule is used at time step t?",
+      "choices": {
+        "A": "Each cell independently chooses R1 or R2",
+        "B": "All cells use the same rule, chosen once per time step for the entire lattice",
+        "C": "The rule alternates deterministically every time step",
+        "D": "The rule is fixed and never changes"
+      },
+      "answer": "B",
+      "explanation": "In temporal stochastic noise, a single Bernoulli draw per time step decides the rule for all cells collectively. This is the key difference from spatial stochastic noise."
+    },
+    {
+      "id": 20,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In spatial stochastic noise (R1, R2)[\u03bb], can two adjacent cells use different rules at the same time step?",
+      "choices": {
+        "A": "No, adjacent cells always share the same rule",
+        "B": "Yes, because each cell chooses its rule independently",
+        "C": "Only if their neighbourhood patterns differ",
+        "D": "Only if \u03bb > 0.5"
+      },
+      "answer": "B",
+      "explanation": "Independence is per-cell. Two adjacent cells i and i+1 each independently draw from Bernoulli(\u03bb), so they can and do apply different rules at the same time step."
+    },
+    {
+      "id": 21,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which statement correctly distinguishes spatial stochastic noise from temporal stochastic noise?",
+      "choices": {
+        "A": "Spatial noise uses two rules; temporal noise uses only one rule",
+        "B": "In spatial noise each cell independently picks its rule; in temporal noise all cells share one rule per time step",
+        "C": "Spatial noise preserves the global clock; temporal noise does not",
+        "D": "Temporal noise has a mixing rate; spatial noise does not"
+      },
+      "answer": "B",
+      "explanation": "Both models use two rules R1 and R2 with a mixing rate. The distinction is granularity: spatial noise is per-cell per-step (independent draws), whereas temporal noise is per-step for the whole lattice (one shared draw)."
+    },
+    {
+      "id": 22,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In spatial stochastic noise (R1, R2)[\u03bb], at a fixed time t, the number of cells using rule R2 follows which distribution?",
+      "choices": {
+        "A": "Deterministic: exactly n\u03bb cells",
+        "B": "Uniform over {0, 1, \u2026, n}",
+        "C": "Binomial(n, \u03bb)",
+        "D": "Poisson(n\u03bb) for large n"
+      },
+      "answer": "C",
+      "explanation": "Each of the n cells independently applies R2 with probability \u03bb, so the count is the sum of n i.i.d. Bernoulli(\u03bb) variables, i.e., Binomial(n, \u03bb). (Poisson(n\u03bb) is an approximation for small \u03bb, not exact.)"
+    },
+    {
+      "id": 23,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In temporal stochastic noise (R1, R2)[\u03c4], at a fixed time t, the number of cells using rule R2 follows which distribution?",
+      "choices": {
+        "A": "Binomial(n, \u03c4)",
+        "B": "Either 0 or n \u2014 a Bernoulli-scaled outcome: 0 with prob 1\u2212\u03c4 and n with prob \u03c4",
+        "C": "Uniform(0, n)",
+        "D": "Poisson(\u03c4)"
+      },
+      "answer": "B",
+      "explanation": "In temporal noise, a single Bernoulli(\u03c4) draw at time t applies to all n cells. So either all n cells use R2 (prob \u03c4) or zero cells use R2 (prob 1\u2212\u03c4). No partial splits occur."
+    },
+    {
+      "id": 24,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain in your own words the fundamental difference between spatial stochastic noise (R1, R2)[\u03bb] and temporal stochastic noise (R1, R2)[\u03c4], using the concept of independence.",
+      "answer": "In spatial stochastic noise, the rule-selection is spatially independent: each cell i independently draws a Bernoulli(\u03bb) random variable at each time step. Different cells can therefore apply different rules simultaneously, creating a spatially mixed configuration. In temporal stochastic noise, there is only one Bernoulli(\u03c4) draw per time step, and it applies to the entire lattice. All cells share the same rule at any given time t: either all use R1 or all use R2. The noise is correlated across space but varies over time.",
+      "explanation": "The axis of independence/correlation is spatial in stochastic noise and temporal in temporal stochastic noise."
+    },
+    {
+      "id": 25,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Which quantity has strictly higher variance at a fixed time step t for a lattice of size n > 1: the number of R2-cells under spatial noise (R1,R2)[\u03bb], or the number of R2-cells under temporal noise (R1,R2)[\u03c4], when \u03bb = \u03c4?",
+      "choices": {
+        "A": "Spatial noise always has higher variance",
+        "B": "Temporal noise always has higher variance",
+        "C": "They are always equal",
+        "D": "It depends on whether n\u03bb > 1 or not"
+      },
+      "answer": "B",
+      "explanation": "Under spatial noise, count ~ Binomial(n,\u03bb), with variance n\u03bb(1\u2212\u03bb). Under temporal noise, count \u2208 {0, n} with prob (1\u2212\u03c4, \u03c4), so variance = n\u00b2\u03c4(1\u2212\u03c4). Since n > 1, n\u00b2\u03c4(1\u2212\u03c4) > n\u03c4(1\u2212\u03c4) = n\u03bb(1\u2212\u03bb) when \u03bb=\u03c4. Temporal noise produces more extreme (all-or-nothing) outcomes, hence higher variance."
+    },
+    {
+      "id": 26,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In an ECA on a finite lattice of size n with periodic boundary conditions, what is cell 0's left neighbour?",
+      "choices": {
+        "A": "Cell 1",
+        "B": "Cell n",
+        "C": "Cell n\u22121",
+        "D": "There is no left neighbour"
+      },
+      "answer": "C",
+      "explanation": "Periodic (cyclic) boundary conditions wrap the lattice: cell 0's left neighbour is cell n\u22121, and cell n\u22121's right neighbour is cell 0."
+    },
+    {
+      "id": 27,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under a stochastic ECA (R1, R2)[\u03bb] on a lattice \ud835\udcdb = {0, 1, \u2026, n\u22121} with periodic boundaries, the rule choice for boundary cell 0 is:",
+      "choices": {
+        "A": "Always forced to use R1 to avoid boundary errors",
+        "B": "Made independently just like every other cell, with prob \u03bb of using R2",
+        "C": "Inherited from its right neighbour",
+        "D": "Determined by a separate boundary parameter"
+      },
+      "answer": "B",
+      "explanation": "Stochastic rule-selection is uniform across the lattice. Boundary cell 0 independently draws Bernoulli(\u03bb) for its rule choice at each time step, identical to interior cells."
+    },
+    {
+      "id": 28,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Describe the lattice \ud835\udcdb used in a standard stochastic ECA and state how boundary conditions are typically handled.",
+      "answer": "The lattice is \ud835\udcdb = {0, 1, 2, \u2026, n\u22121}, a one-dimensional array of n cells, each with binary state in {0,1}. Periodic (cyclic) boundary conditions are standard: cell 0 treats cell n\u22121 as its left neighbour and cell 1 as its right neighbour, forming a ring. This avoids special-casing at boundaries and keeps the lattice translation-symmetric.",
+      "explanation": "Periodic boundaries are the most common choice in ECA literature as they eliminate edge effects and maintain spatial homogeneity."
+    },
+    {
+      "id": 29,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb], what does \u03bb = 0.5 represent?",
+      "choices": {
+        "A": "Only R1 is used",
+        "B": "Only R2 is used",
+        "C": "Each cell independently uses R1 or R2 with equal probability",
+        "D": "The system oscillates between R1 and R2 every step"
+      },
+      "answer": "C",
+      "explanation": "\u03bb=0.5 is maximally mixed: each cell independently flips a fair coin to decide its rule. Neither rule dominates on average."
+    },
+    {
+      "id": 30,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb], as \u03bb increases from 0 to 1, the expected fraction of cells using R2 changes how?",
+      "choices": {
+        "A": "Decreases from 1 to 0",
+        "B": "Stays constant at 0.5",
+        "C": "Increases from 0 to 1",
+        "D": "First increases then decreases"
+      },
+      "answer": "C",
+      "explanation": "The expected fraction of cells using R2 is E[#R2-cells]/n = \u03bb. This increases linearly from 0 (pure R1 at \u03bb=0) to 1 (pure R2 at \u03bb=1)."
+    },
+    {
+      "id": 31,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "If R1 = R2 = R (both rules are identical), what is the effect of the mixing rate \u03bb in the stochastic ECA (R1, R2)[\u03bb]?",
+      "choices": {
+        "A": "The system becomes undefined",
+        "B": "\u03bb has no effect; the system behaves as a deterministic ECA under rule R for all \u03bb",
+        "C": "The system becomes maximally random",
+        "D": "The system alternates between R and the complement of R"
+      },
+      "answer": "B",
+      "explanation": "When R1=R2=R, every cell applies rule R regardless of its Bernoulli draw. The outcome is x_i(t+1)=R(N_i(t)) deterministically, so the stochastic model degenerates to the standard ECA under R, independent of \u03bb."
+    },
+    {
+      "id": 32,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Describe the behaviour of a stochastic ECA (R1, R2)[\u03bb] at the two boundary values \u03bb=0 and \u03bb=1, and explain what this implies about the role of \u03bb as a continuous interpolation parameter.",
+      "answer": "At \u03bb=0: every cell applies R1 with probability 1, so the system is the deterministic ECA under R1. At \u03bb=1: every cell applies R2 with probability 1, so the system is the deterministic ECA under R2. For intermediate \u03bb \u2208 (0,1), the system is a probabilistic mixture of R1 and R2, with the expected fraction \u03bb of cells using R2 at each step. Thus \u03bb continuously interpolates between the two pure deterministic regimes, and one can study how dynamical properties (e.g., density of 1s, period, chaos) transition as \u03bb varies from 0 to 1.",
+      "explanation": "This interpolation property makes the stochastic model a useful tool for studying phase transitions and sensitivity of ECA behaviour to rule perturbations."
+    },
+    {
+      "id": 33,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider the stochastic ECA (R1, R2)[\u03bb] on an infinite lattice with initial density \u03c1(0) of 1s. If R1 is the all-zeros rule (maps every neighbourhood to 0) and R2 is the all-ones rule (maps every neighbourhood to 1), what is the expected density \u03c1(t) for t \u2265 1?",
+      "choices": {
+        "A": "\u03c1(t) = \u03c1(0) for all t",
+        "B": "\u03c1(t) = \u03bb for all t \u2265 1",
+        "C": "\u03c1(t) = (1\u2212\u03bb)\u00b7\u03c1(t\u22121)",
+        "D": "\u03c1(t) = \u03bb\u00b7(1\u2212\u03bb)^t"
+      },
+      "answer": "B",
+      "explanation": "After one step, each cell independently outputs 1 (using R2) with probability \u03bb and 0 (using R1) with probability 1\u2212\u03bb, regardless of the previous state. So \u03c1(1)=\u03bb. The same argument applies at every subsequent step: \u03c1(t)=\u03bb for all t\u22651. The initial density \u03c1(0) is erased in a single step."
+    },
+    {
+      "id": 34,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which noise model perturbs the update schedule (i.e., which cells are updated), rather than which rule is applied?",
+      "choices": {
+        "A": "Stochastic noise (R1, R2)[\u03bb]",
+        "B": "Temporal stochastic noise (R1, R2)[\u03c4]",
+        "C": "\u03b1-asynchronous noise",
+        "D": "Both A and B"
+      },
+      "answer": "C",
+      "explanation": "\u03b1-asynchronous noise keeps a single rule but randomly skips cell updates (each cell updates with probability \u03b1). Stochastic and temporal stochastic noise preserve synchronous updates but perturb the rule applied. s-skewed noise also perturbs the update schedule."
+    },
+    {
+      "id": 35,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which property is shared by both stochastic noise (R1, R2)[\u03bb] and \u03b1-asynchronous noise, but NOT by traditional synchronous ECA?",
+      "choices": {
+        "A": "Use of a single deterministic rule",
+        "B": "Probabilistic behaviour at each time step",
+        "C": "Cells may remain idle at some time steps",
+        "D": "Two rules are active simultaneously"
+      },
+      "answer": "B",
+      "explanation": "Both stochastic noise (random rule selection) and \u03b1-asynchronous noise (random cell skipping) introduce probabilistic behaviour absent in deterministic ECA. However, \u03b1-noise can leave cells idle (feature C), while stochastic noise always updates every cell. Feature D is specific to stochastic/temporal stochastic noise."
+    },
+    {
+      "id": 36,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic noise (R1, R2)[\u03bb] with \u03bb = 1, the system is equivalent to a standard ECA under R2. What is the analogous statement for \u03b1-asynchronous noise when \u03b1 = 1?",
+      "choices": {
+        "A": "All cells are skipped; the lattice freezes",
+        "B": "Every cell updates at every step \u2014 the system behaves as a standard synchronous ECA under rule R",
+        "C": "The system uses two rules simultaneously",
+        "D": "Only half the cells update per step"
+      },
+      "answer": "B",
+      "explanation": "In \u03b1-asynchronous noise, each cell updates with probability \u03b1. When \u03b1=1, every cell updates with certainty at every step, recovering the synchronous deterministic ECA under the single rule R."
+    },
+    {
+      "id": 37,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compare and contrast stochastic noise and s-skewed noise along two dimensions: (i) what aspect of the ECA is perturbed, and (ii) whether the global clock is preserved.",
+      "answer": "(i) Stochastic noise perturbs the rule: at each step, each cell independently chooses from two rules R1 and R2 with probabilities 1\u2212\u03bb and \u03bb. s-Skewed noise perturbs the update schedule: at each step, a contiguous block of s cells starting at a random position i is selected for update, while the remaining cells are not updated. (ii) Global clock: stochastic noise preserves synchronous updates \u2014 all n cells are updated at every time step (just with potentially different rules). s-Skewed noise breaks the global clock \u2014 only s out of n cells are updated per step.",
+      "explanation": "This contrast illustrates that noise in ECA can target different structural components: rule application (stochastic) versus update schedule (s-skewed, \u03b1-asynchronous)."
+    },
+    {
+      "id": 38,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], the state x_i(t+1) of cell i is a random variable. Its distribution depends on:",
+      "choices": {
+        "A": "\u03bb and the neighbourhood (x_{i-1}(t), x_i(t), x_{i+1}(t)) only",
+        "B": "\u03bb, the entire lattice state at time t, and all past states",
+        "C": "Only the current state x_i(t)",
+        "D": "Only \u03bb"
+      },
+      "answer": "A",
+      "explanation": "x_i(t+1) = R1(N_i(t)) or R2(N_i(t)) with probabilities 1\u2212\u03bb and \u03bb respectively, where N_i(t)=(x_{i-1}(t), x_i(t), x_{i+1}(t)). Given the neighbourhood, no other information is needed. The model is Markovian and local."
+    },
+    {
+      "id": 39,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is a stochastic ECA (R1, R2)[\u03bb] a Markov process?",
+      "choices": {
+        "A": "No, because the rule choice depends on the entire history",
+        "B": "Yes, because the next global state depends only on the current global state (plus independent noise)",
+        "C": "Only when \u03bb = 0.5",
+        "D": "Only when R1 and R2 are complementary rules"
+      },
+      "answer": "B",
+      "explanation": "The rule-selection random variables B_i(t) are i.i.d. and independent of all past states. The next state vector x(t+1) is determined by x(t) and the current noise draw alone. This is precisely the Markov property."
+    },
+    {
+      "id": 40,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] on a finite lattice of size n with periodic boundaries, the state space has size:",
+      "choices": {
+        "A": "n",
+        "B": "2n",
+        "C": "2^n",
+        "D": "n \u00b7 2^n"
+      },
+      "answer": "C",
+      "explanation": "The lattice has n cells each with binary state {0,1}. The global state is a binary string of length n, giving 2^n possible configurations. The stochastic dynamics define a Markov chain on this state space of size 2^n."
+    },
+    {
+      "id": 41,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] with 0 < \u03bb < 1 on a finite lattice, is every state reachable from every other state (i.e., is the Markov chain irreducible)?",
+      "choices": {
+        "A": "Always, for any R1, R2",
+        "B": "Never, since the rules are deterministic on neighbourhoods",
+        "C": "It depends on the specific rules R1 and R2 \u2014 not guaranteed in general",
+        "D": "Only when \u03bb = 0.5"
+      },
+      "answer": "C",
+      "explanation": "Irreducibility is not automatic. Even with 0<\u03bb<1, if both R1 and R2 map all neighbourhoods to 0 (or both to some fixed pattern), the dynamics may be absorbing. Irreducibility requires that R1 and R2 together generate sufficient reachability across the state space, which is rule-dependent."
+    },
+    {
+      "id": 42,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Derive the probability P(x_i(t+1) = 1 | N_i(t)) for a stochastic ECA (R1, R2)[\u03bb], given neighbourhood N_i(t) = (a, b, c) where a, b, c \u2208 {0,1}.",
+      "answer": "Let r1 = R1(a,b,c) \u2208 {0,1} and r2 = R2(a,b,c) \u2208 {0,1} be the outputs of R1 and R2 on neighbourhood (a,b,c). Cell i applies R1 with prob 1\u2212\u03bb and R2 with prob \u03bb. Therefore: P(x_i(t+1)=1 | N_i(t)=(a,b,c)) = (1\u2212\u03bb)\u00b7r1 + \u03bb\u00b7r2. There are four cases: if r1=0, r2=0: P=0; if r1=1, r2=1: P=1; if r1=1, r2=0: P=1\u2212\u03bb; if r1=0, r2=1: P=\u03bb. The last two cases are where the stochastic model differs from both pure deterministic ECAs.",
+      "explanation": "This formula shows that the only configurations where the stochastic model is non-deterministic are those neighbourhoods where R1 and R2 disagree. \u03bb linearly interpolates the output probability between 0 and 1 in those cases."
+    },
+    {
+      "id": 43,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Let D(R1, R2) be the set of neighbourhood patterns on which R1 and R2 disagree. How does |D(R1, R2)| relate to the degree of stochasticity, and what are its minimum and maximum values?",
+      "answer": "D(R1,R2) = { (a,b,c) \u2208 {0,1}^3 : R1(a,b,c) \u2260 R2(a,b,c) }. Since there are 8 possible neighbourhood patterns, |D| \u2208 {0,1,...,8}. When |D|=0, R1=R2 and the stochastic model is deterministic (\u03bb has no effect). When |D|=8, R1 and R2 are complementary rules (R2=NOT(R1)), maximally disagreeing on every neighbourhood. The larger |D|, the more neighbourhood patterns produce probabilistic outcomes, and thus the greater the stochasticity introduced by the mixing rate \u03bb.",
+      "explanation": "The Hamming distance between rule tables, |D(R1,R2)|, is a natural measure of how different two ECA rules are. For complementary pairs like (R, ~R), all 8 patterns disagree, yielding maximum stochasticity."
+    },
+    {
+      "id": 44,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Let \u03c1(t) be the density of 1s at time t in a stochastic ECA (R1, R2)[\u03bb]. The expected density \u03c1(t+1) depends on:",
+      "choices": {
+        "A": "Only \u03bb, not on \u03c1(t)",
+        "B": "\u03c1(t), \u03bb, and the specific rules R1 and R2",
+        "C": "Only \u03c1(t) and R1",
+        "D": "The lattice size n only"
+      },
+      "answer": "B",
+      "explanation": "E[\u03c1(t+1)] = \u03a3_{(a,b,c)} P(neighbourhood=(a,b,c) at time t) \u00b7 [(1\u2212\u03bb)\u00b7R1(a,b,c) + \u03bb\u00b7R2(a,b,c)]. This depends on the current state distribution (summarised by \u03c1(t) under mean-field assumptions), the rules R1 and R2, and \u03bb."
+    },
+    {
+      "id": 45,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under the mean-field (independent cells) approximation for stochastic ECA (R1, R2)[\u03bb], the density update \u03c1(t+1) can be written as:",
+      "choices": {
+        "A": "\u03c1(t+1) = \u03bb \u00b7 f_{R1}(\u03c1(t)) + (1\u2212\u03bb) \u00b7 f_{R2}(\u03c1(t))",
+        "B": "\u03c1(t+1) = (1\u2212\u03bb) \u00b7 f_{R1}(\u03c1(t)) + \u03bb \u00b7 f_{R2}(\u03c1(t))",
+        "C": "\u03c1(t+1) = f_{R1}(\u03c1(t)) \u00b7 f_{R2}(\u03c1(t))",
+        "D": "\u03c1(t+1) = \u03bb \u00b7 \u03c1(t)"
+      },
+      "answer": "B",
+      "explanation": "Each cell uses R1 with prob 1\u2212\u03bb and R2 with prob \u03bb. Under the mean-field approximation, the expected density contributed by R1 is (1\u2212\u03bb)\u00b7f_{R1}(\u03c1) and by R2 is \u03bb\u00b7f_{R2}(\u03c1), where f_R(\u03c1) = \u03a3_{(a,b,c)} \u03c1^{a+c+b}(1\u2212\u03c1)^{3\u2212a\u2212b\u2212c}\u00b7R(a,b,c) is the mean-field density map for rule R."
+    },
+    {
+      "id": 46,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider a stochastic ECA (R_0, R_255)[\u03bb] where R_0 maps all neighbourhoods to 0 and R_255 maps all neighbourhoods to 1. Starting from any initial configuration, what is the density \u03c1(t) for t \u2265 1?",
+      "choices": {
+        "A": "\u03c1(t) = \u03c1(0)^t",
+        "B": "\u03c1(t) = \u03bb for all t \u2265 1",
+        "C": "\u03c1(t) = 1 \u2212 (1\u2212\u03bb)^t",
+        "D": "\u03c1(t) oscillates between 0 and 1"
+      },
+      "answer": "B",
+      "explanation": "At each step, every cell independently outputs 1 (using R_255) with prob \u03bb and 0 (using R_0) with prob 1\u2212\u03bb, regardless of neighbourhood. After one step, \u03c1(1)=\u03bb. By induction, \u03c1(t)=\u03bb for all t\u22651 since the output is always an i.i.d. Bernoulli(\u03bb) field."
+    },
+    {
+      "id": 47,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain how a phase transition in dynamical behaviour might manifest as \u03bb varies from 0 to 1 in a stochastic ECA (R1, R2)[\u03bb], using an example.",
+      "answer": "A phase transition occurs when a qualitative dynamical property changes abruptly at some critical \u03bb*. For example, consider (R_110, R_90)[\u03bb]. R_110 is complex (Wolfram class IV), while R_90 is chaotic (class III). Near \u03bb=0, the system may exhibit complex localised structures characteristic of R_110. As \u03bb increases, R_90's chaotic character begins to dominate. At some critical \u03bb* \u2208 (0,1), the dominant qualitative behaviour may shift \u2014 for instance, the density of 1s may cross a threshold, or the correlation length may diverge. For \u03bb > \u03bb*, the dynamics resemble R_90 (high entropy, no persistent structures). This transition in asymptotic behaviour as a function of \u03bb is analogous to a phase transition in statistical mechanics.",
+      "explanation": "Studying such transitions is a primary motivation for the stochastic noise model: it allows controlled interpolation between two ECA regimes and reveals where and how qualitative behaviour changes."
+    },
+    {
+      "id": 48,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The notation (R1, R2)[\u03bb] specifies which rule is dominant (applied with higher probability) when \u03bb < 0.5?",
+      "choices": {
+        "A": "R2",
+        "B": "R1",
+        "C": "Both equally",
+        "D": "Neither \u2014 the notation does not encode dominance"
+      },
+      "answer": "B",
+      "explanation": "R1 is applied with probability 1\u2212\u03bb. When \u03bb < 0.5, 1\u2212\u03bb > 0.5, so R1 is the majority rule. R1 is conventionally listed first in the notation as the base rule."
+    },
+    {
+      "id": 49,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In (R1, R2)[\u03bb], which rule is referred to as the 'noise rule'?",
+      "choices": {
+        "A": "R1, applied with probability 1\u2212\u03bb",
+        "B": "R2, applied with probability \u03bb",
+        "C": "Whichever rule has higher Wolfram number",
+        "D": "Both equally"
+      },
+      "answer": "B",
+      "explanation": "R2 is the noise rule: it is the perturbation introduced at rate \u03bb. R1 is the base rule. As \u03bb\u21920, the system reverts to a pure R1 ECA, with R2 acting as a vanishing noise source."
+    },
+    {
+      "id": 50,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is (R1, R2)[\u03bb] equivalent to (R2, R1)[1\u2212\u03bb] as a stochastic model?",
+      "choices": {
+        "A": "No, they define different update probabilities",
+        "B": "Yes, because in both cases R1 is applied with prob 1\u2212\u03bb and R2 with prob \u03bb",
+        "C": "Only when \u03bb = 0.5",
+        "D": "Only when R1 and R2 commute"
+      },
+      "answer": "B",
+      "explanation": "(R2, R1)[1\u2212\u03bb]: R2 is applied with prob 1\u2212(1\u2212\u03bb)=\u03bb and R1 is applied with prob 1\u2212\u03bb. So in both (R1,R2)[\u03bb] and (R2,R1)[1\u2212\u03bb], R1 is applied with prob 1\u2212\u03bb and R2 with prob \u03bb. The models are identical; the notation is symmetric under swapping rules and complementing the rate."
+    },
+    {
+      "id": 51,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the name given to \u03bb in the stochastic noise model (R1, R2)[\u03bb], and what does it measure?",
+      "answer": "\u03bb is called the mixing noise rate (or simply the mixing rate or noise rate). It measures the probability that a cell uses the noise rule R2 rather than the base rule R1 at any given time step. \u03bb=0 means no noise (pure R1); \u03bb=1 means maximum noise (pure R2); intermediate values produce a probabilistic mixture.",
+      "explanation": "The term 'mixing' reflects that \u03bb controls the mixing proportion between two rules in the stochastic dynamics."
+    },
+    {
+      "id": 52,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[0.3], what is the probability that a specific cell i uses rule R1 for exactly 3 consecutive time steps?",
+      "choices": {
+        "A": "0.3^3 = 0.027",
+        "B": "(0.7)^3 = 0.343",
+        "C": "3 \u00d7 0.7 \u00d7 0.3^2 = 0.189",
+        "D": "0.7 \u00d7 0.3 \u00d7 0.7 = 0.147"
+      },
+      "answer": "B",
+      "explanation": "At each step, cell i uses R1 with probability 1\u2212\u03bb=0.7, independently across time steps. The probability of using R1 for 3 consecutive steps is (0.7)^3 = 0.343."
+    },
+    {
+      "id": 53,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] with lattice size n=100 and \u03bb=0.4, what is the variance of the number of cells using R2 at a fixed time step?",
+      "choices": {
+        "A": "100 \u00d7 0.4 = 40",
+        "B": "100 \u00d7 0.4 \u00d7 0.6 = 24",
+        "C": "100 \u00d7 0.4^2 = 16",
+        "D": "0.4 \u00d7 0.6 = 0.24"
+      },
+      "answer": "B",
+      "explanation": "The count follows Binomial(n=100, p=\u03bb=0.4). Variance of Binomial(n,p) = np(1\u2212p) = 100 \u00d7 0.4 \u00d7 0.6 = 24."
+    },
+    {
+      "id": 54,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], consider a neighbourhood pattern (a,b,c) where R1(a,b,c)=1 and R2(a,b,c)=0. What is P(x_i(t+1)=0 | N_i(t)=(a,b,c))?",
+      "choices": {
+        "A": "1 \u2212 \u03bb",
+        "B": "\u03bb",
+        "C": "0",
+        "D": "1"
+      },
+      "answer": "B",
+      "explanation": "P(output=0) = P(R1 used)\u00b7R1(a,b,c)==0 + P(R2 used)\u00b7R2(a,b,c)==0 = (1\u2212\u03bb)\u00b70 + \u03bb\u00b71 = \u03bb. (R1 gives 1 so contributes 0 to the P(output=0) term; R2 gives 0 so contributes \u03bb.)"
+    },
+    {
+      "id": 55,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[0.25] with n=8 cells, what is the probability that all 8 cells use rule R1 at a single time step?",
+      "answer": "Each cell independently uses R1 with probability 1\u2212\u03bb = 1\u22120.25 = 0.75. Since the choices are independent across cells, P(all 8 cells use R1) = (0.75)^8 = (3/4)^8 = 6561/65536 \u2248 0.1001. Approximately 10% of time steps will have every cell using R1.",
+      "explanation": "This calculation follows from n independent Bernoulli trials. As n grows, this probability decays exponentially, making all-R1 configurations increasingly rare for larger lattices."
+    },
+    {
+      "id": 56,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] with R1 = Rule 90 and R2 = Rule 150, list all 8 neighbourhood patterns and compute P(x_i(t+1)=1 | N_i(t)) for each. (Rule 90: outputs 1 for patterns 001, 010, 100, 111 in Wolfram numbering \u2014 wait, use standard binary: Rule 90 in binary is 01011010, Rule 150 is 10010110.)",
+      "answer": "Rule 90 table (Wolfram binary 01011010, pattern 111\u21920, 110\u21921, 101\u21920, 100\u21921, 011\u21921, 010\u21920, 001\u21921, 000\u21920): R90(111)=0, R90(110)=1, R90(101)=0, R90(100)=1, R90(011)=1, R90(010)=0, R90(001)=1, R90(000)=0. Rule 150 table (10010110): R150(111)=1, R150(110)=0, R150(101)=0, R150(100)=1, R150(011)=0, R150(010)=1, R150(001)=1, R150(000)=0. P(output=1)=(1\u2212\u03bb)\u00b7R90 + \u03bb\u00b7R150 for each neighbourhood: 000\u21920, 001\u21921, 010\u2192\u03bb (R90=0,R150=1), 011\u21921\u2212\u03bb (R90=1,R150=0), 100\u21921 (both agree), 101\u2192\u03bb (R90=0,R150=1 \u2014 wait R150(101)=0), let me correct: R150(101)=0 so P(101)=(1\u2212\u03bb)\u00b70+\u03bb\u00b70=0. 110: R90=1,R150=0 \u2192 P=1\u2212\u03bb. 111: R90=0,R150=1 \u2192 P=\u03bb. Summary: 000\u21920, 001\u21921, 010\u2192\u03bb, 011\u21921\u2212\u03bb, 100\u21921, 101\u21920, 110\u21921\u2212\u03bb, 111\u2192\u03bb.",
+      "explanation": "Disagreement patterns (where R90\u2260R150) are 010, 011, 110, 111 \u2014 exactly 4 patterns. On these, the output probability is either \u03bb or 1\u2212\u03bb. On agreement patterns, output is deterministic."
+    },
+    {
+      "id": 57,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why is stochastic ECA noise described as 'spatial' noise?",
+      "choices": {
+        "A": "Because the rules are defined on a spatial lattice",
+        "B": "Because the rule-selection randomness is per-cell (spatially localised), not global",
+        "C": "Because the lattice is one-dimensional (spatial)",
+        "D": "Because the noise rate \u03bb controls the spatial density of 1s"
+      },
+      "answer": "B",
+      "explanation": "The noise is called 'spatial' because the random perturbation occurs independently at each spatial location (cell). Different cells can be in different rule regimes simultaneously. This is contrasted with 'temporal' stochastic noise where the randomness is global per time step."
+    },
+    {
+      "id": 58,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A researcher wants to study the effect of adding rule R2 as noise to an R1-based ECA without completely replacing R1. Which range of \u03bb should they use?",
+      "choices": {
+        "A": "\u03bb \u2208 {0, 1} only",
+        "B": "\u03bb \u2208 (0, 1) \u2014 strictly between 0 and 1",
+        "C": "\u03bb > 1",
+        "D": "\u03bb < 0"
+      },
+      "answer": "B",
+      "explanation": "\u03bb=0 gives pure R1 (no noise), \u03bb=1 gives pure R2 (R1 fully replaced). To have R2 as noise perturbing R1 without replacing it, one needs \u03bb \u2208 (0,1). Typically small \u03bb (e.g., \u03bb=0.01 to 0.2) is used to study the effect of low noise."
+    },
+    {
+      "id": 59,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Which of the following is a key modelling advantage of stochastic ECA noise over a fixed hybrid rule that always applies R1 to odd cells and R2 to even cells?",
+      "choices": {
+        "A": "Stochastic noise is always faster to simulate",
+        "B": "The fixed hybrid rule preserves translational symmetry while stochastic noise does not",
+        "C": "Stochastic noise maintains spatial symmetry in expectation while being non-deterministic, enabling probabilistic analysis and tunable via \u03bb",
+        "D": "The fixed hybrid rule is a special case of stochastic noise with \u03bb=0.5"
+      },
+      "answer": "C",
+      "explanation": "A fixed odd/even hybrid is deterministic and breaks translational symmetry (odd and even cells always differ). Stochastic noise is translational-symmetric in expectation (every cell has the same rule distribution), non-deterministic (enabling probabilistic analysis), and tunable via \u03bb. Answer D is wrong: the fixed hybrid is not a limiting case of the i.i.d. stochastic model."
+    },
+    {
+      "id": 60,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain why studying a stochastic ECA (R1, R2)[\u03bb] as a function of \u03bb \u2208 [0,1] can reveal properties of both R1 and R2 individually, as well as emergent properties not present in either pure system.",
+      "answer": "At \u03bb=0 and \u03bb=1, the system reduces to the deterministic ECAs under R1 and R2 respectively, so the endpoints reveal the pure-rule dynamics. For intermediate \u03bb, the system is a probabilistic mixture: cells randomly apply R1 or R2, and the emergent dynamics need not resemble either pure system. For instance, if R1 is periodic and R2 is chaotic, an intermediate \u03bb might produce a system that is neither periodic nor fully chaotic but instead exhibits novel transient structures, phase transitions, or density fixed points. These emergent phenomena arise from the interaction between the two rule tables and are only accessible through the stochastic model. Plotting quantities like asymptotic density, correlation length, or Lyapunov exponent as a function of \u03bb can reveal critical values \u03bb* where qualitative transitions occur \u2014 phase transitions invisible in either pure system.",
+      "explanation": "This motivates the study of stochastic ECA as more than just a perturbation tool: the full \u03bb \u2208 [0,1] spectrum is a rich dynamical landscape in its own right."
+    },
+    {
+      "id": 61,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following correctly characterises the role of the two rules in the stochastic ECA model (R1, R2)[\u03bb]?",
+      "choices": {
+        "A": "R1 and R2 are applied to odd and even cells respectively",
+        "B": "R1 is the base rule (applied with prob 1\u2212\u03bb) and R2 is the noise rule (applied with prob \u03bb), independently per cell per step",
+        "C": "R1 and R2 alternate on consecutive time steps",
+        "D": "R1 is used for cells in state 0 and R2 for cells in state 1"
+      },
+      "answer": "B",
+      "explanation": "In the stochastic noise model, the split is probabilistic and spatially independent: every cell independently chooses R1 with prob 1\u2212\u03bb or R2 with prob \u03bb at each step. The choice is not based on cell index, time step parity, or current state."
+    },
+    {
+      "id": 62,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], are the rule choices of cell i at different time steps t and t' independent?",
+      "choices": {
+        "A": "No \u2014 the choice at t+1 depends on the state at t",
+        "B": "Yes \u2014 B_i(t) and B_i(t') are i.i.d. Bernoulli(\u03bb) for all t \u2260 t'",
+        "C": "Only if the cell's state did not change between t and t'",
+        "D": "Only for t' > t+2 (there is a short-range temporal correlation)"
+      },
+      "answer": "B",
+      "explanation": "The rule-selection random variables are i.i.d. not just across cells at a fixed time, but also across time steps for the same cell. B_i(t) ~ Bernoulli(\u03bb) independently for all i and t. There is no temporal correlation in the noise."
+    },
+    {
+      "id": 63,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Prove or disprove: the spatial stochastic model (R1,R2)[\u03bb] and the temporal stochastic model (R1,R2)[\u03c4] with \u03bb=\u03c4 produce the same marginal distribution for a single cell x_i(t+1) given its neighbourhood N_i(t).",
+      "answer": "True \u2014 the marginal distributions are identical. For spatial noise: P(x_i(t+1)=1 | N_i(t)) = (1\u2212\u03bb)\u00b7R1(N_i) + \u03bb\u00b7R2(N_i). For temporal noise with \u03c4=\u03bb: at time t, the whole lattice uses R1 (prob 1\u2212\u03c4) or R2 (prob \u03c4), so P(x_i(t+1)=1 | N_i(t)) = (1\u2212\u03c4)\u00b7R1(N_i) + \u03c4\u00b7R2(N_i) = (1\u2212\u03bb)\u00b7R1(N_i) + \u03bb\u00b7R2(N_i). These are equal. The models differ only in joint distributions: under spatial noise, (x_i(t+1), x_j(t+1)) are conditionally independent given (N_i(t), N_j(t)); under temporal noise, they are positively correlated (both cells use the same rule).",
+      "explanation": "Same marginal, different joint distribution. This means single-cell statistics cannot distinguish the two models; spatial correlations are needed to tell them apart."
+    },
+    {
+      "id": 64,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The stochastic noise model (R1, R2)[\u03bb] is best described as a perturbation of which component of the ECA framework?",
+      "choices": {
+        "A": "The update schedule (when cells update)",
+        "B": "The rule applied (which rule each cell uses)",
+        "C": "The initial condition",
+        "D": "The lattice topology"
+      },
+      "answer": "B",
+      "explanation": "Stochastic noise perturbs the rule layer: cells still update synchronously, on the same lattice, but randomly switch between R1 and R2. The update schedule, initial condition, and lattice are unchanged."
+    },
+    {
+      "id": 65,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under what condition on R1, R2, and \u03bb does a stochastic ECA (R1, R2)[\u03bb] have a fixed-point density \u03c1* satisfying \u03c1* = (1\u2212\u03bb)f_{R1}(\u03c1*) + \u03bbf_{R2}(\u03c1*) under the mean-field approximation?",
+      "choices": {
+        "A": "This equation always has exactly one solution \u03c1* \u2208 [0,1]",
+        "B": "This equation has a solution whenever (1\u2212\u03bb)f_{R1} + \u03bbf_{R2} is a continuous map from [0,1] to [0,1], which is always true \u2014 at least one fixed point exists by Brouwer's theorem",
+        "C": "Only when \u03bb = 0.5",
+        "D": "Only when R1 and R2 are complementary"
+      },
+      "answer": "B",
+      "explanation": "f_{R1}, f_{R2}: [0,1]\u2192[0,1] are continuous (polynomials in \u03c1). Their convex combination (1\u2212\u03bb)f_{R1}+\u03bbf_{R2} is also a continuous map from [0,1] to [0,1]. By Brouwer's fixed-point theorem, at least one fixed point \u03c1* \u2208 [0,1] always exists. There may be multiple fixed points, depending on R1, R2, and \u03bb."
+    },
+    {
+      "id": 66,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What value of \u03bb makes R1 and R2 equally likely to be applied to any given cell, and what is the expected fraction of R2-cells at this value?",
+      "answer": "\u03bb=0.5 makes both rules equally likely: each cell independently applies R1 with probability 0.5 and R2 with probability 0.5. At \u03bb=0.5, the expected fraction of cells using R2 is E[#R2-cells]/n = \u03bb = 0.5, meaning on average half the cells use R2 and half use R1 at each time step.",
+      "explanation": "\u03bb=0.5 is the maximally mixed or symmetric point of the stochastic noise model, where neither rule dominates."
+    },
+    {
+      "id": 67,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider modelling a physical system where neighbouring regions can independently follow different dynamics. Which noise model is most appropriate?",
+      "choices": {
+        "A": "Temporal stochastic noise \u2014 because the whole system switches dynamics together",
+        "B": "\u03b1-asynchronous noise \u2014 because some regions are inactive",
+        "C": "Spatial stochastic noise \u2014 because different spatial locations independently follow different rules",
+        "D": "s-skewed noise \u2014 because updates are spatially contiguous"
+      },
+      "answer": "C",
+      "explanation": "Spatial stochastic noise is the natural model when different spatial locations independently operate under different dynamics. The independent per-cell rule selection mirrors local heterogeneity. Temporal noise would require the entire system to switch simultaneously, which does not match the described scenario."
+    },
+    {
+      "id": 68,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is the stochastic ECA model (R1, R2)[\u03bb] symmetric in R1 and R2? That is, is (R1, R2)[\u03bb] the same model as (R2, R1)[\u03bb]? Explain.",
+      "answer": "No, (R1, R2)[\u03bb] and (R2, R1)[\u03bb] are generally different models (unless \u03bb=0.5 or R1=R2). In (R1,R2)[\u03bb], R1 is applied with prob 1\u2212\u03bb and R2 with prob \u03bb. In (R2,R1)[\u03bb], R2 is applied with prob 1\u2212\u03bb and R1 with prob \u03bb. The roles are swapped. However, (R1,R2)[\u03bb] = (R2,R1)[1\u2212\u03bb], which means swapping the rules is equivalent to replacing \u03bb with 1\u2212\u03bb. The model is symmetric in R1 and R2 only at \u03bb=0.5.",
+      "explanation": "This asymmetry matters when \u03bb\u22600.5: the model (R1,R2)[0.1] has R1 dominating, while (R2,R1)[0.1] has R2 dominating, representing very different dynamics."
+    },
+    {
+      "id": 69,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] on a lattice \ud835\udcdb = {0,...,n\u22121} with periodic boundaries, the global state transition is a random map T_\u03bb: {0,1}^n \u2192 {0,1}^n. How many distinct deterministic maps does T_\u03bb randomly select from at each time step?",
+      "choices": {
+        "A": "2 (one for R1 and one for R2)",
+        "B": "n (one per cell)",
+        "C": "2^n (one per possible noise pattern across the lattice)",
+        "D": "256 (one per ECA rule)"
+      },
+      "answer": "C",
+      "explanation": "At each step, each of the n cells independently chooses R1 or R2. There are 2^n possible binary patterns (B_0,...,B_{n-1}) of rule selections. Each pattern defines a distinct deterministic map. So T_\u03bb selects uniformly at random from 2^n deterministic maps, with each pattern (b_0,...,b_{n-1}) having probability \u03bb^{\u03a3b_i} (1\u2212\u03bb)^{n\u2212\u03a3b_i}."
+    },
+    {
+      "id": 70,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why a stochastic ECA (R1, R2)[\u03bb] with 0 < \u03bb < 1 on a finite lattice can never have a periodic orbit of the form x(t) = x(t+k) for k \u2265 1 with probability 1.",
+      "answer": "A periodic orbit x(t) = x(t+k) for all t would require the exact same sequence of n rule-selection outcomes to repeat with probability 1. Since the rule choices B_i(t) are i.i.d. Bernoulli(\u03bb) with 0<\u03bb<1, any specific pattern of n independent Bernoulli variables has probability in (0,1), and outcomes at different steps are independent. Thus the probability that the exact sequence of rule choices repeats in a given cycle is strictly less than 1. In fact, with probability 1, the system never returns to exactly the same (state, noise-pattern) configuration. The process is ergodic on the randomness, preventing deterministic periodicity.",
+      "explanation": "This contrasts with the deterministic ECA where periodic orbits are guaranteed on finite lattices. Stochasticity breaks deterministic periodicity, though the state x(t) alone (ignoring the noise) may still revisit states."
+    },
+    {
+      "id": 71,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a stochastic ECA (R1, R2)[0.6], what is the probability that a specific cell uses R1 at a given time step?",
+      "choices": {
+        "A": "0.6",
+        "B": "0.4",
+        "C": "0.5",
+        "D": "0.36"
+      },
+      "answer": "B",
+      "explanation": "P(cell uses R1) = 1 \u2212 \u03bb = 1 \u2212 0.6 = 0.4."
+    },
+    {
+      "id": 72,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[0.5] with n=4 cells, what is the probability that exactly 2 cells use R2 at a given time step?",
+      "choices": {
+        "A": "1/4",
+        "B": "3/8",
+        "C": "1/2",
+        "D": "1/16"
+      },
+      "answer": "B",
+      "explanation": "Count ~ Binomial(4, 0.5). P(X=2) = C(4,2) \u00d7 (0.5)^2 \u00d7 (0.5)^2 = 6 \u00d7 0.0625 = 0.375 = 3/8."
+    },
+    {
+      "id": 73,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "All four noise models (\u03b1-asynchronous, s-skewed, stochastic, temporal stochastic) introduce probabilistic behaviour into ECA. Organise them into two groups based on what structural aspect of ECA they perturb, and justify your grouping.",
+      "answer": "Group 1 \u2014 Perturb the update schedule (when/which cells update): \u03b1-asynchronous noise and s-skewed noise. In \u03b1-asynchronous noise, each cell independently updates with probability \u03b1 (and skips with 1\u2212\u03b1), breaking synchrony at the individual-cell level. In s-skewed noise, only a contiguous block of s cells (randomly placed) updates per step, breaking the global clock. Both models use a single underlying rule R and introduce noise by varying the update set. Group 2 \u2014 Perturb the rule (which rule is applied): spatial stochastic noise and temporal stochastic noise. Both models maintain synchronous updates of all n cells but randomly assign rules (R1 or R2) to cells. They differ in the granularity of the random assignment: spatial (per-cell, independent) vs temporal (per-step, global). These groups reflect two orthogonal axes of ECA structure: the update schedule and the rule table.",
+      "explanation": "This taxonomic distinction is important for understanding what each noise model captures: schedule perturbations model asynchrony (biological or mechanical timing imperfections), while rule perturbations model local heterogeneity or uncertainty in the interaction laws."
+    },
+    {
+      "id": 74,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] can be viewed as a probabilistic cellular automaton (PCA). What makes it a PCA rather than a standard CA?",
+      "choices": {
+        "A": "It has more than 2 states per cell",
+        "B": "The next state of each cell is determined by a probability distribution rather than a deterministic function",
+        "C": "It uses continuous time rather than discrete time",
+        "D": "It allows cells to have different neighbourhood sizes"
+      },
+      "answer": "B",
+      "explanation": "A probabilistic cellular automaton (PCA) replaces the deterministic transition function of a CA with a stochastic kernel: given a neighbourhood, each possible output is assigned a probability. In the stochastic ECA, P(x_i(t+1)=1 | N_i(t)) = (1\u2212\u03bb)R1(N_i) + \u03bbR2(N_i), which is a genuine probability (not always 0 or 1 when R1\u2260R2). This is precisely the PCA framework."
+    },
+    {
+      "id": 75,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A biologist models two competing signalling pathways in a tissue, where each cell independently follows pathway R1 or pathway R2 depending on local chemical concentrations. Which ECA noise model best captures this scenario, and why?",
+      "answer": "Spatial stochastic noise (R1, R2)[\u03bb] best captures this scenario. The key features are: (1) cells update synchronously (all cells respond to signals at each time step \u2014 preserving the global clock), (2) rule selection is per-cell and independent (each cell's local chemical environment independently determines which pathway it follows), and (3) \u03bb represents the probability that local conditions favour pathway R2. This is exactly the stochastic noise model. Temporal stochastic noise would be inappropriate because it requires the entire tissue to switch pathways simultaneously, which contradicts local independence. \u03b1-noise would be inappropriate because cells do not skip signalling; they always respond, just via different rules.",
+      "explanation": "Connecting the mathematical model to biological interpretation helps validate the model choice and demonstrate understanding of the noise model's core assumptions."
+    },
+    {
+      "id": 76,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following correctly describes the Wolfram numbering scheme for ECA rules?",
+      "choices": {
+        "A": "Rules are numbered 0\u2013255 based on the decimal interpretation of their 8-bit output table",
+        "B": "Rules are numbered 0\u2013512 based on possible neighbourhood outputs",
+        "C": "Rules are named after their discoverers",
+        "D": "Rules are numbered 1\u2013256 based on cell density"
+      },
+      "answer": "A",
+      "explanation": "Wolfram's naming convention: list the 8 neighbourhood patterns (111, 110, \u2026, 000) in descending binary order, read the corresponding outputs as an 8-bit binary number, and convert to decimal. This gives rule numbers 0\u2013255."
+    },
+    {
+      "id": 77,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the next state of a cell in a standard ECA if the cell and both its neighbours are all in state 1, and the rule maps (1,1,1) \u2192 0?",
+      "choices": {
+        "A": "1",
+        "B": "0",
+        "C": "Undefined",
+        "D": "Depends on \u03bb"
+      },
+      "answer": "B",
+      "explanation": "In a deterministic ECA, the next state is determined entirely by the rule applied to the neighbourhood. R(1,1,1)=0, so the cell transitions to state 0."
+    },
+    {
+      "id": 78,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Rule 90 is defined by output bits (reading patterns 111 down to 000): 0,1,0,1,1,0,1,0. What is the output of Rule 90 on neighbourhood (1,0,1)?",
+      "choices": {
+        "A": "0",
+        "B": "1",
+        "C": "Depends on time step",
+        "D": "0.5"
+      },
+      "answer": "A",
+      "explanation": "Pattern (1,0,1) = binary 101 = decimal 5, so we read bit position 5 (0-indexed from right) of Rule 90's output string 01011010. Bit 5 = 0. Rule 90(1,0,1) = 0."
+    },
+    {
+      "id": 79,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Wolfram classified ECA rules into four classes. Briefly describe each class and give one example rule number.",
+      "answer": "Class I: Evolution leads to a homogeneous fixed state (e.g., Rule 0 \u2014 all cells die to 0). Class II: Evolution produces stable or periodic structures (e.g., Rule 4). Class III: Evolution is chaotic and aperiodic (e.g., Rule 30). Class IV: Complex, localised structures emerge \u2014 neither simple nor fully chaotic (e.g., Rule 110). These classes capture qualitatively different asymptotic dynamics.",
+      "explanation": "Wolfram's classification is empirical and not fully formalised, but it has been highly influential in understanding ECA complexity and its connection to computational universality."
+    },
+    {
+      "id": 80,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Rule 110 is known to be computationally universal. This means:",
+      "choices": {
+        "A": "It can simulate any ECA rule",
+        "B": "It can simulate a universal Turing machine",
+        "C": "It produces the maximum possible density of 1s",
+        "D": "It is the only rule with complex behaviour"
+      },
+      "answer": "B",
+      "explanation": "Cook (2004) proved Rule 110 is capable of universal computation \u2014 it can simulate any Turing machine given appropriate initial conditions. This is the strongest sense of computational universality and makes Rule 110 particularly interesting as a noise target in stochastic ECA studies."
+    },
+    {
+      "id": 81,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the notation (R1, R2)[\u03bb], which probability is associated with the FIRST listed rule R1?",
+      "choices": {
+        "A": "\u03bb",
+        "B": "1 \u2212 \u03bb",
+        "C": "0.5 always",
+        "D": "\u03bb\u00b2"
+      },
+      "answer": "B",
+      "explanation": "By convention, R1 (listed first) is the base rule applied with probability 1\u2212\u03bb, while R2 (listed second) is the noise rule applied with probability \u03bb."
+    },
+    {
+      "id": 82,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] preserves which structural aspect of the standard ECA?",
+      "choices": {
+        "A": "Single deterministic rule",
+        "B": "Synchronous (global clock) update of all cells",
+        "C": "Identical rule for every cell at every step",
+        "D": "Deterministic transition function"
+      },
+      "answer": "B",
+      "explanation": "Stochastic noise only perturbs which rule each cell uses, not when cells are updated. All n cells are still updated synchronously at every time step, preserving the global clock of the standard ECA."
+    },
+    {
+      "id": 83,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following is NOT a parameter of the stochastic ECA model (R1, R2)[\u03bb]?",
+      "choices": {
+        "A": "The base rule R1",
+        "B": "The noise rule R2",
+        "C": "The mixing rate \u03bb",
+        "D": "The update probability \u03b1 per cell"
+      },
+      "answer": "D",
+      "explanation": "The parameters of the stochastic model are R1, R2, and \u03bb. The update probability \u03b1 is a parameter of the \u03b1-asynchronous noise model, not of stochastic noise. In stochastic noise, all cells always update; only the rule varies."
+    },
+    {
+      "id": 84,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why is the stochastic noise model (R1, R2)[\u03bb] sometimes called a rule-mixing model? What exactly is being mixed?",
+      "answer": "The model mixes two deterministic rule tables. At each time step, each cell independently samples from the mixture: with probability 1\u2212\u03bb it uses R1's transition function, and with probability \u03bb it uses R2's transition function. The mixture is over the space of ECA rules \u2014 specifically a convex combination of two point masses at R1 and R2 in rule space. The parameter \u03bb controls the mixing proportion. For each neighbourhood pattern where R1 and R2 agree, the mixture is deterministic; where they disagree, the output is a Bernoulli random variable with probability \u03bb of matching R2's output.",
+      "explanation": "The term 'mixing' is used in the probabilistic sense of mixing two distributions (here, two degenerate distributions on rules R1 and R2) into a convex combination."
+    },
+    {
+      "id": 85,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] with n cells at each time step draws n i.i.d. Bernoulli(\u03bb) random variables. Over T time steps, how many total independent random variables are drawn?",
+      "choices": {
+        "A": "T",
+        "B": "n",
+        "C": "nT",
+        "D": "n + T"
+      },
+      "answer": "C",
+      "explanation": "At each of T time steps, n cells each independently draw one Bernoulli(\u03bb) variable for rule selection. Since draws are independent across both cells and time steps, the total number of independent random variables over T steps is n \u00d7 T."
+    },
+    {
+      "id": 86,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], if cell i draws B_i(t) = 0, which rule does it apply?",
+      "choices": {
+        "A": "R2",
+        "B": "R1",
+        "C": "Neither \u2014 cell is skipped",
+        "D": "A blend of R1 and R2"
+      },
+      "answer": "B",
+      "explanation": "B_i(t) ~ Bernoulli(\u03bb). B_i(t)=0 (probability 1\u2212\u03bb) corresponds to applying R1. B_i(t)=1 (probability \u03bb) corresponds to applying R2."
+    },
+    {
+      "id": 87,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] with n=5, at time t cells draw rule choices (R1, R2, R1, R1, R2). What is the probability of this exact pattern?",
+      "choices": {
+        "A": "(1\u2212\u03bb)\u00b3 \u03bb\u00b2",
+        "B": "\u03bb\u00b3 (1\u2212\u03bb)\u00b2",
+        "C": "C(5,2) \u03bb\u00b2(1\u2212\u03bb)\u00b3",
+        "D": "\u03bb\u00b2(1\u2212\u03bb)\u00b3 / 5!"
+      },
+      "answer": "A",
+      "explanation": "Cells 0,2,3 use R1 (prob 1\u2212\u03bb each) and cells 1,4 use R2 (prob \u03bb each). Since choices are independent, P = (1\u2212\u03bb)\u00d7\u03bb\u00d7(1\u2212\u03bb)\u00d7(1\u2212\u03bb)\u00d7\u03bb = (1\u2212\u03bb)\u00b3 \u03bb\u00b2. The C(5,2) factor only applies when asking for any arrangement of 2 R2-cells, not this specific one."
+    },
+    {
+      "id": 88,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Two cells i and j in a stochastic ECA (R1, R2)[\u03bb] both have the same neighbourhood pattern N at time t. Is the probability that they both output state 1 at time t+1 equal to [P(x_i(t+1)=1)]\u00b2?",
+      "choices": {
+        "A": "Yes, because the rule choices are independent",
+        "B": "No, because they share neighbourhood information",
+        "C": "Only when \u03bb = 0.5",
+        "D": "Only when their neighbourhoods don't overlap"
+      },
+      "answer": "A",
+      "explanation": "Given neighbourhood patterns, the rule choices B_i(t) and B_j(t) are independent Bernoulli(\u03bb). So P(both output 1 | same neighbourhood N) = P(x_i=1|N) \u00d7 P(x_j=1|N) = [(1\u2212\u03bb)R1(N)+\u03bbR2(N)]\u00b2. Independence holds regardless of neighbourhood overlap \u2014 it is the rule-selection draws that are independent, not the states."
+    },
+    {
+      "id": 89,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], at time t consider two adjacent cells i and i+1. Their rule-selection draws B_i(t) and B_{i+1}(t) are independent. However, their new states x_i(t+1) and x_{i+1}(t+1) are:",
+      "choices": {
+        "A": "Always independent given x(t)",
+        "B": "Conditionally independent given the full state x(t)",
+        "C": "Always positively correlated",
+        "D": "Never correlated"
+      },
+      "answer": "B",
+      "explanation": "Given the full state x(t), the rule draw for cell i depends only on (x_{i-1}(t), x_i(t), x_{i+1}(t)) and an independent Bernoulli, and similarly for cell i+1. Since B_i and B_{i+1} are independent, x_i(t+1) and x_{i+1}(t+1) are conditionally independent given x(t). Unconditionally (averaging over x(t)), they may be correlated via shared state variables."
+    },
+    {
+      "id": 90,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], describe fully what happens during one time step t \u2192 t+1 for a lattice of n cells.",
+      "answer": "Step 1 (Rule selection): For each cell i \u2208 {0,\u2026,n\u22121}, independently draw B_i(t) ~ Bernoulli(\u03bb). Step 2 (Neighbourhood reading): For each cell i, read its neighbourhood N_i(t) = (x_{i-1}(t), x_i(t), x_{i+1}(t)) using periodic boundaries. Step 3 (State computation): Compute x_i(t+1) = R1(N_i(t)) if B_i(t)=0, or R2(N_i(t)) if B_i(t)=1. Step 4 (Simultaneous update): All new states x_i(t+1) are written simultaneously, replacing x(t). Steps 1\u20134 are repeated for t+1 \u2192 t+2, etc. The key points are: all n draws happen before any state is updated (synchrony), and draws are independent across cells and independent of past history.",
+      "explanation": "Describing the mechanics step-by-step clarifies both the synchrony (global clock preserved) and the independence (spatial stochasticity) of the model."
+    },
+    {
+      "id": 91,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Does the stochastic ECA (R1, R2)[\u03bb] ever leave a cell in its previous state without applying any rule?",
+      "choices": {
+        "A": "Yes, with probability 1\u2212\u03bb the cell is skipped",
+        "B": "No \u2014 every cell applies exactly one of R1 or R2 at each step",
+        "C": "Yes, with probability (1\u2212\u03bb)\u00b2",
+        "D": "Only boundary cells are ever skipped"
+      },
+      "answer": "B",
+      "explanation": "Unlike \u03b1-asynchronous noise, stochastic noise does not skip cells. Every cell applies exactly one rule at every time step \u2014 either R1 (with prob 1\u2212\u03bb) or R2 (with prob \u03bb). Cells are never left idle."
+    },
+    {
+      "id": 92,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], what is the probability that ALL n cells apply the SAME rule at a given time step (either all R1 or all R2)?",
+      "choices": {
+        "A": "(1\u2212\u03bb)^n + \u03bb^n",
+        "B": "(1\u2212\u03bb)^n \u00d7 \u03bb^n",
+        "C": "1/2",
+        "D": "2\u03bb(1\u2212\u03bb)"
+      },
+      "answer": "A",
+      "explanation": "P(all R1) = (1\u2212\u03bb)^n (each cell independently uses R1). P(all R2) = \u03bb^n. These events are mutually exclusive so P(all same) = (1\u2212\u03bb)^n + \u03bb^n. This is the probability that the spatial stochastic step happens to coincide with a temporal-noise-like outcome."
+    },
+    {
+      "id": 93,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In temporal stochastic noise (R1, R2)[\u03c4], what is the number of independent Bernoulli draws made per time step?",
+      "choices": {
+        "A": "n (one per cell)",
+        "B": "1 (one for the entire lattice)",
+        "C": "n/2",
+        "D": "\u03c4\u00d7n"
+      },
+      "answer": "B",
+      "explanation": "Temporal stochastic noise makes exactly one Bernoulli(\u03c4) draw per time step. This single draw determines the rule for all n cells collectively \u2014 the noise is temporally global."
+    },
+    {
+      "id": 94,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "If you observe the behaviour of a single cell over many time steps, can you distinguish between spatial stochastic noise (R1, R2)[\u03bb] and temporal stochastic noise (R1, R2)[\u03c4] with \u03bb=\u03c4?",
+      "choices": {
+        "A": "Yes, because the single cell uses different rules under each model",
+        "B": "No, because the marginal distribution of a single cell's rule is Bernoulli(\u03bb)=Bernoulli(\u03c4) in both cases",
+        "C": "Yes, but only if \u03bb=\u03c4>0.5",
+        "D": "No, the two models are completely identical"
+      },
+      "answer": "B",
+      "explanation": "A single cell uses R2 with probability \u03bb (spatial) or \u03c4 (temporal) per step. When \u03bb=\u03c4, the marginal distribution is identical. To distinguish the models, you must observe correlations across cells at the same time step: under temporal noise, all cells are correlated (they share one draw); under spatial noise, cells are independent."
+    },
+    {
+      "id": 95,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which scenario best illustrates the difference between spatial and temporal stochastic noise?",
+      "choices": {
+        "A": "Spatial: a die is rolled once for the entire lattice; Temporal: each cell flips its own coin",
+        "B": "Spatial: each cell flips its own coin; Temporal: a single coin is flipped for the entire lattice",
+        "C": "Both models: all cells flip the same coin simultaneously",
+        "D": "Spatial: cells update sequentially; Temporal: cells update simultaneously"
+      },
+      "answer": "B",
+      "explanation": "Spatial noise = independent coin flip per cell (per step). Temporal noise = one coin flip for the whole lattice (per step). This captures the core difference: spatial independence vs temporal global correlation."
+    },
+    {
+      "id": 96,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under spatial stochastic noise (R1, R2)[\u03bb], the covariance of rule choices for two distinct cells i and j at the same time step, Cov(B_i(t), B_j(t)), equals:",
+      "choices": {
+        "A": "\u03bb(1\u2212\u03bb)",
+        "B": "\u03bb\u00b2",
+        "C": "0",
+        "D": "\u2212\u03bb(1\u2212\u03bb)"
+      },
+      "answer": "C",
+      "explanation": "B_i(t) and B_j(t) are independent Bernoulli(\u03bb) random variables for i\u2260j. Independence implies zero covariance: Cov(B_i, B_j) = E[B_iB_j] \u2212 E[B_i]E[B_j] = \u03bb\u00b2 \u2212 \u03bb\u00b2 = 0."
+    },
+    {
+      "id": 97,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under temporal stochastic noise (R1, R2)[\u03c4], the covariance Cov(B(t), B(t)) for cells i and j at the same time (both using the same single draw B(t)) equals:",
+      "choices": {
+        "A": "0",
+        "B": "\u03c4(1\u2212\u03c4)",
+        "C": "\u03c4\u00b2",
+        "D": "1"
+      },
+      "answer": "B",
+      "explanation": "Under temporal noise, B_i(t) = B_j(t) = B(t) (all cells share one draw). Cov(B(t),B(t)) = Var(B(t)) = \u03c4(1\u2212\u03c4) for a Bernoulli(\u03c4) variable. This positive covariance reflects perfect spatial correlation: if one cell uses R2, all cells use R2."
+    },
+    {
+      "id": 98,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Describe an experimental observation (on a space-time diagram) that would allow you to distinguish spatial stochastic ECA (R1, R2)[\u03bb] from temporal stochastic ECA (R1, R2)[\u03c4] when \u03bb=\u03c4.",
+      "answer": "Examine columns (space) at the same time step. Under spatial stochastic noise, different cells independently choose their rule, so at any given time t there will typically be a mixed pattern \u2014 some cells apply R1 and some R2 \u2014 creating spatially heterogeneous columns. Under temporal stochastic noise, all cells share one rule per step, so at any given time t every cell applies the same rule; columns are spatially homogeneous in rule choice. Concretely: colour cells by their rule at each step. Under spatial noise, you will see a mixed speckled colouring within each time step. Under temporal noise, each entire row will be one colour (all R1 or all R2), with colour varying between rows. This row-homogeneity vs. within-row heterogeneity is a clear visual diagnostic.",
+      "explanation": "Spatial correlations at fixed time are the key discriminant. Temporal noise produces perfect within-row correlation (Cov=\u03c4(1\u2212\u03c4)), while spatial noise produces zero within-row correlation."
+    },
+    {
+      "id": 99,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For large n, under spatial noise (R1,R2)[\u03bb], the fraction of cells using R2 at any step concentrates near \u03bb by the law of large numbers. What does the fraction of cells using R2 look like over time under temporal noise (R1,R2)[\u03c4]?",
+      "choices": {
+        "A": "It also concentrates near \u03c4 for large n",
+        "B": "It alternates between 0 and 1 at every step",
+        "C": "It is always exactly 0 or 1, fluctuating step-to-step as a Bernoulli(\u03c4) process",
+        "D": "It converges to 0 for \u03c4 < 0.5"
+      },
+      "answer": "C",
+      "explanation": "Under temporal noise, either all n cells use R2 (fraction 1, with prob \u03c4) or none do (fraction 0, with prob 1\u2212\u03c4). The fraction is always 0 or 1, regardless of n. It does NOT concentrate \u2014 it is a Bernoulli process over time, unlike spatial noise where concentration occurs for large n."
+    },
+    {
+      "id": 100,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] with fixed (null) boundary conditions, what states are assigned to cells outside the boundary?",
+      "choices": {
+        "A": "State 1 always",
+        "B": "State 0 always",
+        "C": "Random states drawn each step",
+        "D": "Copies of the boundary cells"
+      },
+      "answer": "B",
+      "explanation": "Fixed (null or quiescent) boundary conditions assign state 0 to all virtual cells outside the lattice boundary. This is an alternative to periodic boundaries and can affect edge cell dynamics significantly."
+    },
+    {
+      "id": 101,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "How does the lattice size n affect the statistical properties of stochastic ECA (R1, R2)[\u03bb] per time step?",
+      "choices": {
+        "A": "Larger n makes individual cell behaviour more deterministic",
+        "B": "Larger n means the fraction of R2-cells is more tightly concentrated around \u03bb by LLN",
+        "C": "Larger n decreases the mixing rate \u03bb",
+        "D": "Lattice size has no effect on statistics"
+      },
+      "answer": "B",
+      "explanation": "The number of R2-cells ~ Binomial(n, \u03bb). By the Law of Large Numbers, as n\u2192\u221e, the fraction (count/n) \u2192 \u03bb almost surely. For small n, there is high relative variance; for large n, the fraction is tightly concentrated around \u03bb."
+    },
+    {
+      "id": 102,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In a finite stochastic ECA (R1, R2)[\u03bb] with n cells and periodic boundaries, why is the state space a finite Markov chain? What is the transition probability P(x \u2192 y) from configuration x to configuration y?",
+      "answer": "The state space is {0,1}^n (finite, of size 2^n), and at each step the next state depends only on the current state x(t) and i.i.d. Bernoulli noise (memoryless). This satisfies the Markov property. The transition probability is: P(x \u2192 y) = \u03a0_{i=0}^{n-1} P(x_i(t+1)=y_i | N_i(x)), where P(x_i(t+1)=y_i | N_i) = (1\u2212\u03bb)\u00b7[R1(N_i)=y_i] + \u03bb\u00b7[R2(N_i)=y_i], with [\u00b7] as indicator. Since rule draws are independent across cells, the joint probability factorises as a product over cells. This gives a 2^n \u00d7 2^n transition matrix.",
+      "explanation": "The Markov chain formulation enables rigorous analysis of stationary distributions, mixing times, and long-run behaviour of stochastic ECA."
+    },
+    {
+      "id": 103,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] on an infinite lattice (n\u2192\u221e), what mathematical framework is most appropriate for studying the dynamics?",
+      "choices": {
+        "A": "Finite Markov chain theory",
+        "B": "Measure-valued processes on {0,1}^\u2124",
+        "C": "Linear algebra on \u211d^n",
+        "D": "Graph theory"
+      },
+      "answer": "B",
+      "explanation": "On the infinite lattice {0,1}^\u2124, the state space is uncountable. The appropriate framework is the theory of measure-valued processes (interacting particle systems or probabilistic cellular automata on \u2124), where one studies invariant measures, ergodicity, and convergence of empirical distributions rather than finite Markov chains."
+    },
+    {
+      "id": 104,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "At \u03bb = 0.5 in stochastic ECA (R1, R2)[\u03bb], the expected number of cells using R1 equals:",
+      "choices": {
+        "A": "0",
+        "B": "n",
+        "C": "n/2",
+        "D": "n/4"
+      },
+      "answer": "C",
+      "explanation": "E[#R1-cells] = n(1\u2212\u03bb) = n(1\u22120.5) = n/2. Symmetrically, E[#R2-cells] = n/2 as well."
+    },
+    {
+      "id": 105,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] where R1 is a class-I rule (all 0s) and R2 is a class-III rule (chaotic), as \u03bb increases from 0 to 1, what qualitative transition would you expect?",
+      "choices": {
+        "A": "Abrupt jump from full chaos to all-zero at \u03bb = 0.5",
+        "B": "Gradual transition from absorbing all-zero state to chaotic behaviour as R2 increasingly dominates",
+        "C": "No change \u2014 the class-I rule always dominates",
+        "D": "Oscillation between the two regimes at every step"
+      },
+      "answer": "B",
+      "explanation": "For small \u03bb, R1 dominates and drives the system toward all zeros. As \u03bb increases, R2 introduces more and more chaotic perturbations. At some critical \u03bb*, the chaotic R2 may overwhelm R1's dampening effect. For large \u03bb near 1, the system behaves nearly like the chaotic class-III ECA."
+    },
+    {
+      "id": 106,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In stochastic ECA (R1, R2)[\u03bb] where R1 is the identity rule (x_i(t+1) = x_i(t)) and R2 maps all neighbourhoods to 1, what is \u03c1(t) as a function of \u03c1(0) and t?",
+      "choices": {
+        "A": "\u03c1(t) = \u03c1(0)",
+        "B": "\u03c1(t) = 1 \u2212 (1\u2212\u03bb)^t \u00b7 (1 \u2212 \u03c1(0))",
+        "C": "\u03c1(t) = \u03bb for all t \u2265 1",
+        "D": "\u03c1(t) = \u03c1(0) + \u03bbt"
+      },
+      "answer": "B",
+      "explanation": "Each cell independently uses R2 (setting state to 1) with prob \u03bb per step, or R1 (identity, keeping current state) with prob 1\u2212\u03bb. A cell in state 0 transitions to 1 if it picks R2 (prob \u03bb) and stays 0 otherwise (prob 1\u2212\u03bb). A cell in state 1 stays at 1 under either rule. So the fraction of 0-cells evolves as (1\u2212\u03c1(t+1)) = (1\u2212\u03bb)(1\u2212\u03c1(t)), giving (1\u2212\u03c1(t)) = (1\u2212\u03bb)^t(1\u2212\u03c1(0)), hence \u03c1(t) = 1 \u2212 (1\u2212\u03bb)^t(1\u2212\u03c1(0))."
+    },
+    {
+      "id": 107,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain the concept of a 'noise threshold' \u03bb* in stochastic ECA (R1, R2)[\u03bb]. Why might different rule pairs (R1, R2) have different thresholds?",
+      "answer": "A noise threshold \u03bb* is a critical value of \u03bb at which the qualitative long-run dynamical behaviour of (R1, R2)[\u03bb] changes discontinuously or exhibits a phase transition \u2014 for example, the asymptotic density of 1s jumps, correlation length diverges, or the dominant attractor changes. For \u03bb < \u03bb*, R1's dynamics dominate; for \u03bb > \u03bb*, R2's dynamics dominate (or a novel mixed regime emerges). Different rule pairs have different thresholds because the threshold depends on how strongly R1 and R2 interact: if they are similar (small |D(R1,R2)|), small \u03bb produces little change and the threshold may be high. If they are very different (large |D(R1,R2)|, e.g. complementary rules), even small \u03bb may dramatically alter behaviour, lowering \u03bb*.",
+      "explanation": "Identifying \u03bb* for specific rule pairs is a key research question in stochastic ECA theory, analogous to finding critical temperatures in statistical mechanics."
+    },
+    {
+      "id": 108,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which noise model is the ONLY one that can cause a cell to remain in its current state without computing a rule at all?",
+      "choices": {
+        "A": "Stochastic noise",
+        "B": "Temporal stochastic noise",
+        "C": "\u03b1-asynchronous noise",
+        "D": "s-skewed noise (when s = n)"
+      },
+      "answer": "C",
+      "explanation": "In \u03b1-asynchronous noise, each cell independently updates with probability \u03b1 and remains idle (retaining its current state) with probability 1\u2212\u03b1. No other noise model described here causes cells to be skipped; stochastic and temporal stochastic noise always compute a rule, and s-skewed noise updates exactly s cells (always computes a rule for the chosen cells)."
+    },
+    {
+      "id": 109,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "When \u03b1 = 1 in \u03b1-asynchronous noise and \u03bb = 0 in stochastic noise (R1, R2)[\u03bb], both models reduce to the same thing. What is it?",
+      "choices": {
+        "A": "A random walk on {0,1}^n",
+        "B": "The deterministic synchronous ECA under rule R (or R1)",
+        "C": "A fully random lattice",
+        "D": "An all-zeros fixed point"
+      },
+      "answer": "B",
+      "explanation": "\u03b1=1: all cells update with certainty \u2192 standard synchronous ECA under R. \u03bb=0: all cells use R1 with certainty \u2192 standard synchronous ECA under R1. Both degenerate to the deterministic ECA."
+    },
+    {
+      "id": 110,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Can s-skewed noise be seen as a special case of stochastic noise? Why or why not?",
+      "choices": {
+        "A": "Yes, by setting \u03bb = s/n",
+        "B": "Yes, with R2 as the identity rule",
+        "C": "No, because s-skewed noise perturbs the update schedule (which cells update), while stochastic noise perturbs the rule applied; these are structurally different perturbations",
+        "D": "Yes, they are equivalent when s = 1"
+      },
+      "answer": "C",
+      "explanation": "s-Skewed noise selects a contiguous block of s cells to update (all using the same rule R), while the other n\u2212s cells retain their states. Stochastic noise updates all n cells synchronously but with random rule choice per cell. The perturbation axis is fundamentally different: schedule vs. rule. s-Skewed cannot be recovered as a special case of (R1, R2)[\u03bb] for any R1, R2, \u03bb."
+    },
+    {
+      "id": 111,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A system designer wants to model: (a) hardware faults that randomly apply wrong logic rules, and (b) network latency causing cells to update at different times. Which noise model is appropriate for each scenario?",
+      "answer": "(a) Hardware faults applying wrong logic rules: spatial stochastic noise (R1, R2)[\u03bb] is appropriate. Each logic gate (cell) independently applies the correct rule R1 most of the time but faulty rule R2 with probability \u03bb. The independence per cell and per step mirrors independent random hardware failures. (b) Network latency causing timing differences: \u03b1-asynchronous noise is appropriate. Each cell independently updates with probability \u03b1 at each time step (models it receiving its update signal on time) and remains idle with probability 1\u2212\u03b1 (models a delayed/lost update). This breaks the global clock while preserving the single underlying rule.",
+      "explanation": "Matching noise models to physical or engineering interpretations is important for validating the modelling choice."
+    },
+    {
+      "id": 112,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] on a finite lattice defines a Markov chain. What is the state space of this Markov chain?",
+      "choices": {
+        "A": "[0,1] (the interval of possible densities)",
+        "B": "{0,1}^n (all binary configurations of n cells)",
+        "C": "{R1, R2} (the two rules)",
+        "D": "{0, 1, 2, \u2026, n} (cell counts)"
+      },
+      "answer": "B",
+      "explanation": "The global state of the lattice at any time is a binary string of length n, i.e., an element of {0,1}^n. The Markov chain's state space is this set of 2^n binary configurations."
+    },
+    {
+      "id": 113,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] with 0 < \u03bb < 1, every transition probability P(x\u2192y) > 0 if and only if:",
+      "choices": {
+        "A": "y is reachable from x under R1 alone",
+        "B": "For each cell i, y_i equals either R1(N_i(x)) or R2(N_i(x))",
+        "C": "y = x",
+        "D": "The Hamming distance d(x,y) \u2264 1"
+      },
+      "answer": "B",
+      "explanation": "P(x\u2192y) > 0 requires that for every cell i, y_i is a possible output given N_i(x). Since each cell can output either R1(N_i) or R2(N_i), P(x\u2192y) > 0 iff y_i \u2208 {R1(N_i(x)), R2(N_i(x))} for all i. Configurations where some y_i is neither output are impossible (prob 0)."
+    },
+    {
+      "id": 114,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Can stochastic ECA (R1, R2)[\u03bb] with 0 < \u03bb < 1 have an absorbing state (a configuration x* where P(x*\u2192x*)=1)?",
+      "choices": {
+        "A": "Never \u2014 the noise always prevents absorption",
+        "B": "Yes \u2014 if R1(N_i(x*)) = R2(N_i(x*)) = x*_i for all cells i",
+        "C": "Only when \u03bb = 0.5",
+        "D": "Only for n = 1"
+      },
+      "answer": "B",
+      "explanation": "P(x*\u2192x*)=1 requires that every cell i stays at x*_i regardless of its rule draw. This happens iff both R1 and R2 produce x*_i on the neighbourhood N_i(x*) for all i. If R1 and R2 agree on all neighbourhoods present in x*, then x* is absorbing. For example, the all-zeros configuration is absorbing if both R1(0,0,0)=0 and R2(0,0,0)=0."
+    },
+    {
+      "id": 115,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] on a finite lattice, the stationary distribution \u03c0 satisfies \u03c0 = \u03c0P where P is the 2^n \u00d7 2^n transition matrix. Under what condition is \u03c0 the uniform distribution over all 2^n configurations?",
+      "choices": {
+        "A": "Always when \u03bb = 0.5",
+        "B": "When the Markov chain is reversible (satisfies detailed balance) with uniform \u03c0",
+        "C": "Only when R1 and R2 are inverse rules",
+        "D": "Never \u2014 stochastic ECA always have non-uniform stationary distributions"
+      },
+      "answer": "B",
+      "explanation": "\u03c0 is uniform iff the chain is doubly stochastic (each column of P sums to 1) or equivalently satisfies detailed balance with uniform \u03c0. Not all stochastic ECAs have this property. It depends on the symmetry of R1 and R2. For example, if R1 and R2 are such that the transition kernel is symmetric (P(x\u2192y)=P(y\u2192x) for all x,y), detailed balance holds with uniform \u03c0."
+    },
+    {
+      "id": 116,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is the stochastic ECA (R1, R2)[\u03bb] a time-homogeneous Markov chain? Justify your answer.",
+      "answer": "Yes. A Markov chain is time-homogeneous if the transition probabilities P(x(t+1)=y | x(t)=x) do not depend on t. In stochastic ECA (R1,R2)[\u03bb], the transition probability is P(x\u2192y) = \u03a0_i [(1\u2212\u03bb)[R1(N_i(x))=y_i] + \u03bb[R2(N_i(x))=y_i]], which depends only on x, y, \u03bb, R1, R2 \u2014 none of which change over time. The rules and mixing rate are fixed constants, and the noise draws are i.i.d. at each step. Therefore the transition kernel is the same at every time step, confirming time-homogeneity.",
+      "explanation": "Time-homogeneity is required for standard Markov chain theorems (ergodicity, stationary distribution convergence) to apply directly."
+    },
+    {
+      "id": 117,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The density \u03c1(t) of a stochastic ECA (R1, R2)[\u03bb] is defined as:",
+      "choices": {
+        "A": "The probability that \u03bb equals \u03c1",
+        "B": "The fraction of cells in state 1 at time t",
+        "C": "The number of times R2 was applied up to time t",
+        "D": "The average neighbourhood value"
+      },
+      "answer": "B",
+      "explanation": "Density \u03c1(t) = (1/n) \u03a3_i x_i(t), the fraction of cells in state 1 at time t. It takes values in {0, 1/n, 2/n, \u2026, 1} for finite n and in [0,1] in the thermodynamic limit."
+    },
+    {
+      "id": 118,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under the mean-field approximation for stochastic ECA (R1, R2)[\u03bb], cells are assumed to be:",
+      "choices": {
+        "A": "All identical and synchronised",
+        "B": "Statistically independent with i.i.d. Bernoulli(\u03c1) states",
+        "C": "Correlated with exponentially decaying correlations",
+        "D": "In perfect anti-correlation with their neighbours"
+      },
+      "answer": "B",
+      "explanation": "The mean-field approximation assumes all cells are i.i.d. Bernoulli(\u03c1(t)) at each time step. This ignores spatial correlations and allows the 3-cell neighbourhood statistics to be computed as a product of marginals, simplifying the density update to a scalar recursion."
+    },
+    {
+      "id": 119,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the mean-field approximation for stochastic ECA (R1, R2)[\u03bb], the density map f(\u03c1) = (1\u2212\u03bb)f_{R1}(\u03c1) + \u03bbf_{R2}(\u03c1) has a fixed point \u03c1*. If \u03c1* is stable, what condition must |f'(\u03c1*)| satisfy?",
+      "choices": {
+        "A": "|f'(\u03c1*)| > 1",
+        "B": "|f'(\u03c1*)| = 1",
+        "C": "|f'(\u03c1*)| < 1",
+        "D": "f'(\u03c1*) = 0 exactly"
+      },
+      "answer": "C",
+      "explanation": "By the standard stability condition for 1D discrete maps, a fixed point \u03c1* of \u03c1 \u2192 f(\u03c1) is (locally asymptotically) stable iff |f'(\u03c1*)| < 1. If |f'(\u03c1*)| > 1, the fixed point is unstable; |f'(\u03c1*)|=1 is the marginal case requiring higher-order analysis."
+    },
+    {
+      "id": 120,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "If the mean-field density map f(\u03c1) = (1\u2212\u03bb)f_{R1}(\u03c1) + \u03bbf_{R2}(\u03c1) has two stable fixed points \u03c1*_1 < \u03c1*_2 separated by an unstable fixed point \u03c1*_u, the system is said to exhibit:",
+      "choices": {
+        "A": "A supercritical bifurcation",
+        "B": "Bistability \u2014 the long-run density depends on the initial condition",
+        "C": "A limit cycle",
+        "D": "Ergodicity \u2014 the system always reaches the same density"
+      },
+      "answer": "B",
+      "explanation": "Two stable fixed points with an unstable fixed point between them is the hallmark of bistability. Depending on whether the initial density \u03c1(0) is above or below \u03c1*_u, the system converges to \u03c1*_1 or \u03c1*_2. This is a classic feature of complex ECA rule mixtures and is analogous to first-order phase transitions."
+    },
+    {
+      "id": 121,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Describe qualitatively how the space-time diagram of a stochastic ECA (R1, R2)[\u03bb] changes as \u03bb increases from 0 to 1, assuming R1 is a class-II (periodic) rule and R2 is a class-III (chaotic) rule.",
+      "answer": "At \u03bb=0: the space-time diagram shows the regular periodic or structured patterns characteristic of R1 (class II) \u2014 repetitive bands, stable domains, or simple periodic orbits. As \u03bb increases slightly above 0: small perturbations appear \u2014 occasional cells deviate from the R1 pattern when they apply R2, creating localised 'defects' or noise in the otherwise regular structure. At intermediate \u03bb: competition between R1's ordering tendency and R2's chaotic spreading is visible \u2014 domains of R1-like structure coexist with chaotic regions; the balance shifts with \u03bb. As \u03bb approaches 1: R2 dominates; the diagram resembles the chaotic class-III pattern with only occasional R1-induced regularities. At \u03bb=1: pure R2 space-time diagram, fully chaotic.",
+      "explanation": "The gradual visual transition from ordered to chaotic as \u03bb increases illustrates how stochastic noise can be used to probe the robustness of a rule's behaviour."
+    },
+    {
+      "id": 122,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The term 'mixing rate' in stochastic ECA (R1, R2)[\u03bb] refers to:",
+      "choices": {
+        "A": "The rate at which the Markov chain mixes to its stationary distribution",
+        "B": "The probability \u03bb that a cell uses noise rule R2 at a given step",
+        "C": "The speed of information propagation across the lattice",
+        "D": "The ratio of R1-cells to R2-cells"
+      },
+      "answer": "B",
+      "explanation": "In this context, 'mixing rate' specifically means the probability \u03bb of applying R2. It is called a mixing rate because it controls the proportion in which R1 and R2 are mixed at the per-cell level. Note this is distinct from 'mixing time' in Markov chain theory."
+    },
+    {
+      "id": 123,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following expressions is the correct probability that cell i outputs state 1 at t+1, given that R1(N_i)=0 and R2(N_i)=0?",
+      "choices": {
+        "A": "\u03bb",
+        "B": "1 \u2212 \u03bb",
+        "C": "0",
+        "D": "0.5"
+      },
+      "answer": "C",
+      "explanation": "P(output=1) = (1\u2212\u03bb)\u00b7R1(N_i) + \u03bb\u00b7R2(N_i) = (1\u2212\u03bb)\u00b70 + \u03bb\u00b70 = 0. When both rules agree on 0, the output is deterministically 0 regardless of \u03bb."
+    },
+    {
+      "id": 124,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The notation (R1, R2)[\u03bb] is used for spatial stochastic noise. What analogous notation is used for temporal stochastic noise?",
+      "choices": {
+        "A": "(R1, R2){\u03bb}",
+        "B": "(R1, R2)[\u03c4]",
+        "C": "R1 \u2295 R2 with rate \u03c4",
+        "D": "(R1 | R2)[\u03c4]"
+      },
+      "answer": "B",
+      "explanation": "Temporal stochastic noise uses the same bracket notation (R1, R2)[\u03c4], with \u03c4 as the noise rate. The distinction between spatial and temporal stochastic noise is not encoded in the notation itself but is specified by context (or by an explicit label indicating 'temporal'). Some texts use additional qualifiers to avoid ambiguity."
+    },
+    {
+      "id": 125,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A paper writes '(90, 150)[0.3]'. Without additional context, is this uniquely defined? What ambiguity exists, and how could it be resolved?",
+      "answer": "There is a notation ambiguity: (90, 150)[0.3] could refer to (a) spatial stochastic noise \u2014 each cell independently applies Rule 90 with prob 0.7 and Rule 150 with prob 0.3, or (b) temporal stochastic noise \u2014 all cells collectively apply Rule 90 with prob 0.7 and Rule 150 with prob 0.3 per step. The notation alone does not specify which. To resolve the ambiguity, the paper should explicitly state 'spatial stochastic' or 'temporal stochastic', or use different symbols (e.g., \u03bb for spatial and \u03c4 for temporal as is conventional in some literature). Additionally, some authors use superscripts or qualifiers: (90, 150)_s[0.3] for spatial and (90, 150)_t[0.3] for temporal.",
+      "explanation": "Notational ambiguity is a real issue in the ECA literature. Always specifying the type of stochastic noise is best practice."
+    },
+    {
+      "id": 126,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In stochastic ECA (R1, R2)[0.2], what is the probability that a given cell uses R2 exactly once in 3 independent time steps?",
+      "choices": {
+        "A": "0.2",
+        "B": "3 \u00d7 0.2 \u00d7 0.8\u00b2 = 0.384",
+        "C": "0.2\u00b3 = 0.008",
+        "D": "0.8\u00b3 = 0.512"
+      },
+      "answer": "B",
+      "explanation": "This is a Binomial(3, 0.2) probability. P(X=1) = C(3,1) \u00d7 0.2\u00b9 \u00d7 0.8\u00b2 = 3 \u00d7 0.2 \u00d7 0.64 = 0.384."
+    },
+    {
+      "id": 127,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Stochastic ECA (R1, R2)[\u03bb]. R1(0,0,0) = 0, R2(0,0,0) = 1. If the current state is all-zeros (every cell in state 0), what is the probability that cell i transitions to state 1?",
+      "choices": {
+        "A": "1 \u2212 \u03bb",
+        "B": "\u03bb",
+        "C": "0",
+        "D": "0.5"
+      },
+      "answer": "B",
+      "explanation": "Every cell's neighbourhood is (0,0,0). R1(0,0,0)=0, R2(0,0,0)=1. P(x_i(t+1)=1) = (1\u2212\u03bb)\u00d70 + \u03bb\u00d71 = \u03bb."
+    },
+    {
+      "id": 128,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a stochastic ECA (R1, R2)[0.5] with n=10, what is the standard deviation of the number of cells using R2 at a given step?",
+      "choices": {
+        "A": "5",
+        "B": "\u221a10 \u2248 3.16",
+        "C": "\u221a2.5 \u2248 1.58",
+        "D": "2.5"
+      },
+      "answer": "C",
+      "explanation": "Count ~ Binomial(10, 0.5). Variance = np(1\u2212p) = 10\u00d70.5\u00d70.5 = 2.5. Standard deviation = \u221a2.5 \u2248 1.58."
+    },
+    {
+      "id": 129,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] with n=4 cells, what is the probability that the configuration x(t+1) = (1,1,1,1) (all ones), given x(t) = (0,0,0,0), if R1(0,0,0)=0 and R2(0,0,0)=1?",
+      "choices": {
+        "A": "\u03bb",
+        "B": "\u03bb\u2074",
+        "C": "(1\u2212\u03bb)\u2074",
+        "D": "4\u03bb(1\u2212\u03bb)\u00b3"
+      },
+      "answer": "B",
+      "explanation": "Each cell has neighbourhood (0,0,0) in the all-zeros state. To output 1, each cell must independently apply R2 (prob \u03bb). Since the 4 cells are independent, P(all output 1) = \u03bb\u2074."
+    },
+    {
+      "id": 130,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb=0.3], n=3 cells with periodic boundaries. Current state: (1,0,1). Suppose R1 and R2 output the following on the relevant neighbourhoods: R1(0,1,0)=0, R2(0,1,0)=1, R1(1,0,1)=1, R2(1,0,1)=0. Compute P(x(t+1) = (1,1,1)).",
+      "answer": "With periodic boundaries: cell 0 has neighbourhood (x_2,x_0,x_1)=(1,1,0), cell 1 has (x_0,x_1,x_2)=(1,0,1), cell 2 has (x_1,x_2,x_0)=(0,1,1). We need P(x_0(t+1)=1, x_1(t+1)=1, x_2(t+1)=1). For cell 0 with neighbourhood (1,1,0): we need to know R1(1,1,0) and R2(1,1,0) \u2014 not given, so assume both give 1 (cell 0 always outputs 1, prob=1). For cell 1 with neighbourhood (1,0,1): R1(1,0,1)=1, R2(1,0,1)=0. P(cell 1 outputs 1) = (1\u22120.3)\u00d71 + 0.3\u00d70 = 0.7. For cell 2 with neighbourhood (0,1,1): not given; assume similar. With only the given data: P(x(t+1)=(1,1,1)) = 1 \u00d7 0.7 \u00d7 P(cell 2=1). If R1(0,1,1) and R2(0,1,1) give 1: P=0.7\u00d71=0.7. The key computation for cell 1: P = (1\u2212\u03bb)\u00d7R1(N) + \u03bb\u00d7R2(N) = 0.7\u00d71 + 0.3\u00d70 = 0.7.",
+      "explanation": "This worked example shows applying the conditional probability formula cell-by-cell and multiplying due to independence of rule draws."
+    },
+    {
+      "id": 131,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], the probability that a cell i transitions from state 1 to state 0 in one step, given neighbourhood N where R1(N)=1 and R2(N)=1, is:",
+      "choices": {
+        "A": "\u03bb",
+        "B": "0",
+        "C": "1",
+        "D": "1 \u2212 \u03bb"
+      },
+      "answer": "B",
+      "explanation": "P(output=0) = (1\u2212\u03bb)\u00d7[R1(N)=0] + \u03bb\u00d7[R2(N)=0] = (1\u2212\u03bb)\u00d70 + \u03bb\u00d70 = 0. If both rules agree on output 1, the cell always outputs 1 regardless of \u03bb."
+    },
+    {
+      "id": 132,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Why is stochastic ECA noise described as 'noise' rather than simply a 'second rule'?",
+      "choices": {
+        "A": "Because R2 is always weaker than R1",
+        "B": "Because R2 is applied only occasionally (at rate \u03bb), acting as a random perturbation to the base R1 system",
+        "C": "Because noise means the rule changes every step",
+        "D": "Because R2 always produces random outputs"
+      },
+      "answer": "B",
+      "explanation": "R2 is labelled 'noise' because it is applied at rate \u03bb, typically treated as a small perturbation (\u03bb \u226a 1) to the dominant R1 dynamics. The model studies how R1-based dynamics are disrupted by occasional random switches to R2. For \u03bb=1, R2 simply becomes the main rule."
+    },
+    {
+      "id": 133,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider two stochastic ECAs: (R1, R2)[0.1] and (R1, R2)[0.9]. Which statement is correct?",
+      "choices": {
+        "A": "They are equivalent by symmetry",
+        "B": "(R1, R2)[0.1] has R1 dominant; (R1, R2)[0.9] has R2 dominant",
+        "C": "(R1, R2)[0.9] is the same as (R1, R2)[0.1] with rules swapped",
+        "D": "Both have the same asymptotic behaviour"
+      },
+      "answer": "B",
+      "explanation": "At \u03bb=0.1, cells use R1 90% of the time and R2 10% \u2014 R1 dominates. At \u03bb=0.9, cells use R2 90% of the time \u2014 R2 dominates. Note also that (R1,R2)[0.9] = (R2,R1)[0.1] (answer C says 'rules swapped', which is correct as a relationship, but the asymptotic behaviour is not the same as answer D claims)."
+    },
+    {
+      "id": 134,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A researcher claims that stochastic ECA (R1, R2)[\u03bb] is equivalent to running R1 for some time and then R2 for the remaining time. Is this correct?",
+      "choices": {
+        "A": "Yes, the models produce identical distributions",
+        "B": "No \u2014 in the sequential model, all cells switch rules simultaneously at one point; in stochastic noise, each cell independently randomly switches at every step",
+        "C": "Yes, but only for large n",
+        "D": "Yes, as long as the fraction of R2-time equals \u03bb"
+      },
+      "answer": "B",
+      "explanation": "Running R1 for fraction 1\u2212\u03bb of time and then R2 for fraction \u03bb is a temporal-sequential model where rule switches are global and deterministic in time. This is fundamentally different from spatial stochastic noise where each cell independently and randomly uses R2 at rate \u03bb per step. The spatial mixing produces heterogeneous configurations; the sequential model produces homogeneous rule application at each step."
+    },
+    {
+      "id": 135,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In what sense does the stochastic noise model (R1, R2)[\u03bb] generalise the deterministic ECA? What are the two deterministic limiting cases?",
+      "answer": "The stochastic ECA (R1,R2)[\u03bb] generalises both pure deterministic ECAs: at \u03bb=0, all cells always apply R1 \u2192 the system is the deterministic ECA under R1. At \u03bb=1, all cells always apply R2 \u2192 the system is the deterministic ECA under R2. For \u03bb \u2208 (0,1), the system is a probabilistic generalisation that is neither deterministic ECA. In this sense, (R1,R2)[\u03bb] defines a one-parameter family of probabilistic cellular automata that interpolates between two deterministic ECAs, making the deterministic ECAs the two boundary cases of the more general stochastic framework.",
+      "explanation": "This generalisation property is fundamental to why the stochastic model is useful: it subsumes both pure rules and allows continuous interpolation between them."
+    },
+    {
+      "id": 136,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] can be interpreted as a probabilistic cellular automaton (PCA) with local stochastic kernel q(y_i | N_i). For a neighbourhood N where R1(N)=0 and R2(N)=1, q(1|N) equals:",
+      "choices": {
+        "A": "1 \u2212 \u03bb",
+        "B": "\u03bb",
+        "C": "\u03bb(1\u2212\u03bb)",
+        "D": "0.5"
+      },
+      "answer": "B",
+      "explanation": "q(y_i=1 | N) = (1\u2212\u03bb)\u00b7R1(N) + \u03bb\u00b7R2(N) = (1\u2212\u03bb)\u00b70 + \u03bb\u00b71 = \u03bb. This is the probability that a cell with this neighbourhood outputs 1, which equals the probability it uses the noise rule R2."
+    },
+    {
+      "id": 137,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], the rule choice B_i(t) for cell i at time t is independent of:",
+      "choices": {
+        "A": "\u03bb",
+        "B": "The current state x_i(t)",
+        "C": "The neighbourhood N_i(t)",
+        "D": "All of B, C (B_i(t) is independent of both the cell's state and its neighbourhood)"
+      },
+      "answer": "D",
+      "explanation": "B_i(t) ~ Bernoulli(\u03bb) is drawn independently of everything \u2014 the current cell state, the neighbourhood, past states, and other cells' draws. The rule choice is purely random and not conditioned on any state information."
+    },
+    {
+      "id": 138,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb], define the expected output for a neighbourhood N as f(N,\u03bb) = (1\u2212\u03bb)R1(N) + \u03bbR2(N). Show that f(N,\u03bb) is linear in \u03bb and describe its range.",
+      "answer": "f(N,\u03bb) = R1(N) + \u03bb(R2(N) \u2212 R1(N)). This is clearly affine (linear in \u03bb with intercept R1(N) and slope R2(N)\u2212R1(N)). Since R1(N), R2(N) \u2208 {0,1}, there are three cases: Case 1: R1(N)=R2(N)=0 \u2192 f=0 (constant, range {0}). Case 2: R1(N)=R2(N)=1 \u2192 f=1 (constant, range {1}). Case 3: R1(N)\u2260R2(N) \u2192 f linearly interpolates between 0 and 1 as \u03bb goes from 0 to 1 (if R1=1,R2=0: f=1\u2212\u03bb; if R1=0,R2=1: f=\u03bb). Range: f(N,\u03bb) \u2208 [0,1] for all neighbourhoods and all \u03bb \u2208 [0,1].",
+      "explanation": "Linearity of f in \u03bb is what makes the stochastic model analytically tractable and justifies the interpretation of \u03bb as a linear interpolation parameter between R1 and R2 outcomes."
+    },
+    {
+      "id": 139,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The mean-field density function f_{R}(\u03c1) for an ECA rule R is defined as the expected next density given current density \u03c1 (under i.i.d. assumption). For rule R_0 (all outputs 0), f_{R_0}(\u03c1) equals:",
+      "choices": {
+        "A": "\u03c1",
+        "B": "1 \u2212 \u03c1",
+        "C": "0",
+        "D": "1"
+      },
+      "answer": "C",
+      "explanation": "R_0 maps every neighbourhood to 0, so every cell outputs 0 regardless of the current state. The expected next density is 0 for all \u03c1."
+    },
+    {
+      "id": 140,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For rule R_255 (all outputs 1), the mean-field density function f_{R_255}(\u03c1) equals:",
+      "choices": {
+        "A": "\u03c1",
+        "B": "0",
+        "C": "1",
+        "D": "\u03c1\u00b2"
+      },
+      "answer": "C",
+      "explanation": "R_255 maps every neighbourhood to 1, so every cell always outputs 1. Expected next density = 1 for all \u03c1."
+    },
+    {
+      "id": 141,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under mean-field approximation, the stochastic ECA (R_0, R_255)[\u03bb] has density update \u03c1(t+1) = (1\u2212\u03bb)\u00d70 + \u03bb\u00d71 = \u03bb. This means the density:",
+      "choices": {
+        "A": "Converges to \u03bb in one step from any initial \u03c1(0)",
+        "B": "Oscillates around \u03bb",
+        "C": "Converges to \u03bb only from \u03c1(0) = \u03bb",
+        "D": "Converges to \u03bb only when \u03c1(0) > \u03bb"
+      },
+      "answer": "A",
+      "explanation": "The mean-field map \u03c1 \u2192 \u03bb is a constant function: for any initial \u03c1(0), \u03c1(1) = \u03bb and \u03c1(t) = \u03bb for all t \u2265 1. The system jumps immediately to the fixed point \u03bb in a single step, confirming the earlier exact analysis."
+    },
+    {
+      "id": 142,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] under mean-field approximation, write the general mean-field map for rule R in terms of \u03c1. (Rule R has output r_k = R(pattern k) for k=0,\u2026,7 in Wolfram binary order.)",
+      "answer": "Under i.i.d. Bernoulli(\u03c1) assumption for cell states, the probability of neighbourhood pattern (a,b,c) is \u03c1^{a+b+c}(1\u2212\u03c1)^{3\u2212a\u2212b\u2212c}. The mean-field density map for rule R is: f_R(\u03c1) = \u03a3_{(a,b,c) \u2208 {0,1}\u00b3} R(a,b,c) \u00d7 \u03c1^{a+b+c} \u00d7 (1\u2212\u03c1)^{3\u2212a\u2212b\u2212c} = \u03a3_{k=0}^{7} r_k \u00d7 \u03c1^{s(k)} \u00d7 (1\u2212\u03c1)^{3\u2212s(k)}, where s(k) is the number of 1-bits in the 3-bit representation of k, and r_k = R(binary(k)). This is a degree-3 polynomial in \u03c1. For the stochastic model: f(\u03c1,\u03bb) = (1\u2212\u03bb)f_{R1}(\u03c1) + \u03bbf_{R2}(\u03c1).",
+      "explanation": "This polynomial form is the foundation of mean-field analysis for stochastic ECA. Fixed points, stability, and phase transitions can all be studied through this scalar map."
+    },
+    {
+      "id": 143,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] with 0<\u03bb<1 on a finite lattice, if the Markov chain is aperiodic and irreducible, then by the ergodic theorem:",
+      "choices": {
+        "A": "The system has no stationary distribution",
+        "B": "The system converges to the unique stationary distribution \u03c0 from any initial state",
+        "C": "The system always converges to the all-zeros state",
+        "D": "The system converges only if \u03bb = 0.5"
+      },
+      "answer": "B",
+      "explanation": "An irreducible aperiodic finite Markov chain is ergodic and possesses a unique stationary distribution \u03c0. Starting from any initial configuration, the distribution of x(t) converges to \u03c0 as t\u2192\u221e. This is the fundamental ergodic theorem for finite Markov chains."
+    },
+    {
+      "id": 144,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The stochastic ECA model (R1, R2)[\u03bb] is an example of which broader mathematical framework?",
+      "choices": {
+        "A": "Deterministic dynamical systems",
+        "B": "Probabilistic cellular automata (PCA)",
+        "C": "Continuous-time Markov chains",
+        "D": "Differential equations"
+      },
+      "answer": "B",
+      "explanation": "A probabilistic cellular automaton (PCA) is a synchronous lattice dynamical system where each cell's next state is drawn from a probability distribution conditioned on the local neighbourhood. The stochastic ECA (R1,R2)[\u03bb] with its per-cell Bernoulli rule selection is a canonical example of a PCA with binary alphabet."
+    },
+    {
+      "id": 145,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain what it means for a stochastic ECA (R1, R2)[\u03bb] to be 'ergodic', and give a sufficient condition on R1, R2, and \u03bb for ergodicity.",
+      "answer": "Ergodicity here means the Markov chain on {0,1}^n is both irreducible (every configuration is reachable from every other) and aperiodic (no periodic cycling), so the chain has a unique stationary distribution \u03c0 and converges to it from any start. A sufficient condition: if for every cell i and every neighbourhood N, both R1(N) and R2(N) are in {0,1} and for some neighbourhood N' with R1(N')\u2260R2(N'), the model can reach any configuration in finitely many steps \u2014 more practically, if 0<\u03bb<1 and the pair (R1,R2) generates enough reachability. A clean sufficient condition: if for every possible neighbourhood N, R1(N)=1 (or R2(N)=1 for the all-ones direction) and R2(N)=0 (or R1(N)=0), then with positive probability the system can drive any cell to 0 or 1, making all configurations reachable. This ensures irreducibility. Aperiodicity follows if P(x\u2192x)>0 for some x (a self-loop exists).",
+      "explanation": "Ergodicity guarantees well-defined long-run statistics and is essential for making the stochastic model physically meaningful."
+    },
+    {
+      "id": 146,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "All of \u03b1-asynchronous, s-skewed, stochastic, and temporal stochastic noise models share which property with the standard ECA?",
+      "choices": {
+        "A": "Single deterministic rule",
+        "B": "Binary cell states and local neighbourhood updates",
+        "C": "Global clock (all cells update every step)",
+        "D": "Only one parameter"
+      },
+      "answer": "B",
+      "explanation": "All four noise models and the standard ECA share binary cell states and local (radius-1) neighbourhood-based updates. They differ in update schedule (A: schedule perturbation), rule application (B: rule perturbation), and synchrony. Only stochastic and temporal stochastic noise preserve the global clock."
+    },
+    {
+      "id": 147,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under which limiting conditions do the following pairs of models coincide? (i) Stochastic (R1,R2)[\u03bb] and standard ECA R1; (ii) Stochastic (R1,R2)[\u03bb] and temporal stochastic (R1,R2)[\u03c4].",
+      "choices": {
+        "A": "(i) \u03bb=0; (ii) n=1",
+        "B": "(i) \u03bb=1; (ii) \u03bb=\u03c4=0.5",
+        "C": "(i) \u03bb=0; (ii) never \u2014 the models never coincide",
+        "D": "(i) \u03bb=0 or \u03bb=1; (ii) n=1 (single cell)"
+      },
+      "answer": "D",
+      "explanation": "(i) \u03bb=0: stochastic=pure R1 ECA; \u03bb=1: stochastic=pure R2 ECA. Both \u03bb=0 and \u03bb=1 give a standard ECA. (ii) For n=1, there is only one cell, so 'per-cell' and 'global' draws are identical \u2014 spatial and temporal noise are the same. For n>1, spatial noise has n independent draws while temporal has 1 shared draw, making them structurally distinct."
+    },
+    {
+      "id": 148,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compute the variance of the number of cells using R2 at a single time step for: (a) spatial stochastic (R1,R2)[\u03bb] with n cells, and (b) temporal stochastic (R1,R2)[\u03c4] with n cells, when \u03bb=\u03c4=p. Which is larger for n>1?",
+      "answer": "(a) Spatial: count ~ Binomial(n,p). Var = np(1\u2212p). (b) Temporal: count \u2208 {0,n} with probs (1\u2212p,p). Var = n\u00b2p(1\u2212p). Ratio: Var(temporal)/Var(spatial) = n\u00b2p(1\u2212p) / [np(1\u2212p)] = n. For n>1, Var(temporal) = n \u00d7 Var(spatial), so temporal noise has higher variance by a factor of n. This reflects the all-or-nothing nature of temporal noise: either all n cells apply R2 (contributing n\u00b2p(1\u2212p) to variance) or none do, versus the partial, smoothed fluctuations of spatial noise.",
+      "explanation": "The variance ratio of n quantifies exactly how much more extreme the temporal model's fluctuations are. For large lattices, temporal noise is much more variable in the number of R2-cells."
+    },
+    {
+      "id": 149,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb] with R2 being a 'quiescent' rule (R2 maps everything to 0), the system's density as \u03bb \u2192 1:",
+      "choices": {
+        "A": "Approaches 1",
+        "B": "Approaches 0",
+        "C": "Remains constant at \u03c1(0)",
+        "D": "Oscillates between 0 and 1"
+      },
+      "answer": "B",
+      "explanation": "As \u03bb\u21921, almost all cells use R2, which always outputs 0. Expected density E[\u03c1(t+1)] = (1\u2212\u03bb)f_{R1}(\u03c1) + \u03bb\u00d70 \u2192 0. In the limit \u03bb=1, the system collapses to all-zeros in one step."
+    },
+    {
+      "id": 150,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb], the new state x_i(t+1) is computed using the neighbourhood at time:",
+      "choices": {
+        "A": "t+1 (the new states as they are computed)",
+        "B": "t (the current state before the update)",
+        "C": "t\u22121 (the previous state)",
+        "D": "A random mix of t and t+1"
+      },
+      "answer": "B",
+      "explanation": "Synchronous update: all cells read the state at time t simultaneously and write their new states x(t+1) at once. The rule (R1 or R2) is applied to the neighbourhood N_i(t) = (x_{i-1}(t), x_i(t), x_{i+1}(t)) \u2014 the state before any updates this step."
+    },
+    {
+      "id": 151,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the stochastic ECA model, the mixing noise rate \u03bb satisfies \u03bb \u2208 [0,1]. What does \u03bb = 0.1 specifically mean in practice?",
+      "choices": {
+        "A": "10% of time steps use R1 and 90% use R2",
+        "B": "Each cell uses R2 with 10% probability at each step",
+        "C": "10% of cells always use R2",
+        "D": "R2 is applied to 10% of the lattice at fixed positions"
+      },
+      "answer": "B",
+      "explanation": "\u03bb=0.1 means at each time step, every cell independently has a 10% chance of applying R2 (and 90% chance of applying R1). This is per-cell per-step, not a fixed subset or a time-fraction."
+    },
+    {
+      "id": 152,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does it mean to say stochastic noise 'breaks the rule uniformity' of a standard ECA without breaking the update schedule?",
+      "answer": "In a standard ECA, all cells apply the same rule R at every time step \u2014 the rule is spatially and temporally uniform. Stochastic noise breaks this uniformity: at each step, different cells may apply different rules (R1 or R2), so the rule is no longer spatially uniform. However, all cells still update simultaneously (at every time step), so the global clock and synchronous update schedule are preserved. Breaking rule uniformity while preserving update schedule is the defining characteristic that distinguishes stochastic noise from asynchronous noise models.",
+      "explanation": "This distinction is conceptually important: stochastic noise targets the 'which rule' dimension, while asynchronous noise targets the 'when to update' dimension."
+    },
+    {
+      "id": 153,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In studying the robustness of Rule 110's computational universality under stochastic noise (R_110, R2)[\u03bb], what would it mean for universality to be 'robust' to noise?",
+      "choices": {
+        "A": "The system computes faster with noise",
+        "B": "For sufficiently small \u03bb > 0, the system retains the ability to simulate Turing machines",
+        "C": "The system can use any rule R2 without affecting computation",
+        "D": "Universality is preserved only at \u03bb = 0.5"
+      },
+      "answer": "B",
+      "explanation": "Robustness of universality means there exists a threshold \u03bb* > 0 such that for all \u03bb < \u03bb*, the stochastic ECA (R_110, R2)[\u03bb] can still simulate a universal Turing machine (possibly with error-correction or probabilistic guarantees). This is a deep question connecting stochastic dynamics to computability theory."
+    },
+    {
+      "id": 154,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How does the stochastic ECA model handle spatial heterogeneity in rule application?",
+      "choices": {
+        "A": "It does not \u2014 all cells always use the same rule",
+        "B": "It partitions the lattice into fixed R1 and R2 zones",
+        "C": "Each cell independently and randomly applies R1 or R2 at each step",
+        "D": "R1 and R2 are applied in alternating spatial blocks"
+      },
+      "answer": "C",
+      "explanation": "Spatial heterogeneity is achieved through independent per-cell random rule selection. At any time step, any cell can apply R1 or R2 with probabilities 1\u2212\u03bb and \u03bb, independently of its neighbours. This creates a dynamically varying, random spatial pattern of rule applications."
+    },
+    {
+      "id": 155,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a stochastic ECA (R1, R2)[\u03bb] with periodic boundaries on a lattice of size n=5, what is cell 4's right neighbour?",
+      "choices": {
+        "A": "Cell 3",
+        "B": "Cell 5 (nonexistent)",
+        "C": "Cell 0",
+        "D": "Cell 1"
+      },
+      "answer": "C",
+      "explanation": "Periodic (cyclic) boundary conditions wrap the lattice. Cell 4 is the last cell; its right neighbour wraps around to cell 0."
+    },
+    {
+      "id": 156,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In stochastic ECA (R1, R2)[\u03bb=0], what is P(cell i uses R2 at time t)?",
+      "choices": {
+        "A": "1",
+        "B": "0",
+        "C": "0.5",
+        "D": "\u03bb"
+      },
+      "answer": "B",
+      "explanation": "\u03bb=0: P(R2) = \u03bb = 0. The cell never uses R2. This recovers the deterministic ECA under R1."
+    },
+    {
+      "id": 157,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For stochastic ECA (R1, R2)[0.4] with n=50 cells, by the Central Limit Theorem, the number of R2-cells at a given step is approximately distributed as:",
+      "choices": {
+        "A": "Normal(20, 12)",
+        "B": "Normal(20, \u221a12)",
+        "C": "Normal(30, \u221a12)",
+        "D": "Normal(20, 144)"
+      },
+      "answer": "B",
+      "explanation": "Count ~ Binomial(50, 0.4). Mean = 50\u00d70.4 = 20. Variance = 50\u00d70.4\u00d70.6 = 12. Std dev = \u221a12. By CLT, approximately Normal(20, \u221a12) \u2014 where Normal(\u03bc,\u03c3) has mean \u03bc and standard deviation \u03c3."
+    },
+    {
+      "id": 158,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In temporal stochastic noise (R1, R2)[\u03c4], if \u03c4 = 0, the system reduces to:",
+      "choices": {
+        "A": "Pure R2 ECA",
+        "B": "Pure R1 ECA",
+        "C": "A random mix of R1 and R2",
+        "D": "An all-zeros configuration"
+      },
+      "answer": "B",
+      "explanation": "\u03c4=0: at every step, R1 is applied (prob 1\u22120=1) and R2 never (prob 0). All cells use R1 at every step \u2192 standard deterministic ECA under R1. Same boundary behaviour as spatial noise at \u03bb=0."
+    },
+    {
+      "id": 159,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In s-skewed noise on a lattice of n=10 with s=3, exactly how many cells are updated per time step?",
+      "choices": {
+        "A": "3",
+        "B": "7",
+        "C": "10",
+        "D": "A random number between 1 and 10"
+      },
+      "answer": "A",
+      "explanation": "s-Skewed noise always updates exactly s cells per step (the contiguous block of s cells starting at a randomly chosen position). With s=3, exactly 3 cells are updated per step, regardless of lattice size."
+    },
+    {
+      "id": 160,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] with n=6 cells and \u03bb=1/3, compute: (a) E[number of R2-cells per step], (b) Var[number of R2-cells per step], (c) P(exactly 2 cells use R2).",
+      "answer": "(a) E = n\u03bb = 6 \u00d7 1/3 = 2. (b) Var = n\u03bb(1\u2212\u03bb) = 6 \u00d7 (1/3) \u00d7 (2/3) = 6\u00d72/9 = 4/3 \u2248 1.33. (c) P(X=2) = C(6,2) \u00d7 (1/3)\u00b2 \u00d7 (2/3)\u2074 = 15 \u00d7 (1/9) \u00d7 (16/81) = 15 \u00d7 16 / 729 = 240/729 = 80/243 \u2248 0.329.",
+      "explanation": "Standard Binomial(n=6, p=1/3) calculations. Note that the most probable outcome (mode) at \u03bb=1/3 is approximately n\u03bb=2, consistent with P(X=2) being the largest single probability."
+    },
+    {
+      "id": 161,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under mean-field analysis, if both f_{R1}(\u03c1) and f_{R2}(\u03c1) have the same unique fixed point \u03c1* = 0.5, then the stochastic ECA (R1, R2)[\u03bb] for any \u03bb \u2208 [0,1] has fixed point:",
+      "choices": {
+        "A": "\u03c1* = \u03bb",
+        "B": "\u03c1* = 0.5 for all \u03bb",
+        "C": "\u03c1* = (1\u2212\u03bb)\u00d70.5 + \u03bb\u00d70.5 = 0.5",
+        "D": "Both B and C \u2014 they are the same answer"
+      },
+      "answer": "D",
+      "explanation": "If both f_{R1} and f_{R2} have fixed point 0.5, then f(\u03c1*=0.5, \u03bb) = (1\u2212\u03bb)f_{R1}(0.5) + \u03bbf_{R2}(0.5) = (1\u2212\u03bb)\u00d70.5 + \u03bb\u00d70.5 = 0.5. The stochastic mix also has fixed point 0.5 for every \u03bb. Answers B and C both correctly state \u03c1*=0.5."
+    },
+    {
+      "id": 162,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The function g(\u03bb) = \u03c1*(\u03bb) giving the stable mean-field fixed point density as a function of \u03bb is in general:",
+      "choices": {
+        "A": "Linear in \u03bb always",
+        "B": "Constant (independent of \u03bb)",
+        "C": "Nonlinear in \u03bb in general, due to the nonlinear dependence of f_R(\u03c1) on \u03c1",
+        "D": "Always 0.5 for all \u03bb"
+      },
+      "answer": "C",
+      "explanation": "The fixed point \u03c1*(\u03bb) satisfies (1\u2212\u03bb)f_{R1}(\u03c1*) + \u03bbf_{R2}(\u03c1*) = \u03c1*. Since f_{R1} and f_{R2} are degree-3 polynomials in \u03c1*, this is a nonlinear equation in \u03c1* whose solution depends nonlinearly on \u03bb in general. Linear behaviour in \u03bb is only guaranteed when both rules' fixed points are the same."
+    },
+    {
+      "id": 163,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Give one real-world phenomenon that spatial stochastic noise is a good model for, and one that temporal stochastic noise is a good model for. Justify each.",
+      "answer": "Spatial stochastic noise: local genetic mutations in a biological population. Each cell (organism/gene) independently and randomly experiences a mutation (applying R2 instead of R1) at any given generation, with the mutation rate \u03bb being the same for all individuals but applied independently. Different individuals can mutate simultaneously. Temporal stochastic noise: environmental switches affecting a whole ecosystem. At each time step, the environment either provides conditions for R1 (e.g., warm season, prob 1\u2212\u03c4) or R2 (cold season, prob \u03c4), and all organisms simultaneously experience the same environmental rule. The global switch is the key feature.",
+      "explanation": "Spatial noise models individual-level randomness; temporal noise models environment-level randomness. The distinction maps naturally to many biological, physical, and social systems."
+    },
+    {
+      "id": 164,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] has a Markov property. This means the future evolution depends on the past only through:",
+      "choices": {
+        "A": "The entire history of states",
+        "B": "The current state x(t)",
+        "C": "The last two states x(t) and x(t\u22121)",
+        "D": "Only \u03bb"
+      },
+      "answer": "B",
+      "explanation": "The Markov property: P(x(t+1) | x(t), x(t\u22121), \u2026, x(0)) = P(x(t+1) | x(t)). Given the current state x(t), the future is independent of all past states. This holds because rule draws are i.i.d. and the transition kernel depends only on x(t)."
+    },
+    {
+      "id": 165,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The stochastic ECA model was introduced to study:",
+      "choices": {
+        "A": "How computation speed changes with more rules",
+        "B": "How ECA dynamics are affected by local rule heterogeneity and perturbations",
+        "C": "How to replace all 256 rules with two",
+        "D": "Whether ECA can model quantum systems"
+      },
+      "answer": "B",
+      "explanation": "The stochastic noise model is a tool for studying the robustness and sensitivity of ECA dynamics to local rule perturbations. By introducing R2 as noise at rate \u03bb, researchers can probe how much the characteristic behaviour (class, density, attractors) of an R1-based ECA changes under random local deviations from R1."
+    },
+    {
+      "id": 166,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Is the following statement correct? 'In (R1, R2)[\u03bb], since each cell independently chooses R1 or R2, the model defines a product measure on the space of rule assignments at each time step.'",
+      "choices": {
+        "A": "False \u2014 the rule assignments are correlated through the lattice structure",
+        "B": "True \u2014 the rule assignments B_i(t) are i.i.d. Bernoulli(\u03bb), forming a product measure on {R1,R2}^n",
+        "C": "Only true for infinite lattices",
+        "D": "Only true when \u03bb = 0.5"
+      },
+      "answer": "B",
+      "explanation": "The rule-assignment vector (B_0(t),\u2026,B_{n-1}(t)) consists of n i.i.d. Bernoulli(\u03bb) variables. The joint distribution is the product measure \u2297_{i=0}^{n-1} Bernoulli(\u03bb) on {0,1}^n \u2245 {R1,R2}^n. This product measure structure holds for all \u03bb \u2208 [0,1] and all n, regardless of lattice structure."
+    },
+    {
+      "id": 167,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Provide a formal proof that rule-choice draws B_i(t) and B_j(t') are independent for all i,j (not necessarily distinct) and all t,t' (not necessarily distinct, unless i=j and t=t').",
+      "answer": "By construction of the model, B_i(t) ~ Bernoulli(\u03bb) are drawn independently for each (cell, time) pair (i,t). Formally, the probability space is \u03a9 = {0,1}^{n\u00d7T} with product measure \u2297_{i,t} Bernoulli(\u03bb). For any two distinct pairs (i,t) and (j,t'): if (i,t) \u2260 (j,t'), then B_i(t) and B_j(t') are projections onto different coordinates of this product space, and projections onto different coordinates of a product measure are independent. For (i,t) = (j,t') (same cell, same step), B_i(t) is trivially independent of itself (any variable is independent of itself, trivially). Therefore B_i(t) \u22a5 B_j(t') for all (i,t) \u2260 (j,t'). This confirms the model's noise draws are i.i.d. across all cells and all time steps.",
+      "explanation": "The product-measure construction is the rigorous foundation for the claimed independence and is standard in the PCA literature."
+    },
+    {
+      "id": 168,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why might studying (R1, R2)[\u03bb] for a range of \u03bb values give more insight than studying R1 and R2 separately?",
+      "choices": {
+        "A": "Because combining rules always makes the system more complex",
+        "B": "Because interpolation reveals phase transitions and critical \u03bb values where qualitative behaviour changes",
+        "C": "Because it reduces the state space",
+        "D": "Because it always produces more predictable dynamics"
+      },
+      "answer": "B",
+      "explanation": "Studying the full range \u03bb \u2208 [0,1] can reveal phase transitions \u2014 critical values \u03bb* where the qualitative dynamics abruptly change. These transitions are invisible if you only study R1 and R2 separately. The mixed regime at intermediate \u03bb may also produce novel emergent behaviours absent in both pure systems."
+    },
+    {
+      "id": 169,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], the probability that the ENTIRE configuration is determined by R1 alone (all n cells use R1) after T time steps is:",
+      "choices": {
+        "A": "(1\u2212\u03bb)^T",
+        "B": "((1\u2212\u03bb)^n)^T",
+        "C": "(1\u2212\u03bb)^{nT}",
+        "D": "Both B and C \u2014 they are equal"
+      },
+      "answer": "D",
+      "explanation": "At each step, P(all n cells use R1) = (1\u2212\u03bb)^n. Over T independent steps, P(all R1 at every step) = ((1\u2212\u03bb)^n)^T = (1\u2212\u03bb)^{nT}. Both B and C express the same quantity."
+    },
+    {
+      "id": 170,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Fill in the table: for each noise model (\u03b1-asynchronous, s-skewed, stochastic, temporal stochastic), state (a) what is perturbed and (b) whether the global clock is preserved.",
+      "answer": "\u03b1-asynchronous: (a) update schedule \u2014 each cell independently skips with prob 1\u2212\u03b1; (b) global clock NOT preserved (some cells don't update). s-Skewed: (a) update schedule \u2014 only s contiguous cells update per step; (b) global clock NOT preserved (only s<n cells update). Stochastic: (a) rule applied \u2014 each cell independently uses R1 or R2; (b) global clock PRESERVED (all n cells update every step). Temporal stochastic: (a) rule applied \u2014 all cells use the same randomly chosen rule per step; (b) global clock PRESERVED (all n cells update every step).",
+      "explanation": "This table is a key conceptual organiser for the four noise models. The two axes (what is perturbed \u00d7 synchrony) cleanly separate the four models."
+    },
+    {
+      "id": 171,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In stochastic ECA (R1, R2)[\u03bb] on an infinite lattice, a Lyapunov exponent can be defined to measure sensitivity to initial conditions. How does the Lyapunov exponent of the stochastic model relate to those of R1 and R2?",
+      "choices": {
+        "A": "It equals the maximum of the two Lyapunov exponents",
+        "B": "It is always zero",
+        "C": "It is a \u03bb-weighted combination of the individual Lyapunov exponents, but nonlinearly in general",
+        "D": "It equals (1\u2212\u03bb)\u039b_{R1} + \u03bb\u039b_{R2} exactly and linearly"
+      },
+      "answer": "C",
+      "explanation": "The Lyapunov exponent of the stochastic model measures average exponential divergence of initially close configurations under the random dynamics. It depends on both rules and \u03bb in a way that is generally nonlinear \u2014 in particular, it is not simply a linear combination of the individual Lyapunov exponents, because the random mixing of rules can create interference effects. Linear approximations apply only in special cases."
+    },
+    {
+      "id": 172,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a stochastic ECA (R1, R2)[\u03bb] with 0 < \u03bb < 1, is the Markov chain on {0,1}^n guaranteed to be aperiodic?",
+      "choices": {
+        "A": "Yes always, because the noise prevents periodicity",
+        "B": "No \u2014 it depends on R1, R2; some systems can have periodic Markov chains",
+        "C": "Yes, because all transition probabilities are positive",
+        "D": "Only when n is odd"
+      },
+      "answer": "B",
+      "explanation": "Aperiodicity requires that P(x\u2192x) > 0 for some state x (self-loop), or more generally that the period of every state is 1. This is not guaranteed. If P(x\u2192x)=0 for all x (e.g., both R1 and R2 change every cell's state deterministically), the chain may be periodic. Whether the chain is aperiodic depends on the specific rules R1 and R2."
+    },
+    {
+      "id": 173,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] uses two specific named ECA rules. If the paper says '(Rule 30, Rule 90)[0.15]', what does this mean precisely?",
+      "answer": "The notation (Rule 30, Rule 90)[0.15] means: at each time step, every cell independently applies Wolfram's Rule 30 with probability 1\u22120.15=0.85 and Wolfram's Rule 90 with probability 0.15=\u03bb. The base rule is Rule 30 (applied 85% of the time per cell) and the noise rule is Rule 90 (applied 15% of the time per cell). The global clock is preserved (all cells update synchronously). The noise is spatial (independent per cell). \u03bb=0.15 is a relatively low noise rate, so the system mostly behaves like Rule 30 (Wolfram class III, chaotic) with occasional Rule 90 (Wolfram class III, XOR/linear) perturbations.",
+      "explanation": "Being able to read and interpret specific stochastic ECA notations precisely is essential for understanding the literature."
+    },
+    {
+      "id": 174,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] is a model of which type of system?",
+      "choices": {
+        "A": "Continuous-time, continuous-space",
+        "B": "Discrete-time, discrete-space, probabilistic",
+        "C": "Discrete-time, continuous-space, deterministic",
+        "D": "Continuous-time, discrete-space, deterministic"
+      },
+      "answer": "B",
+      "explanation": "ECA (and its stochastic variants) are: discrete time (integer time steps), discrete space (finite lattice of cells), and binary state space {0,1}. The stochastic model adds probabilistic rule selection, making it a discrete-time, discrete-space, probabilistic dynamical system."
+    },
+    {
+      "id": 175,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], how does the variance of x_i(t+1) (cell i's next state) depend on \u03bb for a fixed neighbourhood N with R1(N) \u2260 R2(N)?",
+      "choices": {
+        "A": "Var(x_i) = \u03bb(1\u2212\u03bb) \u2014 maximised at \u03bb=0.5",
+        "B": "Var(x_i) = \u03bb",
+        "C": "Var(x_i) = (1\u2212\u03bb)",
+        "D": "Var(x_i) = 0"
+      },
+      "answer": "A",
+      "explanation": "When R1(N)\u2260R2(N), x_i(t+1) ~ Bernoulli(\u03bb) if R1(N)=0,R2(N)=1 (or Bernoulli(1\u2212\u03bb) if R1(N)=1,R2(N)=0). In either case, Var = \u03bb(1\u2212\u03bb), which is maximised at \u03bb=0.5 and equals 0 at the boundary values \u03bb=0 and \u03bb=1 (deterministic)."
+    },
+    {
+      "id": 176,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Define what a stationary distribution is for a stochastic ECA Markov chain, and explain its physical significance.",
+      "answer": "A stationary distribution \u03c0 for the stochastic ECA Markov chain is a probability distribution over configurations {0,1}^n such that \u03c0 = \u03c0P, i.e., if the system starts with distribution \u03c0, it remains in distribution \u03c0 at all future steps. Equivalently, \u03a3_x \u03c0(x)P(x\u2192y) = \u03c0(y) for all y. Physically, \u03c0 represents the long-run equilibrium distribution of configurations \u2014 the proportion of time the system spends in each configuration in the infinite-time limit (under ergodicity). In practice, \u03c0 tells us which configurations are typical (high probability) and which are rare (low probability) in the stochastic ECA's long-run behaviour. For ergodic chains, \u03c0 is unique and the chain converges to \u03c0 from any starting distribution.",
+      "explanation": "Understanding the stationary distribution is the cornerstone of long-run analysis of stochastic ECA, providing the analogue of equilibrium statistical mechanics for these systems."
+    },
+    {
+      "id": 177,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], what is the minimum possible number of cells that could use R2 at any given time step?",
+      "choices": {
+        "A": "1",
+        "B": "n\u03bb (rounded)",
+        "C": "0",
+        "D": "\u03bbn/2"
+      },
+      "answer": "C",
+      "explanation": "Since each cell independently uses R2 with probability \u03bb, there is always a positive probability (1\u2212\u03bb)^n > 0 that no cell uses R2 (all use R1). So the minimum possible count is 0, achievable with positive probability whenever \u03bb < 1."
+    },
+    {
+      "id": 178,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb], what is the maximum possible number of cells that could use R2 at any given time step?",
+      "choices": {
+        "A": "n\u03bb",
+        "B": "n",
+        "C": "n(1\u2212\u03bb)",
+        "D": "1"
+      },
+      "answer": "B",
+      "explanation": "All n cells can potentially use R2 simultaneously (prob \u03bb^n > 0 for \u03bb > 0). The maximum possible count is n. Similarly, the minimum is 0 (prob (1\u2212\u03bb)^n > 0 for \u03bb < 1)."
+    },
+    {
+      "id": 179,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Boundary Conditions and Lattice Structure",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why periodic boundary conditions are preferred over fixed (null) boundary conditions in theoretical studies of stochastic ECA.",
+      "answer": "Periodic boundary conditions (cells form a ring) have two key advantages over fixed boundaries: (1) Spatial homogeneity: every cell has the same type of neighbourhood structure \u2014 no cell is 'special' due to being at an edge. This translation-invariance allows mean-field and many-body analyses that assume all cells are statistically equivalent. (2) No boundary effects: with fixed boundaries, cells near the edges have systematically different neighbourhood statistics (e.g., always seeing a 0 from outside), which can create artificial edge effects that contaminate bulk measurements of density, correlations, or critical behaviour. Periodic boundaries eliminate these artefacts, making the finite lattice a better approximation of the infinite lattice and simplifying both analysis and simulation.",
+      "explanation": "In theoretical and computational ECA studies, periodic boundaries are the standard choice precisely because they maintain the spatial symmetry of the infinite-lattice model."
+    },
+    {
+      "id": 180,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the long run (t\u2192\u221e), the density of a stochastic ECA (R1, R2)[\u03bb] under the ergodic regime converges to:",
+      "choices": {
+        "A": "\u03c1(0) \u2014 the initial density",
+        "B": "\u03bb always",
+        "C": "The density corresponding to the stationary distribution \u03c0",
+        "D": "0 always"
+      },
+      "answer": "C",
+      "explanation": "Under ergodicity, the empirical distribution converges to the unique stationary distribution \u03c0. The long-run density is \u03a3_x \u03c0(x) \u03c1(x), where \u03c1(x) is the density of configuration x. This is not simply \u03bb in general \u2014 it depends on R1, R2, and \u03bb."
+    },
+    {
+      "id": 181,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under spatial stochastic noise (R1,R2)[\u03bb], as n\u2192\u221e, the fraction of R2-cells converges to \u03bb almost surely (LLN). What is the corresponding statement for temporal stochastic noise (R1,R2)[\u03c4]?",
+      "choices": {
+        "A": "The fraction also converges to \u03c4 almost surely as n\u2192\u221e",
+        "B": "The fraction of R2-cells at any step is always exactly 0 or 1, regardless of n",
+        "C": "The fraction converges to \u03c4 in probability but not almost surely",
+        "D": "The fraction oscillates between 0 and 1 with increasing n"
+      },
+      "answer": "B",
+      "explanation": "Under temporal noise, all cells share one Bernoulli(\u03c4) draw per step. For any fixed n, the fraction of R2-cells is exactly 0 (with prob 1\u2212\u03c4) or 1 (with prob \u03c4). This holds for all n \u2014 it does not converge to \u03c4 as n grows, because it is determined by a single Bernoulli draw, not a sum of n draws. The LLN does not apply here."
+    },
+    {
+      "id": 182,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is the stochastic ECA model (R1, R2)[\u03bb] invariant under spatial translation (i.e., shifting the entire lattice by one cell)?",
+      "choices": {
+        "A": "No, because boundary cells behave differently",
+        "B": "Yes, in expectation \u2014 the distribution of the process is translation-invariant on a periodic lattice",
+        "C": "Only for \u03bb = 0.5",
+        "D": "No \u2014 translation invariance requires deterministic rules"
+      },
+      "answer": "B",
+      "explanation": "On a periodic lattice, every cell has identical statistical properties (same \u03bb, same rule distribution, same neighbourhood structure). A spatial shift of the lattice by k positions does not change the distribution of the process. Therefore (R1,R2)[\u03bb] is translation-invariant in distribution on a periodic lattice."
+    },
+    {
+      "id": 183,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Some researchers use stochastic ECA (R1, R2)[\u03bb] as a model for fault-tolerant computation. Explain the key question this application poses and how the model's parameters relate to it.",
+      "answer": "The key question is: can a computational process (encoded in R1's dynamics) continue to function correctly when each computational element (cell) independently makes errors (applies R2 instead of R1) with probability \u03bb? Parameters: R1 encodes the desired computation (e.g., a universal rule like Rule 110), R2 encodes the error/fault behaviour, and \u03bb is the per-cell error rate. Fault tolerance means there exists a threshold \u03bb* > 0 such that for \u03bb < \u03bb*, the system can still perform the intended computation (possibly with error-correcting schemes built into R1's dynamics). This connects to threshold theorems in fault-tolerant quantum computing and von Neumann's early work on reliable computation from unreliable components. The stochastic ECA model provides a concrete, tractable framework for studying such thresholds.",
+      "explanation": "This application demonstrates the breadth of stochastic ECA theory \u2014 it connects to deep questions in theoretical computer science about robustness of computation under noise."
+    },
+    {
+      "id": 184,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is the difference between a rule's 'quiescent state' and an 'absorbing state' of an ECA?",
+      "choices": {
+        "A": "They are the same thing",
+        "B": "Quiescent state: R(0,0,0)=0 (the all-zeros neighbourhood maps to 0); Absorbing state: a configuration that the dynamics maps to itself",
+        "C": "Quiescent refers to time steps; absorbing refers to spatial configurations",
+        "D": "There is no absorbing state in ECA"
+      },
+      "answer": "B",
+      "explanation": "Quiescent state: a cell state (usually 0) such that a neighbourhood of all quiescent cells maps to the quiescent state under rule R: R(0,0,0)=0. This is a local property. Absorbing state: a global configuration x* such that the dynamics maps x* to itself: T(x*)=x*. In stochastic ECA, the all-zeros configuration is an absorbing state iff R1(0,0,0)=R2(0,0,0)=0."
+    },
+    {
+      "id": 185,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] with R1=R2=R (identical rules), the Markov chain transition matrix P equals:",
+      "choices": {
+        "A": "The identity matrix",
+        "B": "The transition matrix of the deterministic ECA under R",
+        "C": "A \u03bb-weighted average of two different matrices",
+        "D": "The all-uniform matrix (each row is 1/2^n)"
+      },
+      "answer": "B",
+      "explanation": "When R1=R2=R, every cell always applies R regardless of its Bernoulli draw. P(x\u2192y) = 1 if y = T_R(x) (the deterministic R-image of x) and 0 otherwise. This is exactly the transition matrix of the deterministic ECA under R \u2014 a permutation-like 0/1 matrix."
+    },
+    {
+      "id": 186,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The stochastic ECA (R1, R2)[\u03bb] can be viewed as a convex combination of two probabilistic operators T_{R1} and T_{R2}. However, why is (1\u2212\u03bb)T_{R1} + \u03bbT_{R2} NOT the same as applying T_{R1} to the whole lattice with probability 1\u2212\u03bb and T_{R2} to the whole lattice with probability \u03bb?",
+      "answer": "The two models differ in the spatial structure of the mixing. (1\u2212\u03bb)T_{R1} + \u03bbT_{R2} as a mixture of whole-lattice operators corresponds to temporal stochastic noise: with prob 1\u2212\u03bb, apply R1 to all cells; with prob \u03bb, apply R2 to all cells. In contrast, spatial stochastic noise (R1,R2)[\u03bb] applies the mixture independently at each cell: cell i uses R1 with prob 1\u2212\u03bb and R2 with prob \u03bb, independently across cells. The resulting state distribution is the same only for the marginal of a single cell, but the joint distribution across cells differs: temporal mixing preserves perfect spatial correlation (all cells same rule), while spatial mixing creates independent rule choices. Mathematically, temporal noise has operator T_temporal = (1\u2212\u03bb)T_{R1} + \u03bbT_{R2} (mixture of global operators), while spatial noise has operator T_spatial with kernel q(y|x) = \u03a0_i q_i(y_i|N_i(x)) (product of local kernels) \u2014 these are different operators in general.",
+      "explanation": "This distinction is subtle but fundamental: the same \u03bb-weighted average of two rules produces genuinely different stochastic processes depending on whether the mixing is done globally (temporal) or locally-independently (spatial)."
+    },
+    {
+      "id": 187,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In stochastic ECA (R1, R2)[\u03bb=0.3], with neighbourhood N where R1(N)=0 and R2(N)=1, the output follows Bernoulli(0.3). What is the probability of outputting 0 two times in a row for the same cell (same neighbourhood assumed)?",
+      "choices": {
+        "A": "0.3\u00b2 = 0.09",
+        "B": "0.7\u00b2 = 0.49",
+        "C": "2 \u00d7 0.7 \u00d7 0.3 = 0.42",
+        "D": "0.7"
+      },
+      "answer": "B",
+      "explanation": "Output is 0 when the cell uses R1 (prob 0.7) and R1(N)=0. P(output 0 at step t) = 0.7. Since draws are independent across steps, P(output 0 at t AND t+1) = 0.7 \u00d7 0.7 = 0.49."
+    },
+    {
+      "id": 188,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In \u03b1-asynchronous noise with \u03b1=0.7 and stochastic noise (R1,R2)[\u03bb=0.3], in both models approximately what fraction of cells 'deviate' from standard R1 dynamics per step?",
+      "choices": {
+        "A": "\u03b1-async: 30%; stochastic: 70%",
+        "B": "\u03b1-async: 30%; stochastic: 30%",
+        "C": "\u03b1-async: 70%; stochastic: 30%",
+        "D": "Both: 70%"
+      },
+      "answer": "B",
+      "explanation": "In \u03b1-async with \u03b1=0.7: cells update (apply R1) with prob 0.7 and skip (deviate) with prob 1\u2212\u03b1=0.3. Fraction deviating \u2248 30%. In stochastic with \u03bb=0.3: cells apply R2 (deviate from R1) with prob \u03bb=0.3. Fraction deviating \u2248 30%. Both have ~30% deviation rate, but via different mechanisms (skipping vs rule switch)."
+    },
+    {
+      "id": 189,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For the stochastic ECA (Rule 184, Rule 226)[\u03bb], where Rule 184 is a traffic flow model and Rule 226 is another rule, what might the behaviour at intermediate \u03bb model physically?",
+      "answer": "Rule 184 is known to model single-lane traffic flow: cells in state 1 represent cars that move right when the next cell is empty (state 0). At \u03bb=0, the system is a pure traffic model. If Rule 226 represents a different driving behaviour (e.g., more aggressive or random movement), then (Rule 184, Rule 226)[\u03bb] with intermediate \u03bb could model a mixed traffic situation where most drivers (fraction 1\u2212\u03bb) follow Rule 184's standard behaviour, while a fraction \u03bb of drivers at any given time follow Rule 226's behaviour \u2014 perhaps modelling distracted driving, rule-breaking, or different vehicle types. The resulting dynamics at intermediate \u03bb would show how a minority of 'non-conformist' drivers affects traffic flow, congestion, and jam formation.",
+      "explanation": "Applying the stochastic ECA model to traffic flow is a concrete example of how the framework models heterogeneous populations."
+    },
+    {
+      "id": 190,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Stochastic vs Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At time step t, under spatial stochastic noise, 3 cells use R2 and 7 cells use R1 (n=10). At time step t+1, which statement is true?",
+      "choices": {
+        "A": "Again exactly 3 cells will use R2",
+        "B": "The number using R2 is again an independent Binomial(10,\u03bb) draw",
+        "C": "At most 3 cells can use R2 (can only decrease)",
+        "D": "The same 3 cells will use R2"
+      },
+      "answer": "B",
+      "explanation": "The rule draws at each time step are independent. At t+1, each cell independently draws a fresh Bernoulli(\u03bb) variable. The number using R2 is again Binomial(10,\u03bb), completely independent of the draw at step t. It may be 0,1,2,\u2026,10 with the appropriate binomial probabilities."
+    },
+    {
+      "id": 191,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "If a stochastic ECA (R1, R2)[\u03bb] shows the SAME asymptotic density \u03c1* for a wide range of initial conditions, this is evidence of:",
+      "choices": {
+        "A": "Bistability",
+        "B": "A unique attracting fixed point (or ergodicity)",
+        "C": "Chaotic behaviour",
+        "D": "Periodic dynamics"
+      },
+      "answer": "B",
+      "explanation": "If \u03c1(t) \u2192 \u03c1* from many different initial conditions, this suggests \u03c1* is a stable (attracting) fixed point of the mean-field map, or more generally that the Markov chain is ergodic with a unique stationary distribution concentrated near \u03c1*. Bistability would show dependence on initial conditions; chaos would not converge to a fixed density."
+    },
+    {
+      "id": 192,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Update Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In one sentence, what is the key difference in the update mechanism between stochastic noise (R1,R2)[\u03bb] and \u03b1-asynchronous noise?",
+      "answer": "In stochastic noise, every cell updates at every step using either R1 or R2 (the noise changes which rule is applied), whereas in \u03b1-asynchronous noise, each cell updates with probability \u03b1 and stays idle otherwise (the noise changes whether the cell updates at all).",
+      "explanation": "This one-sentence contrast captures the fundamental distinction: rule perturbation vs schedule perturbation."
+    },
+    {
+      "id": 193,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Notational and Terminological Precision",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the context of stochastic ECA, the word 'spatial' in 'spatial stochastic noise' refers to:",
+      "choices": {
+        "A": "The noise varying over multiple spatial dimensions",
+        "B": "The noise being applied independently at each spatial location (cell)",
+        "C": "The noise affecting only cells at the boundary",
+        "D": "The noise depending on the spatial position (index) of the cell"
+      },
+      "answer": "B",
+      "explanation": "'Spatial' means the randomness is localised to individual spatial locations (cells) and is independent across them \u2014 as opposed to 'temporal' which means the randomness varies across time but is uniform across space at any given time."
+    },
+    {
+      "id": 194,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The transition matrix P of stochastic ECA (R1, R2)[\u03bb] on n cells has size:",
+      "choices": {
+        "A": "n \u00d7 n",
+        "B": "2n \u00d7 2n",
+        "C": "2^n \u00d7 2^n",
+        "D": "n\u00b2 \u00d7 n\u00b2"
+      },
+      "answer": "C",
+      "explanation": "P is indexed by pairs of configurations (x, y) \u2208 {0,1}^n \u00d7 {0,1}^n. Since there are 2^n configurations, the transition matrix has size 2^n \u00d7 2^n. For n=10 this is already 1024\u00d71024; for n=20 it is over 10^6 \u00d7 10^6, making direct matrix methods infeasible for large n."
+    },
+    {
+      "id": 195,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Density and Dynamical Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For stochastic ECA (R1, R2)[\u03bb], what is the mean-field density fixed point condition, and how does this simplify for the case R1=R2=R?",
+      "answer": "The mean-field fixed point condition is: \u03c1* = (1\u2212\u03bb)f_{R1}(\u03c1*) + \u03bbf_{R2}(\u03c1*). This is the equation \u03c1=f(\u03c1,\u03bb) where f is the stochastic mean-field map. For R1=R2=R: f(\u03c1*,\u03bb) = (1\u2212\u03bb)f_R(\u03c1*) + \u03bbf_R(\u03c1*) = f_R(\u03c1*). The condition simplifies to \u03c1* = f_R(\u03c1*), exactly the fixed-point condition for the pure deterministic ECA under R. This confirms that when R1=R2, the stochastic model has the same mean-field fixed points as the deterministic ECA under R, independent of \u03bb.",
+      "explanation": "This consistency check validates the model: when there is no rule diversity (R1=R2), the stochastic model must reduce to the deterministic ECA for all \u03bb, which it does."
+    },
+    {
+      "id": 196,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Worked Examples and Calculations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb] starting from density \u03c1(0), what is the expected density \u03c1(1) under the mean-field approximation for the pair (Rule 0, Rule 255)[\u03bb]?",
+      "choices": {
+        "A": "\u03c1(1) = \u03c1(0)",
+        "B": "\u03c1(1) = (1\u2212\u03bb)\u00d70 + \u03bb\u00d71 = \u03bb",
+        "C": "\u03c1(1) = \u03bb\u03c1(0)",
+        "D": "\u03c1(1) = (1\u2212\u03bb)\u03c1(0) + \u03bb(1\u2212\u03c1(0))"
+      },
+      "answer": "B",
+      "explanation": "Rule 0: f_{R_0}(\u03c1) = 0 for all \u03c1. Rule 255: f_{R_255}(\u03c1) = 1 for all \u03c1. So f(\u03c1,\u03bb) = (1\u2212\u03bb)\u00d70 + \u03bb\u00d71 = \u03bb, independent of \u03c1(0). Expected \u03c1(1) = \u03bb, regardless of initial condition."
+    },
+    {
+      "id": 197,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Stochastic Noise \u2014 Definition and Setup",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "How many distinct stochastic ECA models (R1, R2)[\u03bb] exist for a fixed \u03bb \u2208 (0,1), counting unordered pairs {R1, R2} with R1 \u2260 R2?",
+      "choices": {
+        "A": "256",
+        "B": "256\u00b2= 65536",
+        "C": "C(256,2) = 32640",
+        "D": "256 \u00d7 255 = 65280"
+      },
+      "answer": "C",
+      "explanation": "We need unordered pairs {R1, R2} with R1 \u2260 R2 from 256 possible rules. The number of ways to choose 2 distinct rules (unordered) is C(256, 2) = 256\u00d7255/2 = 32640. Note: since (R1,R2)[\u03bb] and (R2,R1)[1\u2212\u03bb] are equivalent, the ordered pairs (R1,R2) and (R2,R1) at the same \u03bb represent different models unless \u03bb=0.5."
+    },
+    {
+      "id": 198,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why the stochastic ECA model is considered to introduce 'noise in the rule space' rather than 'noise in the state space'. What would state-space noise look like?",
+      "answer": "In stochastic ECA (R1,R2)[\u03bb], the source of randomness is in which rule is applied \u2014 the rule is randomly selected from {R1,R2} with probabilities (1\u2212\u03bb,\u03bb). The state after rule application follows the selected rule exactly. This is 'noise in the rule space.' State-space noise would instead compute x_i(t+1) = R(N_i(t)) correctly but then independently flip each cell's state with some error probability \u03b5: x_i(t+1) \u2192 1\u2212x_i(t+1) with prob \u03b5. This latter model perturbs the output state directly, rather than the rule. These are genuinely different noise models: rule-space noise changes which function is applied; state-space noise adds output errors after the function is applied.",
+      "explanation": "The distinction between rule-space and state-space noise is important in the study of fault-tolerant cellular automata and error models for distributed computation."
+    },
+    {
+      "id": 199,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Special Values of \u03bb and Limiting Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For stochastic ECA (R1, R2)[\u03bb], suppose the mean-field map f(\u03c1,\u03bb)=(1\u2212\u03bb)f_{R1}(\u03c1)+\u03bbf_{R2}(\u03c1) has NO fixed point in (0,1) for \u03bb \u2208 (0,\u03bb*) and gains a new stable fixed point at \u03bb=\u03bb*. This is an example of which type of bifurcation?",
+      "choices": {
+        "A": "Period-doubling bifurcation",
+        "B": "Saddle-node (fold) bifurcation",
+        "C": "Hopf bifurcation",
+        "D": "Transcritical bifurcation"
+      },
+      "answer": "B",
+      "explanation": "A saddle-node (fold) bifurcation occurs when a stable and an unstable fixed point are born simultaneously as a parameter crosses a critical value. At \u03bb=\u03bb*, two fixed points emerge from nowhere (one stable, one unstable) as \u03bb increases through \u03bb*. This is the classic saddle-node scenario in 1D maps. Transcritical bifurcation would require an exchange of stability between two existing fixed points."
+    },
+    {
+      "id": 200,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Conceptual Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Summarise the stochastic ECA (R1, R2)[\u03bb] model completely in 5\u20137 sentences, covering: what is defined, the parameters, the update rule, what is preserved vs broken from standard ECA, and the two degenerate cases.",
+      "answer": "The stochastic ECA (R1, R2)[\u03bb] is a probabilistic cellular automaton defined on a one-dimensional lattice \ud835\udcdb = {0,\u2026,n\u22121} of n binary-state cells. It is parameterised by two ECA rules R1 (the base rule) and R2 (the noise rule), and a mixing rate \u03bb \u2208 [0,1]. At each discrete time step, every cell i independently draws B_i(t) ~ Bernoulli(\u03bb); if B_i(t)=0 the cell applies R1 to its neighbourhood, and if B_i(t)=1 it applies R2. All cells update simultaneously (synchronously), preserving the global clock of the standard ECA, but rule uniformity is broken \u2014 different cells may apply different rules at the same time step. At \u03bb=0, all cells always use R1 and the model reduces to the deterministic ECA under R1; at \u03bb=1, all cells always use R2 and the model reduces to the deterministic ECA under R2. For intermediate \u03bb \u2208 (0,1), the model is a genuine probabilistic system that interpolates between the two pure-rule regimes, enabling the study of phase transitions, robustness, and emergent behaviour as a function of the noise rate.",
+      "explanation": "This comprehensive summary tests deep synthesis of all aspects of the stochastic noise model and is representative of the hardest conceptual questions in the dataset."
+    }
+  ]

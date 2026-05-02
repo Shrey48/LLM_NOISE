@@ -1,0 +1,152 @@
+{
+  "dataset_id": "tempK",
+  "filename": "eca_temp_stochastic.json",
+  "noise_type": "Temporal Stochastic ECA",
+  "noise_description": "At each time step the entire lattice applies rule F with probability (1-τ) or rule G with probability τ; the rule switch is global and per-timestep.",
+  "noise_parameter": {
+    "symbol": "τ",
+    "range": "[0, 1]",
+    "type": "scalar",
+    "boundary_cases": {
+      "tau=0": "System always uses rule F; deterministic.",
+      "tau=1": "System always uses rule G; deterministic.",
+      "tau=0.5": "Equal mixing of F and G; symmetric; (F,G,0.5) is indistinguishable from (G,F,0.5)."
+    }
+  },
+  "total_questions": 200,
+  "id_range": {
+    "min": 1,
+    "max": 200
+  },
+  "duplicates": 0,
+  "question_formats": {
+    "mcq": {
+      "count": 134,
+      "percentage": 67.0,
+      "description": "Multiple-choice with 4 options (A/B/C/D), exactly one correct answer. Scored binary: 1 correct, 0 otherwise."
+    },
+    "short_answer": {
+      "count": 66,
+      "percentage": 33.0,
+      "description": "Free-form response (numerical value, formula, derivation, or brief explanation). Scored 0/1/2 by judge model (Grok-3) and normalised to [0,1] by dividing by 2."
+    }
+  },
+  "difficulty_levels": {
+    "Easy": {
+      "level_id": 1,
+      "count": 49,
+      "percentage": 24.5,
+      "description": "Definitional recall and basic comprehension; answerable directly from the noise model definition."
+    },
+    "Medium": {
+      "level_id": 2,
+      "count": 85,
+      "percentage": 42.5,
+      "description": "Understanding of mechanics and properties; requires knowing implications, not just definitions."
+    },
+    "Hard": {
+      "level_id": 3,
+      "count": 66,
+      "percentage": 33.0,
+      "description": "Quantitative reasoning, derivation, or cross-model comparison; requires multi-step reasoning."
+    }
+  },
+  "topics": {
+    "count": 14,
+    "distribution": [
+      {
+        "topic_id": 1,
+        "topic_name": "ECA Fundamentals",
+        "question_count": 17,
+        "percentage": 8.5
+      },
+      {
+        "topic_id": 2,
+        "topic_name": "Definition of Temporal Stochastic Noise",
+        "question_count": 19,
+        "percentage": 9.5
+      },
+      {
+        "topic_id": 3,
+        "topic_name": "Temporal vs Spatial Stochastic Noise",
+        "question_count": 16,
+        "percentage": 8.0
+      },
+      {
+        "topic_id": 4,
+        "topic_name": "Boundary Cases of τ",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 5,
+        "topic_name": "Temporal Nature of the Noise",
+        "question_count": 15,
+        "percentage": 7.5
+      },
+      {
+        "topic_id": 6,
+        "topic_name": "Mathematical Properties",
+        "question_count": 20,
+        "percentage": 10.0
+      },
+      {
+        "topic_id": 7,
+        "topic_name": "Comparison with Other Noise Models",
+        "question_count": 17,
+        "percentage": 8.5
+      },
+      {
+        "topic_id": 8,
+        "topic_name": "Effect of τ on System Dynamics",
+        "question_count": 12,
+        "percentage": 6.0
+      },
+      {
+        "topic_id": 9,
+        "topic_name": "Notation and Representation",
+        "question_count": 12,
+        "percentage": 6.0
+      },
+      {
+        "topic_id": 10,
+        "topic_name": "Conceptual Understanding and Edge Cases",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 11,
+        "topic_name": "Identification and Distinguishability",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 12,
+        "topic_name": "Stochastic Properties and Long-Run Behaviour",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 13,
+        "topic_name": "Entropy and Information-Theoretic Properties",
+        "question_count": 10,
+        "percentage": 5.0
+      },
+      {
+        "topic_id": 14,
+        "topic_name": "Extensions and Variations",
+        "question_count": 10,
+        "percentage": 5.0
+      }
+    ]
+  },
+  "scoring": {
+    "mcq": "Binary: 1 for correct answer, 0 otherwise.",
+    "short_answer": "Three-point rubric by independent judge (Grok-3): 2=fully correct, 1=partially correct, 0=incorrect or missing. Normalised to [0,1] by dividing by 2.",
+    "overall_accuracy": "Mean of all normalised scores across both question types."
+  },
+  "purpose": "Knowledge-check dataset. Confirms that LLM failures on the identification task reflect structural inability to read spatiotemporal patterns, not gaps in domain knowledge. A model with strong domain knowledge should achieve near-perfect accuracy. No question requires solving the inverse problem.",
+  "pdf_discrepancies": {
+    "note": "All counts match the PDF (Table 4) exactly."
+  }
+}

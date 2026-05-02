@@ -1,0 +1,1934 @@
+
+[
+  {
+      "id": 1, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "An elementary cellular automaton (ECA) is a one-dimensional, discrete-time system where each cell has:",
+      "choices": {"A": "Binary state (0 or 1) and a 3-cell neighbourhood (left, centre, right)",
+                  "B": "Ternary state (0, 1, or 2) and a 5-cell neighbourhood",
+                  "C": "Real-valued state and no neighbourhood",
+                  "D": "Binary state and a 5-cell neighbourhood"},
+      "answer": "A",
+      "explanation": "ECA: binary cells, radius r=1 giving a 3-cell neighbourhood (i-1, i, i+1). Wolfram (1983)."
+  },
+  {
+      "id": 2, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "How many distinct ECA rules exist in total?",
+      "choices": {"A": "128", "B": "64", "C": "256", "D": "512"},
+      "answer": "C",
+      "explanation": "2^3=8 neighbourhood patterns, each mapped to 0 or 1: 2^8=256 possible rules."
+  },
+  {
+      "id": 3, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In standard ECA, the neighbourhood of cell i consists of:",
+      "choices": {"A": "Only the cell itself (s_i)",
+                  "B": "s_{i-1} and s_{i+1} only",
+                  "C": "s_{i-1}, s_i, s_{i+1} — the left neighbour, the cell itself, and the right neighbour",
+                  "D": "All cells within distance 2"},
+      "answer": "C",
+      "explanation": "ECA neighbourhood: (s_{i-1}, s_i, s_{i+1}) — radius r=1."
+  },
+  {
+      "id": 4, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In synchronous ECA, when do all cells update their state?",
+      "choices": {"A": "One at a time, from left to right",
+                  "B": "Simultaneously at each discrete timestep",
+                  "C": "Whenever their neighbourhood changes",
+                  "D": "In a randomly chosen order"},
+      "answer": "B",
+      "explanation": "Synchronous ECA: a global clock forces all cells to update simultaneously at each timestep."
+  },
+  {
+      "id": 5, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What is a fixed point of an ECA rule?",
+      "choices": {"A": "Any configuration with all zeros",
+                  "B": "A configuration s such that applying the rule once gives back s (i.e., f(s)=s)",
+                  "C": "The initial configuration at t=0",
+                  "D": "A configuration where all cells have the same state"},
+      "answer": "B",
+      "explanation": "A fixed point (or point attractor) is a configuration invariant under one application of the global rule."
+  },
+  {
+      "id": 6, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In most theoretical studies, ECA uses which boundary condition?",
+      "choices": {"A": "Fixed zero boundary",
+                  "B": "Reflecting boundary",
+                  "C": "Periodic (cyclic) boundary — the lattice wraps into a ring",
+                  "D": "Absorbing boundary"},
+      "answer": "C",
+      "explanation": "Periodic BC: the leftmost cell's left neighbour is the rightmost cell, and vice versa."
+  },
+  {
+      "id": 7, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "The term 'orbit' in ECA theory refers to:",
+      "choices": {"A": "A circular spatial arrangement of cells",
+                  "B": "The set of all rules equivalent under symmetry",
+                  "C": "The sequence of configurations x, G(x), G²(x), ... produced by iterating the global rule G from an initial state x",
+                  "D": "The neighbourhood of a cell"},
+      "answer": "C",
+      "explanation": "An orbit is the full trajectory of a CA from initial state x under repeated rule application."
+  },
+  {
+      "id": 8, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "How many possible binary configurations exist for an ECA lattice of width W?",
+      "choices": {"A": "W²", "B": "2W", "C": "256", "D": "2^W"},
+      "answer": "D",
+      "explanation": "Each of W binary cells can be 0 or 1 independently: 2^W configurations in total."
+  },
+  {
+      "id": 9, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Wolfram's Rule 0 has the property that:",
+      "choices": {"A": "It maps every cell to 1 in one step",
+                  "B": "It maps every cell to 0 in one step regardless of its neighbourhood",
+                  "C": "It copies the left neighbour to each cell",
+                  "D": "It is the identity rule"},
+      "answer": "B",
+      "explanation": "Rule 0 = 00000000 binary; every neighbourhood maps to 0, so all cells become 0 after one step."
+  },
+  {
+      "id": 10, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "The Rule Matching Table (RMT) index for a neighbourhood (L, C, R) is computed as:",
+      "choices": {"A": "L + C + R",
+                  "B": "L × 4 + C × 2 + R",
+                  "C": "C × 4 + L × 2 + R",
+                  "D": "R × 4 + C × 2 + L"},
+      "answer": "B",
+      "explanation": "RMT index = L×4 + C×2 + R, treating (L,C,R) as a 3-bit binary number."
+  },
+  {
+      "id": 11, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "How many RMT entries does each ECA rule have?",
+      "choices": {"A": "256", "B": "3", "C": "16", "D": "8 — one for each of the 8 possible 3-bit neighbourhood patterns"},
+      "answer": "D",
+      "explanation": "8 neighbourhood patterns (2^3) → 8 RMT entries per rule."
+  },
+  {
+      "id": 12, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "A 'passive' transition for a cell with neighbourhood (L, C, R) under rule f means:",
+      "choices": {"A": "The cell is at the boundary of the lattice",
+                  "B": "f(L, C, R) = C — the rule output equals the current centre cell state (no state change would occur)",
+                  "C": "f(L, C, R) ≠ C — the rule output differs from the centre cell",
+                  "D": "The cell is never selected for update"},
+      "answer": "B",
+      "explanation": "Passive transition: rule output equals the current centre state, so even if updated, no state change occurs."
+  },
+  {
+      "id": 13, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What characterises a Wolfram Class III ECA rule?",
+      "choices": {"A": "It converges to a uniform state or simple periodic behaviour",
+                  "B": "It produces aperiodic, apparently random patterns that never settle into a simple structure",
+                  "C": "It forms complex long-lived localised structures",
+                  "D": "All cells stabilise to 0 after a few steps"},
+      "answer": "B",
+      "explanation": "Class III: chaotic, aperiodic evolution. Rule 30 is the canonical example."
+  },
+  {
+      "id": 14, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Rule 90 computes the next state of each cell as:",
+      "choices": {"A": "L AND R",
+                  "B": "NOT(L AND R)",
+                  "C": "L XOR R (parity of left and right, ignoring the centre cell)",
+                  "D": "L XOR C XOR R"},
+      "answer": "C",
+      "explanation": "Rule 90 = 01011010 in binary. For all 8 neighbourhood patterns the output equals L⊕R."
+  },
+  {
+      "id": 15, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a finite ECA lattice of width W=6 with periodic boundaries, what is the left neighbour of cell 0?",
+      "choices": {"A": "Cell 1", "B": "No neighbour exists", "C": "Cell 5", "D": "Cell W"},
+      "answer": "C",
+      "explanation": "(0-1) mod 6 = 5. Periodic BC wraps the leftmost cell to the rightmost."
+  },
+  {
+      "id": 16, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "A rule is called 'quiescent' if:",
+      "choices": {"A": "It maps every cell to 0",
+                  "B": "The all-zeros configuration is a fixed point, i.e., f(0,0,0)=0",
+                  "C": "It converges in at most 2 steps",
+                  "D": "All its RMT transitions are passive"},
+      "answer": "B",
+      "explanation": "Quiescence: f(0,0,0)=0 ↔ rule bit 0 = 0. The all-zeros state is invariant."
+  },
+  {
+      "id": 17, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "How does one obtain the Wolfram rule number from a rule table?",
+      "choices": {"A": "Sum the 8 output bits",
+                  "B": "XOR all 8 output bits",
+                  "C": "Write the 8 outputs (pattern 111→MSB, pattern 000→LSB) as an 8-bit binary number and convert to decimal",
+                  "D": "Multiply each output bit by its pattern index and sum"},
+      "answer": "C",
+      "explanation": "Standard Wolfram code: outputs for patterns 111 down to 000 give an 8-bit integer = rule number."
+  },
+  {
+      "id": 18, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Rule 204 is called the 'identity rule'. Why?",
+      "choices": {"A": "Its rule number is 204",
+                  "B": "It maps every neighbourhood (L,C,R) to C — the centre cell value is always preserved",
+                  "C": "It maps every cell to 1",
+                  "D": "All 8 of its outputs are 1"},
+      "answer": "B",
+      "explanation": "204 = 11001100 binary. For every RMT index i, the output bit equals the centre bit C of that neighbourhood pattern."
+  },
+  {
+      "id": 19, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "An 'active' transition at cell i means:",
+      "choices": {"A": "The cell was selected for update",
+                  "B": "f(L,C,R) ≠ C — updating this cell would change its state",
+                  "C": "The cell's value is 1",
+                  "D": "The cell is at the lattice boundary"},
+      "answer": "B",
+      "explanation": "Active: rule output differs from current centre state. If updated, the cell's state changes."
+  },
+  {
+      "id": 20, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a W=4 lattice in state 1001 under periodic BC, applying Rule 0 gives:",
+      "choices": {"A": "1001 — unchanged", "B": "1111", "C": "0110", "D": "0000 — every cell becomes 0"},
+      "answer": "D",
+      "explanation": "Rule 0 = 00000000. Every neighbourhood maps to 0. All cells become 0 in one step."
+  },
+  {
+      "id": 21, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "A 'Garden-of-Eden' configuration in ECA theory is one that:",
+      "choices": {"A": "Is a fixed point of the rule",
+                  "B": "Has no predecessor — no configuration at time t-1 can evolve into it under the given rule",
+                  "C": "Can only be reached from a random initial condition",
+                  "D": "Appears only in Class IV rules"},
+      "answer": "B",
+      "explanation": "Garden-of-Eden: a configuration with no pre-image under the global rule; it can only appear at t=0."
+  },
+  {
+      "id": 22, "type": "short_answer", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Given a 5-cell periodic lattice in state 10110, compute the neighbourhood (L,C,R) and its RMT index for each of the 5 cells.",
+      "model_answer": "Using periodic BC and RMT index = L×4 + C×2 + R:\nCell 0: L=state[4]=0, C=1, R=1 → RMT = 0×4+1×2+1 = 3.\nCell 1: L=1, C=0, R=1 → RMT = 1×4+0×2+1 = 5.\nCell 2: L=0, C=1, R=1 → RMT = 0×4+1×2+1 = 3.\nCell 3: L=1, C=1, R=0 → RMT = 1×4+1×2+0 = 6.\nCell 4: L=1, C=0, R=state[0]=1 → RMT = 1×4+0×2+1 = 5.",
+      "explanation": "Apply (i-1)%5 and (i+1)%5 for periodic BC. RMT index = L×4+C×2+R."
+  },
+  {
+      "id": 23, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For a finite ECA lattice of width W with a deterministic rule, why must every orbit eventually become periodic?",
+      "choices": {"A": "Because all ECA rules are reversible",
+                  "B": "Because the rule is linear over GF(2)",
+                  "C": "Because the configuration space is finite (2^W states) and the global map is deterministic, so by the pigeonhole principle the orbit must eventually revisit a state",
+                  "D": "Because all ECA rules have fixed points"},
+      "answer": "C",
+      "explanation": "Finite deterministic system: at most 2^W distinct states. The orbit must revisit a state within 2^W steps → eventual periodicity."
+  },
+  {
+      "id": 24, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "The overlap constraint between consecutive RMTs (right 2 bits of RMT_i = left 2 bits of RMT_{i+1}) can be represented as paths in which graph-theoretic object?",
+      "choices": {"A": "A complete graph on 8 nodes",
+                  "B": "The de Bruijn graph B(2,2): 4 nodes representing 2-bit strings {00,01,10,11}, with 8 directed edges — one per RMT index",
+                  "C": "A binary tree of depth 3",
+                  "D": "A cycle graph on 256 nodes"},
+      "answer": "B",
+      "explanation": "RMT i encodes (L,C,R). Edge goes from node 'LC' to node 'CR'. Valid RMT sequences are walks of length W in the de Bruijn graph B(2,2)."
+  },
+  {
+      "id": 25, "type": "short_answer", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Prove that Rule 204 is the identity rule by verifying that for every RMT index i, the rule output equals the centre cell value C of that neighbourhood pattern.",
+      "model_answer": "Rule 204 = 11001100 binary. For RMT index i, the centre cell C = (i>>1)&1 (the middle bit of the 3-bit pattern LCR).\nCheck each index:\ni=0 (000): C=0, bit0=(204>>0)&1=0 ✓\ni=1 (001): C=0, bit1=(204>>1)&1=0 ✓\ni=2 (010): C=1, bit2=(204>>2)&1=1 ✓\ni=3 (011): C=1, bit3=(204>>3)&1=1 ✓\ni=4 (100): C=0, bit4=(204>>4)&1=0 ✓\ni=5 (101): C=0, bit5=(204>>5)&1=0 ✓\ni=6 (110): C=1, bit6=(204>>6)&1=1 ✓\ni=7 (111): C=1, bit7=(204>>7)&1=1 ✓\nAll 8 RMTs satisfy output = C. Therefore Rule 204 is the identity.",
+      "explanation": "204 = 11001100 in binary. Reading LSB to MSB: 0,0,1,1,0,0,1,1. The pattern matches C (middle bit) for all 8 neighbourhoods."
+  },
+  {
+      "id": 26, "type": "short_answer", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "What is the 'quiescence' property of an ECA rule, and which of Rules 0, 90, 110, 204, 255 satisfy it? Justify each.",
+      "model_answer": "A rule is quiescent if f(0,0,0)=0, i.e., the all-zeros configuration is a fixed point. This corresponds to RMT index 0 (pattern 000) having output 0, i.e., bit 0 of the rule number = 0.\nRule 0  (00000000): bit0=0 ✓ quiescent.\nRule 90 (01011010): bit0=0 ✓ quiescent.\nRule 110 (01101110): bit0=0 ✓ quiescent.\nRule 204 (11001100): bit0=0 ✓ quiescent.\nRule 255 (11111111): bit0=1 ✗ not quiescent (f(0,0,0)=1).\nSo Rules 0, 90, 110, 204 are quiescent; Rule 255 is not.",
+      "explanation": "Quiescent ↔ rule bit 0 = 0. Rule 255 outputs 1 for every neighbourhood including (0,0,0), so the all-zeros state immediately becomes all-ones."
+  },
+  {
+      "id": 27, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "What does Wolfram's concept of 'computational irreducibility' mean for Class III/IV ECA rules?",
+      "choices": {"A": "All ECA rules require exponential time to simulate",
+                  "B": "For these rules, the only way to determine the state at time T is to simulate every step; no analytical shortcut exists",
+                  "C": "Some ECA rules cannot be computed by any Turing machine",
+                  "D": "Rules with more 1-bits in their binary representation are computationally harder"},
+      "answer": "B",
+      "explanation": "Computational irreducibility: no general shortcut exists to predict the future state without step-by-step simulation for chaotic/complex rules."
+  },
+  {
+      "id": 28, "type": "mcq", "topic": 1, "topic_name": "ECA Fundamentals",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For Rule 110 under synchronous ECA, which statement about its computational power is correct?",
+      "choices": {"A": "It is only Class II and thus has limited computational power",
+                  "B": "It has been formally proved Turing-complete by Matthew Cook (2004)",
+                  "C": "It is believed to be Turing-complete but no proof exists",
+                  "D": "It can simulate a universal Turing machine only for specific initial conditions"},
+      "answer": "B",
+      "explanation": "Cook (2004) proved Rule 110 is Turing-complete. It is the simplest known Turing-complete 1D CA."
+  },
+  {
+      "id": 29, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In the α-asynchronous ECA model, the parameter α represents:",
+      "choices": {"A": "The fraction of rules that are stochastic",
+                  "B": "The number of cells selected per step",
+                  "C": "The probability that each cell gets the chance to update at each timestep",
+                  "D": "The period of the oscillation"},
+      "answer": "C",
+      "explanation": "Under α-async noise, each cell independently updates with probability α at each timestep t."
+  },
+  {
+      "id": 30, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What is the valid range of the α noise rate parameter?",
+      "choices": {"A": "α ∈ {0, 1} (binary only)", "B": "α ∈ [0, 1]", "C": "α ∈ (0, ∞)", "D": "α ∈ [-1, 1]"},
+      "answer": "B",
+      "explanation": "α ∈ [0,1] is a probability; values outside this range are undefined for a Bernoulli model."
+  },
+  {
+      "id": 31, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What does α = 0 represent in the α-asynchronous ECA model?",
+      "choices": {"A": "Fully synchronous ECA — all cells update every step",
+                  "B": "Exactly one random cell updates per step",
+                  "C": "Completely frozen state — no cell ever updates",
+                  "D": "Only boundary cells update"},
+      "answer": "C",
+      "explanation": "α=0 → probability 0 of any cell updating → the lattice is permanently frozen in its initial state."
+  },
+  {
+      "id": 32, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What does α = 1 represent in the α-asynchronous ECA model?",
+      "choices": {"A": "Fully synchronous ECA — every cell updates every step",
+                  "B": "Exactly one random cell updates per step",
+                  "C": "No cell ever updates",
+                  "D": "Cells update in a random sequential order"},
+      "answer": "A",
+      "explanation": "α=1 → every cell updates with probability 1 → standard synchronous ECA (global clock restored)."
+  },
+  {
+      "id": 33, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Each cell's decision to update or remain idle in α-async ECA is governed by which type of random variable?",
+      "choices": {"A": "Gaussian (normal)",
+                  "B": "Poisson",
+                  "C": "Bernoulli(α) — takes value 1 (update) with probability α and 0 (idle) with probability 1−α",
+                  "D": "Uniform on [0, α]"},
+      "answer": "C",
+      "explanation": "Each cell independently draws from Bernoulli(α) each timestep."
+  },
+  {
+      "id": 34, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Are the update decisions of different cells independent in the α-asynchronous model?",
+      "choices": {"A": "Only boundary cells are independent",
+                  "B": "No — if one cell updates, its immediate neighbours must also update",
+                  "C": "No — at most one cell updates per step",
+                  "D": "Yes — each cell independently draws from Bernoulli(α) at each timestep"},
+      "answer": "D",
+      "explanation": "α-async: independent Bernoulli trials per cell. The joint update event is a product distribution."
+  },
+  {
+      "id": 35, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For α = 0.5 in a W=10 lattice, on average how many cells remain idle (do not update) per step?",
+      "choices": {"A": "0", "B": "5", "C": "10", "D": "1"},
+      "answer": "B",
+      "explanation": "Each cell is idle with probability 1−α=0.5. E[idle cells] = W×(1−α) = 10×0.5 = 5."
+  },
+  {
+      "id": 36, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In α-async ECA, each cell that is NOT selected for update does what?",
+      "choices": {"A": "Takes the value of its left neighbour",
+                  "B": "Takes the value computed by the rule",
+                  "C": "Retains its current state unchanged",
+                  "D": "Resets to 0"},
+      "answer": "C",
+      "explanation": "Non-selected cells simply retain their current state; only selected cells attempt to apply the local rule."
+  },
+  {
+      "id": 37, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "The α-async model introduces noise by perturbing which aspect of the ECA system?",
+      "choices": {"A": "The local rule f is modified",
+                  "B": "The update schedule — breaking the global clock assumption by randomising which cells update",
+                  "C": "The neighbourhood radius is changed",
+                  "D": "The boundary conditions are randomised"},
+      "answer": "B",
+      "explanation": "α-async noise is a scheduling perturbation: f remains unchanged, but the global clock is replaced by independent Bernoulli trials."
+  },
+  {
+      "id": 38, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Which statement correctly describes what 'remains idle with 1−α probability' means?",
+      "choices": {"A": "The cell computes f but discards the result",
+                  "B": "The cell does not compute f at all and keeps its current value",
+                  "C": "The cell inverts its current state",
+                  "D": "The cell copies the state of its right neighbour"},
+      "answer": "B",
+      "explanation": "Idle cell: no application of the rule; state is carried over unchanged from t to t+1."
+  },
+  {
+      "id": 39, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For α-async ECA with α=0.5 on a W=20 lattice, what is the expected number of cells that update per step?",
+      "choices": {"A": "20", "B": "5", "C": "10", "D": "1"},
+      "answer": "C",
+      "explanation": "E[updates] = W×α = 20×0.5 = 10."
+  },
+  {
+      "id": 40, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Under α-async noise with a fixed deterministic rule f, does the local rule f change?",
+      "choices": {"A": "Yes, f changes probabilistically each step",
+                  "B": "No — f remains fixed; only the scheduling (which cells apply f) is randomised",
+                  "C": "f changes only when α < 0.5",
+                  "D": "f is replaced by a different rule at each step"},
+      "answer": "B",
+      "explanation": "The local rule f is deterministic and fixed. α-async noise acts only on update scheduling."
+  },
+  {
+      "id": 41, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "At α = 0.1 in a W=20 lattice, on average how many cells update per step?",
+      "choices": {"A": "10", "B": "0.1", "C": "1", "D": "2"},
+      "answer": "D",
+      "explanation": "E[updates] = W×α = 20×0.1 = 2."
+  },
+  {
+      "id": 42, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "If α = 0.8, what does this mean for each individual cell?",
+      "choices": {"A": "80 cells out of 100 are chosen globally to update",
+                  "B": "Each cell has an 80% chance of being selected to apply the local rule at each timestep, independently of all other cells",
+                  "C": "The rule is applied only 80% of the time globally",
+                  "D": "The cell updates with probability 0.8 only if its state is 1"},
+      "answer": "B",
+      "explanation": "α=0.8: each cell independently draws Bernoulli(0.8). Each cell has exactly 0.8 probability of attempting an update."
+  },
+  {
+      "id": 43, "type": "short_answer", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Write the formal definition of the α-asynchronous ECA update rule for a single cell i at timestep t.",
+      "model_answer": "s_i(t+1) = f(s_{i-1}(t), s_i(t), s_{i+1}(t)) with probability α;\ns_i(t+1) = s_i(t) with probability 1−α.\nThe random decisions for all cells are mutually independent. Here f is the deterministic local ECA rule and s_i(t) denotes the state of cell i at time t.",
+      "explanation": "f is a fixed deterministic ECA rule. Each cell's Bernoulli(α) trial is drawn independently from all other cells and all other timesteps."
+  },
+  {
+      "id": 44, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "The probability that a specific cell i is idle at a given timestep is:",
+      "choices": {"A": "α", "B": "1/(W)", "C": "1−α", "D": "α²"},
+      "answer": "C",
+      "explanation": "P(cell i idle) = P(Bernoulli(α) = 0) = 1−α."
+  },
+  {
+      "id": 45, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a W=20 lattice with α=0.3, what is the expected number of cells that remain idle per step?",
+      "choices": {"A": "6", "B": "20", "C": "14", "D": "0.3"},
+      "answer": "C",
+      "explanation": "E[idle] = W×(1−α) = 20×0.7 = 14."
+  },
+  {
+      "id": 46, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Can all cells remain idle in a single step of α-async ECA?",
+      "choices": {"A": "No, at least one cell must update per step",
+                  "B": "Only if α=0",
+                  "C": "Yes, with probability (1−α)^W, which is positive for α < 1",
+                  "D": "Only on the first step"},
+      "answer": "C",
+      "explanation": "P(all idle) = (1−α)^W. This is positive for any α ∈ [0,1), no matter how small."
+  },
+  {
+      "id": 47, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Can all cells update simultaneously in a single step of α-async ECA?",
+      "choices": {"A": "No, at most one cell updates per step",
+                  "B": "Yes, with probability α^W, which is positive for α > 0",
+                  "C": "Only if α=1",
+                  "D": "Only if W=1"},
+      "answer": "B",
+      "explanation": "P(all update) = α^W. This is positive for any α ∈ (0,1]. At α=1 it equals 1."
+  },
+  {
+      "id": 48, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What is the joint probability that two specific cells i and j both update at the same timestep?",
+      "choices": {"A": "α/2", "B": "2α−α²", "C": "α² (by independence)", "D": "α"},
+      "answer": "C",
+      "explanation": "By independence of Bernoulli trials: P(i updates AND j updates) = α × α = α²."
+  },
+  {
+      "id": 49, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What is the probability that neither cell i nor cell j updates at a given timestep?",
+      "choices": {"A": "(1−α)", "B": "(1−α)²", "C": "1−2α", "D": "(1−α)/2"},
+      "answer": "B",
+      "explanation": "P(i idle AND j idle) = (1−α)×(1−α) = (1−α)² by independence."
+  },
+  {
+      "id": 50, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "As α → 0, the α-async ECA dynamics approach what limiting behaviour?",
+      "choices": {"A": "Fully synchronous ECA",
+                  "B": "Random sequential updating with exactly one cell per step",
+                  "C": "Complete stasis — the orbit effectively freezes",
+                  "D": "Chaotic dynamics"},
+      "answer": "C",
+      "explanation": "As α→0, P(any cell updates)→0 at each step, so the system is nearly always idle; the orbit changes vanishingly rarely."
+  },
+  {
+      "id": 51, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with W=10, α=0.2: what is P(exactly one cell updates)?",
+      "choices": {"A": "0.2",
+                  "B": "C(10,1)×0.2¹×0.8⁹ = 10×0.2×0.8⁹ ≈ 0.268",
+                  "C": "0.8⁹ ≈ 0.134",
+                  "D": "0.2⁹ ≈ 5.1×10⁻⁷"},
+      "answer": "B",
+      "explanation": "X~Binomial(10,0.2). P(X=1) = C(10,1)×0.2¹×0.8⁹ = 10×0.2×0.8⁹ ≈ 0.268."
+  },
+  {
+      "id": 52, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In α-async ECA, which of the following is true regarding neighbourhoods used for computing the next state?",
+      "choices": {"A": "Cells use the updated (t+1) states of neighbours as soon as they become available",
+                  "B": "All cells use the states at time t to compute their proposed next state, even if some neighbours have already been selected",
+                  "C": "Cells use their own t-state and only the t+1 states of selected neighbours",
+                  "D": "Neighbourhoods are computed after all Bernoulli trials have resolved"},
+      "answer": "B",
+      "explanation": "α-async uses fully synchronous neighbourhood reading: the proposed new state for cell i is f(s_{i-1}(t), s_i(t), s_{i+1}(t)) computed from states at time t."
+  },
+  {
+      "id": 53, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Which statement correctly describes the role of α as a 'noise rate' in the context of breaking the global clock?",
+      "choices": {"A": "The global clock ticks at rate α instead of rate 1",
+                  "B": "With probability 1−α, each cell 'misses' the global clock tick and stays put, simulating clock jitter or scheduling unreliability",
+                  "C": "The global clock is replaced by a Poisson process with rate α",
+                  "D": "The noise rate determines how often the rule f changes"},
+      "answer": "B",
+      "explanation": "α-async models scheduling noise: each cell independently fails to respond to the global clock with probability 1−α, breaking synchrony."
+  },
+  {
+      "id": 54, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA on a single cell (W=1) with periodic BC, the process is equivalent to:",
+      "choices": {"A": "A deterministic two-state machine",
+                  "B": "A Markov chain with self-loops weighted by 1−α and transitions weighted by α",
+                  "C": "Rule 0 applied probabilistically",
+                  "D": "A random walk on {0,1}"},
+      "answer": "B",
+      "explanation": "W=1, periodic BC: the cell's neighbourhood is (itself, itself, itself). With prob α it applies f; with prob 1−α it stays. This is a 2-state Markov chain with self-loop prob 1−α at each state (possibly plus α if the RMT is passive)."
+  },
+  {
+      "id": 55, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Which of the following correctly identifies the two extreme cases of α in α-async ECA?",
+      "choices": {"A": "α=0: one cell updates per step; α=1: all cells update",
+                  "B": "α=0: lattice is frozen; α=1: standard synchronous ECA",
+                  "C": "α=0: fully synchronous; α=1: fully asynchronous (one cell per step)",
+                  "D": "α=0: stochastic rule; α=1: deterministic rule"},
+      "answer": "B",
+      "explanation": "α=0 → frozen (all idle); α=1 → all update → standard synchronous ECA."
+  },
+  {
+      "id": 56, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For W=20 and α=0.5, which value is closest to the probability that at least one cell updates?",
+      "choices": {"A": "0.5",
+                  "B": "1 − 0.5^20 ≈ 1.0 (essentially certain)",
+                  "C": "0.5^20 ≈ 9.5×10⁻⁷",
+                  "D": "0.25"},
+      "answer": "B",
+      "explanation": "P(at least 1 updates) = 1 − (1−α)^W = 1 − 0.5^20 ≈ 1 − 10⁻⁶ ≈ 1."
+  },
+  {
+      "id": 57, "type": "short_answer", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Explain in what sense the α parameter 'interpolates' between a frozen system and fully synchronous ECA. What two qualitatively different regimes does this create?",
+      "model_answer": "At α=0, no cell ever updates: the system is permanently frozen at its initial configuration. At α=1, every cell updates every step: this is standard synchronous ECA. For 0 < α < 1, α-async lies strictly between these extremes.\n\nTwo qualitative regimes:\n(1) Near-frozen (α≈0): very few cells update per step; dynamics are very slow, effectively probing the rule one or two cells at a time.\n(2) Near-synchronous (α≈1): almost all cells update each step; the dynamics closely resemble synchronous ECA with occasional 'missed' updates acting as small perturbations.",
+      "explanation": "The interpolation is continuous in α; qualitative changes in behaviour can occur at critical α values depending on the rule."
+  },
+  {
+      "id": 58, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For a lattice of width W, write the probability that a specific subset S ⊆ {0,…,W−1} of cells updates while all cells outside S remain idle.",
+      "choices": {"A": "α^|S| × (1−α)^(W−|S|)",
+                  "B": "α^|S|",
+                  "C": "C(W,|S|) × α^|S| × (1−α)^(W−|S|)",
+                  "D": "(1−α)^(W−|S|)"},
+      "answer": "A",
+      "explanation": "Each cell in S updates (probability α) and each cell outside S is idle (probability 1−α), all independent: product = α^|S| × (1−α)^(W−|S|). The binomial coefficient is NOT included because S is a specific named subset, not any subset of size |S|."
+  },
+  {
+      "id": 59, "type": "short_answer", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Prove formally that when α=1, the α-async ECA update is identical to standard synchronous ECA.",
+      "model_answer": "Under α-async, each cell i independently updates with probability α. When α=1: P(cell i updates) = Bernoulli(1) = 1 with probability 1. Therefore every cell updates at every timestep with probability 1.\n\nSince all cells use the neighbourhood values at time t (not t+1), the update s_i(t+1) = f(s_{i-1}(t), s_i(t), s_{i+1}(t)) applies deterministically to every cell simultaneously. This is precisely the definition of synchronous (parallel) ECA, where all cells update in lock-step using time-t neighbourhoods.",
+      "explanation": "Key: (a) all cells update with probability 1, and (b) neighbourhood reading is from time t — together these replicate the synchronous update exactly."
+  },
+  {
+      "id": 60, "type": "short_answer", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For W=20, α=0.1, compute: (a) expected cells updating per step, (b) variance, (c) P(no cells update), (d) P(all cells update).",
+      "model_answer": "X ~ Binomial(n=20, p=0.1).\n(a) E[X] = np = 20×0.1 = 2.0 cells.\n(b) Var[X] = np(1−p) = 20×0.1×0.9 = 1.8.\n(c) P(X=0) = (1−p)^n = 0.9^20 ≈ 0.1216.\n(d) P(X=20) = p^n = 0.1^20 = 10^{−20} (essentially zero).",
+      "explanation": "Low α → high P(nothing updates) ≈ 12%; near-zero P(all update). This characterises the near-frozen regime."
+  },
+  {
+      "id": 61, "type": "mcq", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Under α-async updating, what is the covariance between the update decisions of cells i and j (i ≠ j)?",
+      "choices": {"A": "α(1−α)", "B": "α²", "C": "0 — because the Bernoulli trials are independent", "D": "1/(W)"},
+      "answer": "C",
+      "explanation": "Cov(B_i, B_j) = E[B_i B_j] − E[B_i]E[B_j] = α² − α² = 0. Independence of Bernoulli trials implies zero covariance."
+  },
+  {
+      "id": 62, "type": "short_answer", "topic": 2, "topic_name": "α-Async Noise: Definition & Parameters",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Describe the formal probability space underlying one step of α-async ECA for a W-cell lattice. Specify the sample space, the probability measure, and the random variable of interest.",
+      "model_answer": "Sample space: Ω = {0,1}^W, where each outcome ω = (ω_0, …, ω_{W-1}) specifies which cells update (ω_i=1) and which are idle (ω_i=0).\n\nProbability measure: P({ω}) = ∏_{i=0}^{W-1} α^{ω_i} (1−α)^{1−ω_i}, i.e., the product of W independent Bernoulli(α) distributions.\n\nRandom variable of interest: the next global configuration S(t+1), which is a deterministic function of ω and S(t):\n  S_i(t+1) = f(s_{i-1}(t), s_i(t), s_{i+1}(t)) if ω_i=1, else s_i(t).\n\nThis makes α-async ECA a well-defined random function on configurations.",
+      "explanation": "The probability space has |Ω|=2^W atoms. The transition kernel P(S(t+1)=s' | S(t)=s) is obtained by summing over all ω that map s to s'."
+  },
+  {
+      "id": 63, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For a state change to occur at cell i in α-async ECA, which TWO conditions must BOTH hold?",
+      "choices": {"A": "The cell must be 1, and the rule output must be 0",
+                  "B": "The cell must be selected for update (Bernoulli trial = 1) AND the RMT must be active (rule output ≠ current state)",
+                  "C": "The cell must be selected, and α must equal 1",
+                  "D": "All neighbours must have changed, and the cell must be selected"},
+      "answer": "B",
+      "explanation": "A state change requires: (1) the Bernoulli trial succeeds AND (2) the transition is active (f(L,C,R)≠C). Both are necessary."
+  },
+  {
+      "id": 64, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "If cell i has a passive RMT (f(L,C,R)=C) and is selected for update, what happens to its state?",
+      "choices": {"A": "It changes to the opposite value",
+                  "B": "It changes to the rule output (0 or 1)",
+                  "C": "It remains unchanged — applying f gives C, the same value",
+                  "D": "It resets to 0"},
+      "answer": "C",
+      "explanation": "Passive transition: f(L,C,R)=C. Even if selected, the cell's state is unchanged because the rule output equals its current state."
+  },
+  {
+      "id": 65, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "If a cell's state changes between timestep t and t+1, which of the following can be concluded with certainty?",
+      "choices": {"A": "α must equal 1.0",
+                  "B": "All neighbours also changed",
+                  "C": "The cell was selected for update AND the RMT was active",
+                  "D": "The cell was not selected"},
+      "answer": "C",
+      "explanation": "A state change is observable proof that both conditions held: Bernoulli success (selected) AND active transition."
+  },
+  {
+      "id": 66, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "If a cell's state does NOT change between t and t+1, what can be concluded?",
+      "choices": {"A": "The cell was definitely not selected",
+                  "B": "The RMT was definitely passive",
+                  "C": "Either the cell was not selected (prob 1−α), OR it was selected but the RMT was passive — these two cases are observationally indistinguishable",
+                  "D": "α must equal 0"},
+      "answer": "C",
+      "explanation": "Non-change: no update OR passive update. Both produce identical observations: the state is unchanged."
+  },
+  {
+      "id": 67, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In α-async ECA, which value does a selected cell with an active RMT take on at t+1?",
+      "choices": {"A": "The rule output f(s_{i-1}(t), s_i(t), s_{i+1}(t))",
+                  "B": "The bitwise NOT of its current state",
+                  "C": "The average of its neighbours",
+                  "D": "The rule output computed at t+1"},
+      "answer": "A",
+      "explanation": "If selected (Bernoulli=1) and RMT is active (f≠C): s_i(t+1) = f(s_{i-1}(t), s_i(t), s_{i+1}(t))."
+  },
+  {
+      "id": 68, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Does α-async ECA use the cell states at time t or time t+1 when computing neighbourhood values for the update?",
+      "choices": {"A": "States at t+1, updated as cells are processed",
+                  "B": "The average of t and t+1 states",
+                  "C": "States at t for all cells, regardless of whether neighbours have already been selected",
+                  "D": "Depends on the rule"},
+      "answer": "C",
+      "explanation": "α-async uses synchronous neighbourhood reading: all neighbourhood values are read from time t, making it a parallel (not sequential) update model."
+  },
+  {
+      "id": 69, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Is the update of cell i at time t affected by whether cell j was selected to update?",
+      "choices": {"A": "Yes — if j is a neighbour of i, its update decision affects i's proposed new state",
+                  "B": "No — the Bernoulli trials are independent, and neighbourhood values are all read from time t",
+                  "C": "Yes — cells in a chain must update together",
+                  "D": "Yes — if j updates first, i uses j's new state"},
+      "answer": "B",
+      "explanation": "Independence: B_i ⊥ B_j. Synchronous reading: i's rule evaluation uses s_j(t), not the updated state of j."
+  },
+  {
+      "id": 70, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For Rule 204 (identity rule) under α-async ECA, what happens to any configuration?",
+      "choices": {"A": "All cells become 0 after one step",
+                  "B": "The configuration never changes, regardless of α, because every RMT of Rule 204 is passive",
+                  "C": "Cells change state with probability α",
+                  "D": "Cells change state only when selected"},
+      "answer": "B",
+      "explanation": "Rule 204: f(L,C,R)=C for all 8 patterns → all RMTs passive. No state change is possible even if a cell is selected. Configuration is invariant."
+  },
+  {
+      "id": 71, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "If the probability of a cell being selected is α, and the probability that its RMT is active is p_a, what is the probability that the cell's state changes in one step?",
+      "choices": {"A": "α + p_a", "B": "α × p_a", "C": "max(α, p_a)", "D": "p_a"},
+      "answer": "B",
+      "explanation": "P(state changes) = P(selected) × P(active RMT | selected) = α × p_a, by independence of the Bernoulli trial and the neighbourhood configuration."
+  },
+  {
+      "id": 72, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In a step of α-async ECA, if cell i has an active RMT, P(cell i changes state) = ?",
+      "choices": {"A": "1", "B": "α", "C": "1−α", "D": "0"},
+      "answer": "B",
+      "explanation": "P(changes | active RMT) = P(selected) = α. The active RMT is already given; only the Bernoulli trial is uncertain."
+  },
+  {
+      "id": 73, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In a step of α-async ECA, if cell i has a passive RMT, P(cell i changes state) = ?",
+      "choices": {"A": "0 — passive RMT means f=C, so updating or not updating produces the same state",
+                  "B": "α",
+                  "C": "1−α",
+                  "D": "0.5"},
+      "answer": "A",
+      "explanation": "P(changes | passive RMT) = 0. Regardless of the Bernoulli outcome, applying f gives C: state unchanged."
+  },
+  {
+      "id": 74, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async Rule 90 applied to a cell with neighbourhood (0,1,1) (RMT index=3), what is P(cell changes state)?",
+      "choices": {"A": "α", "B": "0", "C": "1", "D": "1−α"},
+      "answer": "B",
+      "explanation": "RMT3=(0,1,1): C=1. Rule 90 = 01011010 binary. Bit 3 = (90>>3)&1 = 1. Output=1=C → passive RMT. P(change)=0."
+  },
+  {
+      "id": 75, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Consider α-async ECA with W=6, where exactly 3 cells have active RMTs at time t. What is P(at least one cell changes state)?",
+      "choices": {"A": "3α",
+                  "B": "α³",
+                  "C": "1 − (1−α)³",
+                  "D": "3α(1−α)²"},
+      "answer": "C",
+      "explanation": "Only the 3 cells with active RMTs can change. P(at least one changes) = 1 − P(none change) = 1 − (1−α)³."
+  },
+  {
+      "id": 76, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Why is a non-change event in α-async ECA fundamentally ambiguous for an observer?",
+      "choices": {"A": "Because the observer doesn't know α",
+                  "B": "Because it could be caused by either (a) the cell not being selected (prob 1−α) or (b) the cell being selected but having a passive RMT — and these cannot be distinguished from the observation alone",
+                  "C": "Because boundary cells behave differently",
+                  "D": "Because the rule is unknown and could have changed"},
+      "answer": "B",
+      "explanation": "The two causes of non-change produce identical observations. This ambiguity is fundamental to why α-async makes rule identification harder."
+  },
+  {
+      "id": 77, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a rule where ALL 8 RMTs are active (rule output ≠ C for every neighbourhood), P(a specific cell changes state) = ?",
+      "choices": {"A": "1", "B": "1−α", "C": "α", "D": "0"},
+      "answer": "C",
+      "explanation": "If all RMTs are active, the transition is always active; the only uncertainty is whether the cell was selected: P(change) = α."
+  },
+  {
+      "id": 78, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In α-async ECA, are update decisions across multiple consecutive timesteps independent?",
+      "choices": {"A": "No — if a cell updated at t, it is more likely to update at t+1",
+                  "B": "No — if a cell did not update at t, it cannot update at t+1",
+                  "C": "Yes — each timestep's Bernoulli trials are drawn independently from all other timesteps",
+                  "D": "Only if α > 0.5"},
+      "answer": "C",
+      "explanation": "The Bernoulli trials are i.i.d. across time: each timestep's decisions are drawn freshly and independently."
+  },
+  {
+      "id": 79, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For Rule 0 (all outputs=0) applied under α-async to a cell in state 0: P(state changes) = ?",
+      "choices": {"A": "α",
+                  "B": "0 — cell is already in state 0 and the rule outputs 0 (passive transition)",
+                  "C": "1",
+                  "D": "1−α"},
+      "answer": "B",
+      "explanation": "Cell state = 0, rule output = 0 → f(L,C,R)=0=C → passive RMT. P(change)=0 regardless of α."
+  },
+  {
+      "id": 80, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For Rule 0 applied under α-async to a cell currently in state 1: P(state changes in one step) = ?",
+      "choices": {"A": "0",
+                  "B": "α — because f=0 for every neighbourhood and C=1, so the RMT is active",
+                  "C": "1",
+                  "D": "1−α"},
+      "answer": "B",
+      "explanation": "Rule 0 outputs 0 for all patterns. Cell state=1, so f(L,C,R)=0≠1=C → active RMT. P(change) = α."
+  },
+  {
+      "id": 81, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Which observation about α-async update mechanics makes it distinct from standard probabilistic cellular automata (PCA)?",
+      "choices": {"A": "α-async cells can only change to state 0",
+                  "B": "In α-async, the local rule f is deterministic and a state change at a passive RMT is impossible; in a PCA the rule itself is stochastic and can change cell state even at passive neighbourhood patterns",
+                  "C": "PCA and α-async are identical",
+                  "D": "α-async uses a different neighbourhood than PCA"},
+      "answer": "B",
+      "explanation": "α-async: f is fixed deterministic; stochasticity is only in scheduling. PCA: the rule itself is a conditional probability distribution — state changes can occur even at 'passive' neighbourhoods."
+  },
+  {
+      "id": 82, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with W=6, α=0.5, and the state at time t being 101010 under Rule 90: (a) identify which cells have active RMTs, (b) compute P(global state unchanged after one step).",
+      "model_answer": "Rule 90 = 01011010 binary. Active RMTs are those where output ≠ C:\nRMT1 (001): C=0, out=1 → active.\nRMT2 (010): C=1, out=0 → active.\nRMT4 (100): C=0, out=1 → active.\nRMT7 (111): C=1, out=0 → active.\n(Passive RMTs: 0,3,5,6.)\n\nState = 1,0,1,0,1,0 with periodic BC:\nCell0: L=s[5]=0, C=1, R=s[1]=0 → RMT2 (010) → active.\nCell1: L=s[0]=1, C=0, R=s[2]=1 → RMT5 (101): C=0, out=(90>>5)&1=0 → passive.\nCell2: L=s[1]=0, C=1, R=s[3]=0 → RMT2 → active.\nCell3: L=s[2]=1, C=0, R=s[4]=1 → RMT5 → passive.\nCell4: L=s[3]=0, C=1, R=s[5]=0 → RMT2 → active.\nCell5: L=s[4]=1, C=0, R=s[0]=1 → RMT5 → passive.\n\n(a) Cells 0, 2, 4 have active RMTs; Cells 1, 3, 5 have passive RMTs.\n(b) P(global state unchanged) = P(none of the 3 active cells selected) = (1−0.5)^3 = 0.5^3 = 1/8 = 0.125.",
+      "explanation": "Rule 90 bit5 = (90>>5)&1 = (90/32)&1 = 2&1 = 0. RMT5 has C=0 and output=0 → passive. Only cells at RMT2 (alternating pattern) are active."
+  },
+  {
+      "id": 83, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Under α-async ECA, the sequence of global configurations S(0), S(1), S(2), … forms a:",
+      "choices": {"A": "Deterministic sequence",
+                  "B": "Discrete-time Markov chain, because S(t+1) depends only on S(t) and the independent Bernoulli trials at t",
+                  "C": "Hidden Markov model",
+                  "D": "Continuous-time process"},
+      "answer": "B",
+      "explanation": "The next configuration depends only on the current configuration and the i.i.d. Bernoulli trials at time t. This satisfies the Markov property."
+  },
+  {
+      "id": 84, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "How does an observer distinguish an α-async orbit from a synchronous orbit of the same rule?",
+      "choices": {"A": "They always look identical",
+                  "B": "In α-async, cells may remain unchanged even when their neighbourhood suggests a state change would occur under the synchronous rule — causing patterns to appear blurred or lagging compared to synchronous evolution",
+                  "C": "The rule number is different",
+                  "D": "α-async orbits always have lower density"},
+      "answer": "B",
+      "explanation": "α-async introduces 'missed updates': cells that would change under synchronous ECA occasionally stay fixed, creating a noisier, slower-evolving version of the synchronous pattern."
+  },
+  {
+      "id": 85, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA, what is P(global configuration S(t+1) ≠ S(t)) if all cells have passive RMTs at time t?",
+      "choices": {"A": "α^W", "B": "0 — no cell can change regardless of update selection", "C": "1", "D": "(1−α)^W"},
+      "answer": "B",
+      "explanation": "If every cell has a passive RMT, even cells that are selected produce no change. P(global change)=0."
+  },
+  {
+      "id": 86, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In a single step, a cell at position i changes state. What is the minimum information an observer can infer about α?",
+      "choices": {"A": "α = 1",
+                  "B": "α > 0 (the update probability must be positive for a change to occur)",
+                  "C": "α = 0.5",
+                  "D": "Nothing — observing a change conveys no information about α"},
+      "answer": "B",
+      "explanation": "P(change) = α × I(active RMT). Observing a change means α > 0 and the RMT was active. The exact value of α cannot be determined from a single observation."
+  },
+  {
+      "id": 87, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Define the transition probability P(S(t+1) = s' | S(t) = s) for α-async ECA in terms of α, f, and the states s and s'.",
+      "model_answer": "Let D(s,s') = {i : s'_i ≠ s_i} be the set of cells that differ between s and s'.\nLet A(s) = {i : f(s_{i-1}, s_i, s_{i+1}) ≠ s_i} be the set of cells with active RMTs in configuration s.\n\nThe transition s → s' has positive probability only if D(s,s') ⊆ A(s) (cells that change must be active), and for all i ∉ A(s): s'_i = s_i (passive cells never change).\n\nGiven these conditions:\nP(S(t+1)=s' | S(t)=s) = α^|D(s,s')| × (1−α)^(|A(s)|−|D(s,s')|)\nwhere the first factor comes from cells in D that must be selected, and the second from active cells not in D that must be idle. Passive cells contribute factor 1 regardless.",
+      "explanation": "Changed cells must be selected (×α each). Active-but-unchanged cells must be idle (×(1−α) each). Passive cells always stay (×1 regardless of Bernoulli)."
+  },
+  {
+      "id": 88, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "How does the α-async update differ from a 'random sequential' (RSU) update in terms of the number of cells updated per step?",
+      "choices": {"A": "RSU and α-async always update the same number",
+                  "B": "In RSU, exactly 1 cell is selected uniformly at random; in α-async, 0 to W cells can update, with the count following Binomial(W, α)",
+                  "C": "In α-async, exactly 1 cell updates; in RSU, 0 to W cells update",
+                  "D": "Both always update W/2 cells"},
+      "answer": "B",
+      "explanation": "RSU = exactly 1 cell per step. α-async = Binomial(W,α) cells per step, ranging from 0 to W."
+  },
+  {
+      "id": 89, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Derive the probability that at least one cell changes state in one α-async step, given that exactly k cells out of W have active RMTs.",
+      "model_answer": "The k active cells can each independently change state with probability α; the W−k passive cells cannot change state regardless.\nP(at least one change) = 1 − P(no changes)\n= 1 − P(none of the k active cells is selected)\n= 1 − (1−α)^k.\nThis follows because the k active cells are independent Bernoulli(α) events and a change requires selection. The W−k passive cells contribute nothing to P(change).",
+      "explanation": "Only active cells can contribute to a state change. P(none of k active cells selected) = (1−α)^k since they are independent."
+  },
+  {
+      "id": 90, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For Rule 0 under α-async starting from a configuration with n₁ cells in state 1 (n₁ > 0): what is P(global state changes in one step)?",
+      "choices": {"A": "0",
+                  "B": "1 − (1−α)^{n₁} — because only the n₁ cells in state 1 have active RMTs (Rule 0 always outputs 0)",
+                  "C": "α^{n₁}",
+                  "D": "1 − (1−α)^W"},
+      "answer": "B",
+      "explanation": "Rule 0 outputs 0 everywhere. Cells in state 0 have passive RMTs (0→0). Cells in state 1 have active RMTs (1→0). P(at least one 1-cell changes) = 1 − (1−α)^{n₁}."
+  },
+  {
+      "id": 91, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Prove formally that the sequence of global configurations under α-async ECA is a finite, discrete-time, time-homogeneous Markov chain.",
+      "model_answer": "The Markov property requires P(S(t+1)=s' | S(0)=s_0, …, S(t)=s) = P(S(t+1)=s' | S(t)=s).\n\nUnder α-async, S_i(t+1) = f(s_{i-1}(t), s_i(t), s_{i+1}(t)) with prob α, else s_i(t), for each i independently. The distribution of S(t+1) depends only on S(t) (through neighbourhood values and active/passive classification) and the current Bernoulli draws B(t), which are independent of all prior history. Hence S(t+1) ⊥ (S(0),…,S(t−1)) | S(t). ✓\n\nTime-homogeneity: the transition probabilities do not depend on t (α and f are fixed). ✓\n\nFinite state space: 2^W states. ✓\n\nTherefore the process is a finite, discrete-time, time-homogeneous Markov chain.",
+      "explanation": "Key facts: S(t+1) depends only on S(t) and fresh i.i.d. Bernoulli draws B_i(t); α and f are time-invariant; the state space is finite."
+  },
+  {
+      "id": 92, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA, why does the indistinguishability of 'not selected' and 'selected but passive' make rule identification harder compared to synchronous ECA?",
+      "choices": {"A": "Because α is unknown",
+                  "B": "In synchronous ECA, every non-change at an active cell is impossible — a state change always follows an active update. In α-async, a non-change could mean either 'not selected' or 'passive', so observing a non-change gives no definitive information about whether the RMT was active or passive, preventing certain inference of the rule.",
+                  "C": "Because the local rule f changes",
+                  "D": "Because cells can copy each other's states"},
+      "answer": "B",
+      "explanation": "In synchronous ECA, every active cell changes state every step. In α-async, active cells sometimes miss their update (Bernoulli=0), making active and passive transitions observationally identical when the state doesn't change."
+  },
+  {
+      "id": 93, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Under α-async ECA with a convergent rule (all orbits end at a fixed point), what is the global state once the fixed point is reached?",
+      "choices": {"A": "The system continues to evolve away from the fixed point",
+                  "B": "The fixed point is absorbing: once reached, the system remains there permanently (all RMTs are passive at the fixed point)",
+                  "C": "The system oscillates around the fixed point with amplitude proportional to 1−α",
+                  "D": "The system can leave the fixed point with probability 1−α"},
+      "answer": "B",
+      "explanation": "At a fixed point s*, f(L,C,R)=s*_i for all cells i. All RMTs are passive → no cell can change state regardless of α → the fixed point is absorbing."
+  },
+  {
+      "id": 94, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Show that the set of fixed points of α-async ECA (for any α ∈ (0,1]) is identical to the set of fixed points of the corresponding synchronous ECA.",
+      "model_answer": "(⇐) If s* is a synchronous fixed point: f(s*_{i-1}, s*_i, s*_{i+1})=s*_i for all i. All RMTs are passive. For any selection of cells, applying f always gives s*_i=C, so s_i(t+1)=s*_i regardless of Bernoulli outcomes. P(S(t+1)=s* | S(t)=s*)=1. Hence s* is also an α-async fixed point.\n\n(⇒) If s* is an α-async fixed point: P(S(t+1)=s* | S(t)=s*)=1. Suppose for contradiction some cell j has an active RMT in s*: f(s*_{j-1}, s*_j, s*_{j+1})≠s*_j. Then with probability α>0, cell j is selected and its state changes to f≠s*_j. This gives P(S(t+1)≠s* | S(t)=s*)≥α>0, contradicting that s* is a fixed point. Therefore no active RMT can exist in s*, which means s* is a synchronous fixed point. QED.",
+      "explanation": "The equivalence holds for all α>0. At α=0 everything is trivially frozen."
+  },
+  {
+      "id": 95, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with Rule 0 on a W=5 lattice starting from state 11111 (all ones), what is P(reaching 00000 in exactly one step)?",
+      "choices": {"A": "α^5 — all 5 cells must be selected and all have active RMTs",
+                  "B": "1 − (1−α)^5",
+                  "C": "α",
+                  "D": "5α(1−α)^4"},
+      "answer": "A",
+      "explanation": "All 5 cells are in state 1 with active RMTs (Rule 0 outputs 0 for all neighbourhoods). To reach 00000 in one step, all 5 must be selected: P = α^5."
+  },
+  {
+      "id": 96, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Under α-async ECA, can two topologically distinct (non-isomorphic) ECA rules produce identical orbit distributions for all initial conditions and all α?",
+      "choices": {"A": "No — different rules always produce different orbit distributions",
+                  "B": "Yes — if two rules have identical active RMT sets, they produce the same set of possible state changes and thus the same orbit distribution for all α",
+                  "C": "Only for α=1",
+                  "D": "Yes, but only for α=0.5"},
+      "answer": "B",
+      "explanation": "If rules R₁ and R₂ have the same active RMT set, they agree on which cells can change and in what direction. The orbit distributions are identical for all α."
+  },
+  {
+      "id": 97, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For very small α > 0 in a W=10 lattice with exactly k active cells in the current state, derive the expected time until the first global state change.",
+      "model_answer": "Each step, the probability that at least one active cell changes state is p = 1 − (1−α)^k. For small α: p ≈ kα (using (1−α)^k ≈ 1−kα for small α).\n\nThe number of steps until the first change is geometrically distributed with parameter p:\nE[T] = 1/p ≈ 1/(kα).\n\nAs α → 0, E[T] → ∞ and scales as 1/(kα), meaning the time to first change grows inversely with the noise rate α.",
+      "explanation": "Geometric distribution with success probability p=1−(1−α)^k. For small α, p ≈ kα, so E[T] ≈ 1/(kα)."
+  },
+  {
+      "id": 98, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async Rule 110, in which type of step does an observer gain the most information about the underlying rule?",
+      "choices": {"A": "Steps where no cell changes state",
+                  "B": "Steps where many cells change state simultaneously, providing direct evidence of active RMT patterns",
+                  "C": "Steps at α=0",
+                  "D": "Steps where exactly half the cells update"},
+      "answer": "B",
+      "explanation": "Observed state changes directly reveal: (a) the cell was selected AND (b) the RMT was active. Multiple changes reveal multiple active RMTs, giving rich rule information. Non-changes are ambiguous."
+  },
+  {
+      "id": 99, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA, the joint distribution of all cell updates in a single step is:",
+      "choices": {"A": "Multinomial",
+                  "B": "A product of W independent Bernoulli(α) random variables — the update events are fully independent",
+                  "C": "A multivariate Gaussian approximation",
+                  "D": "Conditional on the current state"},
+      "answer": "B",
+      "explanation": "The joint update distribution factors as ∏_{i=0}^{W-1} Bernoulli(α). The W Bernoulli trials are mutually independent."
+  },
+  {
+      "id": 100, "type": "short_answer", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Explain the 'masking' interpretation of α-async noise: how does α mask the synchronous dynamics? What is revealed and what is hidden?",
+      "model_answer": "In each step, the synchronous ECA would produce a new configuration s_sync = f(s(t)). Under α-async, the actual new configuration is a random mask of s_sync: each cell i independently reveals s_sync_i (if selected, prob α) or retains s(t)_i (if idle, prob 1−α).\n\nRevealed: for cells where s_sync_i ≠ s(t)_i (active RMTs), being selected reveals the rule output.\nHidden: for cells not selected, we cannot tell whether their synchronous output would have differed (active but masked) or not (passive).\n\nThe mask is independent Bernoulli(α): high α reveals more of s_sync; low α hides most of it. This is exactly why rule identification is harder under low α.",
+      "explanation": "α-async = synchronous dynamics with a random binary mask (Bernoulli(α) per cell). The mask obscures active transitions."
+  },
+  {
+      "id": 101, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with a rule that has exactly m active RMTs (out of 8), which expression correctly gives the fraction of all 2^W configurations that have at least one active cell?",
+      "choices": {"A": "m/8",
+                  "B": "This depends on the actual configuration: not all patterns occur equally often",
+                  "C": "1 − (fraction of configs where all W cells have passive RMTs)",
+                  "D": "1 − (1 − m/8)^W exactly"},
+      "answer": "C",
+      "explanation": "The fraction of configurations where all cells are passive depends on the structure of the passive-pattern set, not simply m/8. The correct expression is 1 minus the probability that all W cells simultaneously have passive neighbourhoods."
+  },
+  {
+      "id": 102, "type": "mcq", "topic": 3, "topic_name": "Update Mechanics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Under α-async ECA, if at time t the configuration is a synchronous fixed point, what is the probability it changes at step t+1?",
+      "choices": {"A": "α^W", "B": "(1−α)^W", "C": "α", "D": "0 — a synchronous fixed point is also an α-async fixed point for all α"},
+      "answer": "D",
+      "explanation": "At a synchronous fixed point, all RMTs are passive. Even if all cells are selected, no state change is possible. P(change) = 0."
+  },
+  {
+      "id": 103, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "The number of cells that update per step in α-async ECA with width W follows which distribution?",
+      "choices": {"A": "Geometric(α)", "B": "Poisson(αW)", "C": "Binomial(W, α)", "D": "Uniform on {0, 1, …, W}"},
+      "answer": "C",
+      "explanation": "W independent Bernoulli(α) trials sum to Binomial(W, α)."
+  },
+  {
+      "id": 104, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For X ~ Binomial(W, α), the expected value E[X] is:",
+      "choices": {"A": "W/α", "B": "Wα", "C": "α/W", "D": "√(Wα)"},
+      "answer": "B",
+      "explanation": "E[X] = np = Wα for Binomial(n=W, p=α)."
+  },
+  {
+      "id": 105, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For X ~ Binomial(W, α), the variance Var[X] is:",
+      "choices": {"A": "Wα", "B": "Wα²", "C": "Wα(1−α)", "D": "W²α(1−α)"},
+      "answer": "C",
+      "explanation": "Var[X] = np(1−p) = Wα(1−α) for Binomial."
+  },
+  {
+      "id": 106, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For W=10, α=0.5: what is the expected number of cells that update?",
+      "choices": {"A": "1", "B": "10", "C": "5", "D": "2.5"},
+      "answer": "C",
+      "explanation": "E[X] = Wα = 10 × 0.5 = 5."
+  },
+  {
+      "id": 107, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For W=5, α=1.0: what is P(all 5 cells update)?",
+      "choices": {"A": "0.5^5 = 1/32", "B": "0.5", "C": "1.0^5 = 1", "D": "0"},
+      "answer": "C",
+      "explanation": "P(all update) = α^W = 1.0^5 = 1. At α=1 all cells always update."
+  },
+  {
+      "id": 108, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For W=4, α=0.5: what is P(no cells update)?",
+      "choices": {"A": "0.5", "B": "0.5^4 = 0.0625", "C": "0.0625^4", "D": "0"},
+      "answer": "B",
+      "explanation": "P(X=0) = (1−α)^W = 0.5^4 = 0.0625."
+  },
+  {
+      "id": 109, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Is the expected number of updating cells linear in W for fixed α?",
+      "choices": {"A": "No — it is quadratic in W", "B": "Yes — E[X] = Wα is linear in W", "C": "No — it is logarithmic", "D": "It depends on α"},
+      "answer": "B",
+      "explanation": "E[X] = Wα: linear in W for fixed α."
+  },
+  {
+      "id": 110, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "The formula P(X = k) for X ~ Binomial(W, α) is:",
+      "choices": {"A": "α^k × (1−α)^(W−k)",
+                  "B": "C(W,k) × α^k × (1−α)^(W−k)",
+                  "C": "C(W,k) × α^(W−k) × (1−α)^k",
+                  "D": "α^k / k!"},
+      "answer": "B",
+      "explanation": "Standard binomial PMF: P(X=k) = C(W,k) × α^k × (1−α)^(W−k)."
+  },
+  {
+      "id": 111, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For large W and small α with Wα fixed, the Binomial(W,α) distribution is well approximated by:",
+      "choices": {"A": "Normal(Wα, Wα(1−α))", "B": "Poisson(Wα)", "C": "Geometric(α)", "D": "Uniform(0, W)"},
+      "answer": "B",
+      "explanation": "Poisson approximation to Binomial: valid when W is large and α is small with λ=Wα fixed."
+  },
+  {
+      "id": 112, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For W=20, α=0.5, what is the standard deviation of the number of cells that update?",
+      "choices": {"A": "5", "B": "10", "C": "√5 ≈ 2.24", "D": "2.5"},
+      "answer": "C",
+      "explanation": "SD = √(Wα(1−α)) = √(20×0.5×0.5) = √5 ≈ 2.24."
+  },
+  {
+      "id": 113, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For which value of α is the variance of the number of updating cells maximised (for fixed W)?",
+      "choices": {"A": "α=0", "B": "α=1", "C": "α=0.5", "D": "α=1/W"},
+      "answer": "C",
+      "explanation": "Var = Wα(1−α). The function α(1−α) is maximised at α=0.5, giving Var_max = W/4."
+  },
+  {
+      "id": 114, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For W=20, α=0.1: compute P(no cells update).",
+      "choices": {"A": "0.1^20 ≈ 10^{-20}", "B": "0.9^20 ≈ 0.1216", "C": "0.9", "D": "0.1"},
+      "answer": "B",
+      "explanation": "P(X=0) = (1−α)^W = 0.9^20 ≈ 0.1216."
+  },
+  {
+      "id": 115, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For W=10, α=0.8: compute P(all 10 cells update).",
+      "choices": {"A": "0.8", "B": "0.8^10 ≈ 0.107", "C": "0.2^10 ≈ 10^{-7}", "D": "1"},
+      "answer": "B",
+      "explanation": "P(X=10) = α^W = 0.8^10 ≈ 0.107."
+  },
+  {
+      "id": 116, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For W=20, α=0.5: what are E[X], Var[X], and SD[X]?",
+      "choices": {"A": "E=5, Var=5, SD≈2.24",
+                  "B": "E=10, Var=5, SD≈2.24",
+                  "C": "E=10, Var=10, SD≈3.16",
+                  "D": "E=10, Var=2.5, SD≈1.58"},
+      "answer": "B",
+      "explanation": "E[X]=20×0.5=10. Var[X]=20×0.5×0.5=5. SD=√5≈2.24."
+  },
+  {
+      "id": 117, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For X ~ Binomial(W, α), the maximum variance over all α is achieved when α=0.5 and equals:",
+      "choices": {"A": "W", "B": "W/4", "C": "W/2", "D": "W²/4"},
+      "answer": "B",
+      "explanation": "Var_max = Wα(1−α)|_{α=0.5} = W×0.25 = W/4."
+  },
+  {
+      "id": 118, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What is the covariance between the update decisions B_i and B_j of two different cells i ≠ j?",
+      "choices": {"A": "α(1−α)", "B": "Cov(B_i, B_j) = 0 — independence", "C": "α²", "D": "1/W"},
+      "answer": "B",
+      "explanation": "B_i and B_j are independent Bernoulli(α) variables. Cov = 0."
+  },
+  {
+      "id": 119, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "P(at least one cell updates) for W=10, α=0.2 is:",
+      "choices": {"A": "0.2", "B": "1 − 0.8^10 ≈ 0.893", "C": "0.8^10 ≈ 0.107", "D": "2"},
+      "answer": "B",
+      "explanation": "P(X≥1) = 1 − P(X=0) = 1 − (1−0.2)^10 = 1 − 0.8^10 ≈ 0.893."
+  },
+  {
+      "id": 120, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "As W → ∞ with α fixed, the distribution of X ~ Binomial(W, α) normalised as (X − Wα)/√(Wα(1−α)) converges to:",
+      "choices": {"A": "Poisson(1)", "B": "Standard Normal N(0,1) by the Central Limit Theorem", "C": "Uniform(0,1)", "D": "Exponential(1)"},
+      "answer": "B",
+      "explanation": "CLT for Binomial: (X−np)/√(np(1−p)) → N(0,1) as n→∞."
+  },
+  {
+      "id": 121, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For W=20, α=0.1: compute P(X=0), P(X=1), and P(X=2), where X is the number of cells updating.",
+      "model_answer": "X ~ Binomial(20, 0.1).\nP(X=0) = C(20,0)×0.1^0×0.9^20 = 0.9^20 ≈ 0.1216.\nP(X=1) = C(20,1)×0.1^1×0.9^19 = 20×0.1×0.9^19 ≈ 20×0.1×0.1351 ≈ 0.2702.\nP(X=2) = C(20,2)×0.1^2×0.9^18 = 190×0.01×0.9^18 ≈ 190×0.01×0.1501 ≈ 0.2852.",
+      "explanation": "0.9^18≈0.1501, 0.9^19≈0.1351, 0.9^20≈0.1216. The mode is around X=2 for low α."
+  },
+  {
+      "id": 122, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For X ~ Binomial(W, α), E[X²] = ?",
+      "choices": {"A": "(Wα)²",
+                  "B": "Wα(1−α) + (Wα)²",
+                  "C": "W²α²",
+                  "D": "Wα"},
+      "answer": "B",
+      "explanation": "E[X²] = Var[X] + (E[X])² = Wα(1−α) + (Wα)²."
+  },
+  {
+      "id": 123, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For large W and α=0.5, the probability P(X ≥ W/2 + c√W) for a constant c > 0 behaves as:",
+      "choices": {"A": "Approaches 0.5 for all c",
+                  "B": "Approaches 0 exponentially fast",
+                  "C": "Approaches 1 − Φ(2c) by the CLT, where Φ is the standard normal CDF",
+                  "D": "Stays constant"},
+      "answer": "C",
+      "explanation": "By CLT, X ≈ N(W/2, W/4). SD=√(W/4)=√W/2. P(X ≥ W/2 + c√W) = P(Z ≥ c√W/(√W/2)) = P(Z ≥ 2c) = 1−Φ(2c)."
+  },
+  {
+      "id": 124, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a W-cell α-async ECA, the Markov chain over global configurations has how many states?",
+      "choices": {"A": "W", "B": "2W", "C": "2^W", "D": "W×256"},
+      "answer": "C",
+      "explanation": "The global configuration is a binary string of length W: 2^W possible states."
+  },
+  {
+      "id": 125, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async Rule 0 on a W=10 lattice, the all-zeros configuration 0...0 is:",
+      "choices": {"A": "A transient state",
+                  "B": "An absorbing state — once reached, it cannot be left",
+                  "C": "A cyclic state with period 2",
+                  "D": "Not reachable"},
+      "answer": "B",
+      "explanation": "Rule 0 maps every cell to 0. Once all cells are 0, all RMTs are passive (0→0). No cell can change state. The all-zeros configuration is absorbing."
+  },
+  {
+      "id": 126, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For X ~ Binomial(W, α), the probability generating function (PGF) G(z) = E[z^X] = ?",
+      "choices": {"A": "(1−α+αz)^W", "B": "e^{αW(z−1)}", "C": "(αz)^W", "D": "α^W z^W"},
+      "answer": "A",
+      "explanation": "PGF of Binomial(n,p): G(z) = (1−p+pz)^n = (1−α+αz)^W."
+  },
+  {
+      "id": 127, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with a quiescent rule (f(0,0,0)=0) starting from a sparse initial configuration with density ρ ≪ 1, which of the following best describes the typical trajectory?",
+      "choices": {"A": "The density increases monotonically to 1",
+                  "B": "The density stabilises immediately",
+                  "C": "The density tends to decrease over time as active cells (in state 1) are gradually converted to 0 by the rule",
+                  "D": "The density oscillates between ρ and 1−ρ"},
+      "answer": "C",
+      "explanation": "For quiescent rules applied to sparse (mostly 0) initial states, the few 1s interact with the rule and are typically absorbed to 0 over time."
+  },
+  {
+      "id": 128, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Compute E[X(X−1)] (the second factorial moment) for X ~ Binomial(W, α). Use this to verify Var[X].",
+      "model_answer": "For Binomial(W,α): E[X(X−1)] = W(W−1)α².\nThis is computed as:\n∑_{k=2}^{W} k(k−1)C(W,k)α^k(1−α)^{W−k}\n= W(W−1)α² ∑_{k=2}^{W} C(W−2,k−2)α^{k−2}(1−α)^{W−k}\n= W(W−1)α² × (α+(1−α))^{W−2} = W(W−1)α².\n\nVerification:\nVar[X] = E[X²] − (E[X])²\n= E[X(X−1)] + E[X] − (E[X])²\n= W(W−1)α² + Wα − (Wα)²\n= W²α² − Wα² + Wα − W²α²\n= Wα − Wα² = Wα(1−α). ✓",
+      "explanation": "Standard factorial moment calculation. Useful because X(X−1) counts ordered pairs of distinct updating cells."
+  },
+  {
+      "id": 129, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with a convergent rule, the Markov chain is:",
+      "choices": {"A": "Irreducible and aperiodic",
+                  "B": "Ergodic with a uniform stationary distribution",
+                  "C": "An absorbing Markov chain — some states are transient and fixed points are absorbing",
+                  "D": "Periodic with period α"},
+      "answer": "C",
+      "explanation": "Convergent rule: all orbits reach fixed points. Fixed points are absorbing states; all other states are transient."
+  },
+  {
+      "id": 130, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA, increasing α (closer to 1) has what effect on the expected number of cells updating per step?",
+      "choices": {"A": "Decreases it", "B": "No effect", "C": "Increases it (E[X] = Wα)", "D": "Increases it only if α > 0.5"},
+      "answer": "C",
+      "explanation": "E[X] = Wα is monotonically increasing in α."
+  },
+  {
+      "id": 131, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For W=20, α=0.5: use Chebyshev's inequality to bound P(|X − 10| ≥ 5).",
+      "model_answer": "X ~ Binomial(20, 0.5). E[X]=10, Var[X]=Wα(1−α)=20×0.25=5.\nChebyshev: P(|X−μ|≥k) ≤ Var[X]/k².\nWith μ=10, k=5: P(|X−10|≥5) ≤ 5/25 = 0.2.\nSo at most 20% of steps have more than 15 or fewer than 5 cells updating.\n(The exact probability from the binomial is much smaller, ≈0.04.)",
+      "explanation": "Chebyshev is conservative. The actual probability is much smaller, demonstrating the looseness of the bound."
+  },
+  {
+      "id": 132, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Derive the Shannon entropy H(X) of the number of cells updating per step for W=4, α=0.5. Express as a sum over k=0,…,4.",
+      "model_answer": "X ~ Binomial(4, 0.5). P(X=k) = C(4,k)/16.\nP(0)=1/16, P(1)=4/16, P(2)=6/16, P(3)=4/16, P(4)=1/16.\n\nH(X) = −∑_{k=0}^{4} P(k) log₂ P(k)\n= −[2×(1/16)×log₂(1/16) + 2×(4/16)×log₂(4/16) + (6/16)×log₂(6/16)]\n= −[2×(1/16)×(−4) + 2×(4/16)×(−2) + (6/16)×log₂(6/16)]\n= 8/16 + 16/16 − (6/16)×log₂(6/16)\n= 1.5 − (6/16)×(log₂6 − 4)\n= 1.5 + (6/16)×(4 − log₂6)\n≈ 1.5 + 0.375×(4 − 2.585)\n≈ 1.5 + 0.375×1.415 ≈ 2.031 bits.",
+      "explanation": "Symmetry of the distribution (P(k)=P(4−k)) reduces computation. H ≈ 2.031 bits for Binomial(4,0.5)."
+  },
+  {
+      "id": 133, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with Rule 0 on a W-cell lattice starting from a configuration with n₁ ones, what is the expected number of cells that change to 0 in the first step?",
+      "choices": {"A": "1/α",
+                  "B": "n₁ × α",
+                  "C": "n₁/α",
+                  "D": "1/(αn₁)"},
+      "answer": "B",
+      "explanation": "Under Rule 0, all n₁ cells in state 1 have active RMTs (output 0 ≠ 1). Each is selected independently with probability α. Expected number changing = n₁ × α."
+  },
+  {
+      "id": 134, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Show that Var[X] = Wα(1−α) is maximised at α = 0.5 for fixed W, and state what this implies for α-async ECA.",
+      "model_answer": "Var[X] = Wα(1−α) = Wα − Wα². Treating as a function of α:\nd(Var)/dα = W − 2Wα = W(1−2α).\nSetting to 0: 1−2α=0 → α=0.5.\nSecond derivative: d²(Var)/dα² = −2W < 0, confirming a maximum.\nVar[X]|_{α=0.5} = W×0.5×0.5 = W/4.\n\nImplication: at α=0.5, the number of cells updating per step has the highest variance. This means α=0.5 produces the most unpredictable scheduling, maximising the scheduling stochasticity and making α-async dynamics most different from a deterministic pattern.",
+      "explanation": "Var is a concave quadratic in α. Max at α=0.5, giving W/4. At α=0 or α=1, Var=0: deterministic count (0 or W cells always update)."
+  },
+  {
+      "id": 135, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with an ergodic (irreducible, aperiodic) underlying Markov chain, which statement about the stationary distribution is correct?",
+      "choices": {"A": "The stationary distribution is always uniform over all 2^W configurations",
+                  "B": "A unique stationary distribution π exists and satisfies π = πP where P is the transition matrix; its form depends on both α and the rule",
+                  "C": "The stationary distribution is always concentrated on fixed points",
+                  "D": "No stationary distribution exists for α < 1"},
+      "answer": "B",
+      "explanation": "For an ergodic Markov chain, a unique stationary distribution exists by the Perron-Frobenius theorem. Its form depends on the specific rule and α."
+  },
+  {
+      "id": 136, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async Rule 90 (a linear rule over GF(2) with output = L⊕R), write the expected density ρ(t+1) of 1s as a function of ρ(t) and α for a large lattice under the mean-field approximation.",
+      "model_answer": "Under synchronous Rule 90, the mean-field expected density is:\nρ_sync(t+1) = 2ρ(t)(1−ρ(t)) (fraction of cells with L≠R, assuming spatial independence).\n\nUnder α-async, each cell updates with probability α and keeps its state with probability 1−α:\nρ(t+1) = α × ρ_sync(t) + (1−α) × ρ(t)\n= α × 2ρ(t)(1−ρ(t)) + (1−α) × ρ(t)\n= ρ(t)[2α(1−ρ(t)) + 1−α]\n= ρ(t)[1 + α − 2αρ(t)].\n\nFixed points: ρ*=0 (trivial) and ρ*=1/2 (non-trivial, from 1+α−2αρ*=1 → ρ*=1/2).",
+      "explanation": "Mean-field (independence) approximation. The non-trivial fixed point ρ*=1/2 reflects the symmetry of Rule 90."
+  },
+  {
+      "id": 137, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For X ~ Binomial(W, α), the third central moment E[(X−Wα)³] equals:",
+      "choices": {"A": "Wα(1−α)(1−2α)", "B": "Wα(1−2α)", "C": "3[Wα(1−α)]^{3/2}", "D": "0"},
+      "answer": "A",
+      "explanation": "The third central moment of Binomial(n,p) is np(1−p)(1−2p). Here: Wα(1−α)(1−2α). This is 0 only at α=0.5 (symmetric distribution)."
+  },
+  {
+      "id": 138, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Consider α-async ECA on a W-cell lattice where the rule has exactly m active RMTs. Derive a lower bound on the number of configurations from which the system can reach a fixed point in a single step.",
+      "model_answer": "A configuration s can reach a fixed point s* in one step if D(s,s') ⊆ A(s) (all differing cells have active RMTs in s) and P(transition) > 0.\n\nTrivial lower bound: any configuration s that is already a fixed point (s=s*) trivially counts — the self-loop probability is (1−α)^0=1 since all RMTs are passive. The number of synchronous fixed points provides this lower bound.\n\nFor a non-trivial bound: configurations at Hamming distance 1 from a fixed point s* where the single differing cell has an active RMT can transition to s* with probability α(1−α)^(|A|−1) > 0. Each fixed point may have up to W such neighbours (one per Hamming-1 configuration), each valid if the differing cell's neighbourhood in s falls in an active RMT. Thus the number of reachable-in-one-step configurations ≥ (number of fixed points) × (number of valid Hamming-1 neighbours), though the exact count is rule-dependent.",
+      "explanation": "The exact count requires knowing the fixed-point structure and the active RMT neighbourhoods, making this a rule-dependent combinatorial problem."
+  },
+  {
+      "id": 139, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA, the self-loop transition probability P(S(t+1)=s | S(t)=s) for a configuration s with k active cells is:",
+      "choices": {"A": "(1−α)^k",
+                  "B": "α^k × (1−α)^(W−k)",
+                  "C": "1 − α^k",
+                  "D": "α^W"},
+      "answer": "A",
+      "explanation": "To stay at s: all k active cells must be idle (×(1−α) each); all W−k passive cells contribute ×1 regardless. P(stay) = (1−α)^k."
+  },
+  {
+      "id": 140, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Using the moment generating function M_X(t) = (1−α+αe^t)^W of Binomial(W,α), which expression gives E[X³]?",
+      "choices": {"A": "M_X'''(0) — the third derivative of M_X evaluated at t=0",
+                  "B": "log M_X'''(0)",
+                  "C": "(M_X'(0))³",
+                  "D": "M_X(3)"},
+      "answer": "A",
+      "explanation": "E[X^n] = M_X^{(n)}(0) (the n-th derivative of the MGF at t=0). So E[X³] = M_X'''(0)."
+  },
+  {
+      "id": 141, "type": "short_answer", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA, prove that the mutual information I(B_i; B_j) = 0 for any two distinct cells i ≠ j, where B_i, B_j are the Bernoulli update decisions.",
+      "model_answer": "I(B_i; B_j) = H(B_i) − H(B_i | B_j).\nBy independence of B_i and B_j (each cell draws from Bernoulli(α) independently):\nH(B_i | B_j) = H(B_i).\nTherefore I(B_i; B_j) = H(B_i) − H(B_i) = 0.\n\nAlternatively: I(X;Y) = 0 if and only if X and Y are independent (for discrete random variables). Since B_i ⊥ B_j by definition of α-async, I(B_i; B_j) = 0.",
+      "explanation": "Zero mutual information is equivalent to independence. Knowing whether cell j updates gives absolutely no information about whether cell i updates."
+  },
+  {
+      "id": 142, "type": "mcq", "topic": 4, "topic_name": "Mathematical Properties",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For a convergent α-async ECA (all orbits absorbed to fixed points), how does the expected absorption time T_abs scale with α as α → 0?",
+      "choices": {"A": "T_abs → constant",
+                  "B": "T_abs ~ 1/α — absorption time diverges as α → 0",
+                  "C": "T_abs ~ α",
+                  "D": "T_abs ~ log(1/α)"},
+      "answer": "B",
+      "explanation": "As α → 0, P(any cell changes per step) → 0. Expected time for each state change ~ 1/α. Since a bounded number of changes are needed, T_abs ~ C/α for some constant C depending on the rule and initial state."
+  },
+  {
+      "id": 143, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "When α is very small (close to 0), how does the space-time diagram of an α-async ECA look compared to synchronous ECA?",
+      "choices": {"A": "Nearly identical to synchronous",
+                  "B": "Almost entirely static — very few cells change per step, and the orbit evolves extremely slowly",
+                  "C": "More chaotic than synchronous",
+                  "D": "The pattern appears identical but shifted to the right"},
+      "answer": "B",
+      "explanation": "Low α → very few cells update per step → the orbit changes slowly and the space-time diagram appears mostly static."
+  },
+  {
+      "id": 144, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Does α-async noise change the set of fixed points of an ECA rule compared to the synchronous rule?",
+      "choices": {"A": "Yes — α-async can create new fixed points not present in synchronous ECA",
+                  "B": "No — the set of fixed points is identical for both synchronous and α-async ECA (for α > 0)",
+                  "C": "Yes — α-async eliminates some fixed points",
+                  "D": "It depends on the value of α"},
+      "answer": "B",
+      "explanation": "A fixed point requires all RMTs passive: this is a property of the rule and configuration, not of α. The set of fixed points is the same."
+  },
+  {
+      "id": 145, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For a convergent ECA rule (one where all synchronous orbits reach fixed points), does α-async noise change this convergence property?",
+      "choices": {"A": "Yes — α-async can prevent convergence entirely",
+                  "B": "No — but convergence is generally slower under α-async",
+                  "C": "Yes — α-async introduces oscillations",
+                  "D": "α-async makes convergence faster for all rules"},
+      "answer": "B",
+      "explanation": "Convergent rules remain convergent under α-async (fixed points are the same), but fewer cells update per step on average, so convergence is slower."
+  },
+  {
+      "id": 146, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For Rule 0 under α-async, starting from a non-zero initial state, what is the long-run behaviour?",
+      "choices": {"A": "The lattice oscillates between two fixed patterns",
+                  "B": "The lattice converges to all-zeros with probability 1",
+                  "C": "The lattice stays in its initial state",
+                  "D": "The density of 1s increases over time"},
+      "answer": "B",
+      "explanation": "Rule 0 maps every cell toward 0. Under α-async (α>0), cells in state 1 are eventually selected and converted to 0. Absorption to all-zeros happens with probability 1."
+  },
+  {
+      "id": 147, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For a Class I synchronous ECA rule that converges to a fixed uniform state, what typically happens under α-async?",
+      "choices": {"A": "The rule becomes chaotic",
+                  "B": "The rule still converges to the same fixed point, but may take longer due to missed updates",
+                  "C": "The rule converges faster",
+                  "D": "The rule oscillates"},
+      "answer": "B",
+      "explanation": "Class I convergence is robust to α-async. The fixed point is unchanged; convergence speed is reduced by factor ~1/α."
+  },
+  {
+      "id": 148, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What is the minimum number of cells that can change in one step of α-async ECA?",
+      "choices": {"A": "W (all cells must change)", "B": "W/2", "C": "0 — it is possible that no cell changes", "D": "1"},
+      "answer": "C",
+      "explanation": "With probability (1−α)^W all cells are idle, giving zero state changes in a step."
+  },
+  {
+      "id": 149, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Does reducing α in α-async generally make a Class III (chaotic) rule appear more or less ordered?",
+      "choices": {"A": "More chaotic",
+                  "B": "More ordered — fewer updates reduce the rate of chaotic change",
+                  "C": "No effect",
+                  "D": "It alternates between ordered and chaotic"},
+      "answer": "B",
+      "explanation": "Reducing α slows the evolution: chaotic patterns develop more slowly and may appear locally ordered in short time windows."
+  },
+  {
+      "id": 150, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For a rule where all 8 RMTs are passive (only Rule 204, the identity), what happens under α-async?",
+      "choices": {"A": "Cells change state with probability α",
+                  "B": "Nothing ever changes — the configuration is permanently frozen at its initial state",
+                  "C": "Cells change to state 0",
+                  "D": "Only selected cells change"},
+      "answer": "B",
+      "explanation": "Rule 204 has no active transitions. No cell can ever change state regardless of α. The identity rule under α-async is completely inert."
+  },
+  {
+      "id": 151, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For α-async ECA, the configuration at t=0 (the initial state) is:",
+      "choices": {"A": "Always all-zeros",
+                  "B": "Always all-ones",
+                  "C": "Arbitrary — the model can start from any initial configuration",
+                  "D": "Determined by α"},
+      "answer": "C",
+      "explanation": "The initial configuration is a free parameter of the simulation, not determined by α."
+  },
+  {
+      "id": 152, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "For Rule 255 (all outputs=1) under α-async, what is the long-run behaviour?",
+      "choices": {"A": "Converges to all-zeros",
+                  "B": "Converges to all-ones with probability 1",
+                  "C": "Oscillates between all-zeros and all-ones",
+                  "D": "Chaotic"},
+      "answer": "B",
+      "explanation": "Rule 255 maps every cell to 1. Under α-async (α>0), cells in state 0 are eventually selected and set to 1. Absorption to all-ones occurs with probability 1."
+  },
+  {
+      "id": 153, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Describe qualitatively how the space-time diagram of an α-async ECA changes as α decreases from 1 to near 0 for a Class III (chaotic) rule such as Rule 30.",
+      "model_answer": "At α=1 (synchronous): the space-time diagram shows the characteristic chaotic pattern of Rule 30 — complex, aperiodic structures with rapid change.\n\nAs α decreases: the pattern evolves more slowly (fewer cells change per step). The chaotic structure is diluted — patterns that would form rapidly under synchronous ECA take many more steps to emerge. The space-time diagram appears increasingly sparse and 'blurry', with many cells holding their state for long periods. Long horizontal stripes appear (cells frozen in state 0 or 1 for extended periods).\n\nNear α≈0: the diagram is almost entirely static, with only rare isolated single-cell updates.",
+      "explanation": "α controls the speed of chaotic dynamics. At low α, even chaotic rules appear locally stable over short time windows."
+  },
+  {
+      "id": 154, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Can α-async noise cause a Class III (chaotic) synchronous rule to exhibit stable fixed-point behaviour?",
+      "choices": {"A": "No — chaos is preserved regardless of α",
+                  "B": "Yes — for some chaotic rules, reducing α below a critical threshold can stabilise the dynamics, converting seemingly chaotic behaviour to ordered patterns or convergence",
+                  "C": "Only for α=0",
+                  "D": "Only for rules with ≤ 4 active RMTs"},
+      "answer": "B",
+      "explanation": "This is a well-known phenomenon in asynchronous CA: some Class III rules can be 'tamed' by reducing α, revealing hidden order in the rule structure."
+  },
+  {
+      "id": 155, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Under α-async ECA, a synchronous limit cycle (periodic orbit) may:",
+      "choices": {"A": "Persist unchanged",
+                  "B": "Be broken — α-async can disrupt period-2 or higher-period orbits, potentially driving the system to a fixed point instead",
+                  "C": "Always have its period doubled",
+                  "D": "Never be reached"},
+      "answer": "B",
+      "explanation": "Synchronous limit cycles require all cells to update in precise coordinated patterns. α-async disrupts this synchrony, and the orbit may leave the cycle and converge to a fixed point."
+  },
+  {
+      "id": 156, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with a number-conserving rule (one that preserves the total count of 1s under synchronous update), is the count of 1s still conserved under α-async?",
+      "choices": {"A": "Yes — number conservation is preserved for all α",
+                  "B": "Not necessarily — α-async can break number conservation because a selected cell may fail to 'handoff' its state to a neighbour if the corresponding neighbour is not also selected",
+                  "C": "Only if α=0.5",
+                  "D": "Yes, because the rule f is unchanged"},
+      "answer": "B",
+      "explanation": "Number-conserving rules (like Rule 184 for traffic) rely on coordinated simultaneous updates of pairs/groups of cells. Under α-async, these groups may be split (only one cell updates), breaking conservation."
+  },
+  {
+      "id": 157, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a finite lattice and any α > 0, under what condition is α-async ECA guaranteed to eventually reach a fixed point?",
+      "choices": {"A": "If the rule has at least one active RMT",
+                  "B": "If the rule is convergent (all synchronous orbits reach fixed points) — convergence is preserved and guaranteed under α-async",
+                  "C": "Only if α > 0.5",
+                  "D": "If the initial density is less than 0.5"},
+      "answer": "B",
+      "explanation": "For rules convergent under synchronous updating, the corresponding α-async Markov chain has the same fixed points as absorbing states and all configurations are transient. Absorption is guaranteed with probability 1."
+  },
+  {
+      "id": 158, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For Rule 184 (traffic flow model) under α-async: a 'car' in state 1 at cell i with neighbourhood (0,1,0) would synchronously move right. Under α-async, it instead:",
+      "choices": {"A": "Always moves right in one step",
+                  "B": "Moves right with probability α (if selected) or stays with probability 1−α",
+                  "C": "Never moves",
+                  "D": "Moves left with probability α"},
+      "answer": "B",
+      "explanation": "The RMT for (0,1,0) under Rule 184 is active. Under α-async, movement requires the cell to be selected: probability α. Otherwise it stays."
+  },
+  {
+      "id": 159, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Compare the transient time (time to reach a fixed point or cycle) for a Class II rule under α-async vs synchronous ECA:",
+      "choices": {"A": "The transient time is shorter under α-async",
+                  "B": "The transient time is longer under α-async — on average, a cell in an active neighbourhood takes 1/α steps to update instead of 1",
+                  "C": "The transient times are equal",
+                  "D": "α-async has no transient — it reaches the fixed point immediately"},
+      "answer": "B",
+      "explanation": "Each required state change takes geometrically many steps with mean 1/α. Total transient time scales roughly as T_sync/α where T_sync is the synchronous transient time."
+  },
+  {
+      "id": 160, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For a Class IV rule like Rule 110 under α-async, reducing α to small values tends to:",
+      "choices": {"A": "Preserve glider structures intact",
+                  "B": "Disrupt the complex structures — gliders and interactions require coordinated multi-cell updates that are increasingly rare at low α",
+                  "C": "Create more gliders",
+                  "D": "Make the rule converge to all-zeros"},
+      "answer": "B",
+      "explanation": "Class IV dynamics (gliders, collisions) require spatially coordinated updates. At low α, the probability that all required cells update simultaneously becomes very small, disrupting complex structures."
+  },
+  {
+      "id": 161, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Define a 'probabilistic fixed point' for α-async ECA. How does it differ from a deterministic fixed point?",
+      "model_answer": "A deterministic fixed point is a configuration s* where f(s*_{i-1}, s*_i, s*_{i+1}) = s*_i for all cells i — the rule maps s* to itself. This is also a fixed point of α-async ECA because all RMTs are passive: no cell can ever change.\n\nA 'probabilistic fixed point' (or stationary distribution) of α-async ECA refers to a probability distribution π over configurations that is stationary in the Markov chain sense: π = πP. For an ergodic Markov chain, this is a probability distribution over all configurations, not a single configuration.\n\nIn the strict sense of absorbing states, the fixed points of α-async ECA are exactly the synchronous fixed points — there are no new absorbing configurations created by α-async noise.",
+      "explanation": "The term can mean absorbing states (= synchronous fixed points) vs stationary distributions of the Markov chain (broader concept)."
+  },
+  {
+      "id": 162, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA with a rule that has no fixed points (all configurations eventually cycle under synchronous updating), what happens under α-async?",
+      "choices": {"A": "The system eventually reaches a fixed point created by α-async",
+                  "B": "The system may wander indefinitely — no absorption is guaranteed; the long-run behaviour depends on the Markov chain's recurrent structure",
+                  "C": "The system always converges to all-zeros",
+                  "D": "The system is frozen"},
+      "answer": "B",
+      "explanation": "If the synchronous rule has no fixed points, the α-async Markov chain has no absorbing states. The long-run behaviour is a stationary distribution over a recurrent set of configurations."
+  },
+  {
+      "id": 163, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Under α-async noise, which type of ECA rule is MOST sensitive to the value of α in terms of qualitative behaviour change?",
+      "choices": {"A": "Class I rules (simple convergence)",
+                  "B": "Class III/IV rules, where reducing α can either suppress chaotic dynamics or destroy complex structures",
+                  "C": "The identity rule (Rule 204)",
+                  "D": "Any rule with α=0.5"},
+      "answer": "B",
+      "explanation": "Class I is robust (still converges). Class III/IV show qualitative phase transitions as α changes: chaotic rules can be stabilised, and complex structures can be destroyed."
+  },
+  {
+      "id": 164, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For α-async ECA, is an absorbing state (fixed point) necessarily reachable from all initial configurations?",
+      "choices": {"A": "Yes — for α > 0, any fixed point is reachable from any initial state in finitely many steps",
+                  "B": "No — the configuration space may have multiple recurrent components, and the reachable fixed points depend on the initial configuration and the rule's structure",
+                  "C": "Yes — α-async makes all states communicate",
+                  "D": "Only if α = 1"},
+      "answer": "B",
+      "explanation": "Reachability depends on the rule's topology. Not all fixed points are reachable from all initial states. The recurrent structure of the Markov chain determines which fixed points are reachable."
+  },
+  {
+      "id": 165, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Prove that a configuration s* is a fixed point of α-async ECA (for any α > 0) if and only if it is a fixed point of the corresponding synchronous ECA.",
+      "model_answer": "(⇐) If s* is a synchronous fixed point: f(s*_{i-1}, s*_i, s*_{i+1})=s*_i for all i. All RMTs are passive. For any selection of cells, applying f always gives s*_i=C. So s_i(t+1)=s*_i regardless of Bernoulli outcomes. P(S(t+1)=s* | S(t)=s*)=1. Hence s* is also an α-async fixed point.\n\n(⇒) If s* is an α-async fixed point: P(S(t+1)=s* | S(t)=s*)=1. Suppose for contradiction some cell j has an active RMT in s*: f(s*_{j-1}, s*_j, s*_{j+1})≠s*_j. Then with probability α>0, cell j is selected and its state changes to f(...)≠s*_j. This gives P(S(t+1)≠s* | S(t)=s*)≥α>0, contradicting that s* is a fixed point. Therefore no active RMT exists in s*, which means s* is a synchronous fixed point. QED.",
+      "explanation": "The equivalence holds for all α>0. At α=0 trivially everything is 'frozen'."
+  },
+  {
+      "id": 166, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For Rule 54 (a Class IV rule known to exhibit recurrent behaviour under fully asynchronous updating), what is the expected behaviour under α-async with small α?",
+      "choices": {"A": "Convergence to a fixed point",
+                  "B": "The system visits a set of recurrent states without converging, as the complex structures of Rule 54 emerge and interact slowly",
+                  "C": "All-zeros absorbing state reached immediately",
+                  "D": "Chaotic divergence"},
+      "answer": "B",
+      "explanation": "Rule 54's recurrent behaviour under asynchronous updating means it does not converge to a fixed point; it visits recurring configurations. Small α slows the dynamics but does not destroy the recurrence."
+  },
+  {
+      "id": 167, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async Rule 0 on a W-cell lattice starting from a configuration with exactly n₁ cells in state 1, all separated by at least 2 zeros: derive the probability that the number of 1s decreases by at least 1 in one step.",
+      "model_answer": "Under Rule 0, all cells output 0. Every cell in state 1 has an active RMT (since C=1, f=0, so f≠C). Cells in state 0 have passive RMTs (C=0, f=0, so f=C).\n\nSince the n₁ ones are separated by at least 2 zeros, each 1-cell's neighbourhood is of the form (*,1,*) where the rule always outputs 0 regardless of neighbours — so the active condition holds for all n₁ cells.\n\nP(at least one 1-cell is selected) = 1 − P(none of the n₁ active cells selected) = 1 − (1−α)^{n₁}.\n\nThis is the probability that the count of 1s decreases by at least 1 in one step.",
+      "explanation": "Separation by ≥2 zeros ensures each 1-cell's neighbourhood keeps it as the active centre. P(decrease ≥1) = 1 − (1−α)^{n₁}."
+  },
+  {
+      "id": 168, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with a rule that is reversible under synchronous updating (every configuration has exactly one predecessor), what changes about reversibility under α-async?",
+      "choices": {"A": "Reversibility is preserved",
+                  "B": "Reversibility is generally broken — α-async maps multiple configurations to the same next state (e.g., configurations that differ only in cells with passive RMTs may be indistinguishable after one step)",
+                  "C": "Only boundary cells lose reversibility",
+                  "D": "The rule becomes more invertible under α-async"},
+      "answer": "B",
+      "explanation": "Under α-async, the transition from s to s' depends on which cells were selected. Multiple distinct (s, selection) pairs can produce the same s'. The stochastic scheduling destroys the bijection of reversible synchronous rules."
+  },
+  {
+      "id": 169, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with Rule 90 (linear over GF(2)), explain how the density of 1s is expected to evolve over long time for large W starting from a random initial density ρ₀ = 0.5.",
+      "model_answer": "Rule 90 = L⊕R. Under synchronous updating (mean-field): ρ_sync(t+1) = 2ρ(t)(1−ρ(t)).\nAt ρ=0.5: ρ_sync = 2×0.5×0.5 = 0.5 → fixed point of the mean-field equation.\n\nUnder α-async:\nρ(t+1) = α×2ρ(t)(1−ρ(t)) + (1−α)×ρ(t).\nAt ρ=0.5: ρ(t+1) = α×0.5 + (1−α)×0.5 = 0.5.\n\nSo ρ=0.5 is also a fixed point of the α-async mean-field equation for all α. Starting from ρ₀=0.5, the expected density stays at 0.5 for all time. Individual orbits fluctuate, but in expectation the density is conserved at 0.5. This reflects the symmetry of Rule 90.",
+      "explanation": "ρ=0.5 is a fixed point of ρ→α×2ρ(1−ρ)+(1−α)ρ for all α. This is a mean-field (expected-value) statement; individual orbits fluctuate."
+  },
+  {
+      "id": 170, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with a rule that has a critical value α* below which qualitative behaviour changes (e.g., from chaotic to ordered), what mathematical tool is used to locate α*?",
+      "choices": {"A": "Computing the rule number modulo 2",
+                  "B": "Analysing phase transitions in the Markov chain: looking for changes in the long-run density, convergence rate, or stationary distribution as α varies",
+                  "C": "Counting the number of active RMTs",
+                  "D": "Fourier analysis of the rule table"},
+      "answer": "B",
+      "explanation": "Critical α values correspond to phase transitions: qualitative changes in the Markov chain's behaviour (ergodicity, convergence properties, or stationary density) as α crosses a critical threshold."
+  },
+  {
+      "id": 171, "type": "short_answer", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Consider α-async ECA with a rule that under synchronous update produces a period-2 orbit (A → B → A → B → …). Explain why this period-2 behaviour is generally not preserved under α-async, and describe what typically happens instead.",
+      "model_answer": "A synchronous period-2 orbit requires EVERY cell to update in perfect synchrony at each step, with G(A)=B and G(B)=A. Under α-async: at each step, only a random subset of cells updates. Starting from A, if only some cells update, the new state is neither B nor A but an intermediate configuration C ∈ {0,1}^W.\n\nFrom C, the next step may move toward either A or B depending on which cells are selected. The periodic oscillation is broken because the partial updates desynchronise the cells. Typically, the system either:\n(a) Converges to a fixed point if the rule has one, or\n(b) Wanders through a Markov chain over intermediate configurations without any strict periodicity.",
+      "explanation": "Period-2 requires coordinated global synchrony. α-async's random scheduling inherently breaks this synchrony by selectively updating subsets."
+  },
+  {
+      "id": 172, "type": "mcq", "topic": 5, "topic_name": "Behavioral Effects & Dynamics",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with a quiescent convergent rule starting from initial density ρ₀, which expression best describes how the expected time to absorption scales?",
+      "choices": {"A": "E[T_abs] ∝ (1/α) × f(ρ₀, W, rule) where f captures rule-specific and size-dependent effects",
+                  "B": "E[T_abs] = α × W",
+                  "C": "E[T_abs] is independent of α",
+                  "D": "E[T_abs] ∝ α² × W"},
+      "answer": "A",
+      "explanation": "The 1/α factor arises because each required state change takes geometrically many steps with mean 1/α. Additional factors f depend on W (lattice size), ρ₀ (initial density), and the rule structure."
+  },
+  {
+      "id": 173, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "What is the key structural difference between α-async ECA and standard synchronous ECA?",
+      "choices": {"A": "α-async uses a different local rule",
+                  "B": "In α-async, each cell independently decides whether to update (Bernoulli(α) trial), breaking the global clock; in synchronous ECA all cells update together every step",
+                  "C": "α-async uses a different neighbourhood",
+                  "D": "Synchronous ECA uses periodic BC while α-async uses fixed BC"},
+      "answer": "B",
+      "explanation": "The only structural change in α-async is the update schedule: global clock → independent Bernoulli trials. The rule f and neighbourhood are unchanged."
+  },
+  {
+      "id": 174, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In fully asynchronous (random sequential, RSU) ECA, exactly how many cells update per step?",
+      "choices": {"A": "W (all cells)", "B": "W/2", "C": "0 to W (random)", "D": "Exactly 1 (chosen uniformly at random)"},
+      "answer": "D",
+      "explanation": "RSU: one cell selected uniformly at random per step. This is the 'fully asynchronous' model."
+  },
+  {
+      "id": 175, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In α-async ECA, can zero cells update in a single step? In RSU ECA, can zero cells update?",
+      "choices": {"A": "α-async: yes (with prob (1−α)^W); RSU: no (exactly 1 cell always updates)",
+                  "B": "Both: zero cells can update",
+                  "C": "Neither: at least 1 cell always updates",
+                  "D": "α-async: no; RSU: yes"},
+      "answer": "A",
+      "explanation": "α-async: P(0 cells update) = (1−α)^W > 0 for α < 1. RSU: exactly 1 cell always updates — never zero."
+  },
+  {
+      "id": 176, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Does α-async ECA change the local rule f, or only the update schedule?",
+      "choices": {"A": "It changes both f and the schedule",
+                  "B": "It changes only f",
+                  "C": "It changes only the update schedule — f remains the same deterministic ECA rule",
+                  "D": "It changes neither; it only changes the boundary conditions"},
+      "answer": "C",
+      "explanation": "α-async = same rule f + randomised schedule. Only the scheduling is perturbed."
+  },
+  {
+      "id": 177, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "Which value of α makes α-async ECA exactly equivalent to synchronous ECA?",
+      "choices": {"A": "α = 0", "B": "α = 0.5", "C": "α = 1", "D": "Any α > 0.5"},
+      "answer": "C",
+      "explanation": "α=1 → every cell always updates → standard synchronous ECA."
+  },
+  {
+      "id": 178, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In Probabilistic Cellular Automata (PCA), the source of stochasticity is:",
+      "choices": {"A": "The update schedule (which cells update)",
+                  "B": "The rule itself — each cell draws its next state from a probability distribution over its neighbourhood",
+                  "C": "The boundary conditions",
+                  "D": "The neighbourhood radius"},
+      "answer": "B",
+      "explanation": "PCA: stochasticity is in the rule (probabilistic transitions). α-async: stochasticity is in the schedule (deterministic rule, random selection)."
+  },
+  {
+      "id": 179, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In α-async ECA, can multiple cells update simultaneously? In RSU ECA?",
+      "choices": {"A": "Both allow multiple simultaneous updates",
+                  "B": "α-async: yes (up to W cells at once); RSU: no (exactly 1 per step)",
+                  "C": "Both allow only 1 cell per step",
+                  "D": "RSU: yes; α-async: no"},
+      "answer": "B",
+      "explanation": "α-async: Binomial(W,α) cells update simultaneously. RSU: exactly 1. The key distinction is multiplicity."
+  },
+  {
+      "id": 180, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In temporal stochastic ECA (τ-noise), the stochasticity at each timestep applies to:",
+      "choices": {"A": "Each individual cell independently",
+                  "B": "The entire lattice simultaneously — at each timestep, ALL cells follow rule R₁ with probability 1−τ, or ALL cells follow rule R₂ with probability τ",
+                  "C": "A randomly selected subset of cells",
+                  "D": "Only boundary cells"},
+      "answer": "B",
+      "explanation": "Temporal stochastic ECA: the rule choice is per timestep, not per cell. All cells use the same rule at each step. This is fundamentally different from α-async where the perturbation is per-cell."
+  },
+  {
+      "id": 181, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 1, "difficulty_name": "Easy",
+      "question": "In s-skewed noise, which cells are selected for update at each step?",
+      "choices": {"A": "Each cell independently with probability s/n",
+                  "B": "A contiguous block of s cells starting from a randomly chosen cell i: cells i, i+1, ..., i+(s-1)",
+                  "C": "All cells simultaneously",
+                  "D": "A random subset of size s drawn without replacement"},
+      "answer": "B",
+      "explanation": "s-skewed: a contiguous block of exactly s cells is selected starting from a uniform random cell. This is structurally different from α-async (independent per cell)."
+  },
+  {
+      "id": 182, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Compare the variance of updates per step: α-async (W=10, α=0.5) vs RSU (W=10).",
+      "choices": {"A": "α-async variance = 2.5; RSU variance = 0 (always exactly 1 cell updates)",
+                  "B": "Both have variance 2.5",
+                  "C": "α-async variance = 5; RSU variance = 0",
+                  "D": "α-async variance = 0; RSU variance = 1"},
+      "answer": "A",
+      "explanation": "α-async: Var = Wα(1−α) = 10×0.5×0.5 = 2.5. RSU: exactly 1 cell always updates, so Var = 0."
+  },
+  {
+      "id": 183, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In spatial stochastic ECA (λ-noise), the stochasticity at each step applies to:",
+      "choices": {"A": "The update schedule (which cells update)",
+                  "B": "Each cell independently: cell i uses rule R₁ with prob 1−λ or rule R₂ with prob λ",
+                  "C": "All cells simultaneously switching between two rules",
+                  "D": "A contiguous block of cells"},
+      "answer": "B",
+      "explanation": "Spatial stochastic ECA (λ-noise): per-cell rule selection. Each cell independently chooses between two rules. In α-async, the schedule varies; in λ-noise, the rule varies."
+  },
+  {
+      "id": 184, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What do α-async ECA and spatial stochastic ECA (λ-noise) have in common, and how do they differ?",
+      "choices": {"A": "They are identical",
+                  "B": "Both introduce per-cell independent randomness; α-async randomises the schedule (whether f is applied), while λ-noise randomises the rule (which f is applied)",
+                  "C": "Both randomise the rule f",
+                  "D": "α-async is a special case of λ-noise"},
+      "answer": "B",
+      "explanation": "Both: independent per-cell randomness. Difference: α-async = random schedule (deterministic f); λ-noise = random rule (deterministic schedule, two rules)."
+  },
+  {
+      "id": 185, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Is every RSU (fully asynchronous) ECA a special case of α-async ECA?",
+      "choices": {"A": "Yes — RSU corresponds to α = 1/W",
+                  "B": "No — RSU selects exactly 1 cell uniformly; α-async selects each cell with independent probability α. These are different probability models for any single α",
+                  "C": "Yes — RSU corresponds to α = 1",
+                  "D": "They are equivalent for W ≥ 10"},
+      "answer": "B",
+      "explanation": "RSU = Binomial fixed at 1 (deterministic count). α-async = Binomial(W,α) (random count). No single α makes these identical distributions for W > 1."
+  },
+  {
+      "id": 186, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "In a PCA, can a cell change state even when its RMT is passive (rule output = current state)?",
+      "choices": {"A": "No — passive RMTs never cause state changes in any model",
+                  "B": "Yes — in a PCA, the transition probabilities are not constrained to respect the synchronous rule's active/passive distinction. A state change at a passive neighbourhood is possible",
+                  "C": "Only at the boundary cells",
+                  "D": "Only if α > 0.5"},
+      "answer": "B",
+      "explanation": "PCA: P(s_i(t+1)=1 | neighbourhood) ∈ [0,1] freely. A cell at a 'passive' neighbourhood (in the synchronous sense) can still change in a PCA if its conditional probability > 0."
+  },
+  {
+      "id": 187, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Compare the expected number of updates per step for α-async (W=10, α=0.1) and RSU (W=10):",
+      "choices": {"A": "α-async: 1; RSU: 1",
+                  "B": "α-async: E[X]=W×α=10×0.1=1; RSU: always exactly 1. Both give expected 1 update per step, but with different variances",
+                  "C": "α-async: 0.1; RSU: 10",
+                  "D": "α-async: 10; RSU: 1"},
+      "answer": "B",
+      "explanation": "α-async E[updates] = Wα = 10×0.1 = 1. RSU: always exactly 1 cell. Expected count matches, but variance differs: α-async Var = Wα(1−α) = 0.9, RSU Var = 0."
+  },
+  {
+      "id": 188, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "How does s-skewed noise differ from α-async in terms of spatial locality of updates?",
+      "choices": {"A": "They are identical",
+                  "B": "s-skewed selects a contiguous block (spatially correlated updates); α-async selects cells independently with no spatial correlation",
+                  "C": "α-async selects contiguous blocks; s-skewed selects randomly scattered cells",
+                  "D": "Both select spatially correlated cells"},
+      "answer": "B",
+      "explanation": "s-skewed: spatial correlation (block of s consecutive cells). α-async: spatial independence (Bernoulli per cell). The correlation structure is the fundamental difference."
+  },
+  {
+      "id": 189, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Formally compare the stochasticity in α-async ECA vs temporal stochastic ECA (τ-noise) in terms of the level at which randomness enters the system.",
+      "model_answer": "α-async ECA: randomness is at the cell level. Each cell i independently draws Bernoulli(α) at each timestep; the update schedule is a random vector (B_0,...,B_{W-1}) ∈ {0,1}^W with independent components. The rule f is fixed and deterministic.\n\nTemporal stochastic ECA (τ-noise): randomness is at the timestep level. At each timestep t, a single Bernoulli(τ) draw selects the rule for all cells: rule R₁ with prob 1−τ, or rule R₂ with prob τ. All cells use the same rule at any given timestep.\n\nKey differences:\n(1) Level of noise: per-cell (α-async) vs per-timestep (τ-noise).\n(2) Independence: α-async decisions within a step are independent across cells; τ-noise decisions within a step are perfectly correlated across cells.\n(3) Effect: α-async creates random spatial heterogeneity in updates; τ-noise creates temporal heterogeneity in rule choice.",
+      "explanation": "The level of randomness (cell vs timestep) is the fundamental structural difference between these two noise models."
+  },
+  {
+      "id": 190, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For rule identification from an observed orbit, which model is harder to identify from: α-async or synchronous ECA?",
+      "choices": {"A": "Synchronous ECA is harder",
+                  "B": "α-async is harder — the ambiguity between 'not selected' and 'passive' obscures rule information; the lower α is, the harder identification becomes",
+                  "C": "They are equally hard",
+                  "D": "Difficulty depends only on the rule, not the update model"},
+      "answer": "B",
+      "explanation": "Synchronous ECA: every non-change at an active cell is impossible, so non-changes directly identify passive RMTs. α-async: non-changes are ambiguous. Rule identification under α-async is strictly harder."
+  },
+  {
+      "id": 191, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "What shared property do α-async ECA and temporal stochastic ECA have that distinguishes both from deterministic synchronous ECA?",
+      "choices": {"A": "Both change the local rule f",
+                  "B": "Both introduce stochasticity that makes the orbit non-deterministic — the same initial condition can produce different trajectories in different runs",
+                  "C": "Both use a different neighbourhood",
+                  "D": "Both require knowledge of the rule for simulation"},
+      "answer": "B",
+      "explanation": "Both are stochastic processes: identical initial conditions produce different orbits in different runs due to the random component."
+  },
+  {
+      "id": 192, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "For the joint (rule, noise rate) identification problem: which is harder — identifying (rule, α) from α-async orbits, or identifying (rule, λ) from spatial stochastic orbits?",
+      "choices": {"A": "Identifying (rule, α) is harder because α and the rule are coupled: the ambiguity between 'idle' and 'passive' makes both unknowns entangled",
+                  "B": "Both are equally hard",
+                  "C": "Identifying (rule, λ) is harder",
+                  "D": "The difficulty depends only on W"},
+      "answer": "A",
+      "explanation": "In α-async, α controls how often rule information is revealed; passive transitions are invisible under low α. This coupling makes joint (rule, α) identification particularly challenging."
+  },
+  {
+      "id": 193, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 2, "difficulty_name": "Medium",
+      "question": "Construct a table comparing α-async ECA, RSU (fully asynchronous), synchronous ECA, and PCA across four dimensions: (1) number of cells updated per step, (2) source of stochasticity, (3) whether the local rule is deterministic, and (4) fixed points.",
+      "model_answer": "| Model           | Updates/step          | Source of stochasticity          | Rule deterministic? | Fixed points                         |\n|---|---|---|---|---|\n| Synchronous ECA | Always W (all cells)  | None (deterministic)             | Yes                 | Configs where all RMTs passive       |\n| α-async ECA     | Binomial(W,α) ∈{0,…,W}| Schedule (Bernoulli per cell)    | Yes (fixed f)       | Same as synchronous fixed points     |\n| RSU             | Always exactly 1      | Which cell is chosen (uniform)   | Yes (fixed f)       | Same as synchronous fixed points     |\n| PCA             | Always W (all update) | The rule itself (cond. probs)    | No (stochastic)     | Stationary distributions; not nec. same as sync fixed points |",
+      "explanation": "Key: α-async and RSU differ in count variability. α-async and PCA both allow up to W updates but differ in where randomness enters."
+  },
+  {
+      "id": 194, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Prove or disprove: α-async ECA is a special case of PCA.",
+      "model_answer": "Disprove: α-async ECA is NOT a general special case of PCA.\n\nIn α-async ECA, a cell i at a passive RMT (f(L,C,R)=C) has P(s_i(t+1)=C | neighbourhood)=1: it CANNOT change state regardless of α.\n\nIn a PCA, the conditional transition probability P(s_i(t+1)=v | neighbourhood) can be any value in [0,1] for any neighbourhood — including a value > 0 for a 'passive' neighbourhood pattern.\n\nTherefore, the deterministic-rule-with-random-scheduling model of α-async cannot be expressed as a general PCA, because a PCA can assign nonzero transition probability to passive patterns while α-async cannot.\n\nNote: one can construct a restricted PCA equivalent to α-async by setting P(change | neighbourhood n) = α × I(f(n)≠C). This is a degenerate PCA that is a special case of PCA, but not all PCAs are of this form.",
+      "explanation": "The distinguishing property: α-async has zero transition probability at passive RMTs. General PCA has no such constraint. α-async is a special case of PCA, but not vice versa."
+  },
+  {
+      "id": 195, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For α-async ECA with α = 1/W, the expected number of updates per step equals 1 (same as RSU). Despite this equality in expectation, why are these two models fundamentally different?",
+      "choices": {"A": "They are equivalent when E[updates]=1",
+                  "B": "α-async with α=1/W has Var≈(1−1/W)≈1 for large W, while RSU has Var=0. The distribution of updates differs: α-async follows approximately Poisson(1) and can give 0, 2, 3, … updates; RSU is always exactly 1.",
+                  "C": "They use different rules",
+                  "D": "RSU has higher expected updates"},
+      "answer": "B",
+      "explanation": "Equal expectation doesn't imply equal distributions. α-async: Binomial(W,1/W) → approximately Poisson(1) for large W. RSU: Dirac(1). The distributional difference creates different dynamics."
+  },
+  {
+      "id": 196, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Compare the transition probability matrix size and structure for α-async ECA vs synchronous ECA on a W=3 periodic lattice.",
+      "model_answer": "Both models have the same state space: 2^3 = 8 configurations. Both transition matrices are 8×8.\n\nSynchronous ECA: the matrix is essentially a permutation matrix (each row has exactly one entry equal to 1 and all others 0), since each configuration maps deterministically to exactly one next configuration.\n\nα-async ECA: the matrix is a general stochastic matrix (all entries ≥ 0, rows sum to 1). Each row can have multiple nonzero entries: a configuration can transition to multiple possible next configurations (depending on which subset of active cells is selected). The entry P(s→s') = α^|D(s,s')| × (1−α)^(|A(s)|−|D(s,s')|) for compatible s,s'. The diagonal entries (self-loops) are (1−α)^|A(s)| > 0 for any non-fixed-point configuration and α < 1, which is absent in synchronous ECA.",
+      "explanation": "Synchronous: deterministic (at most one nonzero per row). α-async: stochastic (multiple nonzeros per row; positive diagonal for non-fixed-point configs at α<1)."
+  },
+  {
+      "id": 197, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "In the context of rule identification from observed orbits, explain why α-async is more challenging than RSU (fully asynchronous). What additional ambiguity does α-async introduce that RSU does not?",
+      "model_answer": "In RSU, exactly one cell updates per step, selected uniformly. If a cell i changes state, we know: (a) it was the selected cell AND (b) its RMT was active. If it doesn't change (and it was the selected cell), we know its RMT was passive. This allows unambiguous rule inference from sufficient observations.\n\nIn α-async, we do not know which cells were selected. A non-change at cell i could mean:\n(a) Cell i was NOT selected (with prob 1−α), OR\n(b) Cell i was selected but had a passive RMT.\nWithout knowing the selection set, we cannot distinguish these cases.\n\nThis creates an additional layer of ambiguity: we must simultaneously infer the selection set (or average over it) at each step. Furthermore, α itself is unknown and affects interpretation of non-changes: the same observation is consistent with either 'low α' or 'passive rule'. This coupling makes joint (rule, α) identification particularly hard.",
+      "explanation": "RSU: the selected cell is identifiable from observed changes. α-async: neither the selected cells nor α are directly observable, creating a doubly-ambiguous inference problem."
+  },
+  {
+      "id": 198, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "For what value of W does the α-async model with α=1/W coincide distributionally with RSU for any finite W?",
+      "choices": {"A": "W=1 — for a single cell, Binomial(1,1)=Dirac(1)=RSU trivially",
+                  "B": "W=2 with α=0.5",
+                  "C": "No finite W > 1 makes them exactly equivalent",
+                  "D": "W → ∞"},
+      "answer": "C",
+      "explanation": "For W=1: Binomial(1,1)=Dirac(1), RSU=Dirac(1) — they agree trivially. For W>1: Binomial(W,1/W) ≈ Poisson(1) ≠ Dirac(1)=RSU. No finite W>1 makes them exactly equal."
+  },
+  {
+      "id": 199, "type": "short_answer", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Discuss whether α-async and temporal stochastic (τ-noise) ECA can produce identical orbit distributions for the same initial condition. Under what conditions might they agree?",
+      "model_answer": "In general, α-async and τ-noise produce very different orbit distributions.\n\nα-async: per-cell independent Bernoulli(α) scheduling with fixed rule f.\nτ-noise: per-timestep Bernoulli(τ) rule selection between R₁ and R₂.\n\nA degenerate case where they agree: if R₂=Rule 204 (identity, all passive), then τ-noise (R₁, 204)[τ] applies R₁ to all cells with prob 1−τ, or does nothing with prob τ. This resembles α-async with α=1−τ in that the full synchronous update of R₁ happens with probability 1−τ and nothing happens with probability τ.\n\nHowever, α-async applies R₁ to each cell independently with probability α, while τ-noise applies R₁ to all cells simultaneously with probability 1−τ. Even in this degenerate case, the per-cell vs per-timestep distinction makes them different for W>1.",
+      "explanation": "The fundamental level of randomness (cell vs timestep) prevents general equivalence. Only W=1 or degenerate rule choices can create superficial agreement."
+  },
+  {
+      "id": 200, "type": "mcq", "topic": 6, "topic_name": "Comparisons & Contrasts",
+      "difficulty": 3, "difficulty_name": "Hard",
+      "question": "Which of the four noise models — synchronous (α=1), α-async (α<1), s-skewed, temporal stochastic (τ-noise) — introduces the strongest spatial correlation structure in a single update step, and why?",
+      "choices": {"A": "α-async — the independent Bernoulli trials can create large correlated patches",
+                  "B": "s-skewed — it selects a contiguous block of s cells, creating a guaranteed spatial correlation over a window of size s",
+                  "C": "Synchronous (α=1) — all cells update together, creating global correlation",
+                  "D": "Temporal stochastic — the per-timestep rule change affects all cells equally"},
+      "answer": "B",
+      "explanation": "s-skewed: the selected cells are always a contiguous block of s cells — a deliberately correlated spatial structure. α-async: cells update independently (zero spatial correlation in the selection). τ-noise: temporal correlation, not spatial. s-skewed has the strongest guaranteed spatial correlation in the update selection."
+  }
+  ]

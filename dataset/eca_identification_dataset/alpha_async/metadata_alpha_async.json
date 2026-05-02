@@ -1,0 +1,126 @@
+{
+  "name": "ECANet-New Dataset",
+  "version": "1.0.0",
+  "description": "Elementary Cellular Automata (ECA) dataset for rule inference under synchronous and asynchronous update regimes. Generated for training and evaluating ECANet-New models.",
+  "created_by": "DATAGEN_NEW.py",
+  "license": "MIT",
+  "citation": "",
+
+  "generation": {
+    "seed": 42,
+    "grid_width": 20,
+    "time_steps": 100,
+    "triplet_tokens_per_sample": 1980,
+    "alpha_values": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+    "initial_state": "random non-trivial (no all-zeros or all-ones)",
+    "boundary_conditions": "periodic (wrap-around)"
+  },
+
+  "rule_split": {
+    "total_eca_rules": 256,
+    "split_seed": 42,
+    "train_rules_count": 179,
+    "test_rules_count": 77,
+    "overlap": false,
+    "files": {
+      "train_rules": "train_rules.npy",
+      "test_rules": "test_rules.npy"
+    }
+  },
+
+  "phases": {
+    "phase1": {
+      "description": "Synchronous update only (alpha=1.0). Clean rule inference baseline with no stochastic noise.",
+      "alpha": 1.0,
+      "train": {
+        "rules": 179,
+        "samples_per_rule": 200,
+        "total_samples": 35800
+      },
+      "test": {
+        "rules": 77,
+        "samples_per_rule": 100,
+        "total_samples": 7700
+      }
+    },
+    "phase2": {
+      "description": "Asynchronous update, stratified by alpha. Every rule appears at every alpha level exactly K times. Guaranteed balanced coverage with no random imbalance.",
+      "alpha_levels": 10,
+      "train": {
+        "rules": 179,
+        "alpha_levels": 10,
+        "samples_per_rule_per_alpha": 50,
+        "total_samples": 89500
+      },
+      "test": {
+        "rules": 77,
+        "alpha_levels": 10,
+        "samples_per_rule_per_alpha": 20,
+        "total_samples": 15400
+      }
+    }
+  },
+
+  "totals": {
+    "train_samples": 125300,
+    "test_samples": 23100,
+    "all_samples": 148400
+  },
+
+  "file_format": {
+    "storage": "NumPy .npy files",
+    "dtype": {
+      "orbits": "int8",
+      "rule_bits": "int8",
+      "alphas": "float32",
+      "rule_ids": "int32"
+    },
+    "shapes": {
+      "orbits": "[N, 100, 20]",
+      "rule_bits": "[N, 8]",
+      "alphas": "[N]",
+      "rule_ids": "[N]"
+    },
+    "field_descriptions": {
+      "orbits": "Raw ECA orbit over T=100 timesteps on a W=20 grid. Binary values {0, 1}.",
+      "rule_bits": "8-bit binary representation of the ECA rule number (LSB first, bits 0-7).",
+      "alphas": "Alpha value used during simulation. alpha=1.0 means fully synchronous; lower values introduce stochastic asynchrony.",
+      "rule_ids": "Integer rule number (0-255) corresponding to each sample."
+    },
+    "storage_order": "Rule-wise within each alpha group. All samples for rule 0 first, then rule 1, etc. Use DataLoader shuffle=True during training."
+  },
+
+  "directory_structure": {
+    "ECA_Data_New/": {
+      "train_rules.npy": "Array of 179 training rule IDs",
+      "test_rules.npy": "Array of 77 test rule IDs",
+      "phase1/": {
+        "train/": ["orbits.npy", "rule_bits.npy", "alphas.npy", "rule_ids.npy"],
+        "test/":  ["orbits.npy", "rule_bits.npy", "alphas.npy", "rule_ids.npy"]
+      },
+      "phase2/": {
+        "train/": ["orbits.npy", "rule_bits.npy", "alphas.npy", "rule_ids.npy"],
+        "test/":  ["orbits.npy", "rule_bits.npy", "alphas.npy", "rule_ids.npy"]
+      }
+    }
+  },
+
+  "usage": {
+    "generation_script": "DATAGEN_NEW.py",
+    "training_script": "TRAIN_NEW.py",
+    "commands": {
+      "generate": "python DATAGEN_NEW.py",
+      "train": "python TRAIN_NEW.py"
+    },
+    "loading_example": {
+      "python": "import numpy as np\norbits    = np.load('ECA_Data_New/phase1/train/orbits.npy')\nrule_bits = np.load('ECA_Data_New/phase1/train/rule_bits.npy')\nalphas    = np.load('ECA_Data_New/phase1/train/alphas.npy')\nrule_ids  = np.load('ECA_Data_New/phase1/train/rule_ids.npy')"
+    }
+  },
+
+  "task": {
+    "type": "multi-label binary classification",
+    "input": "ECA orbit of shape [T, W] = [100, 20]",
+    "target": "8-bit rule representation (rule_bits) or integer rule ID (rule_ids)",
+    "auxiliary_target": "alpha value per sample (for phase2 alpha-conditioned models)"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "dataset_id": "stocK",
+  "filename": "eca_stochastic.json",
+  "noise_type": "Spatial Stochastic ECA",
+  "noise_description": "Each cell independently applies rule F with probability (1-λ) or flips its state (spatial noise) with probability λ at each time step.",
+  "noise_parameter": {
+    "symbol": "λ",
+    "range": "[0, 1]",
+    "type": "scalar",
+    "boundary_cases": {
+      "lambda=0": "No noise; system follows deterministic rule F exactly.",
+      "lambda=1": "All cells independently flip; pure noise, no rule influence."
+    }
+  },
+  "total_questions": 200,
+  "id_range": {
+    "min": 1,
+    "max": 200
+  },
+  "duplicates": 0,
+  "question_formats": {
+    "mcq": {
+      "count": 148,
+      "percentage": 74.0,
+      "description": "Multiple-choice with 4 options (A/B/C/D), exactly one correct answer. Scored binary: 1 correct, 0 otherwise."
+    },
+    "short_answer": {
+      "count": 52,
+      "percentage": 26.0,
+      "description": "Free-form response (numerical value, formula, derivation, or brief explanation). Scored 0/1/2 by judge model (Grok-3) and normalised to [0,1] by dividing by 2."
+    }
+  },
+  "difficulty_levels": {
+    "Easy": {
+      "level_id": 1,
+      "count": 51,
+      "percentage": 25.5,
+      "description": "Definitional recall and basic comprehension; answerable directly from the noise model definition."
+    },
+    "Medium": {
+      "level_id": 2,
+      "count": 91,
+      "percentage": 45.5,
+      "description": "Understanding of mechanics and properties; requires knowing implications, not just definitions."
+    },
+    "Hard": {
+      "level_id": 3,
+      "count": 58,
+      "percentage": 29.0,
+      "description": "Quantitative reasoning, derivation, or cross-model comparison; requires multi-step reasoning."
+    }
+  },
+  "topics": {
+    "count": 12,
+    "distribution": [
+      {
+        "topic_id": 1,
+        "topic_name": "ECA Fundamentals",
+        "question_count": 11,
+        "percentage": 5.5
+      },
+      {
+        "topic_id": 2,
+        "topic_name": "Stochastic Noise — Definition and Setup",
+        "question_count": 18,
+        "percentage": 9.0
+      },
+      {
+        "topic_id": 3,
+        "topic_name": "Update Mechanics",
+        "question_count": 22,
+        "percentage": 11.0
+      },
+      {
+        "topic_id": 4,
+        "topic_name": "Stochastic vs Temporal Stochastic Noise",
+        "question_count": 20,
+        "percentage": 10.0
+      },
+      {
+        "topic_id": 5,
+        "topic_name": "Boundary Conditions and Lattice Structure",
+        "question_count": 10,
+        "percentage": 5.0
+      },
+      {
+        "topic_id": 6,
+        "topic_name": "Special Values of λ and Limiting Behaviour",
+        "question_count": 16,
+        "percentage": 8.0
+      },
+      {
+        "topic_id": 7,
+        "topic_name": "Comparing Stochastic Noise with Other Noise Models",
+        "question_count": 15,
+        "percentage": 7.5
+      },
+      {
+        "topic_id": 8,
+        "topic_name": "Mathematical Properties",
+        "question_count": 20,
+        "percentage": 10.0
+      },
+      {
+        "topic_id": 9,
+        "topic_name": "Density and Dynamical Behaviour",
+        "question_count": 18,
+        "percentage": 9.0
+      },
+      {
+        "topic_id": 10,
+        "topic_name": "Notational and Terminological Precision",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 11,
+        "topic_name": "Worked Examples and Calculations",
+        "question_count": 19,
+        "percentage": 9.5
+      },
+      {
+        "topic_id": 12,
+        "topic_name": "Conceptual Reasoning",
+        "question_count": 18,
+        "percentage": 9.0
+      }
+    ]
+  },
+  "scoring": {
+    "mcq": "Binary: 1 for correct answer, 0 otherwise.",
+    "short_answer": "Three-point rubric by independent judge (Grok-3): 2=fully correct, 1=partially correct, 0=incorrect or missing. Normalised to [0,1] by dividing by 2.",
+    "overall_accuracy": "Mean of all normalised scores across both question types."
+  },
+  "purpose": "Knowledge-check dataset. Confirms that LLM failures on the identification task reflect structural inability to read spatiotemporal patterns, not gaps in domain knowledge. A model with strong domain knowledge should achieve near-perfect accuracy. No question requires solving the inverse problem.",
+  "pdf_discrepancies": {
+    "note": "All counts match the PDF (Table 4) exactly."
+  }
+}

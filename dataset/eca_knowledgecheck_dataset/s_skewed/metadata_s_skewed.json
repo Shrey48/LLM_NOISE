@@ -1,0 +1,157 @@
+{
+  "dataset_id": "skewK",
+  "filename": "eca_s_skew.json",
+  "noise_type": "s-Skewed ECA",
+  "noise_description": "Exactly s contiguous cells are updated per time step; s=W reduces to synchronous ECA and s=1 to fully asynchronous.",
+  "noise_parameter": {
+    "symbol": "s",
+    "range": "[1, W]",
+    "type": "integer",
+    "boundary_cases": {
+      "s=1": "One cell updates per step; maximally asynchronous.",
+      "s=W": "All W cells update per step; equivalent to synchronous ECA."
+    }
+  },
+  "total_questions": 200,
+  "id_range": {
+    "min": 1,
+    "max": 200
+  },
+  "duplicates": 0,
+  "question_formats": {
+    "mcq": {
+      "count": 140,
+      "percentage": 70.0,
+      "description": "Multiple-choice with 4 options (A/B/C/D), exactly one correct answer. Scored binary: 1 correct, 0 otherwise."
+    },
+    "short_answer": {
+      "count": 60,
+      "percentage": 30.0,
+      "description": "Free-form response (numerical value, formula, derivation, or brief explanation). Scored 0/1/2 by judge model (Grok-3) and normalised to [0,1] by dividing by 2."
+    }
+  },
+  "difficulty_levels": {
+    "Easy": {
+      "level_id": 1,
+      "count": 53,
+      "percentage": 26.5,
+      "description": "Definitional recall and basic comprehension; answerable directly from the noise model definition."
+    },
+    "Medium": {
+      "level_id": 2,
+      "count": 86,
+      "percentage": 43.0,
+      "description": "Understanding of mechanics and properties; requires knowing implications, not just definitions."
+    },
+    "Hard": {
+      "level_id": 3,
+      "count": 61,
+      "percentage": 30.5,
+      "description": "Quantitative reasoning, derivation, or cross-model comparison; requires multi-step reasoning."
+    }
+  },
+  "topics": {
+    "count": 15,
+    "distribution": [
+      {
+        "topic_id": 1,
+        "topic_name": "ECA Fundamentals",
+        "question_count": 14,
+        "percentage": 7.0
+      },
+      {
+        "topic_id": 2,
+        "topic_name": "s-Skewed Noise: Definition and Mechanics",
+        "question_count": 24,
+        "percentage": 12.0
+      },
+      {
+        "topic_id": 3,
+        "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+        "question_count": 15,
+        "percentage": 7.5
+      },
+      {
+        "topic_id": 4,
+        "topic_name": "s-Skewed vs Other Noise Models",
+        "question_count": 16,
+        "percentage": 8.0
+      },
+      {
+        "topic_id": 5,
+        "topic_name": "s-Skewed Noise: Mathematical Properties",
+        "question_count": 19,
+        "percentage": 9.5
+      },
+      {
+        "topic_id": 6,
+        "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 7,
+        "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+        "question_count": 12,
+        "percentage": 6.0
+      },
+      {
+        "topic_id": 8,
+        "topic_name": "s-Skewed Noise: Boundary Conditions",
+        "question_count": 7,
+        "percentage": 3.5
+      },
+      {
+        "topic_id": 9,
+        "topic_name": "s-Skewed Noise: Notation and Formalism",
+        "question_count": 11,
+        "percentage": 5.5
+      },
+      {
+        "topic_id": 10,
+        "topic_name": "s-Skewed Noise: Worked Examples",
+        "question_count": 10,
+        "percentage": 5.0
+      },
+      {
+        "topic_id": 11,
+        "topic_name": "s-Skewed Noise: Conceptual Understanding",
+        "question_count": 16,
+        "percentage": 8.0
+      },
+      {
+        "topic_id": 12,
+        "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+        "question_count": 13,
+        "percentage": 6.5
+      },
+      {
+        "topic_id": 13,
+        "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+        "question_count": 9,
+        "percentage": 4.5
+      },
+      {
+        "topic_id": 14,
+        "topic_name": "s-Skewed Noise: Identification and Classification",
+        "question_count": 9,
+        "percentage": 4.5
+      },
+      {
+        "topic_id": 15,
+        "topic_name": "s-Skewed Noise: Advanced Properties",
+        "question_count": 12,
+        "percentage": 6.0
+      }
+    ]
+  },
+  "scoring": {
+    "mcq": "Binary: 1 for correct answer, 0 otherwise.",
+    "short_answer": "Three-point rubric by independent judge (Grok-3): 2=fully correct, 1=partially correct, 0=incorrect or missing. Normalised to [0,1] by dividing by 2.",
+    "overall_accuracy": "Mean of all normalised scores across both question types."
+  },
+  "purpose": "Knowledge-check dataset. Confirms that LLM failures on the identification task reflect structural inability to read spatiotemporal patterns, not gaps in domain knowledge. A model with strong domain knowledge should achieve near-perfect accuracy. No question requires solving the inverse problem.",
+  "pdf_discrepancies": {
+    "note": "All counts match the PDF (Table 4) exactly."
+  }
+}

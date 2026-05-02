@@ -1,0 +1,134 @@
+{
+  "name": "ECANet-Skew Dataset",
+  "version": "1.0.0",
+  "description": "s-Skewed Elementary Cellular Automata (ECA) dataset. Uses a contiguous-window asynchronous update scheme where s cells (a randomly placed block of width s) are updated per timestep. T=200 timesteps for richer signal. Tokens are 5-dimensional (includes did_change feature). Generated for ECANet-Skew models.",
+  "created_by": "DATAGEN_SKEW.py",
+  "license": "MIT",
+  "citation": "",
+
+  "generation": {
+    "seed": 42,
+    "grid_width": 20,
+    "time_steps": 200,
+    "triplet_tokens_per_sample": 3980,
+    "token_features": 5,
+    "token_feature_note": "5th feature is did_change (cell changed vs previous timestep)",
+    "s_values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "s_semantics": "Number of cells updated per timestep. s=W (20) is fully synchronous; s=1 is maximally skewed.",
+    "update_scheme": "Contiguous block: a random start cell is chosen, and s cells starting from that position (mod W) are updated each step.",
+    "initial_state": "random non-trivial (no all-zeros or all-ones)",
+    "boundary_conditions": "periodic (wrap-around)"
+  },
+
+  "rule_split": {
+    "total_eca_rules": 256,
+    "split_seed": 42,
+    "train_rules_count": 179,
+    "test_rules_count": 77,
+    "overlap": false,
+    "files": {
+      "train_rules": "train_rules.npy",
+      "test_rules": "test_rules.npy"
+    }
+  },
+
+  "phases": {
+    "phase1": {
+      "description": "Fully synchronous update only (s=W=20). Clean rule inference baseline with no skew.",
+      "s_value": 20,
+      "train": {
+        "rules": 179,
+        "samples_per_rule": 200,
+        "total_samples": 35800
+      },
+      "test": {
+        "rules": 77,
+        "samples_per_rule": 100,
+        "total_samples": 7700
+      }
+    },
+    "phase2": {
+      "description": "Stratified by (rule, s). Every rule appears at every s level exactly K times. Guaranteed balanced coverage.",
+      "s_levels": 20,
+      "train": {
+        "rules": 179,
+        "s_levels": 20,
+        "samples_per_rule_per_s": 25,
+        "total_samples": 89500
+      },
+      "test": {
+        "rules": 77,
+        "s_levels": 20,
+        "samples_per_rule_per_s": 10,
+        "total_samples": 15400
+      }
+    }
+  },
+
+  "totals": {
+    "train_samples": 125300,
+    "test_samples": 23100,
+    "all_samples": 148400
+  },
+
+  "file_format": {
+    "storage": "NumPy .npy files",
+    "dtype": {
+      "orbits": "int8",
+      "rule_bits": "int8",
+      "s_values": "int32",
+      "rule_ids": "int32"
+    },
+    "shapes": {
+      "orbits": "[N, 200, 20]",
+      "rule_bits": "[N, 8]",
+      "s_values": "[N]",
+      "rule_ids": "[N]"
+    },
+    "field_descriptions": {
+      "orbits": "Raw ECA orbit over T=200 timesteps on a W=20 grid. Binary values {0, 1}.",
+      "rule_bits": "8-bit binary representation of the ECA rule number (LSB first, bits 0-7).",
+      "s_values": "Number of cells updated per timestep for this sample. Integer in [1, 20].",
+      "rule_ids": "Integer rule number (0-255) corresponding to each sample."
+    },
+    "storage_order": "Rule-wise within each s group. All samples for rule 0 first, then rule 1, etc. Use DataLoader shuffle=True during training."
+  },
+
+  "directory_structure": {
+    "ECA_Data_Skew/": {
+      "train_rules.npy": "Array of 179 training rule IDs",
+      "test_rules.npy": "Array of 77 test rule IDs",
+      "phase1/": {
+        "train/": ["orbits.npy", "rule_bits.npy", "s_values.npy", "rule_ids.npy"],
+        "test/":  ["orbits.npy", "rule_bits.npy", "s_values.npy", "rule_ids.npy"]
+      },
+      "phase2/": {
+        "train/": ["orbits.npy", "rule_bits.npy", "s_values.npy", "rule_ids.npy"],
+        "test/":  ["orbits.npy", "rule_bits.npy", "s_values.npy", "rule_ids.npy"]
+      }
+    }
+  },
+
+  "usage": {
+    "generation_script": "DATAGEN_SKEW.py",
+    "training_script": "TRAIN_SKEW.py",
+    "commands": {
+      "generate": "python DATAGEN_SKEW.py",
+      "train": "python TRAIN_SKEW.py"
+    },
+    "loading_example": {
+      "python": "import numpy as np\norbits    = np.load('ECA_Data_Skew/phase2/train/orbits.npy')\nrule_bits = np.load('ECA_Data_Skew/phase2/train/rule_bits.npy')\ns_values  = np.load('ECA_Data_Skew/phase2/train/s_values.npy')\nrule_ids  = np.load('ECA_Data_Skew/phase2/train/rule_ids.npy')"
+    }
+  },
+
+  "task": {
+    "type": "multi-label binary classification",
+    "input": "ECA orbit of shape [T, W] = [200, 20] with 5-dimensional tokens",
+    "target": "8-bit rule representation (rule_bits) or integer rule ID (rule_ids)",
+    "auxiliary_target": "s value per sample (for phase2 skew-conditioned models)"
+  },
+
+  "comparison_notes": {
+    "vs_ECANet_New": "Same rule split (SEED=42), same W=20, but T=200 (vs T=100) and uses s-skew update (contiguous block) instead of alpha-async (independent Bernoulli per cell). Token dimensionality is 5 here vs 4 in ECANet-New."
+  }
+}

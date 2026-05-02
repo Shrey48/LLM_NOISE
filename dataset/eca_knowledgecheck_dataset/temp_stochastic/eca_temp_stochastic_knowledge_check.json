@@ -1,0 +1,3006 @@
+[
+    {
+      "id": 1,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "An elementary cellular automaton (ECA) is a one-dimensional, discrete-time system. What is the state space and neighbourhood size of each cell?",
+      "choices": {
+        "A": "Binary state (0 or 1) with a 3-cell neighbourhood (left, centre, right)",
+        "B": "Ternary state (0, 1, 2) with a 5-cell neighbourhood",
+        "C": "Real-valued state with no neighbourhood",
+        "D": "Binary state with a 5-cell neighbourhood"
+      },
+      "answer": "A",
+      "explanation": "ECA cells have binary states {0,1} and radius r=1, giving a 3-cell neighbourhood (i-1, i, i+1). This defines 2^3=8 possible patterns and 2^8=256 rules."
+    },
+    {
+      "id": 2,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How many distinct ECA rules exist in total?",
+      "choices": {
+        "A": "128",
+        "B": "256",
+        "C": "512",
+        "D": "64"
+      },
+      "answer": "B",
+      "explanation": "There are 2^3=8 possible neighbourhood patterns, each mapped to 0 or 1, giving 2^8=256 possible rules."
+    },
+    {
+      "id": 3,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a traditional (synchronous) ECA, when are cells updated?",
+      "choices": {
+        "A": "Each cell is updated randomly at some time step",
+        "B": "All cells are updated simultaneously at each time step using a global clock",
+        "C": "Cells are updated one at a time in a fixed order",
+        "D": "Only cells with state 1 are updated at each time step"
+      },
+      "answer": "B",
+      "explanation": "Traditional ECA uses a global clock: all cells are updated simultaneously at each discrete time step t using the same rule R."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What does the Wolfram code (rule number) of an ECA represent?",
+      "choices": {
+        "A": "The decimal encoding of the 8-bit output table mapping each 3-cell neighbourhood pattern to a new state",
+        "B": "The number of cells in the lattice",
+        "C": "The probability of a cell being updated",
+        "D": "The number of time steps the automaton runs"
+      },
+      "answer": "A",
+      "explanation": "Each of the 8 neighbourhood patterns (111,110,...,000) maps to a binary output. Reading these 8 output bits as a binary number gives the rule's decimal Wolfram code (0–255)."
+    },
+    {
+      "id": 5,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the traditional ECA framework, what is the next state of cell i at time t+1 under rule R?",
+      "choices": {
+        "A": "R(c_{i}(t))",
+        "B": "R(c_{i-1}(t), c_{i}(t), c_{i+1}(t))",
+        "C": "R(c_{i}(t), c_{i+1}(t))",
+        "D": "R(c_{i-2}(t), c_{i-1}(t), c_{i}(t), c_{i+1}(t), c_{i+2}(t))"
+      },
+      "answer": "B",
+      "explanation": "The standard ECA update uses the 3-cell neighbourhood: c_i(t+1) = R(c_{i-1}(t), c_i(t), c_{i+1}(t))."
+    },
+    {
+      "id": 6,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Define an Elementary Cellular Automaton (ECA). What are its key structural components?",
+      "answer": "An ECA is a one-dimensional, discrete-time dynamical system consisting of a lattice L of n cells. Each cell has a binary state (0 or 1), a radius-1 neighbourhood (left neighbour, itself, right neighbour), and follows a uniform rule R at each time step. All cells update simultaneously using a global clock.",
+      "explanation": "ECA: 1D lattice, binary states, radius-1 neighbourhood, uniform rule, synchronous update."
+    },
+    {
+      "id": 7,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why there are exactly 256 ECA rules. Show the counting argument.",
+      "answer": "Each cell's next state depends on its 3-cell neighbourhood (left, self, right). There are 2^3 = 8 possible neighbourhood configurations. Each configuration must be independently mapped to a binary output (0 or 1). The number of such mappings is 2^8 = 256, so there are exactly 256 ECA rules.",
+      "explanation": "8 neighbourhood patterns × 1-bit output each = 2^8 = 256 distinct rules."
+    },
+    {
+      "id": 8,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the temporally stochastic ECA model, what introduces randomness into the system?",
+      "choices": {
+        "A": "Each cell independently chooses between two rules at every time step",
+        "B": "All cells collectively follow one of two rules at each time step, chosen probabilistically",
+        "C": "A randomly selected subset of cells is updated each time step",
+        "D": "The neighbourhood size changes randomly at each time step"
+      },
+      "answer": "B",
+      "explanation": "Under temporal stochastic noise, at each time t the entire lattice follows rule R1 with probability 1-τ or rule R2 with probability τ. The randomness is temporal (per time step), not spatial (per cell)."
+    },
+    {
+      "id": 9,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The temporal stochastic noise model is denoted (R1, R2)[τ]. What does τ represent?",
+      "choices": {
+        "A": "The probability that a single cell follows rule R2",
+        "B": "The probability that all cells follow rule R2 at a given time step",
+        "C": "The fraction of time steps using rule R1",
+        "D": "The number of cells updated per time step"
+      },
+      "answer": "B",
+      "explanation": "τ ∈ [0,1] is the mixing noise rate: at each time step t, the entire lattice follows R2 with probability τ and R1 with probability 1-τ."
+    },
+    {
+      "id": 10,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the range of the temporal noise parameter τ?",
+      "choices": {
+        "A": "[1, n] where n is the lattice size",
+        "B": "(0, ∞)",
+        "C": "[0, 1]",
+        "D": "{0, 1} only"
+      },
+      "answer": "C",
+      "explanation": "τ ∈ [0,1] is a probability, so it is bounded between 0 (never use R2) and 1 (always use R2)."
+    },
+    {
+      "id": 11,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the (R1, R2)[τ] model, with what probability do all cells follow rule R1 at a given time step?",
+      "choices": {
+        "A": "τ",
+        "B": "1 - τ",
+        "C": "τ/2",
+        "D": "1/2 always"
+      },
+      "answer": "B",
+      "explanation": "By definition, all cells follow R1 with probability 1-τ and R2 with probability τ at each time step."
+    },
+    {
+      "id": 12,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which statement correctly describes the update mechanism of the temporal stochastic model?",
+      "choices": {
+        "A": "At time t, cell i follows R1 with probability 1-τ independently of all other cells",
+        "B": "At time t, a single rule (R1 or R2) is selected for the entire lattice; every cell then uses that rule",
+        "C": "At time t, cells alternate deterministically between R1 and R2",
+        "D": "At time t, cells follow R1 if their current state is 0, and R2 if their state is 1"
+      },
+      "answer": "B",
+      "explanation": "The decision is made once per time step for the whole lattice. If R2 is selected (prob τ), every cell uses R2; if R1 (prob 1-τ), every cell uses R1. This is the defining temporal (global) nature of the noise."
+    },
+    {
+      "id": 13,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Define the temporal stochastic noise model for ECA. Include the notation used and describe the role of each component.",
+      "answer": "The temporal stochastic noise model is denoted (R1, R2)[τ]. It involves two ECA rules R1 and R2, and a mixing noise rate τ ∈ [0,1]. At each discrete time step t, a single probabilistic choice is made for the entire lattice: all cells follow rule R1 with probability 1-τ, or all cells follow rule R2 with probability τ. The randomness is temporal — it acts at the level of time steps rather than individual cells.",
+      "explanation": "Key: one global rule-choice per time step, affecting all cells uniformly."
+    },
+    {
+      "id": 14,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Write the formal update equation for cell i at time t+1 under the (R1, R2)[τ] temporal stochastic model. Clearly define any random variable you introduce.",
+      "answer": "Let X_t be an i.i.d. Bernoulli random variable with P(X_t = 1) = τ. Then: c_i(t+1) = R2(c_{i-1}(t), c_i(t), c_{i+1}(t)) if X_t = 1, and c_i(t+1) = R1(c_{i-1}(t), c_i(t), c_{i+1}(t)) if X_t = 0. Note that X_t is shared across all cells i at the same time step t, reflecting the global/temporal nature of the noise.",
+      "explanation": "The critical point: X_t is drawn once per time step, not once per cell. All cells share the same X_t."
+    },
+    {
+      "id": 15,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the fundamental difference between spatial stochastic noise (λ) and temporal stochastic noise (τ)?",
+      "choices": {
+        "A": "Spatial noise uses two rules; temporal noise uses only one rule",
+        "B": "In spatial noise each cell independently chooses a rule; in temporal noise a single rule is chosen for all cells each time step",
+        "C": "Temporal noise changes the neighbourhood size; spatial noise does not",
+        "D": "Spatial noise is deterministic; temporal noise is probabilistic"
+      },
+      "answer": "B",
+      "explanation": "Spatial (λ): each cell i independently picks R1 or R2 per step. Temporal (τ): one rule is chosen globally for the entire lattice per step. The locus of randomness is per-cell vs per-time-step."
+    },
+    {
+      "id": 16,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under the spatial stochastic model (R1,R2)[λ], at a given time step t with λ = 0.5 and n = 4 cells, how many distinct rule-assignment configurations are possible across the lattice?",
+      "choices": {
+        "A": "2",
+        "B": "4",
+        "C": "8",
+        "D": "16"
+      },
+      "answer": "D",
+      "explanation": "In the spatial model, each of the n=4 cells independently chooses R1 or R2, giving 2^4 = 16 possible configurations. In the temporal model, only 2 configurations are possible (all-R1 or all-R2)."
+    },
+    {
+      "id": 17,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following is TRUE about the temporal stochastic model but NOT the spatial stochastic model?",
+      "choices": {
+        "A": "It uses two distinct ECA rules",
+        "B": "The noise parameter lies in [0,1]",
+        "C": "All cells are guaranteed to follow the same rule at any given time step",
+        "D": "It reduces to a standard ECA when the noise rate is 0"
+      },
+      "answer": "C",
+      "explanation": "In the temporal model, the rule decision is made once globally per time step, so all cells always use the same rule at time t. In the spatial model, different cells may follow different rules at the same time step."
+    },
+    {
+      "id": 18,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider the spatial model (R1,R2)[λ] and temporal model (R1,R2)[τ] with λ = τ. For a lattice of n > 1 cells, which statement about the marginal distribution of a single cell i's rule at time t is correct?",
+      "choices": {
+        "A": "Both models give P(cell i uses R2) = τ = λ; the models are therefore equivalent",
+        "B": "Both models give P(cell i uses R2) = τ = λ, but the joint distribution across cells differs between models",
+        "C": "The temporal model gives P(cell i uses R2) = τ^n",
+        "D": "The spatial model gives P(cell i uses R2) = nλ"
+      },
+      "answer": "B",
+      "explanation": "Marginally, each cell uses R2 with probability τ (or λ) in both models. However, they differ in correlation: in the temporal model, all cells' rule choices are perfectly correlated (all same rule), while in the spatial model, cells are independent. The joint distributions are therefore different."
+    },
+    {
+      "id": 19,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compare and contrast spatial stochastic noise (R1,R2)[λ] and temporal stochastic noise (R1,R2)[τ]. Highlight the key structural difference in how randomness is applied.",
+      "answer": "Both models use two rules R1 and R2 with a mixing rate in [0,1]. In the spatial model (λ), at each time step each cell independently chooses R1 with probability 1-λ or R2 with probability λ — the noise is per-cell. In the temporal model (τ), at each time step a single rule is chosen globally: either all cells follow R1 (prob 1-τ) or all cells follow R2 (prob τ) — the noise is per-time-step. The result is that cell rule choices are independent across cells in the spatial model, but perfectly correlated in the temporal model.",
+      "explanation": "Spatial: independent per cell. Temporal: perfectly correlated across cells at the same time step."
+    },
+    {
+      "id": 20,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the spatial stochastic model with n cells and rate λ, what is the probability that at a given time step all cells happen to follow R2? Compare this with the same event in the temporal model with rate τ = λ.",
+      "answer": "In the spatial model, each cell independently follows R2 with probability λ, so the probability that all n cells follow R2 simultaneously is λ^n. In the temporal model, the probability that all cells follow R2 is simply τ = λ, since the rule is chosen once for the entire lattice. For n > 1 and λ ∈ (0,1), λ^n < λ, so the temporal model assigns strictly higher probability to the all-R2 event than the spatial model.",
+      "explanation": "Spatial: λ^n. Temporal: τ. For λ=τ and n>1, temporal all-R2 probability exceeds spatial."
+    },
+    {
+      "id": 21,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does the temporal stochastic model (R1, R2)[τ] reduce to when τ = 0?",
+      "choices": {
+        "A": "A standard ECA always following rule R2",
+        "B": "A standard ECA always following rule R1",
+        "C": "An ECA where each cell randomly picks R1 or R2",
+        "D": "An ECA with all cells idle"
+      },
+      "answer": "B",
+      "explanation": "τ=0 means P(R2) = 0 and P(R1) = 1-0 = 1. Every time step uses R1 with certainty, recovering the standard deterministic ECA under rule R1."
+    },
+    {
+      "id": 22,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does the temporal stochastic model (R1, R2)[τ] reduce to when τ = 1?",
+      "choices": {
+        "A": "A standard ECA always following rule R1",
+        "B": "A standard ECA always following rule R2",
+        "C": "An ECA that alternates between R1 and R2 every step",
+        "D": "An ECA where no cells are ever updated"
+      },
+      "answer": "B",
+      "explanation": "τ=1 means P(R2) = 1 and P(R1) = 0. Every time step uses R2 with certainty, recovering the standard deterministic ECA under rule R2."
+    },
+    {
+      "id": 23,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At τ = 0.5, which statement best characterises the temporal stochastic model (R1, R2)[0.5]?",
+      "choices": {
+        "A": "Each cell follows R1 half the time and R2 half the time independently",
+        "B": "At each time step the entire lattice follows R1 or R2 with equal probability, like a fair coin flip per step",
+        "C": "Exactly half the cells follow R1 and the other half follow R2 every step",
+        "D": "The system deterministically alternates between R1 and R2 every step"
+      },
+      "answer": "B",
+      "explanation": "At τ=0.5, a fair coin is tossed once per time step. Heads → all cells use R1; tails → all cells use R2. Cells are not independent; the entire lattice moves together."
+    },
+    {
+      "id": 24,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose R1 = R2 = R (both rules are identical). What is the behaviour of (R1, R2)[τ] for any value of τ ∈ [0,1]?",
+      "choices": {
+        "A": "The system is undefined because R1 and R2 must be different",
+        "B": "The system behaves as a standard deterministic ECA under rule R, regardless of τ",
+        "C": "The system is random with variance that depends on τ",
+        "D": "The system alternates between R and a null rule"
+      },
+      "answer": "B",
+      "explanation": "If R1 = R2 = R, then regardless of which rule is selected at each step, all cells always apply rule R. The outcome is identical to a standard ECA under R for every τ, making τ irrelevant."
+    },
+    {
+      "id": 25,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Describe what happens to the (R1, R2)[τ] model at the two extreme values of τ (i.e., τ = 0 and τ = 1).",
+      "answer": "At τ = 0: The probability of using R2 is 0, so all cells follow rule R1 at every time step. The system reduces to a standard deterministic ECA under rule R1. At τ = 1: The probability of using R2 is 1, so all cells follow rule R2 at every time step. The system reduces to a standard deterministic ECA under rule R2. In both boundary cases, the stochastic noise disappears and the model is purely deterministic.",
+      "explanation": "Both extremes eliminate stochasticity; τ=0 gives pure R1, τ=1 gives pure R2."
+    },
+    {
+      "id": 26,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Why is the noise in the (R1, R2)[τ] model called 'temporal'?",
+      "choices": {
+        "A": "Because the noise parameter τ changes over time",
+        "B": "Because the rule selection event occurs once per time step and applies to all cells globally at that step",
+        "C": "Because the noise affects the timing of cell updates",
+        "D": "Because cells are updated at random time intervals"
+      },
+      "answer": "B",
+      "explanation": "The noise is 'temporal' because the randomness is indexed by time: one decision per time step t determines the rule for ALL cells at that step. It is not spatial (per-cell) nor structural (per-neighbourhood)."
+    },
+    {
+      "id": 27,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the temporal stochastic model, are the rule choices at different time steps t and t' (t ≠ t') independent?",
+      "choices": {
+        "A": "No — the rule choice at t+1 depends on the choice at t",
+        "B": "Yes — the rule choice at each time step is drawn independently (i.i.d.)",
+        "C": "No — once R2 is chosen it is always chosen subsequently",
+        "D": "Yes — but only if τ = 0.5"
+      },
+      "answer": "B",
+      "explanation": "By definition, the Bernoulli trial selecting R1 or R2 is drawn independently and identically at each time step. There is no temporal correlation in the noise itself (though the cell states may be correlated due to the dynamics)."
+    },
+    {
+      "id": 28,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the temporal stochastic model with n cells, how many independent Bernoulli trials are performed at each time step?",
+      "choices": {
+        "A": "n (one per cell)",
+        "B": "n^2 (one per cell pair)",
+        "C": "1 (one global trial for the entire lattice)",
+        "D": "0 (the model is deterministic)"
+      },
+      "answer": "C",
+      "explanation": "Exactly one Bernoulli(τ) trial is conducted per time step, and its outcome is shared by all n cells. This contrasts with the spatial model, which performs n independent trials per time step."
+    },
+    {
+      "id": 29,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Over T time steps, what is the expected number of time steps in which the entire lattice follows rule R2 under the (R1, R2)[τ] model?",
+      "choices": {
+        "A": "T · τ^n",
+        "B": "T · (1 - τ)",
+        "C": "T · τ",
+        "D": "T · τ · (1 - τ)"
+      },
+      "answer": "C",
+      "explanation": "At each time step the lattice follows R2 with probability τ, independently across steps. By linearity of expectation, the expected number of R2-steps over T steps is T·τ."
+    },
+    {
+      "id": 30,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why the temporal stochastic model maintains spatial uniformity at every time step, even though it introduces randomness.",
+      "answer": "At each time step t, a single Bernoulli(τ) draw determines which rule (R1 or R2) governs that step. Because this decision is global — not per-cell — every cell in the lattice applies the same rule at time t. Therefore, even though which rule is used varies randomly from one time step to the next, the spatial uniformity (all cells using the same rule at any given step) is preserved. The randomness is purely temporal, not spatial.",
+      "explanation": "The global nature of the rule-selection trial ensures all cells always share the same rule at each step."
+    },
+    {
+      "id": 31,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the (R1, R2)[τ] model run for T time steps, what is the probability that the lattice follows R1 at every single time step?",
+      "choices": {
+        "A": "(1 - τ)",
+        "B": "(1 - τ)^T",
+        "C": "τ^T",
+        "D": "1 - τ^T"
+      },
+      "answer": "B",
+      "explanation": "Each time step independently uses R1 with probability 1-τ. For T independent steps all using R1, the probability is (1-τ)^T by the multiplication rule for independent events."
+    },
+    {
+      "id": 32,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is the probability that in T time steps, rule R2 is chosen exactly k times under (R1, R2)[τ]?",
+      "choices": {
+        "A": "τ^k · (1-τ)^(T-k)",
+        "B": "C(T,k) · τ^k · (1-τ)^(T-k)",
+        "C": "C(T,k) · τ^(T-k) · (1-τ)^k",
+        "D": "k · τ · (1-τ)"
+      },
+      "answer": "B",
+      "explanation": "The number of R2-steps follows a Binomial(T, τ) distribution. The probability of exactly k R2-steps is C(T,k)·τ^k·(1-τ)^(T-k), where C(T,k) is the binomial coefficient."
+    },
+    {
+      "id": 33,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "What is the variance of the number of time steps that use rule R2 over T steps in the (R1, R2)[τ] model?",
+      "choices": {
+        "A": "T · τ",
+        "B": "T · τ^2",
+        "C": "T · τ · (1 - τ)",
+        "D": "T^2 · τ · (1 - τ)"
+      },
+      "answer": "C",
+      "explanation": "The count of R2-steps ~ Binomial(T, τ). The variance of Binomial(T,τ) is T·τ·(1-τ), which is maximised at τ=0.5 and equals 0 at τ=0 or τ=1 (deterministic boundary cases)."
+    },
+    {
+      "id": 34,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For the (R1, R2)[τ] model, what is the probability that at least one time step among T steps uses rule R2?",
+      "choices": {
+        "A": "τ",
+        "B": "T · τ",
+        "C": "1 - (1 - τ)^T",
+        "D": "(1 - τ)^T"
+      },
+      "answer": "C",
+      "explanation": "P(at least one R2 step) = 1 - P(no R2 steps) = 1 - (1-τ)^T. As T grows, this approaches 1 for any τ > 0."
+    },
+    {
+      "id": 35,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Let K_T denote the number of time steps using rule R2 out of T total steps in the (R1, R2)[τ] model. State the distribution of K_T and give its mean and variance.",
+      "answer": "K_T follows a Binomial distribution: K_T ~ Binomial(T, τ). This is because each of the T time steps independently uses R2 with probability τ. The mean (expected value) is E[K_T] = T·τ. The variance is Var(K_T) = T·τ·(1-τ).",
+      "explanation": "Independent Bernoulli trials with success probability τ over T steps give a Binomial(T,τ) distribution."
+    },
+    {
+      "id": 36,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, the rule at step t is a Bernoulli random variable. What is the covariance between the rule choices at two different time steps t and t' (t ≠ t')? What does this imply about the sequence of rule choices?",
+      "answer": "Let X_t = 1 if R2 is used at step t (prob τ), and 0 otherwise. For t ≠ t', X_t and X_t' are independent by the model's definition. Therefore, Cov(X_t, X_t') = E[X_t · X_t'] - E[X_t]·E[X_t'] = τ·τ - τ·τ = 0. The zero covariance (which here equals independence) implies that the sequence of rule choices is i.i.d. Bernoulli(τ) — there is no temporal autocorrelation in the noise. Note: this is in contrast to the cell states themselves, which may show long-range temporal correlation due to the CA dynamics.",
+      "explanation": "Independence of X_t across t gives zero covariance; the noise process is i.i.d. Bernoulli(τ)."
+    },
+    {
+      "id": 37,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which noise model introduces asynchrony by giving each cell an independent probability α of being updated at each step?",
+      "choices": {
+        "A": "s-skewed noise",
+        "B": "α (alpha) asynchronous noise",
+        "C": "Temporal stochastic noise",
+        "D": "Spatial stochastic noise"
+      },
+      "answer": "B",
+      "explanation": "Under α noise, each cell independently updates with probability α or stays idle with probability 1-α. This breaks the global clock. Temporal stochastic noise does not change which cells update — all cells always update, but the rule they use changes globally."
+    },
+    {
+      "id": 38,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "How does temporal stochastic noise differ from s-skewed noise?",
+      "choices": {
+        "A": "Temporal noise affects which cells are updated; s-skewed noise affects which rule is used",
+        "B": "s-skewed noise selects a contiguous block of cells for update; temporal noise selects a global rule for all cells each step",
+        "C": "Both models select rules probabilistically but differ in noise rate parameterisation",
+        "D": "s-skewed noise uses two rules; temporal noise uses only one"
+      },
+      "answer": "B",
+      "explanation": "s-skewed noise: randomly picks a starting cell i and updates s consecutive cells (i to i+s-1). It modifies which cells update. Temporal noise: all cells always update, but the rule alternates globally. They are fundamentally different types of perturbation."
+    },
+    {
+      "id": 39,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Among the four noise models (α, s-skewed, spatial stochastic, temporal stochastic), which two both maintain the synchronous update of all cells at every time step?",
+      "choices": {
+        "A": "α and s-skewed",
+        "B": "Spatial stochastic and temporal stochastic",
+        "C": "α and temporal stochastic",
+        "D": "s-skewed and spatial stochastic"
+      },
+      "answer": "B",
+      "explanation": "Both spatial (λ) and temporal (τ) stochastic models update ALL cells synchronously every step — the noise concerns which rule is applied, not which cells are updated. In contrast, α noise may leave cells idle, and s-skewed noise updates only a block of s cells per step."
+    },
+    {
+      "id": 40,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The α noise model with α=1 and the temporal stochastic model with τ=0 both produce standard ECA behaviour. What does this reveal about the role of boundary parameters?",
+      "choices": {
+        "A": "It shows the two models are mathematically identical",
+        "B": "It shows that boundary values of noise parameters eliminate stochasticity and recover a deterministic ECA",
+        "C": "It shows that α and τ are interchangeable parameters",
+        "D": "It shows that all noise models are equivalent at their boundary values"
+      },
+      "answer": "B",
+      "explanation": "Both boundary conditions eliminate the source of randomness: α=1 means every cell always updates (no skipping), and τ=0 means only R1 is ever used. In both cases the system collapses to a deterministic ECA. This illustrates a general principle: extreme parameter values remove stochasticity."
+    },
+    {
+      "id": 41,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compare the temporal stochastic noise model with the α asynchronous model. In what fundamental way does each model perturb the classical ECA?",
+      "answer": "The α asynchronous model perturbs the update schedule: each cell is independently given a chance to update (prob α) or remain idle (prob 1-α) at each step, breaking the global synchronous clock. The temporal stochastic model does not alter which cells update (all cells always update synchronously), but instead perturbs the rule applied: the entire lattice switches between rule R1 and rule R2 globally each step with probability τ. In summary, α-noise perturbs 'when/whether cells update', while temporal stochastic noise perturbs 'which rule all cells use'.",
+      "explanation": "α: update schedule perturbation. Temporal stochastic: rule selection perturbation, synchrony preserved."
+    },
+    {
+      "id": 42,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "All four ECA noise models (α, s-skewed, spatial stochastic, temporal stochastic) introduce uncertainty into the ECA framework. Organise them along two dimensions: (1) whether the perturbation is per-cell or global, and (2) whether the perturbation affects the update schedule or the rule applied.",
+      "answer": "Dimension 1 — Perturbation scope (per-cell vs global): Per-cell: α noise (each cell independently decides to update), spatial stochastic (each cell independently picks a rule). Global: s-skewed (a contiguous block is chosen globally), temporal stochastic (a single rule is chosen globally for all cells). Dimension 2 — What is perturbed (update schedule vs rule): Update schedule: α noise (cells may be idle), s-skewed (only a block updates). Rule: spatial stochastic (cell-level rule mixing), temporal stochastic (time-step-level rule mixing). Summary table: α: per-cell × schedule; s-skewed: global × schedule; spatial stochastic: per-cell × rule; temporal stochastic: global × rule.",
+      "explanation": "2×2 taxonomy: {per-cell, global} × {schedule, rule}. Temporal stochastic = global + rule perturbation."
+    },
+    {
+      "id": 43,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "If R1 is a rule with periodic behaviour and R2 is a rule with chaotic behaviour, what would you qualitatively expect for the (R1, R2)[τ] system as τ increases from 0 to 1?",
+      "choices": {
+        "A": "The system transitions from chaotic to periodic behaviour",
+        "B": "The system transitions from periodic (R1-dominated) behaviour toward chaotic (R2-dominated) behaviour",
+        "C": "The system remains periodic for all τ",
+        "D": "The system becomes frozen for all τ > 0"
+      },
+      "answer": "B",
+      "explanation": "At τ=0 only R1 is used (periodic); at τ=1 only R2 is used (chaotic). As τ increases, R2 is applied more frequently, driving the system toward chaotic behaviour. Intermediate τ values produce a mixture of the two dynamics."
+    },
+    {
+      "id": 44,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under the (R1, R2)[τ] model, for large τ, the dynamics are primarily driven by rule R2. For small τ, they are driven by R1. What is the practical significance of τ as a 'mixing' parameter?",
+      "choices": {
+        "A": "τ only matters if R1 and R2 differ in their fixed point sets",
+        "B": "τ controls the long-run fraction of time the lattice evolves under R2, continuously interpolating between the two deterministic systems",
+        "C": "τ has no effect because the lattice always returns to the same attractor",
+        "D": "τ determines the neighbourhood radius of the effective rule"
+      },
+      "answer": "B",
+      "explanation": "By the law of large numbers, in the long run a fraction τ of all steps use R2 and 1-τ use R1. Thus τ truly 'mixes' two deterministic ECA dynamics, allowing a continuum of behaviours between the pure-R1 and pure-R2 extremes."
+    },
+    {
+      "id": 45,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose you run the (R1, R2)[τ] model for a very large number T of time steps. By the law of large numbers, what fraction of those steps will use R2? How does this relate to the concept of 'effective behaviour' of the model?",
+      "answer": "By the Strong Law of Large Numbers, since each step uses R2 independently with probability τ, the fraction of steps using R2 converges almost surely to τ as T → ∞: (K_T / T) → τ a.s. This means that over the long run, the system spends a fraction τ of its time evolving under R2 and a fraction 1-τ under R1. The 'effective behaviour' of the model is therefore a temporal mixture of the two deterministic ECA dynamics, weighted by τ. This is why τ is called the mixing noise rate: it directly controls the long-run relative contributions of R1 and R2 to the system's evolution.",
+      "explanation": "LLN: K_T/T → τ a.s. Effective dynamics = τ-weighted temporal mixture of R1 and R2."
+    },
+    {
+      "id": 46,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following correctly represents a temporal stochastic ECA using rules 110 and 30 with noise rate 0.3?",
+      "choices": {
+        "A": "(110, 30)[λ=0.3]",
+        "B": "(110, 30)[τ=0.3]",
+        "C": "(110, 30)[α=0.3]",
+        "D": "(110, 30)[s=0.3]"
+      },
+      "answer": "B",
+      "explanation": "The temporal stochastic model uses the parameter τ, so the correct notation is (R1, R2)[τ], i.e. (110, 30)[τ=0.3]. The parameters λ, α, and s belong to spatial stochastic, alpha asynchronous, and s-skewed models respectively."
+    },
+    {
+      "id": 47,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the notation (R1, R2)[τ], which rule is the 'base' rule that operates when there is no noise perturbation?",
+      "choices": {
+        "A": "R2, since it appears second",
+        "B": "R1, since it is applied with probability 1-τ (dominant when τ is small)",
+        "C": "Both rules equally",
+        "D": "Neither; the base rule is always a separate parameter"
+      },
+      "answer": "B",
+      "explanation": "R1 is the primary rule with probability 1-τ. As τ→0 the model collapses to pure R1, making R1 the 'base' ECA rule. R2 represents the noise perturbation rule, applied with probability τ."
+    },
+    {
+      "id": 48,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is (R1, R2)[τ] the same model as (R2, R1)[1-τ]?",
+      "choices": {
+        "A": "No — the two notations represent completely different models",
+        "B": "Yes — swapping the rules and replacing τ with 1-τ yields an equivalent probabilistic model",
+        "C": "Only if τ = 0.5",
+        "D": "Only if R1 and R2 are complementary rules"
+      },
+      "answer": "B",
+      "explanation": "In (R1,R2)[τ]: R1 with prob 1-τ, R2 with prob τ. In (R2,R1)[1-τ]: R2 with prob 1-(1-τ)=τ, R1 with prob 1-τ. The probabilities assigned to each rule are identical, so the two are the same model regardless of labelling."
+    },
+    {
+      "id": 49,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A researcher writes: 'We study (Rule 90, Rule 150)[τ] for τ ∈ {0, 0.25, 0.5, 0.75, 1}.' For each value of τ, state precisely what deterministic or stochastic model the system corresponds to.",
+      "answer": "τ=0: Pure Rule 90 — standard deterministic ECA under Rule 90. τ=0.25: Temporal stochastic mixture — each step uses Rule 90 with prob 0.75 and Rule 150 with prob 0.25. τ=0.5: Fair temporal mixture — each step uses Rule 90 or Rule 150 with equal probability (like a fair coin flip per step). τ=0.75: Temporal stochastic mixture biased toward Rule 150 — each step uses Rule 90 with prob 0.25 and Rule 150 with prob 0.75. τ=1: Pure Rule 150 — standard deterministic ECA under Rule 150.",
+      "explanation": "Boundary values give pure rules; intermediate values give stochastic mixtures with the specified probabilities."
+    },
+    {
+      "id": 50,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose R1 and R2 are 'complementary' rules such that for any configuration c, applying R1 followed by R2 returns the original configuration (i.e., R2(R1(c)) = c for all c). Under (R1, R2)[τ=0.5] for a large number of steps T, what can you say about the expected number of net R1-only steps vs. net R2-only steps?",
+      "choices": {
+        "A": "Since τ=0.5, on average equal steps use R1 and R2, but consecutive R1-R2 pairs cancel out, so net displacement trends to zero",
+        "B": "The system always returns to its initial configuration after T steps",
+        "C": "The system diverges because complementary rules cause instability",
+        "D": "The system freezes since R1 and R2 cancel at every step"
+      },
+      "answer": "A",
+      "explanation": "At τ=0.5, E[K_T]=T/2 R2-steps and T/2 R1-steps. If complementary pairs cancel, consecutive R1-R2 applications undo each other. However, stochastic ordering means it is not deterministically paired — the system executes a random walk between R1 and R2 applications. The net drift is zero (equal expected counts), but the variance T·0.5·0.5 means the system wanders. It does NOT always return to the initial configuration."
+    },
+    {
+      "id": 51,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the temporal stochastic model (R1, R2)[τ], suppose a cell at time t has neighbourhood (0, 1, 0). Under R1 this maps to state 1, and under R2 this maps to state 0. What is the probability that this cell's next state is 1?",
+      "choices": {
+        "A": "τ",
+        "B": "1 - τ",
+        "C": "0.5 regardless of τ",
+        "D": "It cannot be determined without knowing other cells"
+      },
+      "answer": "B",
+      "explanation": "The rule applied to the entire lattice at step t is R1 with probability 1-τ and R2 with probability τ. For neighbourhood (0,1,0): R1 gives state 1, R2 gives state 0. So P(next state = 1) = P(R1 chosen) = 1-τ, and P(next state = 0) = τ. No per-cell independence is involved — the rule is global."
+    },
+    {
+      "id": 52,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider two cells i and j at the same time step t in the (R1, R2)[τ] model, with different neighbourhoods. Cell i has neighbourhood pattern P_i and cell j has neighbourhood pattern P_j. Suppose R1 and R2 disagree on the output for P_i but agree on the output for P_j. What is the probability that cell j's next state is correctly predicted by R1 alone? What about cell i?",
+      "answer": "For cell j: Since R1(P_j) = R2(P_j) (the rules agree), the outcome is the same regardless of which rule is globally selected at time t. Therefore P(cell j's state = R1(P_j)) = 1, always. R1 alone perfectly predicts cell j's next state. For cell i: Since R1 and R2 disagree on P_i, the next state of cell i equals R1(P_i) if R1 is selected (prob 1-τ), and R2(P_i) ≠ R1(P_i) if R2 is selected (prob τ). Therefore P(cell i's state = R1(P_i)) = 1-τ. Note also that the rule choice is the same global trial for both cells, so the events 'cell i follows R1' and 'cell j follows R1' are the same event (perfectly correlated), not independent.",
+      "explanation": "Agreement on neighbourhood → certain prediction. Disagreement → 1-τ. Global trial means perfect cross-cell correlation."
+    },
+    {
+      "id": 53,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Can the temporal stochastic model (R1, R2)[τ] be interpreted as a random process on the space of ECA rules, where a new rule is drawn at each time step?",
+      "choices": {
+        "A": "No — the model is defined on cell states, not rules",
+        "B": "Yes — at each step a rule is sampled from {R1, R2} with probabilities (1-τ, τ), and the lattice evolves under that rule for one step",
+        "C": "Only if τ = 0.5",
+        "D": "Yes, but the rule drawn persists for multiple steps"
+      },
+      "answer": "B",
+      "explanation": "The temporal stochastic model is exactly a random process on the rule space: at each step t, independently sample a rule from {R1, R2} with probabilities (1-τ, τ), apply it to the entire lattice for one step, then repeat. This interpretation cleanly captures the temporal nature of the noise."
+    },
+    {
+      "id": 54,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A student claims: 'The temporal stochastic model (R1, R2)[τ] is equivalent to a spatial stochastic model (R1, R2)[λ=τ] because individual cells see the same marginal probability of following R2.' Explain whether this claim is correct or incorrect.",
+      "answer": "The claim is INCORRECT. While it is true that marginally each individual cell follows R2 with probability τ in both models, the joint distribution across cells is fundamentally different. In the temporal model, all cells are perfectly correlated: either all follow R2 or all follow R1 at a given step. In the spatial model, cells are independent: any subset can follow R2 while the rest follow R1. This difference in correlation structure means the two models produce different joint state distributions and different emergent dynamics, even though the marginal per-cell rule probabilities are equal. The models are therefore NOT equivalent.",
+      "explanation": "Same marginals, different correlations. Temporal: perfectly correlated. Spatial: independent. Not equivalent."
+    },
+    {
+      "id": 55,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following pseudocode segments correctly implements one time step of the (R1, R2)[τ] temporal stochastic model for a lattice of n cells?",
+      "choices": {
+        "A": "for each cell i: with prob τ apply R2(i), else apply R1(i)",
+        "B": "draw X ~ Bernoulli(τ); if X=1: apply R2 to all cells; else: apply R1 to all cells",
+        "C": "for each cell i: draw X_i ~ Bernoulli(τ); if X_i=1: apply R2(i), else apply R1(i)",
+        "D": "draw X ~ Bernoulli(τ); apply R1 to cells [0..X·n] and R2 to the rest"
+      },
+      "answer": "B",
+      "explanation": "The temporal stochastic model draws ONE Bernoulli(τ) random variable per time step and applies the selected rule to ALL cells simultaneously. Options A and C incorrectly implement per-cell independent draws (the spatial model). Option D incorrectly splits the lattice."
+    },
+    {
+      "id": 56,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, consider the event that the sequence of rules used over steps t=1,...,T is exactly (R1, R2, R1, R1, R2) (for T=5). What is the probability of this specific sequence?",
+      "choices": {
+        "A": "τ^2 · (1-τ)^3",
+        "B": "C(5,2) · τ^2 · (1-τ)^3",
+        "C": "5 · τ^2 · (1-τ)^3",
+        "D": "τ^3 · (1-τ)^2"
+      },
+      "answer": "A",
+      "explanation": "The rule choices are i.i.d. across time steps. The specific ordered sequence (R1, R2, R1, R1, R2) has probability (1-τ)·τ·(1-τ)·(1-τ)·τ = τ^2·(1-τ)^3. The binomial coefficient C(5,2) would apply for any sequence with 2 R2-steps (not a specific ordered sequence)."
+    },
+    {
+      "id": 57,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose you observe a temporal stochastic ECA (R1, R2)[τ] running for T=100 steps and you count K=30 steps using R2. Describe how you would estimate τ from this observation, and what statistical framework this corresponds to.",
+      "answer": "Since K ~ Binomial(T, τ), the maximum likelihood estimator (MLE) of τ is τ̂ = K/T = 30/100 = 0.3. This is the sample proportion of R2-steps. The statistical framework is maximum likelihood estimation for a binomial proportion. A 95% confidence interval can be constructed using the normal approximation: τ̂ ± 1.96·√(τ̂(1-τ̂)/T) = 0.3 ± 1.96·√(0.21/100) ≈ 0.3 ± 0.09, giving approximately [0.21, 0.39]. In practice, this requires observing which rule was applied at each step, not just the cell states.",
+      "explanation": "MLE for Binomial: τ̂ = K/T. CI via normal approximation or exact binomial methods."
+    },
+    {
+      "id": 58,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the spatial stochastic model (R1, R2)[λ], is it possible for two adjacent cells to follow different rules at the same time step?",
+      "choices": {
+        "A": "No — adjacent cells always follow the same rule",
+        "B": "Yes — each cell independently chooses its rule, so adjacent cells may use different rules",
+        "C": "Only if λ > 0.5",
+        "D": "Only at boundary cells"
+      },
+      "answer": "B",
+      "explanation": "In the spatial model, each cell's rule choice is independent. Adjacent cells i and i+1 each independently follow R2 with probability λ, so they can (and generically do) use different rules. This is impossible in the temporal model, where all cells share one global rule per step."
+    },
+    {
+      "id": 59,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Suppose (R1, R2)[τ] is observed to produce the exact same space-time diagram as a standard ECA under rule R1, for every run of the experiment. What can you conclude about τ?",
+      "answer": "If the system always produces the same space-time diagram as a deterministic ECA under R1, this means R2 is never applied. There are two explanations: (1) τ = 0, so R2 is never chosen by definition; or (2) R1 = R2 (or R1 and R2 produce identical outputs on all neighbourhood patterns present in the dynamics), making the choice of rule irrelevant. If we assume R1 ≠ R2 and they differ on at least one reachable neighbourhood pattern, then we must conclude τ = 0.",
+      "explanation": "Observing pure R1 behaviour implies τ=0 (or R1=R2), since any τ>0 would produce R2-influenced steps with positive probability."
+    },
+    {
+      "id": 60,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "At a given time step t in the (R1, R2)[τ] model, does cell i's rule choice depend on cell j's state (j ≠ i)?",
+      "choices": {
+        "A": "Yes — cells with state 1 trigger a different rule",
+        "B": "No — the rule is selected by a global Bernoulli trial independent of all cell states",
+        "C": "Yes — only if cells i and j are neighbours",
+        "D": "Yes — always, because the lattice is fully connected"
+      },
+      "answer": "B",
+      "explanation": "The rule selection in the temporal stochastic model is a Bernoulli(τ) trial that is independent of the current configuration of the lattice. No cell's state influences which rule is chosen at any time step."
+    },
+    {
+      "id": 61,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following correctly describes the boundary condition most commonly used in ECA simulations?",
+      "choices": {
+        "A": "Fixed boundary: cells outside the lattice are always 0",
+        "B": "Periodic boundary: the lattice wraps around so cell n-1 is the left neighbour of cell 0",
+        "C": "Reflective boundary: the lattice mirrors itself at the edges",
+        "D": "Absorbing boundary: cells at the boundary are removed after each step"
+      },
+      "answer": "B",
+      "explanation": "Periodic (cyclic) boundaries are most common: the lattice of n cells is treated as a ring, so cell 0's left neighbour is cell n-1 and cell n-1's right neighbour is cell 0."
+    },
+    {
+      "id": 62,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is the output of ECA Rule 0 for any initial configuration?",
+      "choices": {
+        "A": "All cells become 1 after one step",
+        "B": "All cells become 0 after one step",
+        "C": "The configuration is unchanged",
+        "D": "Cells alternate between 0 and 1"
+      },
+      "answer": "B",
+      "explanation": "Rule 0 maps every neighbourhood pattern to 0. Therefore, after one time step, every cell in the lattice becomes 0, regardless of the initial configuration."
+    },
+    {
+      "id": 63,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is the output of ECA Rule 255 for any initial configuration?",
+      "choices": {
+        "A": "All cells become 0 after one step",
+        "B": "All cells become 1 after one step",
+        "C": "The configuration is copied unchanged",
+        "D": "The rule is undefined"
+      },
+      "answer": "B",
+      "explanation": "Rule 255 (binary 11111111) maps every neighbourhood pattern to 1. After one step all cells are 1."
+    },
+    {
+      "id": 64,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A configuration c is a fixed point of ECA rule R if R(c) = c. What is the fixed-point configuration for Rule 0?",
+      "choices": {
+        "A": "The all-1s configuration",
+        "B": "The all-0s configuration",
+        "C": "Any alternating 0-1 pattern",
+        "D": "Rule 0 has no fixed points"
+      },
+      "answer": "B",
+      "explanation": "Rule 0 maps all patterns to 0, so only the all-0s configuration satisfies c = R(c). Once the lattice is all-0s, it remains all-0s."
+    },
+    {
+      "id": 65,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Describe Wolfram's four behavioural classes for ECA and give a representative rule number for each class.",
+      "answer": "Class I (Homogeneous): Evolves to a spatially uniform, fixed configuration. E.g., Rule 0 (all-0s fixed point). Class II (Periodic): Evolves to a simple periodic or fixed-point pattern of spatially repetitive structures. E.g., Rule 4. Class III (Chaotic): Produces aperiodic, seemingly random behaviour with sensitive dependence. E.g., Rule 30. Class IV (Complex): Produces complex, long-lived, localised structures that interact in complex ways; associated with computation universality. E.g., Rule 110.",
+      "explanation": "Four Wolfram classes: I=uniform, II=periodic, III=chaotic, IV=complex. Representatives: 0, 4, 30, 110."
+    },
+    {
+      "id": 66,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What does it mean for two ECA rules to be 'equivalent' under the symmetries of reflection and colour-complement? Give an example.",
+      "answer": "Two rules are equivalent if one can be obtained from the other by (1) reflection (mirroring the neighbourhood left-right), (2) colour complementation (swapping 0s and 1s), or (3) a combination of both. For example, Rule 110 and Rule 137 are related by colour complementation: if you invert all cell states in Rule 110's output table you obtain Rule 137. These symmetries reduce the 256 rules to 88 equivalence classes for analysis.",
+      "explanation": "Symmetries (reflection, complement, combined) partition 256 rules into 88 distinct equivalence classes."
+    },
+    {
+      "id": 67,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How many rules are involved in the temporal stochastic ECA model (R1, R2)[τ]?",
+      "choices": {
+        "A": "One rule, applied probabilistically",
+        "B": "Two rules, R1 and R2",
+        "C": "Any number of rules chosen uniformly",
+        "D": "256 rules, one per neighbourhood pattern"
+      },
+      "answer": "B",
+      "explanation": "The model uses exactly two rules: R1 (applied with probability 1-τ) and R2 (applied with probability τ) at each time step."
+    },
+    {
+      "id": 68,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the (R1, R2)[τ] model, at time step t the rule chosen is R2. Which cells update using R2?",
+      "choices": {
+        "A": "Only cells with current state 1",
+        "B": "A randomly chosen half of all cells",
+        "C": "All cells in the lattice",
+        "D": "Only cells whose neighbourhood is (1,1,1)"
+      },
+      "answer": "C",
+      "explanation": "When the global trial selects R2, every cell in the lattice updates using R2. The temporal model does not sub-select cells — all cells update synchronously under the chosen rule."
+    },
+    {
+      "id": 69,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What kind of random variable governs the rule selection at each time step in (R1, R2)[τ]?",
+      "choices": {
+        "A": "Uniform continuous on [0,1]",
+        "B": "Bernoulli with success probability τ",
+        "C": "Binomial(n, τ) where n is the lattice size",
+        "D": "Poisson with rate τ"
+      },
+      "answer": "B",
+      "explanation": "At each step a single Bernoulli(τ) trial is drawn. If the outcome is 1 (prob τ), R2 is used; if 0 (prob 1-τ), R1 is used."
+    },
+    {
+      "id": 70,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under (R1, R2)[τ], the update rule applied at step t is independent of the rule applied at step t-1. What does this mean for the sequence of rule choices?",
+      "choices": {
+        "A": "The sequence forms a Markov chain with memory length 2",
+        "B": "The sequence is an i.i.d. Bernoulli(τ) process — each draw is memoryless",
+        "C": "The sequence is periodic with period 1/τ",
+        "D": "The sequence is deterministically alternating after the first step"
+      },
+      "answer": "B",
+      "explanation": "Because each Bernoulli trial is independent of all past trials, the rule sequence is i.i.d. — an independent and identically distributed Bernoulli(τ) process with no memory."
+    },
+    {
+      "id": 71,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, suppose τ is unknown. A researcher observes only the cell state evolution (not which rule was used). Under what condition is it impossible to identify τ from observations alone?",
+      "choices": {
+        "A": "When τ = 0.5",
+        "B": "When R1 = R2 (both rules produce identical outputs for all neighbourhoods)",
+        "C": "When the lattice has only one cell",
+        "D": "When the initial configuration is all-zeros"
+      },
+      "answer": "B",
+      "explanation": "If R1 and R2 produce identical outputs for every neighbourhood pattern, the cell state evolution is the same regardless of which rule is chosen. Therefore, the observations carry zero information about τ, making identification impossible."
+    },
+    {
+      "id": 72,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the (R1, R2)[τ] model, if τ = 0.7, what is the probability that rule R1 is applied at a given time step? What about R2?",
+      "answer": "P(R1 at step t) = 1 - τ = 1 - 0.7 = 0.3. P(R2 at step t) = τ = 0.7. So rule R1 is applied with probability 0.3 and rule R2 is applied with probability 0.7 at each time step.",
+      "explanation": "Direct substitution: P(R1) = 1-τ = 0.3, P(R2) = τ = 0.7."
+    },
+    {
+      "id": 73,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Describe the temporal stochastic model (R1, R2)[τ] as a stochastic process. What is the sample space, and what random variable is drawn at each time step?",
+      "answer": "At each discrete time step t ∈ {1, 2, 3, ...}, a random variable X_t is drawn independently from the Bernoulli(τ) distribution with sample space {0, 1}. X_t = 1 (prob τ) means all cells follow R2; X_t = 0 (prob 1-τ) means all cells follow R1. The full process is the sequence (X_1, X_2, ..., X_T), which forms an i.i.d. Bernoulli(τ) process over {0,1}^T. The cell configuration at time t+1 is a deterministic function of the current configuration and X_t.",
+      "explanation": "Sample space per step: {0,1} (Bernoulli). The full rule-sequence process is i.i.d. Bernoulli(τ)."
+    },
+    {
+      "id": 74,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the temporal stochastic model at time step t, if cell i uses R2, does cell i+1 also use R2?",
+      "choices": {
+        "A": "No — each cell chooses independently",
+        "B": "Yes — all cells use the same globally-chosen rule at each step",
+        "C": "Only if cell i has state 1",
+        "D": "Only if cells i and i+1 have the same neighbourhood pattern"
+      },
+      "answer": "B",
+      "explanation": "In the temporal model the rule is chosen once globally per step. If the global trial selects R2, every cell — including both i and i+1 — uses R2 at that step. This is the defining difference from the spatial model."
+    },
+    {
+      "id": 75,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which model can produce a configuration at time t+1 where cell i used R1 and its right neighbour cell i+1 used R2?",
+      "choices": {
+        "A": "Only the temporal stochastic model",
+        "B": "Only the spatial stochastic model",
+        "C": "Both models",
+        "D": "Neither model — both rules must always agree"
+      },
+      "answer": "B",
+      "explanation": "In the spatial model, cells choose rules independently, so it is entirely possible for adjacent cells to use different rules. In the temporal model, one global rule applies to all cells, making different rules for adjacent cells impossible."
+    },
+    {
+      "id": 76,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Let C_t be the cell configuration at time t. In the temporal model (R1,R2)[τ], given C_t, is C_{t+1} deterministic?",
+      "choices": {
+        "A": "Yes — because all cells use the same rule, C_{t+1} has only 2 possible values",
+        "B": "No — C_{t+1} can take 2^n values (one per possible cell assignment)",
+        "C": "Yes — C_{t+1} = R1(C_t) always",
+        "D": "No — C_{t+1} is uniformly random over all 2^n configurations"
+      },
+      "answer": "A",
+      "explanation": "Given C_t, the temporal model produces exactly two possible next configurations: R1(C_t) (with prob 1-τ) or R2(C_t) (with prob τ). There is one degree of stochastic freedom — the global rule choice — giving at most 2 possible outcomes regardless of lattice size n."
+    },
+    {
+      "id": 77,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Given C_t, how many possible next configurations C_{t+1} exist in the spatial stochastic model (R1,R2)[λ] for a lattice of n cells?",
+      "choices": {
+        "A": "2",
+        "B": "n",
+        "C": "Up to 2^n (each cell independently picks a rule, giving up to 2^n distinct joint assignments)",
+        "D": "Exactly n+1"
+      },
+      "answer": "C",
+      "explanation": "In the spatial model, each of the n cells independently picks R1 or R2. There are 2^n possible rule-assignment vectors, each potentially yielding a different C_{t+1}. The actual number of distinct C_{t+1} values may be less if some assignments give the same outcome, but the upper bound is 2^n."
+    },
+    {
+      "id": 78,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Define the 'correlation structure' of rule choices across cells at a single time step for both the temporal and spatial stochastic models. How does this difference manifest in the transition probabilities P(C_{t+1} | C_t)?",
+      "answer": "In the temporal model, the rule choices of all n cells at time t are perfectly positively correlated (Pearson correlation = 1): either all use R1 or all use R2. Thus P(C_{t+1} | C_t) = (1-τ)·1[C_{t+1}=R1(C_t)] + τ·1[C_{t+1}=R2(C_t)], with positive probability on at most 2 configurations. In the spatial model, cell rule choices are mutually independent (correlation = 0 between distinct cells). The transition probability is P(C_{t+1} | C_t) = ∏_i [λ·1[c_i(t+1)=R2(nbhd_i)] + (1-λ)·1[c_i(t+1)=R1(nbhd_i)]], allowing up to 2^n configurations in the support. The key manifestation: the temporal model's transition is a two-point distribution; the spatial model's is a product distribution over 2^n points.",
+      "explanation": "Temporal: perfect correlation → 2-point transition. Spatial: independence → product distribution over up to 2^n points."
+    },
+    {
+      "id": 79,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For (R1, R2)[τ] with τ = 0, what is the probability that R2 is used at least once in 10 time steps?",
+      "choices": {
+        "A": "1",
+        "B": "0",
+        "C": "0.5",
+        "D": "Depends on the initial configuration"
+      },
+      "answer": "B",
+      "explanation": "When τ = 0, the probability of R2 at any step is 0. Therefore the probability of R2 appearing in any number of steps is also 0."
+    },
+    {
+      "id": 80,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider (R1, R2)[τ=0.5] run for 2 time steps. What is the probability that the same rule is used at both steps?",
+      "choices": {
+        "A": "0.25",
+        "B": "0.5",
+        "C": "0.75",
+        "D": "1.0"
+      },
+      "answer": "B",
+      "explanation": "P(both R1) = (0.5)^2 = 0.25, P(both R2) = (0.5)^2 = 0.25. P(same rule both steps) = 0.25 + 0.25 = 0.5."
+    },
+    {
+      "id": 81,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "As τ → 0^+, what happens to the variance of the number of R2-steps over T time steps?",
+      "choices": {
+        "A": "It approaches T/4",
+        "B": "It approaches 0",
+        "C": "It approaches T",
+        "D": "It approaches infinity"
+      },
+      "answer": "B",
+      "explanation": "Var(K_T) = T·τ·(1-τ). As τ→0, this approaches T·0·1 = 0. Similarly as τ→1, Var→0. The variance is maximised at τ=0.5 and vanishes at both extremes (deterministic limits)."
+    },
+    {
+      "id": 82,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain what happens to the (R1, R2)[τ] model when τ = 0.5 and R2 is the bitwise complement of R1 (i.e., R2(p) = 1 - R1(p) for every neighbourhood p). What is the expected fraction of 1s in the lattice after many steps?",
+      "answer": "When τ=0.5 and R2 is the complement of R1, at each step the lattice follows R1 with probability 0.5 or its complement with probability 0.5. If at step t the configuration has a fraction f of 1s, applying R1 gives some pattern while applying R2 (the complement) flips every cell's output. Over many steps, the stochastic mixing between a rule and its complement tends to drive the average density of 1s toward 0.5, since any bias toward 1 introduced by R1 is cancelled by R2's complementing action with equal probability. The expected long-run fraction of 1s is approximately 0.5 for most rule pairs related by complementation.",
+      "explanation": "Complement rules at τ=0.5 push average cell density toward 0.5 by symmetry."
+    },
+    {
+      "id": 83,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The noise in (R1, R2)[τ] is called 'temporal'. This means the noise varies across:",
+      "choices": {
+        "A": "Cells, within a single time step",
+        "B": "Time steps, applying uniformly to all cells at each step",
+        "C": "Both cells and time steps independently",
+        "D": "Neither cells nor time steps — the noise is fixed"
+      },
+      "answer": "B",
+      "explanation": "Temporal noise varies across time: each time step independently chooses a rule for the whole lattice. It does not vary spatially (across cells) within a time step."
+    },
+    {
+      "id": 84,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the temporal model, what is the conditional probability P(rule at t+1 = R2 | rule at t = R2)?",
+      "choices": {
+        "A": "τ^2",
+        "B": "τ (independent of previous step)",
+        "C": "1 — once R2 is chosen it persists",
+        "D": "2τ(1-τ)"
+      },
+      "answer": "B",
+      "explanation": "Rule choices are i.i.d. across time steps. Knowing the rule used at step t provides no information about step t+1. Therefore P(R2 at t+1 | R2 at t) = P(R2 at t+1) = τ."
+    },
+    {
+      "id": 85,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the (R1, R2)[τ] model, the rule selected at time t is independent of the cell configuration C_t. What is the term for this property?",
+      "choices": {
+        "A": "Ergodicity",
+        "B": "Noise independence from state (exogenous noise)",
+        "C": "Detailed balance",
+        "D": "Self-organised criticality"
+      },
+      "answer": "B",
+      "explanation": "The rule-selection trial is exogenous: it does not depend on the current lattice configuration C_t. This is called state-independent or exogenous noise. It simplifies analysis since the noise process can be studied independently of the CA dynamics."
+    },
+    {
+      "id": 86,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the temporal stochastic model, all cells are subject to the same rule at each step. What is the term for this type of noise in dynamical systems theory?",
+      "choices": {
+        "A": "Multiplicative noise",
+        "B": "Additive noise",
+        "C": "Common noise (or global noise)",
+        "D": "Idiosyncratic noise"
+      },
+      "answer": "C",
+      "explanation": "Noise that is shared across all components of a system at each moment is called 'common noise' or 'global noise' in dynamical systems. It is the opposite of idiosyncratic (independent per-component) noise. The temporal stochastic model is a classic example of common noise applied to a lattice."
+    },
+    {
+      "id": 87,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why does the temporal stochastic model preserve spatial translation invariance at each time step, even though it is stochastic?",
+      "answer": "Spatial translation invariance means the model looks the same when the lattice is shifted by any number of cells. In the temporal model, at each step every cell follows the same rule (R1 or R2, chosen globally). Since the same rule is applied uniformly to all cells, no cell has a preferred position — the system is spatially homogeneous by construction. The stochasticity only affects which rule is applied (a global, non-spatial event), not the positions of cells. Therefore translation invariance is preserved at every time step and on average.",
+      "explanation": "Global rule choice means no spatial asymmetry is introduced; translation invariance is intact."
+    },
+    {
+      "id": 88,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, each time step is governed by one globally-chosen rule. Explain why this means the model can be viewed as a non-homogeneous deterministic ECA from the perspective of a single realisation (sample path).",
+      "answer": "In a single realisation of the model, the sequence of rules applied (e.g., R1, R2, R1, R1, R2, ...) is a fixed, realised sequence of outcomes from the Bernoulli process. Given this fixed sequence, the evolution of the lattice is entirely deterministic: at step t, a specific rule is applied to all cells. From the perspective of one sample path, the model behaves as a deterministic ECA that changes its rule from step to step — i.e., a non-homogeneous (time-varying) deterministic cellular automaton. The stochasticity manifests only in the ensemble: different realisations produce different rule sequences and thus different trajectories.",
+      "explanation": "Fixing the random rule sequence makes the evolution deterministic — a time-varying (non-homogeneous) ECA. Stochasticity is an ensemble property."
+    },
+    {
+      "id": 89,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "If τ = 0.4 and T = 10, what is the expected number of time steps using rule R2?",
+      "choices": {
+        "A": "6",
+        "B": "4",
+        "C": "0.4",
+        "D": "2.4"
+      },
+      "answer": "B",
+      "explanation": "E[K_T] = T · τ = 10 × 0.4 = 4. On average, 4 out of 10 steps will use rule R2."
+    },
+    {
+      "id": 90,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For the (R1, R2)[τ] model with τ = 0.5 and T = 100, what is the standard deviation of the number of R2-steps?",
+      "choices": {
+        "A": "25",
+        "B": "10",
+        "C": "5",
+        "D": "50"
+      },
+      "answer": "C",
+      "explanation": "Var(K_T) = T·τ·(1-τ) = 100 × 0.5 × 0.5 = 25. Standard deviation = √25 = 5."
+    },
+    {
+      "id": 91,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For (R1, R2)[τ], at which value of τ is the variance of the number of R2-steps maximised?",
+      "choices": {
+        "A": "τ = 0",
+        "B": "τ = 1",
+        "C": "τ = 0.5",
+        "D": "τ = 0.25"
+      },
+      "answer": "C",
+      "explanation": "Var = T·τ·(1-τ) is a concave quadratic in τ, maximised where its derivative is zero: d/dτ[τ(1-τ)] = 1-2τ = 0, giving τ = 0.5."
+    },
+    {
+      "id": 92,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model over T steps, what is the probability that the last step (step T) uses rule R2, given that exactly k of the first T-1 steps used R2?",
+      "choices": {
+        "A": "k / (T-1)",
+        "B": "τ (independent of k)",
+        "C": "(k+1) / T",
+        "D": "τ^k · (1-τ)"
+      },
+      "answer": "B",
+      "explanation": "Because steps are i.i.d. Bernoulli(τ), the rule choice at step T is independent of all previous steps. P(R2 at step T | k R2-steps in first T-1 steps) = τ, regardless of k."
+    },
+    {
+      "id": 93,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "What is the mode of the Binomial(T, τ) distribution for the number of R2-steps, assuming T is large and τ ≠ 0, 1?",
+      "choices": {
+        "A": "floor(T·τ)",
+        "B": "floor((T+1)·τ)",
+        "C": "T·τ exactly",
+        "D": "T·τ·(1-τ)"
+      },
+      "answer": "B",
+      "explanation": "The mode of Binomial(T, τ) is floor((T+1)·τ) (or floor((T+1)·τ) and floor((T+1)·τ) - 1 if (T+1)·τ is an integer). For large T this is approximately T·τ, but the exact formula is floor((T+1)·τ)."
+    },
+    {
+      "id": 94,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For (R1, R2)[τ = 0.25] with T = 20 steps, compute: (a) the expected number of R2-steps, (b) the variance of the number of R2-steps, and (c) the probability that exactly 0 steps use R2.",
+      "answer": "(a) E[K_20] = T·τ = 20 × 0.25 = 5 steps. (b) Var(K_20) = T·τ·(1-τ) = 20 × 0.25 × 0.75 = 3.75. (c) P(K_20 = 0) = C(20,0)·(0.25)^0·(0.75)^20 = (0.75)^20 ≈ 0.00317 (about 0.32%).",
+      "explanation": "Mean = 5, Variance = 3.75, P(K=0) = 0.75^20 ≈ 0.00317."
+    },
+    {
+      "id": 95,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The number of R2-steps K_T in the (R1, R2)[τ] model follows Binomial(T, τ). As T → ∞, what distribution does (K_T - Tτ) / √(Tτ(1-τ)) converge to, and what theorem guarantees this?",
+      "answer": "By the Central Limit Theorem (CLT) for sums of i.i.d. random variables, (K_T - Tτ) / √(Tτ(1-τ)) converges in distribution to the standard normal N(0,1) as T → ∞. This is because K_T = Σ X_t where X_t are i.i.d. Bernoulli(τ) with mean τ and variance τ(1-τ). The CLT applies whenever τ ∈ (0,1), guaranteeing asymptotic normality of the standardised count.",
+      "explanation": "CLT: standardised K_T → N(0,1). Applies for any τ ∈ (0,1)."
+    },
+    {
+      "id": 96,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, define the indicator I_t = 1 if rule R2 is used at step t. Compute E[I_t · I_{t+k}] for k > 0 and use this to show that Cov(I_t, I_{t+k}) = 0.",
+      "answer": "For k > 0: E[I_t · I_{t+k}] = P(R2 at step t AND R2 at step t+k) = P(R2 at t) · P(R2 at t+k) = τ · τ = τ^2, by independence of steps. E[I_t] = τ and E[I_{t+k}] = τ. Therefore Cov(I_t, I_{t+k}) = E[I_t · I_{t+k}] - E[I_t]·E[I_{t+k}] = τ^2 - τ·τ = 0. This confirms that rule choices at different time steps are uncorrelated (and, since they are Bernoulli, also independent). The noise process has zero autocorrelation at all positive lags.",
+      "explanation": "Independence gives E[I_t·I_{t+k}]=τ^2, so Cov = τ^2 - τ^2 = 0. Zero autocorrelation at all lags k>0."
+    },
+    {
+      "id": 97,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which noise model perturbs the ECA by randomly selecting a contiguous block of cells for update at each time step?",
+      "choices": {
+        "A": "α asynchronous noise",
+        "B": "Temporal stochastic noise",
+        "C": "s-skewed noise",
+        "D": "Spatial stochastic noise"
+      },
+      "answer": "C",
+      "explanation": "In s-skewed noise, a random starting cell i is selected and cells i, i+1, ..., i+(s-1) form the updated block. The other models do not use contiguous block selection."
+    },
+    {
+      "id": 98,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the α asynchronous model, if α = 1, the system reduces to:",
+      "choices": {
+        "A": "A system where no cells update",
+        "B": "A standard synchronous ECA",
+        "C": "A temporal stochastic model",
+        "D": "A spatial stochastic model"
+      },
+      "answer": "B",
+      "explanation": "When α=1, every cell updates with probability 1 at each step — meaning all cells always update, recovering the standard synchronous ECA. Similarly τ=0 recovers ECA in the temporal model (but through a different mechanism: rule selection rather than update probability)."
+    },
+    {
+      "id": 99,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The s-skewed and α models are described as 'breaking the global clock'. The spatial and temporal stochastic models do NOT break the global clock. What do the stochastic models perturb instead?",
+      "choices": {
+        "A": "The neighbourhood radius",
+        "B": "The rule applied to cells",
+        "C": "The state space of cells",
+        "D": "The lattice size"
+      },
+      "answer": "B",
+      "explanation": "Both spatial (λ) and temporal (τ) stochastic models maintain synchronous update of all cells (preserving the global clock). The perturbation is in rule selection: cells may follow R1 or R2, rather than a single fixed rule R."
+    },
+    {
+      "id": 100,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In which of the four noise models does the number of cells updated per time step remain exactly n (the full lattice size) with certainty?",
+      "choices": {
+        "A": "α noise only",
+        "B": "s-skewed noise only",
+        "C": "Both spatial and temporal stochastic models",
+        "D": "All four models"
+      },
+      "answer": "C",
+      "explanation": "In spatial and temporal stochastic models, all n cells are always updated at each step (the rule is perturbed, not the update schedule). In α noise, each cell updates with probability α < 1, so fewer than n cells typically update. In s-skewed, exactly s cells update (s < n in general)."
+    },
+    {
+      "id": 101,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose you observe an ECA evolving over time and you notice that at some time steps, adjacent cells clearly use different rules. Which noise model is EXCLUDED by this observation?",
+      "choices": {
+        "A": "Spatial stochastic noise",
+        "B": "Temporal stochastic noise",
+        "C": "α asynchronous noise",
+        "D": "s-skewed noise"
+      },
+      "answer": "B",
+      "explanation": "In the temporal model, all cells use the same rule at every time step. If adjacent cells are observed to use different rules at the same step, this is impossible under temporal stochastic noise but possible under spatial stochastic noise. Therefore temporal stochastic noise is excluded."
+    },
+    {
+      "id": 102,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "List the four ECA noise models covered in this study and state the noise parameter associated with each.",
+      "answer": "1. α (alpha) asynchronous noise: parameter α ∈ [0,1], the probability each cell updates per step. 2. s-skewed noise: parameter s ∈ [1,n], the block size of cells updated per step. 3. Spatial stochastic noise: parameter λ ∈ [0,1], the per-cell probability of following rule R2. 4. Temporal stochastic noise: parameter τ ∈ [0,1], the per-time-step probability of the entire lattice following rule R2.",
+      "explanation": "Four models: α (update prob), s (block size), λ (per-cell rule prob), τ (global rule prob per step)."
+    },
+    {
+      "id": 103,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider the α model with α=1 and the temporal stochastic model with τ=0. Both reduce to a standard ECA. In what precise sense are their 'noiseless limits' achieved through different mechanisms?",
+      "answer": "In the α model, α=1 eliminates noise by ensuring every cell always updates — the update schedule perturbation vanishes because no cell is ever idle. The system is noiseless because the stochasticity in 'which cells update' disappears. In the temporal model, τ=0 eliminates noise by ensuring R2 is never selected — the rule perturbation vanishes because only R1 is ever applied. The system is noiseless because the stochasticity in 'which rule is used' disappears. The mechanisms are: α=1 removes update-schedule noise; τ=0 removes rule-selection noise. Both yield deterministic ECA, but through entirely different structural pathways.",
+      "explanation": "α=1: no cells idle → update-schedule noise gone. τ=0: R2 never chosen → rule-selection noise gone. Different mechanisms, same deterministic result."
+    },
+    {
+      "id": 104,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "As τ increases from 0 to 1, the temporal stochastic model transitions from being dominated by rule R1 to being dominated by rule R2. What kind of transition is this called?",
+      "choices": {
+        "A": "A phase transition in the noise parameter",
+        "B": "An eigenvalue crossing",
+        "C": "A bifurcation in cell states",
+        "D": "A boundary condition change"
+      },
+      "answer": "A",
+      "explanation": "As τ varies continuously from 0 to 1, the long-run behaviour of the system transitions from R1-dominated to R2-dominated. If this transition is abrupt (discontinuous) at some τ*, it is a phase transition. Studying these transitions is a key motivation for defining the noise parameter."
+    },
+    {
+      "id": 105,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Suppose R1 is the identity rule (every cell copies its own state: R1(l,c,r) = c) and R2 is Rule 30 (chaotic). What is the long-run behaviour of (R1, R2)[τ] for any τ > 0?",
+      "choices": {
+        "A": "The system freezes because R1 dominates",
+        "B": "The system behaves chaotically because R2 (Rule 30) disrupts any frozen patterns at rate τ",
+        "C": "The system alternates periodically between frozen and chaotic phases",
+        "D": "The system converges to all-zeros"
+      },
+      "answer": "B",
+      "explanation": "Even for small τ > 0, Rule 30's chaotic influence disrupts any stable pattern produced by R1. At any step (with probability τ), Rule 30 is applied, scrambling the configuration. No frozen state can persist indefinitely since Rule 30 steps intervene with positive probability. The long-run dynamics are chaotic for any τ > 0."
+    },
+    {
+      "id": 106,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under (R1, R2)[τ], both R1 and R2 have a common fixed point c* (i.e., R1(c*)=c* and R2(c*)=c*). If the system starts at c*, what happens for all τ ∈ [0,1]?",
+      "choices": {
+        "A": "The system immediately leaves c* for any τ > 0",
+        "B": "The system stays at c* with probability 1 forever, regardless of τ",
+        "C": "The system stays at c* only when τ = 0 or τ = 1",
+        "D": "The system oscillates between c* and its complement"
+      },
+      "answer": "B",
+      "explanation": "If c* is a fixed point of both R1 and R2, then applying either rule to c* yields c*. Since at every step one of R1 or R2 is applied (both preserving c*), the system remains at c* forever with probability 1, regardless of τ. Common fixed points are absorbing states for any mixture."
+    },
+    {
+      "id": 107,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Define the concept of a 'density' of 1s in an ECA configuration. How might the long-run average density vary with τ in a (R1, R2)[τ] model?",
+      "answer": "The density ρ(t) of 1s at time t is the fraction of cells with state 1: ρ(t) = (1/n)·Σ_i c_i(t), where n is the lattice size. In the (R1, R2)[τ] model, the long-run average density E[ρ] depends on τ. For τ=0, E[ρ] converges to the attractor density of R1; for τ=1, it converges to the attractor density of R2. For intermediate τ, E[ρ] varies continuously with τ and may be approximately (1-τ)·ρ(R1) + τ·ρ(R2) for weakly coupled dynamics, or may exhibit non-linear behaviour (including phase transitions) for rules with very different attractors.",
+      "explanation": "ρ(t) = fraction of 1s. Long-run E[ρ] interpolates between R1 and R2 attractor densities as τ varies from 0 to 1."
+    },
+    {
+      "id": 108,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "What is meant by a 'phase transition' in the context of (R1, R2)[τ], and why is it important to study the behaviour of the system as a function of τ?",
+      "answer": "A phase transition in (R1, R2)[τ] refers to a sudden, qualitative change in the long-run macroscopic behaviour of the system (e.g., density of 1s, periodicity, entropy) as τ crosses some critical value τ*. For τ < τ*, the system may exhibit one regime (e.g., ordered, periodic) and for τ > τ*, a qualitatively different regime (e.g., disordered, chaotic). Studying behaviour as a function of τ is important because: (1) it reveals how robust a rule's behaviour is to perturbation by another rule; (2) it characterises the mixing properties of the two rules; (3) it can uncover critical phenomena analogous to phase transitions in statistical physics; (4) it provides a continuous parameterisation between two extremes that facilitates theoretical analysis.",
+      "explanation": "Phase transition: abrupt qualitative change at critical τ*. Studying τ reveals robustness, mixing, and critical phenomena."
+    },
+    {
+      "id": 109,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does the notation (R1, R2)[τ = 0.3] unambiguously specify?",
+      "choices": {
+        "A": "R1 is applied to 30% of cells and R2 to the rest at each step",
+        "B": "At each time step, the entire lattice follows R1 with probability 0.7 and R2 with probability 0.3",
+        "C": "The system runs for 0.3 time steps",
+        "D": "R1 is applied for the first 30% of time steps and R2 for the remaining 70%"
+      },
+      "answer": "B",
+      "explanation": "(R1, R2)[τ=0.3] means: at each step, draw Bernoulli(0.3); if 1 → all cells use R2 (prob 0.3); if 0 → all cells use R1 (prob 0.7)."
+    },
+    {
+      "id": 110,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A researcher writes (Rule 110, Rule 30)[τ = 0.1]. Which rule is applied more frequently in expectation?",
+      "choices": {
+        "A": "Rule 30, because it is the second rule listed",
+        "B": "Rule 110, because P(R1) = 1 - 0.1 = 0.9 > P(R2) = 0.1",
+        "C": "Both equally, since τ is symmetric",
+        "D": "Rule 30, because 30 < 110"
+      },
+      "answer": "B",
+      "explanation": "R1 = Rule 110 is applied with probability 1-τ = 0.9, and R2 = Rule 30 with probability τ = 0.1. So Rule 110 is used 9 times more often in expectation."
+    },
+    {
+      "id": 111,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The notation (R1, R2)[τ] uses square brackets for τ. What does this bracket convention signal?",
+      "choices": {
+        "A": "τ is an integer",
+        "B": "τ is the noise/mixing rate parameter of the model, distinguished from the rule pair in parentheses",
+        "C": "τ is applied after R1 and R2 have both been applied",
+        "D": "The model is deterministic"
+      },
+      "answer": "B",
+      "explanation": "The convention (R1, R2)[τ] uses parentheses for the rule pair and square brackets for the noise rate, clearly separating the structural components (rules) from the stochastic parameter (mixing rate)."
+    },
+    {
+      "id": 112,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What are the three components encoded in the notation (R1, R2)[τ] for the temporal stochastic model? Briefly explain each.",
+      "answer": "1. R1: The primary (base) ECA rule, applied to all cells with probability 1-τ at each time step. 2. R2: The secondary (noise) ECA rule, applied to all cells with probability τ at each time step. 3. τ: The mixing noise rate, a real number in [0,1] specifying the probability that the entire lattice follows rule R2 at any given time step (and 1-τ the probability of R1).",
+      "explanation": "Components: R1 (base rule, prob 1-τ), R2 (noise rule, prob τ), τ (mixing rate ∈ [0,1])."
+    },
+    {
+      "id": 113,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Could the temporal stochastic model be generalised to three rules (R1, R2, R3) with probabilities (1-τ1-τ2, τ1, τ2)? How would the notation and the Bernoulli framework change?",
+      "answer": "Yes. The model could be generalised to (R1, R2, R3)[τ1, τ2] where at each step: R1 is chosen with probability 1-τ1-τ2, R2 with probability τ1, and R3 with probability τ2, subject to 0 ≤ τ1, τ2 and τ1+τ2 ≤ 1. The Bernoulli framework generalises to a Categorical (multinomial with T=1) distribution: instead of a single Bernoulli trial, a single Categorical({R1: 1-τ1-τ2, R2: τ1, R3: τ2}) trial is drawn per step. The rule sequence would still be i.i.d., and the count of steps using each rule would follow a Multinomial(T, [1-τ1-τ2, τ1, τ2]) distribution. All correlation properties (globally shared rule per step) are preserved.",
+      "explanation": "Three-rule extension: Categorical trial per step; Multinomial count distribution; same global-rule-per-step structure."
+    },
+    {
+      "id": 114,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "A temporal stochastic ECA (R1, R2)[τ] is run starting from a fixed initial configuration. Two independent runs use the same τ but different random seeds. Will they produce the same space-time diagram?",
+      "choices": {
+        "A": "Yes — the model is deterministic given τ",
+        "B": "Not necessarily — different rule sequences lead to different trajectories",
+        "C": "Yes — all runs converge to the same attractor",
+        "D": "Only if τ = 0 or τ = 1"
+      },
+      "answer": "B",
+      "explanation": "Different random seeds produce different realisations of the Bernoulli rule sequence. Different rule sequences lead to different space-time diagrams. Only at τ=0 or τ=1 is the model deterministic (fixed rule), guaranteeing identical trajectories."
+    },
+    {
+      "id": 115,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Suppose R1 is a quiescent rule (the all-0s configuration is a fixed point) and R2 is not. Starting from the all-0s configuration under (R1, R2)[τ] with τ > 0, can the system ever leave the all-0s configuration?",
+      "choices": {
+        "A": "No — if the all-0s is a fixed point of R1, it stays there forever",
+        "B": "Yes — if R2 maps the all-0s configuration to a non-zero configuration, R2 steps can displace the system",
+        "C": "Only if τ > 0.5",
+        "D": "No — the all-0s is always a fixed point of any ECA rule"
+      },
+      "answer": "B",
+      "explanation": "The all-0s configuration is preserved by R1 but not necessarily by R2. With probability τ > 0 at each step, R2 is applied. If R2 maps the all-0s configuration to a non-zero state (which is possible for rules like Rule 30 where R(0,0,0) = 0 but for others R(0,0,0) may be 1, e.g. Rule 255), the system can escape. Whether it actually does depends on R2's output for the (0,0,0) neighbourhood."
+    },
+    {
+      "id": 116,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], suppose R1 maps every configuration to the same fixed configuration c* (R1 is 'contracting'), and R2 is chaotic. For very small τ, what is the qualitative long-run behaviour?",
+      "choices": {
+        "A": "The system stays close to c* most of the time, with occasional R2-driven excursions",
+        "B": "The chaotic R2 dominates for any τ > 0",
+        "C": "The system converges to c* for all τ ≤ 0.5",
+        "D": "The system is periodic with period 1/τ"
+      },
+      "answer": "A",
+      "explanation": "For very small τ, R2-steps are rare. After each R2 excursion, R1 rapidly contracts the system back to c*. The long-run behaviour is: most time near c*, punctuated by infrequent R2-driven deviations. The duration of excursions and return times depend on τ and the contraction speed of R1."
+    },
+    {
+      "id": 117,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Is the temporal stochastic model (R1, R2)[τ] a Markov chain over lattice configurations? Justify your answer.",
+      "answer": "Yes. The temporal stochastic model is a Markov chain over the state space of all 2^n lattice configurations. The next configuration C_{t+1} depends only on C_t (through the application of either R1 or R2) and the independent random trial X_t ~ Bernoulli(τ). No history before time t is needed. Therefore the model satisfies the Markov property: P(C_{t+1} | C_t, C_{t-1}, ..., C_0) = P(C_{t+1} | C_t). The state space is finite (2^n states), and the transition probabilities are stationary (time-homogeneous, since τ is constant).",
+      "explanation": "Markov property holds: C_{t+1} depends only on C_t and the independent Bernoulli(τ) draw. Time-homogeneous, finite state space."
+    },
+    {
+      "id": 118,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider the (R1, R2)[τ] model on a lattice of n=1 cell (single cell). What are the possible configurations, and how does the model simplify?",
+      "answer": "For n=1, the lattice has one cell with state 0 or 1. The neighbourhood of the single cell is (c_0, c_0, c_0) under periodic boundary conditions (all three neighbours are the same cell). The configuration space is {0, 1}. At each step: with prob 1-τ, the cell updates using R1(c,c,c); with prob τ, using R2(c,c,c). Since R1 and R2 are ECA rules, R1(0,0,0) ∈ {0,1} and R1(1,1,1) ∈ {0,1}, and similarly for R2. The model reduces to a 2-state Markov chain with transition probabilities determined by R1(c,c,c) and R2(c,c,c). For example, if both R1(0,0,0)=0 and R2(0,0,0)=0, then state 0 is absorbing.",
+      "explanation": "n=1: 2-state Markov chain; neighbourhood is (c,c,c); transitions from each state are weighted mixtures of R1 and R2 outputs."
+    },
+    {
+      "id": 119,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "An experimenter observes a space-time diagram and wants to determine if the model is temporal stochastic (R1,R2)[τ] or spatial stochastic (R1,R2)[λ]. What key feature in the diagram distinguishes them?",
+      "choices": {
+        "A": "The number of distinct configurations seen",
+        "B": "Whether all cells in a given row (time step) use the same rule or potentially different rules",
+        "C": "The speed of pattern propagation",
+        "D": "The colour of 1-cells vs 0-cells"
+      },
+      "answer": "B",
+      "explanation": "In the temporal model, all cells in a given row (time step) use the same rule. In the spatial model, cells in the same row may use different rules. If you can infer from the diagram that some cells used R1 and others used R2 at the same step, this identifies the spatial model. If all cells always appear to use the same rule at each step, this points to the temporal model."
+    },
+    {
+      "id": 120,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "You observe 100 time steps of a (R1, R2)[τ] system and count 45 steps where the lattice evolution matches R2 and 55 where it matches R1. What is your best estimate of τ?",
+      "choices": {
+        "A": "0.55",
+        "B": "0.45",
+        "C": "0.5",
+        "D": "Cannot be estimated"
+      },
+      "answer": "B",
+      "explanation": "The MLE of τ is the sample proportion of R2 steps: τ̂ = 45/100 = 0.45."
+    },
+    {
+      "id": 121,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose only cell states (not rule labels) are observed for the (R1, R2)[τ] model. Under what condition is τ identifiable from the cell state observations?",
+      "choices": {
+        "A": "Always, since τ affects the distribution of states",
+        "B": "Only when R1 and R2 disagree on at least one neighbourhood pattern that appears with positive probability in the dynamics",
+        "C": "Never — τ cannot be recovered from cell states alone",
+        "D": "Only when τ = 0.5"
+      },
+      "answer": "B",
+      "explanation": "If R1 and R2 disagree on some neighbourhood pattern P that occurs with positive probability, the probability of certain transitions changes with τ. This variation allows τ to be identified from transition statistics. If R1 = R2 everywhere, or if R1 and R2 agree on all patterns reachable from the initial configuration, τ is unidentifiable from cell states alone."
+    },
+    {
+      "id": 122,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain how you could, in principle, determine whether an observed ECA is running under temporal stochastic noise or spatial stochastic noise, given access to the full space-time diagram and knowledge of R1 and R2.",
+      "answer": "Given R1 and R2, you can determine, for each cell i at each time t, which rule its neighbourhood update is consistent with (since R1 and R2 may give different outputs for some neighbourhood patterns). For each time step t, check whether all cells whose neighbourhood patterns distinguish R1 from R2 are consistent with the same rule choice. Under temporal noise, all distinguishable cells at step t must agree on the same rule. Under spatial noise, different cells may be consistent with different rules at the same step. If, for every time step, all distinguishable cells agree on a single rule, the evidence supports temporal noise. If any step shows cells consistent with different rules, it supports spatial noise (or misidentification).",
+      "explanation": "Check intra-step rule consistency: temporal → all cells same rule per step; spatial → cells may differ. Use distinguishing neighbourhood patterns to infer the rule at each cell-step."
+    },
+    {
+      "id": 123,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, suppose R1 and R2 agree on the output for neighbourhood pattern (1,0,1) but disagree on (0,1,0). At time t, all cells with neighbourhood (1,0,1) are observed to produce state 1. What can be inferred about the rule used at step t?",
+      "choices": {
+        "A": "R1 was used, since R1 gives 1 for (1,0,1)",
+        "B": "Nothing — the observation is consistent with both R1 and R2 for this neighbourhood",
+        "C": "R2 was used, since it is the noise rule",
+        "D": "The rule cannot be R1 or R2"
+      },
+      "answer": "B",
+      "explanation": "Since R1 and R2 agree on (1,0,1), observing the correct output for this neighbourhood is consistent with both rules. Only cells with neighbourhood (0,1,0) — where R1 and R2 disagree — can distinguish which rule was used at step t."
+    },
+    {
+      "id": 124,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Define the 'distinguishing set' of a rule pair (R1, R2) as the set of neighbourhood patterns on which R1 and R2 produce different outputs. How does the size of the distinguishing set affect the ease of estimating τ from observations?",
+      "answer": "The distinguishing set D(R1, R2) = {P ∈ {0,1}^3 : R1(P) ≠ R2(P)} contains the neighbourhood patterns that are informative about which rule was applied. If D is large (many distinguishing patterns), then at each time step many cells provide evidence about the rule choice, making τ easier to estimate with fewer time steps. If D is small (few distinguishing patterns), only cells whose neighbourhood falls in D are informative; the effective sample size per step is smaller, requiring more time steps for accurate estimation. If D is empty (R1 = R2), τ is completely unidentifiable. The Fisher information about τ per time step is approximately proportional to the probability that at least one distinguishing pattern occurs at that step.",
+      "explanation": "Larger D → more informative cells per step → easier τ estimation. D = ∅ → unidentifiable. Fisher information scales with P(D encountered)."
+    },
+    {
+      "id": 125,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the (R1, R2)[τ] Markov chain over configurations, what is the size of the state space for a lattice of n cells?",
+      "choices": {
+        "A": "n",
+        "B": "2n",
+        "C": "2^n",
+        "D": "n^2"
+      },
+      "answer": "C",
+      "explanation": "Each cell is binary (0 or 1), so n cells give 2^n possible configurations. The Markov chain has 2^n states."
+    },
+    {
+      "id": 126,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For the (R1, R2)[τ] Markov chain (0 < τ < 1), what is the transition probability P(C_{t+1} = R1(C_t) | C_t)?",
+      "choices": {
+        "A": "τ",
+        "B": "1 - τ",
+        "C": "τ·(1-τ)",
+        "D": "1/2"
+      },
+      "answer": "B",
+      "explanation": "Given C_t, the next configuration is R1(C_t) with probability 1-τ (when R1 is chosen) or R2(C_t) with probability τ. So P(C_{t+1}=R1(C_t)|C_t) = 1-τ, provided R1(C_t) ≠ R2(C_t)."
+    },
+    {
+      "id": 127,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under what condition does the (R1, R2)[τ] Markov chain have a self-loop at configuration C (i.e., P(C_{t+1}=C | C_t=C) > 0)?",
+      "choices": {
+        "A": "When τ = 0",
+        "B": "When R1(C) = C or R2(C) = C (C is a fixed point of at least one rule)",
+        "C": "Never — the system always moves to a new configuration",
+        "D": "When C is the all-zeros configuration only"
+      },
+      "answer": "B",
+      "explanation": "P(C_{t+1}=C | C_t=C) = (1-τ)·1[R1(C)=C] + τ·1[R2(C)=C]. This is positive whenever C is a fixed point of R1 (contributing prob 1-τ) or R2 (contributing prob τ) or both."
+    },
+    {
+      "id": 128,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose the (R1, R2)[τ] Markov chain with 0 < τ < 1 has a unique stationary distribution π. What property of the chain guarantees existence and uniqueness of π?",
+      "choices": {
+        "A": "The chain is reversible",
+        "B": "The chain is finite, irreducible, and aperiodic",
+        "C": "τ = 0.5 exactly",
+        "D": "Both R1 and R2 are bijections on the configuration space"
+      },
+      "answer": "B",
+      "explanation": "By the Perron-Frobenius theorem, a finite Markov chain has a unique stationary distribution if and only if it is irreducible (every state reachable from every other) and aperiodic (no periodic cycles). Whether these hold for a specific (R1, R2)[τ] depends on R1 and R2, but for generic pairs with 0 < τ < 1, the positive probability of both rules creates enough connectivity for irreducibility and aperiodicity."
+    },
+    {
+      "id": 129,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is an 'invariant measure' (stationary distribution) for the (R1, R2)[τ] Markov chain? Write down the balance equation it must satisfy.",
+      "answer": "A stationary distribution π is a probability distribution over the 2^n configurations such that if the system is started from π, it remains distributed as π at all future times. The balance equation is: π(C') = Σ_{C} π(C) · P(C_{t+1}=C' | C_t=C) for all configurations C'. Substituting the temporal stochastic transition probabilities: π(C') = Σ_{C: R1(C)=C'} (1-τ)·π(C) + Σ_{C: R2(C)=C'} τ·π(C). In matrix form: π = π · M, where M is the 2^n × 2^n transition matrix.",
+      "explanation": "Stationary distribution satisfies π = πM, where M_CC' = (1-τ)·1[R1(C)=C'] + τ·1[R2(C)=C']."
+    },
+    {
+      "id": 130,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under the (R1, R2)[τ] model, suppose R1 and R2 are both bijections (permutations) on the set of 2^n configurations. What can you say about the stationary distribution of the resulting Markov chain?",
+      "answer": "If R1 and R2 are both bijections (permutations) on the configuration space {0,1}^n, then from any configuration C, the next configuration is either R1(C) or R2(C) — both distinct configurations (since permutations are injective). The transition matrix M has exactly one non-zero entry per row (probability 1-τ to R1(C) and probability τ to R2(C)). If the group generated by R1 and R2 acts transitively on the configuration space (i.e., you can reach any configuration from any other), then the uniform distribution π(C) = 1/2^n is a stationary distribution, since a doubly stochastic matrix has the uniform distribution as a stationary measure. In general, for permutation rules the long-run behaviour depends on the cycle structure of R1 and R2.",
+      "explanation": "Bijective rules → doubly stochastic M → uniform distribution is stationary if the generated group is transitive."
+    },
+    {
+      "id": 131,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which quantity measures the uncertainty in the rule choice at each time step of the (R1, R2)[τ] model?",
+      "choices": {
+        "A": "The variance T·τ·(1-τ)",
+        "B": "The binary entropy H(τ) = -τ·log₂(τ) - (1-τ)·log₂(1-τ)",
+        "C": "The mean T·τ",
+        "D": "The Euclidean distance |R1 - R2|"
+      },
+      "answer": "B",
+      "explanation": "The binary entropy H(τ) measures the uncertainty (in bits) in a single Bernoulli(τ) trial. At τ=0 or τ=1, H=0 (no uncertainty; rule is deterministic). At τ=0.5, H=1 bit (maximum uncertainty, fair coin)."
+    },
+    {
+      "id": 132,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At what value of τ is the binary entropy H(τ) = -τ·log₂(τ) - (1-τ)·log₂(1-τ) maximised?",
+      "choices": {
+        "A": "τ = 0",
+        "B": "τ = 1",
+        "C": "τ = 0.5",
+        "D": "τ = 0.25"
+      },
+      "answer": "C",
+      "explanation": "H(τ) is maximised at τ=0.5, giving H(0.5) = 1 bit. This is the point of maximum uncertainty about which rule will be chosen."
+    },
+    {
+      "id": 133,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Over T time steps, the total entropy of the rule-sequence in the (R1, R2)[τ] model (treating each step independently) is:",
+      "choices": {
+        "A": "H(τ)",
+        "B": "T · H(τ)",
+        "C": "H(τ)^T",
+        "D": "T^2 · H(τ)"
+      },
+      "answer": "B",
+      "explanation": "Since rule choices are i.i.d., the joint entropy of T independent Bernoulli(τ) trials is T·H(τ) by the chain rule of entropy for independent random variables."
+    },
+    {
+      "id": 134,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compute H(τ) for τ = 0, τ = 0.5, and τ = 1. What do these values tell you about the noise in the (R1, R2)[τ] model at these parameter values?",
+      "answer": "H(0) = -(0·log₂0 + 1·log₂1) = 0 bits. At τ=0, the rule is always R1 — no uncertainty in the noise. H(0.5) = -(0.5·log₂0.5 + 0.5·log₂0.5) = -(0.5·(-1) + 0.5·(-1)) = 1 bit. At τ=0.5, maximum uncertainty — the rule flip is like a fair coin. H(1) = -(1·log₂1 + 0·log₂0) = 0 bits. At τ=1, the rule is always R2 — no uncertainty. These values confirm that both boundary cases are deterministic (H=0) and the model has maximum stochasticity at τ=0.5 (H=1 bit per step).",
+      "explanation": "H(0)=0, H(0.5)=1 bit, H(1)=0. Entropy peaks at τ=0.5 (maximum noise) and vanishes at boundaries (deterministic)."
+    },
+    {
+      "id": 135,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In information theory, the Kullback-Leibler (KL) divergence D_KL(τ1 || τ2) between two Bernoulli distributions Bernoulli(τ1) and Bernoulli(τ2) measures how different two temporal stochastic models are. Write the formula for D_KL and explain what it means in the context of model comparison.",
+      "answer": "D_KL(τ1 || τ2) = τ1·log(τ1/τ2) + (1-τ1)·log((1-τ1)/(1-τ2)). In the context of temporal stochastic models, D_KL measures the information gained per time step when distinguishing a model with noise rate τ1 from one with rate τ2. A large KL divergence means the rule-selection distributions are very different and the models are easily distinguished from observations. D_KL = 0 only when τ1 = τ2 (identical models). It is asymmetric: D_KL(τ1||τ2) ≠ D_KL(τ2||τ1) in general. The symmetric version (Jensen-Shannon divergence) gives a metric between models.",
+      "explanation": "D_KL(τ1||τ2) = τ1·log(τ1/τ2) + (1-τ1)·log((1-τ1)/(1-τ2)). Measures distinguishability per step; 0 iff τ1=τ2."
+    },
+    {
+      "id": 136,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] model, what is the mutual information between the rule choice at step t and the rule choice at step t+1?",
+      "choices": {
+        "A": "H(τ)",
+        "B": "0 (zero), because the steps are independent",
+        "C": "τ·(1-τ)",
+        "D": "2·H(τ)"
+      },
+      "answer": "B",
+      "explanation": "Mutual information I(X_t; X_{t+1}) = H(X_t) - H(X_t | X_{t+1}). Since X_t and X_{t+1} are independent, H(X_t | X_{t+1}) = H(X_t), so I = 0. Independence of rule choices across steps means they carry no mutual information."
+    },
+    {
+      "id": 137,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Suppose τ is not a fixed constant but varies over time: τ_t = f(t) for some function f. What is this generalisation called?",
+      "choices": {
+        "A": "Spatially heterogeneous noise",
+        "B": "Time-varying (non-stationary) temporal stochastic noise",
+        "C": "s-skewed noise",
+        "D": "Multiplicative noise"
+      },
+      "answer": "B",
+      "explanation": "When τ varies with time (τ_t), the rule-selection probability changes over time steps. This is called time-varying or non-stationary temporal stochastic noise, in contrast to the standard model where τ is fixed (stationary)."
+    },
+    {
+      "id": 138,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Could the temporal stochastic model be extended so that the selected rule persists for a geometrically distributed number of steps before switching? What process would this resemble?",
+      "choices": {
+        "A": "The s-skewed model",
+        "B": "A hidden Markov model or regime-switching process",
+        "C": "The α asynchronous model",
+        "D": "A deterministic CA with period 1/τ"
+      },
+      "answer": "B",
+      "explanation": "If the rule persists for a Geometric(p) number of steps before switching, the system alternates between R1 and R2 regimes with random durations — a two-state Markov-switching (hidden Markov) process. This is distinct from the standard temporal model where the rule is redrawn independently every step."
+    },
+    {
+      "id": 139,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the standard (R1, R2)[τ] model, the rule drawn at step t is independent of the cell configuration. What would a 'state-dependent' temporal stochastic model look like?",
+      "choices": {
+        "A": "τ is fixed but the lattice size changes with the configuration",
+        "B": "The probability of using R2 at step t is τ(C_t), a function of the current configuration",
+        "C": "All cells independently choose τ at each step",
+        "D": "The neighbourhood of each cell changes with the configuration"
+      },
+      "answer": "B",
+      "explanation": "A state-dependent generalisation would let τ(C_t) vary with the configuration: when the system is in certain configurations, R2 is more or less likely. This creates feedback between dynamics and noise, unlike the standard model where τ is fixed and independent of C_t."
+    },
+    {
+      "id": 140,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Describe a natural way to define a 'continuous-time' analogue of the (R1, R2)[τ] temporal stochastic model. What stochastic process would govern rule switching?",
+      "answer": "In a continuous-time analogue, rule switching occurs as a continuous-time Poisson process. The system follows R1 continuously, and at random times (governed by an exponential distribution with rate λ), it switches to R2, then switches back to R1 after another exponential time. The alternation between R1 and R2 forms a two-state continuous-time Markov chain (telegraph process). The long-run fraction of time in R2 is λ2/(λ1+λ2) where λ1 is the R2→R1 switching rate and λ2 the R1→R2 rate; setting this equal to τ connects the continuous and discrete models.",
+      "explanation": "Continuous-time analogue: Poisson rule-switching (telegraph process). Long-run R2 fraction = λ2/(λ1+λ2) = τ."
+    },
+    {
+      "id": 141,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "How would you combine the temporal stochastic noise (τ) and the α asynchronous noise into a single hybrid model? Describe the update procedure and identify the parameters.",
+      "answer": "A hybrid model would have two sources of noise: (1) at each time step, independently draw X_t ~ Bernoulli(τ) to select the rule (R1 or R2) — temporal noise; (2) independently for each cell i, draw Y_{i,t} ~ Bernoulli(α) to decide if cell i updates — asynchronous noise. The update rule is: if Y_{i,t}=1, cell i updates using the globally chosen rule (R1 if X_t=0, R2 if X_t=1); if Y_{i,t}=0, cell i keeps its current state. Parameters: τ ∈ [0,1] (rule mixing) and α ∈ [0,1] (update probability). Special cases: τ=0 → pure α asynchronous under R1; α=1 → pure temporal stochastic (R1,R2)[τ]. The two noise sources are independent.",
+      "explanation": "Hybrid: global Bernoulli(τ) rule selection + independent Bernoulli(α) per-cell update. Parameters: τ and α. α=1 → pure temporal; τ=0 → pure α-async."
+    },
+    {
+      "id": 142,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The (R1, R2)[τ] model defines a Markov chain over lattice configurations. Given a fixed C_t, how many distinct values can C_{t+1} take?",
+      "choices": {
+        "A": "At most 2 (either R1(C_t) or R2(C_t))",
+        "B": "Exactly n (one per cell)",
+        "C": "Exactly 2^n",
+        "D": "A number that depends on τ"
+      },
+      "answer": "A",
+      "explanation": "Given C_t, the next configuration is either R1(C_t) (with prob 1-τ) or R2(C_t) (with prob τ). There are at most 2 distinct values (exactly 1 if R1(C_t) = R2(C_t), exactly 2 otherwise)."
+    },
+    {
+      "id": 143,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the (R1, R2)[τ] Markov chain, if R1(C) = R2(C) for all configurations C (the rules are identical), what is the nature of the chain?",
+      "choices": {
+        "A": "A random walk over all 2^n configurations",
+        "B": "A deterministic sequence — same as a standard ECA",
+        "C": "A chain that stays at every configuration with probability 1",
+        "D": "A chain with 2^n absorbing states"
+      },
+      "answer": "B",
+      "explanation": "If R1 = R2, then regardless of τ, C_{t+1} = R1(C_t) = R2(C_t) with certainty. The randomness in rule selection has no effect, and the chain is identical to a deterministic ECA."
+    },
+    {
+      "id": 144,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Define 'ergodicity' for the (R1, R2)[τ] Markov chain and explain its relevance to computing long-run time averages.",
+      "answer": "A Markov chain is ergodic if it is irreducible (every state reachable from every other) and aperiodic (no deterministic cycles). For an ergodic chain, the ergodic theorem guarantees that time averages converge to ensemble averages under the unique stationary distribution π: (1/T)·Σ_{t=1}^T f(C_t) → E_π[f(C)] almost surely as T → ∞, for any function f. In the (R1,R2)[τ] context, ergodicity means that long-run averages (e.g., average density of 1s, average rule usage) are independent of the initial configuration and equal to the expectation under π. Whether a specific (R1,R2)[τ] chain is ergodic depends on the structure of R1 and R2, but for generic rule pairs with 0 < τ < 1 ergodicity often holds.",
+      "explanation": "Ergodic = irreducible + aperiodic → time averages converge to π-averages. Relevant for computing long-run statistics."
+    },
+    {
+      "id": 145,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is the probability of observing exactly 1 step using R2 out of T=5 steps in (R1,R2)[τ=0.2]?",
+      "choices": {
+        "A": "5 × 0.2 × 0.8^4",
+        "B": "0.2 × 0.8^4",
+        "C": "0.2^1 × 0.8^4",
+        "D": "C(5,1) × 0.2^4 × 0.8^1"
+      },
+      "answer": "A",
+      "explanation": "P(K=1) = C(5,1)·(0.2)^1·(0.8)^4 = 5 × 0.2 × 0.4096 = 5 × 0.08192 ≈ 0.4096. C(5,1)=5, so the answer is 5 × 0.2 × 0.8^4, which matches option A."
+    },
+    {
+      "id": 146,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For (R1, R2)[τ], the coefficient of variation (CV = standard deviation / mean) of K_T is:",
+      "choices": {
+        "A": "√(τ(1-τ)/T) / τ = √((1-τ)/(Tτ))",
+        "B": "√(Tτ(1-τ)) / (Tτ) = √((1-τ)/(Tτ))",
+        "C": "τ·(1-τ)",
+        "D": "1/√T"
+      },
+      "answer": "B",
+      "explanation": "CV = SD/Mean = √(Tτ(1-τ)) / (Tτ) = √(Tτ(1-τ)) / (Tτ) = √((1-τ)/(Tτ)). Both options A and B express the same quantity; the canonical form is √((1-τ)/(Tτ)), decreasing in T (the relative variability shrinks as T grows)."
+    },
+    {
+      "id": 147,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For (R1, R2)[τ = 0.6] with T = 50 steps, use the normal approximation to find an approximate 95% interval for the number of R2 steps K_50.",
+      "answer": "K_50 ~ Binomial(50, 0.6). Mean = 50×0.6 = 30. Variance = 50×0.6×0.4 = 12. SD = √12 ≈ 3.46. A 95% interval using the normal approximation is: Mean ± 1.96×SD = 30 ± 1.96×3.46 ≈ 30 ± 6.78 ≈ [23.22, 36.78]. Rounding to integers: approximately [23, 37] R2 steps with about 95% probability.",
+      "explanation": "Mean=30, SD=√12≈3.46, 95% CI ≈ [23, 37] by normal approximation."
+    },
+    {
+      "id": 148,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "You observe a sequence of T rule selections and want to test H0: τ = 0.5 vs H1: τ ≠ 0.5. The number of R2 selections K follows Binomial(T, τ). For large T, which test statistic is appropriate?",
+      "choices": {
+        "A": "z = (K - T/2) / √(T/4)",
+        "B": "z = K / T",
+        "C": "z = (K - T·τ̂) / √(T·τ̂·(1-τ̂))",
+        "D": "z = K^2 / T"
+      },
+      "answer": "A",
+      "explanation": "Under H0: τ=0.5, K ~ Binomial(T, 0.5) with mean T/2 and variance T/4. The z-test statistic is z = (K - T/2) / √(T/4), which is approximately N(0,1) for large T. Option C uses the estimated τ̂ rather than the null value 0.5, which is appropriate for a different test."
+    },
+    {
+      "id": 149,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The temporal stochastic model can be described as a 'product system' of two processes. What are these two processes?",
+      "choices": {
+        "A": "The lattice configuration process and the independent Bernoulli rule process",
+        "B": "The R1 dynamics and the R2 dynamics running in parallel",
+        "C": "The spatial correlation process and the temporal correlation process",
+        "D": "The cell update process and the neighbourhood selection process"
+      },
+      "answer": "A",
+      "explanation": "The temporal stochastic model is the product of: (1) the (coupled, Markovian) lattice configuration process C_t, and (2) the independent i.i.d. Bernoulli(τ) rule-selection process X_t. The joint process (C_t, X_t) is Markovian, and X_t is independent of C_t at all times."
+    },
+    {
+      "id": 150,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "An unknown ECA is running under one of the four noise models (α, s-skewed, spatial stochastic, temporal stochastic). You observe that at every time step, the entire lattice evolves as a whole under one consistent rule — sometimes R1, sometimes R2. Which model(s) are consistent with this observation, and which are excluded?",
+      "answer": "Consistent: The temporal stochastic model (R1,R2)[τ] is consistent because it applies one global rule to all cells per step, alternating between R1 and R2 stochastically. The α model (α=1, i.e., all cells update) under a single fixed rule is also consistent if only one rule is used; however, the α model uses one rule only and doesn't alternate rules. Excluded: The spatial stochastic model is excluded because it allows cells to use different rules at the same step. The s-skewed model is excluded because it only updates a subset of cells (not the whole lattice) per step. The α model is excluded if α < 1 (not all cells update). Therefore, the observation most strongly identifies the temporal stochastic model.",
+      "explanation": "Whole-lattice, consistent-per-step rule alternation → temporal stochastic model. Spatial: different rules per cell; s-skewed: partial lattice; α<1: idle cells."
+    },
+    {
+      "id": 151,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "ECA Rule 90 satisfies R(l, c, r) = l XOR r. Under periodic boundary conditions with n=4 and initial configuration (1,0,0,0), what is the configuration after one step?",
+      "choices": {
+        "A": "(0,1,0,1)",
+        "B": "(1,0,0,1)",
+        "C": "(0,1,0,0)",
+        "D": "(1,1,0,0)"
+      },
+      "answer": "A",
+      "explanation": "Rule 90: c_i(t+1) = c_{i-1}(t) XOR c_{i+1}(t). With c=(1,0,0,0) and periodic boundaries: c0=c3 XOR c1=0 XOR 0=0; c1=c0 XOR c2=1 XOR 0=1; c2=c1 XOR c3=0 XOR 0=0; c3=c2 XOR c0=0 XOR 1=1. Result: (0,1,0,1)."
+    },
+    {
+      "id": 152,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], if at step t the rule R2 is chosen, the update for cell i is c_i(t+1) = R2(c_{i-1}(t), c_i(t), c_{i+1}(t)). The values c_{i-1}(t), c_i(t), c_{i+1}(t) used here are:",
+      "choices": {
+        "A": "The states from time t-1",
+        "B": "The states from time t (synchronous update — all cells use the configuration at time t)",
+        "C": "Updated values from the current sweep (asynchronous)",
+        "D": "Averaged values from t and t-1"
+      },
+      "answer": "B",
+      "explanation": "The temporal stochastic model, like the standard ECA, uses synchronous update: all cells simultaneously read the configuration at time t and compute their new states. No cell uses another cell's updated value within the same time step."
+    },
+    {
+      "id": 153,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In (R1, R2)[τ], as τ → 1⁻, the number of R1-steps in T time steps approaches:",
+      "choices": {
+        "A": "T",
+        "B": "T/2",
+        "C": "0 (in expectation)",
+        "D": "τ·T"
+      },
+      "answer": "C",
+      "explanation": "E[number of R1-steps] = T·(1-τ). As τ→1, 1-τ→0, so T·(1-τ)→0. The expected number of R1-steps vanishes; nearly every step uses R2."
+    },
+    {
+      "id": 154,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the (R1, R2)[τ] model, interpret what happens physically to the noise as τ moves from 0 to 0.5 to 1.",
+      "answer": "At τ=0: No noise — the system is a pure deterministic ECA under rule R1. As τ increases from 0 to 0.5: R2 is applied with increasing frequency. The system increasingly departs from pure-R1 behaviour, with more and more steps governed by R2. At τ=0.5: Maximum uncertainty — R1 and R2 are each chosen at exactly half the steps on average. The noise is at its most unpredictable (maximum binary entropy). As τ increases from 0.5 to 1: R2 now dominates, with R1 applied increasingly rarely. The system increasingly resembles a pure-R2 ECA. At τ=1: No noise — the system is a pure deterministic ECA under rule R2.",
+      "explanation": "τ: 0→pure R1; 0.5→maximum mixing; 1→pure R2. Noise increases then decreases symmetrically around τ=0.5."
+    },
+    {
+      "id": 155,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Let T_t^{spat} be the transition operator of the spatial model and T_t^{temp} be that of the temporal model (both with identical τ=λ). For a single cell's marginal state distribution, which model produces a larger variance in next-state probabilities across cells at the same time step?",
+      "choices": {
+        "A": "Temporal — because the global rule creates perfectly correlated outcomes",
+        "B": "Spatial — because independent per-cell draws create more diverse outcomes across cells",
+        "C": "Both produce identical variance per-cell",
+        "D": "Neither — both models produce deterministic per-cell outcomes"
+      },
+      "answer": "C",
+      "explanation": "The marginal distribution of any single cell's next state is identical in both models (P(cell uses R2) = τ = λ for both). So the per-cell marginal variance is the same. The difference is in the joint (cross-cell) distribution: temporal model has zero within-step variance across cells (all same rule), spatial has positive cross-cell independence."
+    },
+    {
+      "id": 156,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider s-skewed noise with s=n (full lattice size). How does this compare to the standard synchronous ECA?",
+      "choices": {
+        "A": "It is identical to the synchronous ECA since all n cells are always updated",
+        "B": "It is identical to the α model with α=1",
+        "C": "It updates n cells starting from a random cell i, so the starting position is random but all cells update",
+        "D": "It is identical to temporal stochastic noise with τ=0"
+      },
+      "answer": "C",
+      "explanation": "When s=n, all n cells are updated (starting from a random i, wrapping around periodically). Since all cells update using the same rule and the starting cell is arbitrary in a periodic lattice, the result is equivalent to a synchronous ECA update. However, the starting cell i is random, introducing a spatial shift that in a periodic lattice has no effect on the pattern (it is just a rotation)."
+    },
+    {
+      "id": 157,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why the α asynchronous model and s-skewed model are described as 'breaking the global clock', while the spatial and temporal stochastic models are not.",
+      "answer": "The 'global clock' refers to the synchronous update of all cells at each time step. In the α model, each cell has probability α<1 of updating, so some cells may lag behind — they are not all synchronised. In the s-skewed model, only s < n cells update per step, so the remaining cells are frozen — again, not all cells advance together. Both models break synchrony by making some cells idle. In contrast, the spatial stochastic model updates all n cells at every step (synchronously), just with potentially different rules per cell. The temporal stochastic model also updates all n cells at every step (synchronously), with a single globally chosen rule. Neither alters the update schedule — all cells always advance at every step — so the global clock is preserved.",
+      "explanation": "Global clock = all n cells update per step. α/s-skewed: some cells idle → clock broken. Spatial/temporal stochastic: all cells always update → clock preserved."
+    },
+    {
+      "id": 158,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "If both R1 and R2 produce only periodic patterns, what can be said about (R1, R2)[τ] for any τ ∈ (0,1)?",
+      "choices": {
+        "A": "The mixed system will always be chaotic",
+        "B": "The mixed system will always be periodic with the same period as R1",
+        "C": "The mixed system may or may not be periodic — mixing two periodic rules does not guarantee periodicity",
+        "D": "The mixed system converges to a fixed point"
+      },
+      "answer": "C",
+      "explanation": "Even if R1 and R2 each produce periodic patterns individually, their stochastic mixture does not necessarily maintain periodicity. The random switching between rules can destroy periodicity. The long-run behaviour of (R1, R2)[τ] depends on the interaction between the two rules and cannot be inferred solely from their individual behaviours."
+    },
+    {
+      "id": 159,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "The notation (R1, R2)[τ] is used for temporal stochastic ECA. How is the analogous notation for spatial stochastic ECA distinguished?",
+      "choices": {
+        "A": "Spatial: (R1, R2)[λ]; temporal: (R1, R2)[τ] — the parameter letter distinguishes the two",
+        "B": "Spatial and temporal use identical notation but different parameter ranges",
+        "C": "Spatial: {R1, R2}(λ); temporal: (R1, R2)[τ]",
+        "D": "Spatial: R1 ⊕ R2 with weight λ; temporal: R1 + R2 with weight τ"
+      },
+      "answer": "A",
+      "explanation": "The convention uses (R1, R2)[τ] for temporal stochastic noise and (R1, R2)[λ] for spatial stochastic noise. The structure is the same; the parameter letter (τ vs λ) signals the type of noise. This is why careful reading of parameter labels is essential when interpreting research on stochastic ECA."
+    },
+    {
+      "id": 160,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Suppose you run (Rule 0, Rule 255)[τ] for any τ ∈ (0,1). Describe the state of the lattice after exactly one step from any initial configuration.",
+      "answer": "Rule 0 maps every neighbourhood pattern to 0 (all cells become 0). Rule 255 maps every neighbourhood pattern to 1 (all cells become 1). Therefore, after one step: with probability 1-τ, all cells become 0 (Rule 0 applied); with probability τ, all cells become 1 (Rule 255 applied). The lattice is always uniform after one step — either all-0s or all-1s — regardless of the initial configuration. From any initial state, the system reaches a homogeneous fixed point in one step. The probability of landing on all-1s is τ.",
+      "explanation": "(Rule 0, Rule 255)[τ]: after one step, lattice is all-0s with prob 1-τ, or all-1s with prob τ, from any start."
+    },
+    {
+      "id": 161,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For (R1, R2)[τ = 0], what is the binary entropy H(τ) of the rule-selection process?",
+      "choices": {
+        "A": "1 bit",
+        "B": "0 bits",
+        "C": "0.5 bits",
+        "D": "log₂(2) bits"
+      },
+      "answer": "B",
+      "explanation": "H(0) = -(0·log₂0 + 1·log₂1) = 0 bits. There is no uncertainty: R1 is always chosen with certainty, so no information is generated by the rule selection."
+    },
+    {
+      "id": 162,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the standard (R1, R2)[τ] model, τ is constant across all time steps. What would the model be called if τ could vary spatially (per cell)?",
+      "choices": {
+        "A": "It would become the spatial stochastic model",
+        "B": "It would become the α asynchronous model",
+        "C": "It would become a cell-dependent temporal model, combining elements of both stochastic noise types",
+        "D": "It would become the s-skewed model"
+      },
+      "answer": "C",
+      "explanation": "If each cell i has its own τ_i (the probability that cell i follows R2), the rule selection becomes per-cell — analogous to the spatial model but with potentially heterogeneous rates. This is not a standard named model but a generalisation combining temporal (global decision) and spatial (per-cell rate) ideas."
+    },
+    {
+      "id": 163,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Can the temporal stochastic model (R1, R2)[τ] represent a system with more than two distinct dynamical regimes? If yes, describe how. If no, explain why not.",
+      "answer": "In its standard form, (R1, R2)[τ] has exactly two regimes (R1 and R2), switching each step. However, it can be extended to represent more regimes: (1) Hierarchical switching: apply (R1,R2)[τ1] and (R2,R3)[τ2] in a two-level system, effectively blending three rules; (2) Multi-rule model: (R1, R2, R3, ..., Rk)[τ1, τ2, ..., τk] where at each step a rule is chosen from a categorical distribution; (3) Markov-switching: the 'current regime' follows a Markov chain over rules rather than i.i.d. draws. The standard two-rule model cannot represent more than two regimes. Any generalisation requires additional parameters (probabilities summing to 1) or a more complex switching process.",
+      "explanation": "Standard (R1,R2)[τ]: only 2 regimes. Extensions: k-rule categorical model, hierarchical mixing, or Markov-switching over multiple rules."
+    },
+    {
+      "id": 164,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "When is the temporal stochastic model (R1, R2)[τ] completely indistinguishable from a standard deterministic ECA, based on observed space-time patterns?",
+      "choices": {
+        "A": "When τ = 0.5",
+        "B": "When τ = 0 or τ = 1, and when R1 ≠ R2",
+        "C": "When R1 = R2, or when τ = 0 (pure R1) or τ = 1 (pure R2)",
+        "D": "When the lattice is very large"
+      },
+      "answer": "C",
+      "explanation": "If R1 = R2, every step uses the same rule regardless of τ — indistinguishable from a standard ECA. Also, at τ=0 only R1 is used (pure R1 ECA) and at τ=1 only R2 (pure R2 ECA). In all these cases, the output is identical to a deterministic ECA."
+    },
+    {
+      "id": 165,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the (R1, R2)[τ] Markov chain, if configuration C is such that R1(C) = C but R2(C) ≠ C, what is P(C_{t+1} = C | C_t = C)?",
+      "choices": {
+        "A": "1",
+        "B": "τ",
+        "C": "1 - τ",
+        "D": "τ·(1-τ)"
+      },
+      "answer": "C",
+      "explanation": "P(C_{t+1}=C | C_t=C) = P(R1 chosen)·1[R1(C)=C] + P(R2 chosen)·1[R2(C)=C] = (1-τ)·1 + τ·0 = 1-τ. The system stays at C when R1 is chosen (with prob 1-τ) and leaves when R2 is chosen (with prob τ)."
+    },
+    {
+      "id": 166,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Write out the transition probability matrix for (R1, R2)[τ] on a lattice of n=2 cells with periodic boundaries, assuming Rule 0 (R1) and Rule 255 (R2). There are 4 configurations: 00, 01, 10, 11.",
+      "answer": "Rule 0: all configurations map to 00. Rule 255: all configurations map to 11. Transition matrix P where rows are current states and columns are next states (00,01,10,11): From 00: P(00→00)=1-τ, P(00→11)=τ, P(00→01)=P(00→10)=0. From 01: P(01→00)=1-τ, P(01→11)=τ, others=0. From 10: P(10→00)=1-τ, P(10→11)=τ, others=0. From 11: P(11→00)=1-τ, P(11→11)=τ, others=0. All rows have exactly two non-zero entries. After one step, the system is always in state 00 (prob 1-τ) or 11 (prob τ), regardless of starting state.",
+      "explanation": "P = [[1-τ,0,0,τ],[1-τ,0,0,τ],[1-τ,0,0,τ],[1-τ,0,0,τ]]. After one step: {00,11} is absorbing set."
+    },
+    {
+      "id": 167,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The temporal stochastic model (R1, R2)[τ] maintains which of the following properties of the standard ECA?",
+      "choices": {
+        "A": "Deterministic evolution",
+        "B": "Single fixed rule applied uniformly",
+        "C": "Synchronous update of all cells at every step",
+        "D": "Only one rule is ever used"
+      },
+      "answer": "C",
+      "explanation": "The temporal stochastic model preserves synchronous update: at every time step, all cells update simultaneously. It breaks the single-rule property (two rules are used) and determinism (rule choice is random), but synchrony is maintained."
+    },
+    {
+      "id": 168,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the spatial stochastic model (R1,R2)[λ], the number of cells using R2 at a given step follows which distribution?",
+      "choices": {
+        "A": "Binomial(n, λ)",
+        "B": "Bernoulli(λ)",
+        "C": "Uniform on {0, 1, ..., n}",
+        "D": "Always 0 or n"
+      },
+      "answer": "A",
+      "explanation": "In the spatial model, each of the n cells independently uses R2 with probability λ. The number of cells using R2 is the sum of n i.i.d. Bernoulli(λ) random variables, which follows Binomial(n, λ)."
+    },
+    {
+      "id": 169,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the temporal stochastic model (R1,R2)[τ], the number of cells using R2 at a given step follows which distribution?",
+      "choices": {
+        "A": "Binomial(n, τ)",
+        "B": "Bernoulli(τ)",
+        "C": "Either 0 or n (degenerate: all cells same rule)",
+        "D": "Uniform on {0, n}"
+      },
+      "answer": "C",
+      "explanation": "In the temporal model, either all n cells use R2 (with prob τ) or none do (with prob 1-τ). The distribution of the count is: n with prob τ, 0 with prob 1-τ — a degenerate two-point distribution, not a full binomial. Note: E[count] = n·τ, same as the spatial model, but the distribution is entirely different."
+    },
+    {
+      "id": 170,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "Temporal vs Spatial Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a lattice of n=10 cells with τ=λ=0.4, compare the expected number of cells using R2 at a given step in the temporal vs spatial model. Then compare the variance of this count.",
+      "answer": "Expected count using R2: Temporal: E = n·τ = 10×0.4 = 4 (either all 10 or none, so E = 10×0.4 = 4). Spatial: E = n·λ = 10×0.4 = 4. The means are equal. Variance: Temporal: The count is n·X where X ~ Bernoulli(τ). Var(count) = n^2·Var(X) = 100×0.4×0.6 = 24. Spatial: Count ~ Binomial(n, λ). Var = n·λ·(1-λ) = 10×0.4×0.6 = 2.4. The temporal model has variance 24 vs the spatial model's 2.4 — the temporal variance is n=10 times larger. This reflects the perfect correlation of cell rule choices in the temporal model.",
+      "explanation": "Both models: E[count]=4. Temporal Var=n²τ(1-τ)=24; Spatial Var=nτ(1-τ)=2.4. Temporal variance is n times larger due to perfect correlation."
+    },
+    {
+      "id": 171,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "Boundary Cases of τ",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], suppose R1 is Rule 110 (capable of universal computation) and R2 is Rule 0. For very large τ (τ close to 1), what is the qualitative long-run behaviour?",
+      "choices": {
+        "A": "Universal computation persists because Rule 110 is occasionally applied",
+        "B": "The system converges quickly to the all-0s configuration because Rule 0 dominates",
+        "C": "The system oscillates between all-0s and complex patterns",
+        "D": "The system becomes periodic with period 1/τ"
+      },
+      "answer": "B",
+      "explanation": "For τ close to 1, Rule 0 (which maps everything to all-0s) is applied the vast majority of the time. After one Rule-0 step, the lattice is all-0s. If Rule 110 is then applied from all-0s, it may generate some 1s, but the next Rule-0 step immediately erases them. Rule 0 acts as a 'reset' that dominates for large τ, driving the system to near-zero density."
+    },
+    {
+      "id": 172,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "If R1 produces a spatially homogeneous fixed point (e.g., all-0s) and R2 produces a spatially complex pattern, describe qualitatively how the space-time diagram of (R1, R2)[τ] changes as τ increases from 0 to 1.",
+      "answer": "At τ=0: Pure R1 — the diagram is completely uniform, showing only the all-0s fixed point after one step. As τ increases slightly: Occasional R2 steps disrupt the uniformity, producing sparse complex patterns that are immediately erased by subsequent R1 steps. The diagram shows mostly 0s with brief complex 'bursts'. At τ=0.5: R1 and R2 alternate roughly equally. The diagram shows alternating periods of complexity (from R2) and relaxation toward 0s (from R1), with moderate density of non-zero cells. As τ approaches 1: R1 steps become rare; R2 dominates and the complex patterns of R2 fill most of the diagram, with only occasional 'reset' events from R1. At τ=1: Pure R2 — the diagram shows only R2's complex, spatially structured patterns.",
+      "explanation": "τ: 0→uniform all-0s; 0→0.5→sparse R2 bursts; 0.5→dense mixing; →1→R2 dominates; 1→pure R2 pattern."
+    },
+    {
+      "id": 173,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The binary entropy function H(τ) = -τ·log₂τ - (1-τ)·log₂(1-τ) is symmetric around τ = 0.5. What does this symmetry imply for the temporal stochastic model?",
+      "choices": {
+        "A": "The model behaves identically for τ and 1-τ",
+        "B": "The rule-selection uncertainty is the same for (R1,R2)[τ] and (R2,R1)[1-τ], confirming that swapping rules and complementing τ preserves the noise entropy",
+        "C": "H(τ) = H(1-τ) implies the dynamics of R1 and R2 are always symmetric",
+        "D": "Both A and B"
+      },
+      "answer": "B",
+      "explanation": "H(τ) = H(1-τ) confirms that the entropy of the rule-selection process is the same whether we parameterise as (R1,R2)[τ] or (R2,R1)[1-τ]. This is consistent with the earlier observation that these two notations represent the same model. The symmetry is about the noise entropy, not the dynamics of R1 and R2 themselves."
+    },
+    {
+      "id": 174,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A researcher proposes a model where the temporal noise parameter τ is updated after each step: τ_{t+1} = f(C_t, τ_t) for some function f. What is the key difference from the standard (R1, R2)[τ] model?",
+      "choices": {
+        "A": "The noise parameter is adaptive — it depends on the current configuration, creating feedback",
+        "B": "The noise parameter decreases monotonically to 0",
+        "C": "The model becomes equivalent to the spatial stochastic model",
+        "D": "There is no difference — τ is always updated in the standard model too"
+      },
+      "answer": "A",
+      "explanation": "In the standard model τ is fixed. If τ depends on C_t (or its history), the noise becomes adaptive or state-dependent. This creates a feedback loop between the lattice dynamics and the noise rate, potentially allowing self-organised control of the rule-mixing frequency — a significant departure from the standard model."
+    },
+    {
+      "id": 175,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A paper states: 'We study (Rule 30, Rule 90)[τ] for τ ∈ [0,1].' Interpret this notation fully and describe what experiment the paper is likely conducting.",
+      "answer": "The notation (Rule 30, Rule 90)[τ] describes a temporal stochastic ECA where: R1 = Rule 30 (a chaotic, Class III rule) is applied to all cells with probability 1-τ at each step, and R2 = Rule 90 (a linear, self-similar rule) is applied to all cells with probability τ at each step. The parameter τ ∈ [0,1] is varied to study the transition between the two rules' dynamics. The paper is likely investigating: how the system transitions from Rule 30's chaotic behaviour (τ=0) to Rule 90's structured patterns (τ=1); whether there are phase transitions at critical τ values; how mixing two qualitatively different rules affects long-run properties like density of 1s, spatial entropy, or pattern complexity.",
+      "explanation": "R1=Rule 30 (chaotic), R2=Rule 90 (linear). τ parameterises mixing. Study likely: phase transitions, density, complexity as τ varies."
+    },
+    {
+      "id": 176,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In (R1, R2)[τ], if you observe the system at time t and t+1, and notice the lattice evolved using R2, can you predict with certainty whether R1 or R2 will be used at step t+2?",
+      "choices": {
+        "A": "Yes — R2 will be used again since it was used at t+1",
+        "B": "No — the rule at t+2 is drawn independently with P(R2)=τ regardless of what happened at t+1",
+        "C": "Yes — R1 will be used next to 'balance' the R2 step",
+        "D": "Only if τ = 0.5"
+      },
+      "answer": "B",
+      "explanation": "Rule choices are i.i.d. across time steps. The fact that R2 was used at step t+1 provides no information about step t+2. P(R2 at t+2) = τ regardless."
+    },
+    {
+      "id": 177,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "You observe a (R1, R2)[τ] system for T steps and want to estimate τ. You can directly observe which rule was used at each step. What is the minimum T needed so that your MLE τ̂ = K/T has a standard error ≤ 0.05, using the worst-case τ (τ=0.5)?",
+      "choices": {
+        "A": "T ≥ 100",
+        "B": "T ≥ 400",
+        "C": "T ≥ 200",
+        "D": "T ≥ 25"
+      },
+      "answer": "A",
+      "explanation": "SE(τ̂) = √(τ(1-τ)/T). Worst case: τ=0.5, SE = √(0.25/T) = 0.5/√T. Setting SE ≤ 0.05: 0.5/√T ≤ 0.05 → √T ≥ 10 → T ≥ 100."
+    },
+    {
+      "id": 178,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Suppose you observe the space-time diagram of a (R1, R2)[τ] system but you do NOT know which rule was used at each step. Describe a method to infer the rule used at each step, given that you know R1 and R2.",
+      "answer": "Given R1, R2, and the observed configurations C_t and C_{t+1}, determine which rule was used at step t as follows: For each cell i, compute R1(c_{i-1}(t), c_i(t), c_{i+1}(t)) and R2(c_{i-1}(t), c_i(t), c_{i+1}(t)). Check if c_i(t+1) matches R1's prediction or R2's prediction. If there exists at least one cell i where R1(nbhd_i) ≠ R2(nbhd_i) (a distinguishing cell), compare c_i(t+1) with R1's and R2's predictions: if it matches R1, R1 was used; if R2, R2 was used. In the temporal model, this determination must be consistent across all distinguishing cells (since the same global rule applies to all). If all cells have matching neighbourhoods (R1=R2 on all occurring patterns), the step is ambiguous. This procedure determines the rule for every step where at least one distinguishing neighbourhood occurs.",
+      "explanation": "For each step, find a cell with R1(nbhd)≠R2(nbhd) and check which prediction matches c_i(t+1). Temporal model guarantees consistency across all distinguishing cells."
+    },
+    {
+      "id": 179,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For (R1, R2)[τ = 1/3] and T = 9 steps, what is the expected number of R1 steps?",
+      "choices": {
+        "A": "3",
+        "B": "6",
+        "C": "1",
+        "D": "4.5"
+      },
+      "answer": "B",
+      "explanation": "E[R1 steps] = T·(1-τ) = 9·(1-1/3) = 9·(2/3) = 6."
+    },
+    {
+      "id": 180,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For the (R1, R2)[τ] Markov chain with τ ∈ (0,1), if the chain is irreducible, what does this imply about reaching any configuration from any starting configuration?",
+      "choices": {
+        "A": "It is impossible to reach all configurations from all starting points",
+        "B": "Every configuration can be reached from every other configuration in a finite number of steps",
+        "C": "The chain can only reach configurations that are attractors of R1",
+        "D": "The chain can only reach configurations in the intersection of R1 and R2 attractors"
+      },
+      "answer": "B",
+      "explanation": "Irreducibility means the Markov chain has a single communicating class: every configuration C' can be reached from every configuration C in a finite number of steps. This ensures a unique stationary distribution exists."
+    },
+    {
+      "id": 181,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Prove that in the (R1, R2)[τ] model, the event 'R2 is chosen at step t' is independent of the event 'cell i is in state 1 at time t', for all i and t.",
+      "answer": "Let X_t ~ Bernoulli(τ) be the rule selection at step t, and let C_t be the configuration at time t. The model defines X_t to be drawn independently of all past and present configurations: X_t ⊥ (C_0, C_1, ..., C_t). This is stated explicitly in the model definition — the Bernoulli trial for rule selection is exogenous, not conditioned on the current or past states. Therefore, for any cell i: P(X_t=1 and c_i(t)=1) = P(X_t=1)·P(c_i(t)=1) = τ·P(c_i(t)=1), confirming independence. This follows directly from the model's construction, not from any derived property.",
+      "explanation": "By construction, X_t ~ Bernoulli(τ) is independent of C_t. Independence holds as a model assumption (exogenous noise), confirmed by P(X_t=1, c_i(t)=1) = P(X_t=1)·P(c_i(t)=1)."
+    },
+    {
+      "id": 182,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In ECA Rule 110, which Wolfram behaviour class does it belong to, and why is it noteworthy?",
+      "choices": {
+        "A": "Class I — it always reaches a fixed point",
+        "B": "Class III — it exhibits chaotic behaviour",
+        "C": "Class IV — it can support universal computation",
+        "D": "Class II — it produces simple periodic patterns"
+      },
+      "answer": "C",
+      "explanation": "Rule 110 belongs to Wolfram's Class IV (complex behaviour with long-lived localised structures). It has been proven to be Turing-complete (capable of universal computation), making it one of the most important ECA rules."
+    },
+    {
+      "id": 183,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In ECA, what does it mean for a configuration to be a 'Garden of Eden' state?",
+      "choices": {
+        "A": "A configuration that is a fixed point of the rule",
+        "B": "A configuration that has no predecessor — it cannot arise from any previous configuration under the rule",
+        "C": "A configuration with maximum density of 1s",
+        "D": "A configuration that repeats with period 2"
+      },
+      "answer": "B",
+      "explanation": "A Garden of Eden configuration has no pre-image: there is no configuration C such that R(C) = C_GoE. It can only appear as an initial condition, never as a result of evolution. Garden of Eden states exist in non-surjective ECA rules."
+    },
+    {
+      "id": 184,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain the distinction between injective, surjective, and bijective ECA rules and their implications for the existence of Garden of Eden configurations and predecessors.",
+      "answer": "An ECA rule R is injective if distinct configurations always map to distinct configurations (no two configs have the same image). Injectivity implies R has no collisions and every configuration has at most one predecessor. A rule is surjective if every configuration has at least one predecessor (no Garden of Eden states). A bijective rule is both injective and surjective — a permutation on the configuration space. Implications: If R is surjective, there are no Garden of Eden states (every configuration has a predecessor). If R is injective, every configuration has at most one predecessor. If R is bijective, every configuration has exactly one predecessor and one successor. Non-surjective rules have Garden of Eden states (configs with no predecessor). For infinite lattices, injectivity implies surjectivity (by a theorem of ECA theory), but this does not hold for finite periodic lattices.",
+      "explanation": "Injective: ≤1 predecessor; Surjective: ≥1 predecessor (no GoE); Bijective: exactly 1 predecessor and 1 successor. Non-surjective → Garden of Eden exists."
+    },
+    {
+      "id": 185,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "Definition of Temporal Stochastic Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The temporal stochastic model (R1, R2)[τ] applies rules to the whole lattice synchronously. What is the computational complexity of simulating T steps on a lattice of n cells?",
+      "choices": {
+        "A": "O(n^2 · T)",
+        "B": "O(n · T) — linear in both lattice size and time steps",
+        "C": "O(2^n · T)",
+        "D": "O(n · T · log n)"
+      },
+      "answer": "B",
+      "explanation": "At each time step: (1) draw one Bernoulli(τ) random variable — O(1); (2) update all n cells using the chosen rule, each requiring O(1) work (3-cell lookup) — O(n). Total: O(n) per step × T steps = O(n·T). This is the same complexity as a standard ECA simulation."
+    },
+    {
+      "id": 186,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which pair of noise models both use two ECA rules?",
+      "choices": {
+        "A": "α asynchronous and s-skewed",
+        "B": "Spatial stochastic and temporal stochastic",
+        "C": "α asynchronous and spatial stochastic",
+        "D": "s-skewed and temporal stochastic"
+      },
+      "answer": "B",
+      "explanation": "Both spatial stochastic (R1,R2)[λ] and temporal stochastic (R1,R2)[τ] involve two rules and a mixing rate. The α asynchronous model uses a single rule with probabilistic update scheduling, and s-skewed uses a single rule with a block update schedule."
+    },
+    {
+      "id": 187,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "Comparison with Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For each of the four noise models, state whether all n cells always update at every time step (Yes/No) and whether a single fixed ECA rule is applied (Yes/No).",
+      "answer": "α asynchronous: All cells update? No (each updates with prob α). Single fixed rule? Yes (one rule R). s-skewed: All cells update? No (only s cells update per step). Single fixed rule? Yes (one rule R). Spatial stochastic: All cells update? Yes (all n cells update synchronously). Single fixed rule? No (cells may use R1 or R2). Temporal stochastic: All cells update? Yes (all n cells update synchronously). Single fixed rule? No (the whole lattice uses R1 or R2, but the rule varies per step).",
+      "explanation": "α: No/Yes. s-skewed: No/Yes. Spatial: Yes/No. Temporal: Yes/No."
+    },
+    {
+      "id": 188,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "Effect of τ on System Dynamics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], suppose both R1 and R2 are nilpotent (every initial configuration reaches all-0s after finite time under either rule). What can be said about (R1, R2)[τ] for any τ ∈ [0,1]?",
+      "choices": {
+        "A": "The system always reaches all-0s in finite time",
+        "B": "The system may never reach all-0s due to interference between rules",
+        "C": "The system is nilpotent for τ=0 and τ=1 only",
+        "D": "The system always remains in complex patterns"
+      },
+      "answer": "A",
+      "explanation": "If both R1 and R2 are nilpotent, every trajectory under either rule reaches all-0s in finite time. In the mixed model, at each step either R1 or R2 is applied, both driving toward all-0s. Since all-0s is a common fixed point of nilpotent rules, the mixed system also converges to all-0s with probability 1, for any τ."
+    },
+    {
+      "id": 189,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], define S_T = number of 'rule switches' (times the rule changes from one step to the next) in T steps. Find E[S_T] and express it in terms of τ and T.",
+      "answer": "A switch occurs at step t (for t ≥ 2) if the rule at step t differs from the rule at step t-1. Let Y_t = 1 if a switch occurs at step t (for t=2,...,T). P(switch at t) = P(R1 at t, R2 at t-1) + P(R2 at t, R1 at t-1) = (1-τ)·τ + τ·(1-τ) = 2τ(1-τ), by independence. There are T-1 potential switch points. E[S_T] = (T-1)·2τ(1-τ). This is maximised at τ=0.5 giving E[S_T] = (T-1)/2, and is 0 at τ=0 or τ=1 (no switches in deterministic limits).",
+      "explanation": "P(switch at each step) = 2τ(1-τ). E[S_T] = (T-1)·2τ(1-τ). Maximum at τ=0.5: (T-1)/2 expected switches."
+    },
+    {
+      "id": 190,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In (R1, R2)[τ], suppose R2 is the 'complement' of R1 in the sense that R2(p) = 1 - R1(p) for all p. If the lattice has n cells, what is P(C_{t+1} = complement(C_{t+1} under R1))?",
+      "choices": {
+        "A": "τ",
+        "B": "1 - τ",
+        "C": "τ^n",
+        "D": "(1-τ)^n"
+      },
+      "answer": "A",
+      "explanation": "P(C_{t+1} = R2(C_t)) = P(R2 chosen) = τ. Since R2(C_t) = complement of R1(C_t) cell-wise, the event 'C_{t+1} is the complement of what R1 would give' is exactly the event 'R2 was chosen', which has probability τ."
+    },
+    {
+      "id": 191,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "If τ is estimated as τ̂ = K/T from T observations, the Fisher information I(τ) per observation about τ is:",
+      "choices": {
+        "A": "T / (τ(1-τ))",
+        "B": "1 / (τ(1-τ))",
+        "C": "τ(1-τ)",
+        "D": "T·τ(1-τ)"
+      },
+      "answer": "B",
+      "explanation": "For a Bernoulli(τ) distribution, the Fisher information per observation is I(τ) = 1/(τ(1-τ)). The total Fisher information for T i.i.d. observations is T·I(τ) = T/(τ(1-τ)), and the Cramér-Rao lower bound for the variance of any unbiased estimator of τ is 1/(T·I(τ)) = τ(1-τ)/T."
+    },
+    {
+      "id": 192,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "Stochastic Properties and Long-Run Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the (R1, R2)[τ] Markov chain, describe what an 'absorbing state' is and give an example condition on R1, R2 for an absorbing state to exist.",
+      "answer": "An absorbing state C* in the Markov chain is a configuration such that once entered, the system never leaves: P(C_{t+1} = C* | C_t = C*) = 1. For this to hold in the temporal stochastic model, we need both R1(C*) = C* and R2(C*) = C* (C* is a fixed point of both rules). If either rule maps C* to a different configuration, P(leave C*) > 0. Example: if both R1 and R2 are quiescent (R1(0,0,0)=0 and R2(0,0,0)=0), then the all-0s configuration is a fixed point of both rules. Therefore the all-0s configuration is an absorbing state for any τ.",
+      "explanation": "Absorbing state: P(leave)=0 ↔ R1(C*)=C* AND R2(C*)=C*. Example: all-0s if both rules are quiescent (R(0,0,0)=0)."
+    },
+    {
+      "id": 193,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following observations would most strongly distinguish a temporal stochastic model from a spatial stochastic model when both use the same pair (R1, R2)?",
+      "choices": {
+        "A": "The average density of 1s over time",
+        "B": "The intra-step spatial correlation of rule choices: do all cells always follow the same rule at each step?",
+        "C": "The total number of time steps using R2",
+        "D": "The initial configuration"
+      },
+      "answer": "B",
+      "explanation": "The defining difference is intra-step correlation: temporal → all cells same rule per step (correlation 1); spatial → cells independent (correlation 0). The total count of R2-steps has the same expectation in both models (given τ=λ), and the average density may be similar. The intra-step rule-assignment pattern is the key discriminating feature."
+    },
+    {
+      "id": 194,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "Conceptual Understanding and Edge Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider (R1, R2)[τ] where R1 = Rule 90 (linear, additive) and R2 = Rule 150 (also linear, additive). Since both rules are linear over GF(2), what special structure does the (R1, R2)[τ] model possess, and how might this simplify analysis?",
+      "answer": "Rule 90 and Rule 150 are both linear (additive) over GF(2): R(c) = Mc for a matrix M over GF(2). Since both rules are linear, the temporal stochastic model alternates between two linear transformations M_90 and M_150. This gives the model a semi-group structure: the composition of any sequence of R1 and R2 steps corresponds to a product of matrices over GF(2). The configuration after T steps is M_{X_T}·M_{X_{T-1}}·...·M_{X_1}·c(0), a random product of matrices from {M_90, M_150}. Analysis can exploit: (1) linearity → superposition principle, allowing decomposition of any initial config into basis states; (2) the set {M_90, M_150} generates a finite group under matrix multiplication over GF(2), limiting the possible configurations; (3) spectral methods can be applied to the expected transition matrix (1-τ)M_90 + τM_150.",
+      "explanation": "Both rules linear over GF(2) → model = random matrix product over GF(2). Enables spectral analysis, superposition, group structure analysis."
+    },
+    {
+      "id": 195,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "Temporal Nature of the Noise",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the (R1, R2)[τ] model, does the rule chosen at step t affect the configuration C_{t+1}?",
+      "choices": {
+        "A": "No — the rule choice is separate from the configuration update",
+        "B": "Yes — the chosen rule determines how C_t is mapped to C_{t+1}",
+        "C": "Only if τ > 0.5",
+        "D": "Only if R1 and R2 differ on the current configuration"
+      },
+      "answer": "B",
+      "explanation": "The rule choice X_t directly determines C_{t+1}: if X_t=0 then C_{t+1}=R1(C_t), if X_t=1 then C_{t+1}=R2(C_t). The rule is the mechanism by which C_t is transformed into C_{t+1}."
+    },
+    {
+      "id": 196,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "Notation and Representation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In (R1, R2)[τ], the parameter τ is described as a 'mixing' rate. What is being 'mixed'?",
+      "choices": {
+        "A": "The states of individual cells",
+        "B": "The two rules R1 and R2 over time",
+        "C": "The neighbourhood patterns",
+        "D": "The lattice and its complement"
+      },
+      "answer": "B",
+      "explanation": "τ controls the proportion (mixing rate) of time steps governed by R2 versus R1. Over many steps, a fraction τ of steps use R2 and 1-τ use R1. The parameter 'mixes' the two deterministic dynamics in proportion τ:(1-τ)."
+    },
+    {
+      "id": 197,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "Entropy and Information-Theoretic Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Interpret the binary entropy H(τ) in the context of (R1, R2)[τ]: what does H(τ) = 0 mean, and what does H(τ) = 1 bit mean for the system's predictability?",
+      "answer": "H(τ) = 0: This occurs at τ=0 or τ=1. It means the rule selection is completely predictable — there is no uncertainty about which rule will be applied at any given step. The system is fully deterministic from the rule-selection perspective: at τ=0 always R1, at τ=1 always R2. H(τ) = 1 bit: This occurs at τ=0.5. It means the rule selection is maximally uncertain — knowing τ does not help predict whether R1 or R2 will be used at any particular step (it is like a fair coin flip). One full bit of information is needed to describe each step's rule choice. From the system's perspective, the evolution is least predictable in terms of rule application.",
+      "explanation": "H=0: deterministic rule (τ=0 or 1); H=1 bit: maximally random rule selection (τ=0.5, fair coin)."
+    },
+    {
+      "id": 198,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A 'coupled map' version of the temporal stochastic model uses R1 = Rule A and R2 = NOT(Rule A) (bitwise complement). For τ = 0.5 and large T, what does the time-average of any cell's state converge to?",
+      "choices": {
+        "A": "The fixed point of Rule A",
+        "B": "0.5, by symmetry between R1 and its complement",
+        "C": "0, because Rule A dominates",
+        "D": "1, because the complement rule dominates"
+      },
+      "answer": "B",
+      "explanation": "At τ=0.5, Rule A and NOT(Rule A) are applied with equal probability. For any cell neighbourhood p, the time-average contribution to cell i's state is 0.5·R(p) + 0.5·(1-R(p)) = 0.5, regardless of R(p). Thus every cell's time-average state converges to 0.5, reflecting perfect symmetry between the rule and its complement."
+    },
+    {
+      "id": 199,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "Identification and Distinguishability",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A researcher claims that a given ECA space-time diagram was generated by the temporal stochastic model (Rule 110, Rule 30)[τ=0.2]. How would you go about verifying or falsifying this claim?",
+      "answer": "Verification procedure: (1) For each time step t, examine the lattice transition C_t → C_{t+1}. For each cell i, compute both Rule 110(nbhd_i(t)) and Rule 30(nbhd_i(t)). (2) Find cells where the two rules give different outputs (distinguishing cells). Compare c_i(t+1) with the two predictions. Since it is the temporal model, all distinguishing cells at step t must be consistent with the same rule. (3) Label each step t as 'R1-step' or 'R2-step' based on which rule is consistent with all distinguishing cells. Ambiguous steps (no distinguishing cells appear) cannot be labelled. (4) Count labelled steps: let K = number of labelled R2-steps (Rule 30) out of M labelled steps. The MLE of τ is K/M. (5) Test whether K/M is statistically consistent with τ=0.2 using a binomial test. Falsification: if K/M is significantly different from 0.2 (p-value < 0.05), or if any step shows cells consistent with different rules (impossible under temporal model), the claim is falsified.",
+      "explanation": "Method: infer rule per step using distinguishing cells; check intra-step consistency (temporal requirement); estimate τ̂=K/M; test τ̂=0.2 with binomial test."
+    },
+    {
+      "id": 200,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "Extensions and Variations",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Synthesise the four noise models (α, s-skewed, spatial stochastic, temporal stochastic) into a single unified framework. What parameters would a fully general model have, and which named model corresponds to which special case?",
+      "answer": "A unified ECA noise model could be parameterised by: (i) update probability per cell α ∈ [0,1] (from α model); (ii) block size s ∈ {1,...,n} and block-start selection (from s-skewed); (iii) per-cell rule mixing rate λ ∈ [0,1] (from spatial model); (iv) global rule mixing rate τ ∈ [0,1] (from temporal model). Special cases: α=1, s=n, λ=0 (or τ=0): standard deterministic ECA under a single rule. α<1, single rule, s=n: α asynchronous model. s<n, single rule, α=1: s-skewed model. α=1, s=n, per-cell rule mixing λ: spatial stochastic model. α=1, s=n, global rule mixing τ: temporal stochastic model. A maximally general model combining all four would allow both α-style update dropping and stochastic rule selection. The models form a hierarchy: temporal and spatial stochastic are 'rule-perturbation' models, while α and s-skewed are 'update-schedule perturbation' models. Their combination spans a rich family of stochastic ECA.",
+      "explanation": "Unified parameters: (α, s, λ, τ). Each named model = special case. Rule-perturbation models (spatial, temporal) orthogonal to schedule-perturbation models (α, s-skewed)."
+    }
+  ]

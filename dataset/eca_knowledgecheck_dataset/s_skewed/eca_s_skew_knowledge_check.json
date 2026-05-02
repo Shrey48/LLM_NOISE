@@ -1,0 +1,3042 @@
+[
+    {
+      "id": 1,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "An elementary cellular automaton (ECA) is a one-dimensional, discrete-time system where each cell has:",
+      "choices": {
+        "A": "Binary state (0 or 1) and a 3-cell neighbourhood (left, centre, right)",
+        "B": "Ternary state (0, 1, or 2) and a 5-cell neighbourhood",
+        "C": "Real-valued state and no neighbourhood",
+        "D": "Binary state and a 5-cell neighbourhood"
+      },
+      "answer": "A",
+      "explanation": "ECA: binary cells, radius r=1 giving a 3-cell neighbourhood (i-1, i, i+1). Wolfram (1983)."
+    },
+    {
+      "id": 2,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How many distinct ECA rules exist in total?",
+      "choices": {
+        "A": "128",
+        "B": "64",
+        "C": "256",
+        "D": "512"
+      },
+      "answer": "C",
+      "explanation": "2^3=8 neighbourhood patterns, each mapped to 0 or 1: 2^8=256 possible rules."
+    },
+    {
+      "id": 3,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In a traditional (synchronous) ECA with n cells, how many cells are updated at each time step?",
+      "choices": {
+        "A": "One cell chosen at random",
+        "B": "All n cells simultaneously",
+        "C": "Exactly half the cells",
+        "D": "A fixed subset of s cells"
+      },
+      "answer": "B",
+      "explanation": "Traditional ECA uses a global clock: all n cells are updated simultaneously at each discrete time step."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In an ECA with rule R, the next state of cell i is determined by:",
+      "choices": {
+        "A": "Only the current state of cell i",
+        "B": "The current states of cells i-1, i, and i+1",
+        "C": "The current states of all n cells",
+        "D": "The previous two time steps of cell i"
+      },
+      "answer": "B",
+      "explanation": "ECA rule R maps the 3-cell neighbourhood (i-1, i, i+1) at time t to the state of cell i at time t+1."
+    },
+    {
+      "id": 5,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which property of traditional ECA is explicitly broken by the s-skewed noise model?",
+      "choices": {
+        "A": "Binary state space",
+        "B": "3-cell neighbourhood",
+        "C": "Presence of a global clock (synchronous update)",
+        "D": "Finite lattice size"
+      },
+      "answer": "C",
+      "explanation": "s-skewed noise breaks synchrony: instead of all n cells updating together, only s consecutive cells (a contiguous block) are chosen for update at each time step, removing the global clock."
+    },
+    {
+      "id": 6,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In a standard ECA of size n=8, using Rule 110, every cell is updated at every time step. How does this differ from the s-skewed model with s=3?",
+      "choices": {
+        "A": "The rule applied changes; the update count stays the same",
+        "B": "All 8 cells update vs. only 3 consecutive cells update",
+        "C": "s-skewed updates 3 random non-consecutive cells vs. all 8",
+        "D": "There is no difference when s=3 and n=8"
+      },
+      "answer": "B",
+      "explanation": "Standard ECA updates all n=8 cells each step. s-skewed with s=3 selects a random starting cell i and updates only cells i, i+1, i+2 (3 consecutive cells), leaving the remaining 5 idle."
+    },
+    {
+      "id": 7,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is an ECA and what are its three defining structural components?",
+      "answer": "An ECA (Elementary Cellular Automaton) is a one-dimensional, discrete-time dynamical system. Its three defining components are: (1) a binary state space {0,1} for each cell, (2) a radius-1 neighbourhood comprising the cell itself and its immediate left and right neighbours (3 cells total), and (3) a deterministic local rule R that maps each of the 2^3=8 neighbourhood patterns to a next state, yielding 256 possible rules.",
+      "explanation": "ECA fundamentals as defined by Wolfram (1983): 1D, binary, radius-1 neighbourhood, 256 rules."
+    },
+    {
+      "id": 8,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain what a 'global clock' means in a traditional ECA and why its removal is considered a form of noise.",
+      "answer": "A global clock in a traditional ECA means all n cells are updated simultaneously and uniformly at each discrete time step t. Its removal is a form of noise because it introduces asynchrony: different cells may be at different effective 'ages', the system's trajectory diverges from the fully synchronous one, and the deterministic global update order is replaced by randomness in which cells get updated, potentially altering the emergent behaviour and attractors of the system.",
+      "explanation": "Synchrony is a structural assumption; breaking it via selective or random updates constitutes asynchronous or skewed noise."
+    },
+    {
+      "id": 9,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Under s-skewed noise, which cells are selected for update at each time step t?",
+      "choices": {
+        "A": "s cells chosen uniformly at random from all n cells (non-consecutive)",
+        "B": "A randomly chosen starting cell i and the s-1 cells that follow it: i, i+1, ..., i+(s-1)",
+        "C": "All cells from position 0 to position s-1 always",
+        "D": "The s cells with the most recent state change"
+      },
+      "answer": "B",
+      "explanation": "s-skewed noise: pick cell i uniformly at random, then update the contiguous block i, i+1, ..., i+(s-1). The block is consecutive and anchored by the randomly chosen i."
+    },
+    {
+      "id": 10,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the domain of the perturbation rate s in s-skewed noise?",
+      "choices": {
+        "A": "s \u2208 {0, 1}",
+        "B": "s \u2208 [0, 1]",
+        "C": "s \u2208 [1, n]",
+        "D": "s \u2208 [0, n-1]"
+      },
+      "answer": "C",
+      "explanation": "The perturbation rate s \u2208 [1, n], meaning at least 1 cell and at most all n cells are updated per step."
+    },
+    {
+      "id": 11,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "How is the starting cell i chosen in s-skewed noise?",
+      "choices": {
+        "A": "Deterministically as i = t mod n",
+        "B": "Always as i = 0",
+        "C": "Uniformly at random from all n cells",
+        "D": "Based on the cell with state 1"
+      },
+      "answer": "C",
+      "explanation": "Cell i is selected uniformly and randomly from the lattice at each time step, introducing stochasticity into which block is updated."
+    },
+    {
+      "id": 12,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What happens to the cells NOT in the selected block of s cells at time step t under s-skewed noise?",
+      "choices": {
+        "A": "They are updated using rule R",
+        "B": "They are reset to 0",
+        "C": "They remain idle (retain their current state)",
+        "D": "They are updated using a secondary rule R2"
+      },
+      "answer": "C",
+      "explanation": "Only the s selected consecutive cells are updated; all other n-s cells remain idle and retain their state from time t."
+    },
+    {
+      "id": 13,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=10 and s=4, if the randomly chosen starting cell is i=8 (0-indexed), which cells are updated (assuming periodic boundary conditions)?",
+      "choices": {
+        "A": "Cells 8, 9, 10, 11",
+        "B": "Cells 8, 9, 0, 1",
+        "C": "Cells 7, 8, 9, 0",
+        "D": "Cells 8, 9 only (truncated at boundary)"
+      },
+      "answer": "B",
+      "explanation": "With periodic boundaries, the block wraps: i=8, i+1=9, i+2=0 (mod 10), i+3=1 (mod 10). So cells {8, 9, 0, 1} are updated."
+    },
+    {
+      "id": 14,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At each time step under s-skewed noise, exactly how many cells are updated?",
+      "choices": {
+        "A": "A variable number between 1 and n",
+        "B": "Exactly s cells",
+        "C": "Exactly n cells",
+        "D": "Exactly 1 cell"
+      },
+      "answer": "B",
+      "explanation": "The block size is always exactly s, determined by the parameter s. The randomness is only in which starting position i is chosen, not in how many cells are updated."
+    },
+    {
+      "id": 15,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following correctly describes the s-skewed update at time t? Let x_i^t denote the state of cell i at time t.",
+      "choices": {
+        "A": "x_j^{t+1} = R(x_{j-1}^t, x_j^t, x_{j+1}^t) for all j \u2208 {i, ..., i+(s-1)}; x_j^{t+1} = x_j^t otherwise",
+        "B": "x_j^{t+1} = R(x_{j-1}^t, x_j^t, x_{j+1}^t) for all j \u2208 {0, ..., n-1}",
+        "C": "x_j^{t+1} = R(x_{j-1}^t, x_j^t, x_{j+1}^t) for a single j = i only",
+        "D": "x_j^{t+1} = 1 - x_j^t for all j \u2208 {i, ..., i+(s-1)}"
+      },
+      "answer": "A",
+      "explanation": "Cells in the block {i, i+1, ..., i+(s-1)} apply rule R using their current neighbourhood; all other cells simply carry forward their state unchanged."
+    },
+    {
+      "id": 16,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider an s-skewed ECA with n=5 and s=2. Starting cell i is chosen uniformly. What is the probability that cell 3 (0-indexed) is in the updated block at any given time step?",
+      "choices": {
+        "A": "1/5",
+        "B": "2/5",
+        "C": "3/5",
+        "D": "1/2"
+      },
+      "answer": "B",
+      "explanation": "Cell 3 is in the block if i=3 (covers cells 3,4) or i=2 (covers cells 2,3). With periodic boundaries, also i=4 covers {4,0}, not 3. So i \u2208 {2,3} \u2192 2 out of 5 equally likely choices \u2192 P = 2/5."
+    },
+    {
+      "id": 17,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA, for a lattice of size n with perturbation rate s, what is the probability that any specific cell j is updated at a given time step?",
+      "choices": {
+        "A": "s/n",
+        "B": "1/n",
+        "C": "s/(n-s)",
+        "D": "1/s"
+      },
+      "answer": "A",
+      "explanation": "Cell j is covered when i \u2208 {j, j-1, j-2, ..., j-(s-1)} (mod n). That is s distinct starting positions out of n equally likely ones \u2192 P = s/n."
+    },
+    {
+      "id": 18,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Describe in your own words the update procedure of the s-skewed noise model at a single time step t.",
+      "answer": "At each time step t under s-skewed noise: (1) a starting cell i is chosen uniformly at random from the n-cell lattice; (2) the contiguous block of s cells starting at i \u2014 that is, cells i, i+1, ..., i+(s-1) (with wraparound under periodic boundary conditions) \u2014 is selected; (3) each cell in this block applies rule R to its current 3-cell neighbourhood to compute its next state; (4) all remaining n-s cells that are not in the block remain idle and retain their current state unchanged.",
+      "explanation": "Core mechanic: random anchor + fixed-width block + rule R for block + idle for the rest."
+    },
+    {
+      "id": 19,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=6 and s=3, enumerate all possible blocks that can be updated. How many distinct blocks are there?",
+      "answer": "With n=6 and s=3, the starting cell i can be any of {0,1,2,3,4,5}. The corresponding blocks (with periodic boundary) are: i=0\u2192{0,1,2}, i=1\u2192{1,2,3}, i=2\u2192{2,3,4}, i=3\u2192{3,4,5}, i=4\u2192{4,5,0}, i=5\u2192{5,0,1}. There are exactly 6 distinct blocks, one per possible starting position.",
+      "explanation": "There are always exactly n distinct contiguous blocks of size s on a periodic lattice of size n."
+    },
+    {
+      "id": 20,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Prove or derive that the probability of a specific cell j being updated at any time step in an s-skewed ECA is s/n.",
+      "answer": "Cell j is updated at time step t iff j \u2208 {i, i+1 (mod n), ..., i+(s-1) (mod n)}, i.e., iff i \u2208 {j, j-1, j-2, ..., j-(s-1)} (all indices mod n). These are exactly s distinct values of i. Since i is chosen uniformly at random from {0,1,...,n-1}, P(cell j is updated) = (number of favourable i values) / n = s/n. This holds for every cell j by symmetry of the periodic lattice.",
+      "explanation": "Standard coverage probability argument: each cell has exactly s starting positions that place it inside the block."
+    },
+    {
+      "id": 21,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does the s-skewed model reduce to when s = n?",
+      "choices": {
+        "A": "Fully asynchronous update (1 cell per step)",
+        "B": "Traditional synchronous ECA (all cells updated)",
+        "C": "No cells are ever updated",
+        "D": "A purely stochastic rule application"
+      },
+      "answer": "B",
+      "explanation": "When s=n, the entire lattice is the block regardless of which i is chosen, so all n cells are updated every step \u2014 identical to synchronous ECA."
+    },
+    {
+      "id": 22,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What does the s-skewed model reduce to when s = 1?",
+      "choices": {
+        "A": "Synchronous ECA",
+        "B": "A single randomly selected cell is updated per step (fully asynchronous-like)",
+        "C": "No update occurs",
+        "D": "All cells update but with probability 1/n"
+      },
+      "answer": "B",
+      "explanation": "When s=1, the block contains only the single randomly chosen cell i. This is equivalent to a fully asynchronous update where exactly one uniformly random cell is updated per step."
+    },
+    {
+      "id": 23,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "As s increases from 1 to n in the s-skewed model, the update scheme transitions from:",
+      "choices": {
+        "A": "Stochastic rule selection \u2192 deterministic rule selection",
+        "B": "Single-cell asynchronous update \u2192 fully synchronous update",
+        "C": "No update \u2192 partial update",
+        "D": "Fast dynamics \u2192 slow dynamics exclusively"
+      },
+      "answer": "B",
+      "explanation": "s=1 updates one cell (maximally asynchronous); s=n updates all cells (fully synchronous). Intermediate s values represent partial/block-synchronous updates."
+    },
+    {
+      "id": 24,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At s = n, the s-skewed ECA is identical to the synchronous ECA regardless of which cell i is drawn. Why?",
+      "choices": {
+        "A": "Because the block {i, i+1, ..., i+(n-1)} always wraps around to cover all n cells on a periodic lattice",
+        "B": "Because n cells are reset to 0",
+        "C": "Because rule R is no longer applied",
+        "D": "Because boundary cells are excluded"
+      },
+      "answer": "A",
+      "explanation": "On a periodic lattice of size n, any block of exactly n consecutive cells covers every cell exactly once, so all cells are updated regardless of the starting index i."
+    },
+    {
+      "id": 25,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In the s-skewed model with s=1 on a lattice of n cells, what is the expected number of time steps before a specific cell j is updated at least once?",
+      "choices": {
+        "A": "n",
+        "B": "n/2",
+        "C": "log(n)",
+        "D": "1"
+      },
+      "answer": "A",
+      "explanation": "With s=1, each step updates one of the n cells uniformly at random. P(cell j is chosen) = 1/n. The waiting time follows a geometric distribution with parameter 1/n, so the expected number of steps is n."
+    },
+    {
+      "id": 26,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What are the two extreme values of s and what ECA update scheme does each correspond to?",
+      "answer": "The two extreme values are s=1 and s=n. When s=1, exactly one randomly selected cell is updated per step, corresponding to a fully asynchronous (single-cell) update. When s=n, the block covers the entire lattice regardless of the chosen starting cell, so all n cells are updated per step \u2014 identical to the traditional synchronous ECA.",
+      "explanation": "Boundary cases: s=1 \u2192 fully asynchronous; s=n \u2192 fully synchronous."
+    },
+    {
+      "id": 27,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For which value of s does the s-skewed model most closely resemble the \u03b1-asynchronous model, and what is the conceptual difference between the two even at that boundary?",
+      "answer": "At s=1, the s-skewed model most closely resembles the \u03b1-asynchronous model with \u03b1=1/n, since both result in exactly one cell being updated per step on average (for \u03b1-async, the expected number of updates per step is \u03b1\u00b7n = 1). However, the key conceptual difference is that in s-skewed with s=1, exactly 1 cell is updated at every step (deterministic count), whereas in \u03b1-asynchronous, each cell updates independently with probability \u03b1, so the actual number of cells updated per step is a binomial random variable B(n,\u03b1) \u2014 it can range from 0 to n, and the block is not necessarily contiguous.",
+      "explanation": "s=1 \u2194 \u03b1=1/n in expected update rate, but s-skewed gives a fixed contiguous block; \u03b1-async gives a random non-contiguous subset."
+    },
+    {
+      "id": 28,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Both s-skewed and \u03b1-asynchronous noise share which property?",
+      "choices": {
+        "A": "They both use two rules R1 and R2",
+        "B": "They both break the global clock / synchronous update assumption",
+        "C": "They both update a fixed-size contiguous block",
+        "D": "They both involve a spatial mixing parameter"
+      },
+      "answer": "B",
+      "explanation": "Both s-skewed and \u03b1-asynchronous perturbations break the global clock assumption of traditional ECA, introducing asynchrony into the update schedule."
+    },
+    {
+      "id": 29,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the fundamental distinction between s-skewed noise and stochastic (spatial) noise?",
+      "choices": {
+        "A": "s-skewed changes which cells are updated; stochastic noise changes which rule is applied",
+        "B": "s-skewed uses two rules; stochastic noise uses a single rule",
+        "C": "s-skewed is temporal; stochastic noise is spatial",
+        "D": "There is no fundamental difference"
+      },
+      "answer": "A",
+      "explanation": "s-skewed pertains to the update schedule (which cells update), keeping rule R fixed. Stochastic noise pertains to rule selection (each cell probabilistically applies R1 or R2), keeping the update schedule synchronous."
+    },
+    {
+      "id": 30,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In \u03b1-asynchronous noise, each cell updates independently with probability \u03b1. In s-skewed noise with n=10 and s=4, which statement is TRUE about cells updated per step?",
+      "choices": {
+        "A": "Both always update exactly 4 cells",
+        "B": "s-skewed always updates exactly 4 consecutive cells; \u03b1-async updates a random number of possibly non-consecutive cells",
+        "C": "\u03b1-async always updates exactly \u03b1\u00b7n cells; s-skewed updates a random number",
+        "D": "Both update a random number of cells per step"
+      },
+      "answer": "B",
+      "explanation": "s-skewed updates exactly s=4 consecutive cells per step. \u03b1-async updates each cell independently, giving a Binomial(n,\u03b1) random number of non-consecutive cells."
+    },
+    {
+      "id": 31,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "How does s-skewed noise differ from temporal stochastic noise?",
+      "choices": {
+        "A": "s-skewed changes the rule applied per time step; temporal stochastic changes which cells update",
+        "B": "s-skewed changes which cells update (update schedule); temporal stochastic changes which single rule all cells apply at each time step",
+        "C": "Both models are equivalent when s=n",
+        "D": "Temporal stochastic uses a fixed block; s-skewed uses two rules"
+      },
+      "answer": "B",
+      "explanation": "s-skewed perturbs the update schedule (which cells update, rule R is fixed). Temporal stochastic noise leaves all cells updating synchronously but at each time step all cells apply R1 with prob 1-\u03c4 or all apply R2 with prob \u03c4."
+    },
+    {
+      "id": 32,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Which of the following is true about the noise parameter in s-skewed versus \u03b1-asynchronous models?",
+      "choices": {
+        "A": "Both parameters are continuous in [0,1]",
+        "B": "s is a discrete integer in [1,n]; \u03b1 is continuous in [0,1]",
+        "C": "s is continuous in [0,1]; \u03b1 is a discrete integer",
+        "D": "Both are discrete integers"
+      },
+      "answer": "B",
+      "explanation": "s \u2208 [1,n] and represents an integer block size (number of cells). \u03b1 \u2208 [0,1] is a real-valued probability. They are both noise-rate parameters but of different mathematical types."
+    },
+    {
+      "id": 33,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Compare s-skewed noise and \u03b1-asynchronous noise. Identify two similarities and two differences.",
+      "answer": "Similarities: (1) Both models break the global clock of traditional synchronous ECA, introducing asynchrony. (2) Both keep the rule R fixed \u2014 neither changes which rule is applied. Differences: (1) In s-skewed, the update set is always a contiguous block of exactly s cells; in \u03b1-async, cells update independently so the updated set is a random, potentially non-contiguous subset. (2) The noise parameter differs in type: s \u2208 {1,...,n} is a discrete block-size integer; \u03b1 \u2208 [0,1] is a continuous probability.",
+      "explanation": "Both are asynchronous perturbations; they differ in block structure and parameter type."
+    },
+    {
+      "id": 34,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain why s-skewed and stochastic (spatial) noise are 'orthogonal' perturbations \u2014 that is, why they cannot be directly compared on the same axis of variation.",
+      "answer": "s-skewed and spatial stochastic noise target entirely different structural components of the ECA. s-skewed noise perturbs the update schedule: it determines which subset of cells are activated at each step while the rule R remains fixed and uniform. Spatial stochastic noise, on the other hand, perturbs the rule space: all cells are still updated synchronously, but each cell independently applies one of two rules (R1 or R2) with complementary probabilities. One affects 'when/which cells update'; the other affects 'what rule is applied'. Because they modify different dimensions of the ECA \u2014 synchrony vs. rule homogeneity \u2014 they are orthogonal and cannot be ranked on a single noise axis.",
+      "explanation": "Orthogonality: schedule perturbation vs. rule perturbation are independent axes of the ECA design space."
+    },
+    {
+      "id": 35,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n cells and perturbation rate s, what fraction of cells remain idle (unchanged) at each time step?",
+      "choices": {
+        "A": "s/n",
+        "B": "1 - s/n",
+        "C": "(n-s)/s",
+        "D": "1/s"
+      },
+      "answer": "B",
+      "explanation": "s cells are updated, so n-s cells remain idle. The fraction idle = (n-s)/n = 1 - s/n."
+    },
+    {
+      "id": 36,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA on a periodic lattice of size n, how many distinct starting positions i are possible?",
+      "choices": {
+        "A": "s",
+        "B": "n - s",
+        "C": "n",
+        "D": "n - s + 1"
+      },
+      "answer": "C",
+      "explanation": "On a periodic (circular) lattice, i can be any of the n cell indices. With periodic wraparound, all n starting positions are valid."
+    },
+    {
+      "id": 37,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=8 and s=8, what is the expected number of distinct configurations the system can reach after one time step from a given configuration?",
+      "choices": {
+        "A": "8 (one per starting position)",
+        "B": "1 (all starting positions yield the same outcome)",
+        "C": "256 (all possible next configurations)",
+        "D": "2 (binary outcomes)"
+      },
+      "answer": "B",
+      "explanation": "When s=n=8, every starting position i causes all 8 cells to be updated by rule R. Since rule R is deterministic and all cells are updated regardless of i, every choice of i yields the same next configuration \u2014 identical to synchronous ECA. Thus exactly 1 distinct next configuration is reachable."
+    },
+    {
+      "id": 38,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=6, s=2, Rule 90 (XOR rule), and initial config [1,0,0,0,0,0], how many cells could have state 1 after one step, in the best case (maximizing 1s)?",
+      "choices": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "3"
+      },
+      "answer": "C",
+      "explanation": "Rule 90 applies XOR of left and right neighbours. The initial config has a single 1 at position 0. Only 2 cells update. If block {5,0} is chosen: cell 5 \u2192 XOR(x4,x1)=XOR(0,0)=0; cell 0 \u2192 XOR(x5,x1)=XOR(0,0)=0. If block {0,1} is chosen: cell 0 \u2192 XOR(x5,x1)=0; cell 1 \u2192 XOR(x0,x2)=XOR(1,0)=1. So max 1s in updated cells = 1, plus the unchanged cell 0 still = 1, total = at most 2 ones in the whole array."
+    },
+    {
+      "id": 39,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA, the update at each step is a random variable. What is the state space of this random variable (what can vary between steps)?",
+      "choices": {
+        "A": "Only the rule applied",
+        "B": "Only the number of cells updated",
+        "C": "The starting position i of the block (from which the block and hence next configuration follow deterministically given i)",
+        "D": "The state of every individual cell independently"
+      },
+      "answer": "C",
+      "explanation": "The only source of randomness is the choice of starting index i \u2208 {0,...,n-1}. Once i is fixed and the current configuration is known, the next configuration is completely determined by applying rule R to the s-cell block."
+    },
+    {
+      "id": 40,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=10 and s=3, calculate: (a) the number of distinct blocks, (b) the probability that a specific cell is updated per step, and (c) the fraction of cells that remain idle per step.",
+      "answer": "(a) On a periodic lattice of size n=10, the number of distinct blocks equals n = 10 (one block per starting position i \u2208 {0,...,9}). (b) P(specific cell j is updated) = s/n = 3/10 = 0.3. (c) Fraction idle = 1 - s/n = 1 - 3/10 = 7/10 = 0.7, meaning 7 out of 10 cells remain unchanged each step.",
+      "explanation": "Key formulas: #blocks = n; P(cell updated) = s/n; fraction idle = (n-s)/n."
+    },
+    {
+      "id": 41,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA, show that the process is a Markov chain and identify its state space and transition probabilities.",
+      "answer": "The process is a Markov chain because the next configuration x^{t+1} depends only on the current configuration x^t and the randomly chosen i (which is memoryless/i.i.d.), not on any earlier history. State space: the set of all 2^n binary strings of length n (configurations). Transition probabilities: P(x^t \u2192 x^{t+1}) = (number of starting positions i \u2208 {0,...,n-1} that transform x^t into x^{t+1}) / n. For each i, the transition is deterministic (applying rule R to the block), so each starting position i contributes weight 1/n to the probability of the resulting configuration. Thus P(x^t \u2192 y) = |{i : T_i(x^t) = y}| / n, where T_i is the deterministic map applying rule R to the block starting at i.",
+      "explanation": "Markov property: next state depends only on current state and i.i.d. random i. Transition = sum over valid i values divided by n."
+    },
+    {
+      "id": 42,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "A higher value of s in the s-skewed model means:",
+      "choices": {
+        "A": "More cells are updated per step, approaching synchronous behaviour",
+        "B": "Fewer cells are updated per step, increasing asynchrony",
+        "C": "The rule R changes more frequently",
+        "D": "The lattice size decreases"
+      },
+      "answer": "A",
+      "explanation": "Higher s \u2192 larger block \u2192 more cells updated per step \u2192 behaviour approaches that of synchronous ECA (all cells updated)."
+    },
+    {
+      "id": 43,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "A lower value of s (closer to 1) in the s-skewed model corresponds to:",
+      "choices": {
+        "A": "Near-synchronous update",
+        "B": "Near fully-asynchronous update with maximum perturbation from synchrony",
+        "C": "No perturbation at all",
+        "D": "Faster convergence to fixed points"
+      },
+      "answer": "B",
+      "explanation": "Small s means very few cells update per step, maximising the departure from synchronous update \u2014 this is high perturbation / high asynchrony."
+    },
+    {
+      "id": 44,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the context of s-skewed noise, what does 'perturbation rate' refer to?",
+      "choices": {
+        "A": "The probability of a cell flipping its state",
+        "B": "The number of cells updated per step relative to n, controlling how far the dynamics deviate from synchronous ECA",
+        "C": "The rate at which the rule R changes over time",
+        "D": "The speed of convergence to an attractor"
+      },
+      "answer": "B",
+      "explanation": "The perturbation rate s \u2208 [1,n] governs how many cells update; as a fraction s/n it measures how close the update scheme is to full synchrony. s/n near 0 = highly perturbed; s/n = 1 = unperturbed (synchronous)."
+    },
+    {
+      "id": 45,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=100 and s=50, what percentage of the lattice is updated at each step, and how would you characterise this noise level?",
+      "choices": {
+        "A": "50%; moderate perturbation, halfway between fully asynchronous and synchronous",
+        "B": "50%; maximum perturbation",
+        "C": "50%; minimal perturbation",
+        "D": "100%; no perturbation"
+      },
+      "answer": "A",
+      "explanation": "s/n = 50/100 = 50%. This is exactly the midpoint between s=1 (fully asynchronous, max perturbation) and s=n=100 (fully synchronous, zero perturbation), representing moderate perturbation."
+    },
+    {
+      "id": 46,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain the monotonic relationship between s and the degree of perturbation from synchronous ECA. Is higher s more or less perturbed?",
+      "answer": "Higher s means less perturbation (closer to synchronous ECA). The perturbation decreases monotonically as s increases: when s=n, there is zero perturbation (identical to synchronous ECA); when s=1, perturbation is maximal (only one cell updates). Conceptually, s measures the block size \u2014 the larger the block, the more the update resembles the global update of synchronous ECA. Therefore, s and perturbation are inversely related: low s = high perturbation; high s = low perturbation.",
+      "explanation": "Inverse monotonic: increasing s \u2192 decreasing asynchrony \u2192 decreasing departure from synchronous behaviour."
+    },
+    {
+      "id": 47,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under s-skewed noise with s < n, a fixed point of the synchronous ECA (a configuration x* such that R applied to all cells gives x*) is:",
+      "choices": {
+        "A": "Always also a fixed point of the s-skewed dynamics",
+        "B": "Never a fixed point of the s-skewed dynamics",
+        "C": "A fixed point of the s-skewed dynamics only if applying R to any s-cell block of x* leaves it unchanged",
+        "D": "Irrelevant to the s-skewed dynamics"
+      },
+      "answer": "C",
+      "explanation": "In s-skewed dynamics, x* is a fixed point iff for every possible block starting position i, applying rule R to cells i through i+(s-1) in x* yields the same states. This is exactly the condition that x* is also a fixed point of the synchronous ECA, since fixed points satisfy R(x_{j-1},x_j,x_{j+1})=x_j for all j."
+    },
+    {
+      "id": 48,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following best describes how s-skewed noise generally affects the attractor landscape of an ECA compared to synchronous update?",
+      "choices": {
+        "A": "s-skewed noise always increases the number of fixed points",
+        "B": "s-skewed noise always eliminates all attractors",
+        "C": "s-skewed noise can alter the set of attractors \u2014 some attractors may merge, split, or disappear compared to synchronous dynamics",
+        "D": "s-skewed noise has no effect on the attractor landscape"
+      },
+      "answer": "C",
+      "explanation": "Introducing asynchrony via s-skewed noise changes the transition graph of the system. The structure of attractors (fixed points, cycles) can change: attractors of the synchronous system may not persist, and new attractors specific to the asynchronous dynamics may emerge."
+    },
+    {
+      "id": 49,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider a synchronous ECA with a 2-cycle (configurations A \u2192 B \u2192 A). Under s-skewed noise with s < n, this 2-cycle:",
+      "choices": {
+        "A": "Always remains a 2-cycle",
+        "B": "Is always destroyed and the system converges to a fixed point",
+        "C": "May be preserved or destroyed depending on the specific configurations A and B and the rule R",
+        "D": "Always becomes a longer cycle"
+      },
+      "answer": "C",
+      "explanation": "Whether the 2-cycle persists under s-skewed noise depends on whether any partial (block) update can move the system out of the cycle. If the block update of any s cells in A or B produces a configuration different from B or A respectively, the cycle is broken. This is rule- and configuration-specific."
+    },
+    {
+      "id": 50,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA, explain why the dynamics become a probabilistic (stochastic) process even though rule R itself is deterministic.",
+      "answer": "Rule R is deterministic: given a fixed neighbourhood, it always produces the same output. However, the s-skewed model introduces stochasticity through the random selection of the starting cell i at each time step. Even from a fixed configuration x^t, different choices of i produce different next configurations x^{t+1} (because different subsets of cells are updated). Over time, the trajectory of the system is therefore not a single deterministic path but a random walk on the configuration space \u2014 making the system a stochastic process (specifically a Markov chain) despite each individual rule application being deterministic.",
+      "explanation": "Stochasticity enters via random i selection, not via rule R. This is the key mechanism by which s-skewed noise converts a deterministic CA into a probabilistic dynamical system."
+    },
+    {
+      "id": 51,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under periodic boundary conditions in an s-skewed ECA with n=5 and s=3, if i=4 is the starting cell, which cells form the block?",
+      "choices": {
+        "A": "Cells 4, 5, 6 (out-of-bounds cells ignored)",
+        "B": "Cells 4, 3, 2 (backwards wrap)",
+        "C": "Cells 4, 0, 1 (wrap around)",
+        "D": "Only cell 4 (truncated)"
+      },
+      "answer": "C",
+      "explanation": "With periodic boundaries (circular lattice), after cell 4 comes cell 0 then cell 1: block = {4, (4+1)%5=0, (4+2)%5=1} = {4, 0, 1}."
+    },
+    {
+      "id": 52,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under a non-periodic (fixed/null) boundary condition for an s-skewed ECA with n=10 and s=4, which starting positions i are valid without the block exceeding the lattice boundary?",
+      "choices": {
+        "A": "i \u2208 {0, 1, ..., 9}",
+        "B": "i \u2208 {0, 1, ..., 6}",
+        "C": "i \u2208 {0, 1, ..., 5}",
+        "D": "i \u2208 {0, 1, 2, 3} only"
+      },
+      "answer": "B",
+      "explanation": "For block {i, i+1, i+2, i+3} to stay within [0,9], we need i+3 \u2264 9, i.e., i \u2264 6. So valid i \u2208 {0,1,2,3,4,5,6} \u2014 seven positions."
+    },
+    {
+      "id": 53,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Describe how the neighbourhood lookup for cells at the edges of the block (cells i and i+(s-1)) is handled under periodic boundary conditions in an s-skewed ECA.",
+      "answer": "Under the s-skewed model, even cells within the updated block use their current (time t) neighbourhood for rule application. For the first cell in the block, i, its left neighbour is cell (i-1) mod n \u2014 which may or may not be in the block. For the last cell i+(s-1), its right neighbour is cell (i+s) mod n \u2014 again possibly outside the block. Under periodic boundary conditions, all index arithmetic uses modulo n. Cells outside the block are not updated (they remain at their time-t states), so neighbourhood lookups for boundary cells of the block simply read the unchanged time-t states of those neighbouring cells, using mod-n indexing for wrap-around.",
+      "explanation": "Block-edge cells use mod-n neighbourhood indexing; neighbours outside the block read their unchanged time-t states."
+    },
+    {
+      "id": 54,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the s-skewed notation, the variable 's' represents:",
+      "choices": {
+        "A": "The number of time steps per simulation",
+        "B": "The perturbation rate: the size of the contiguous block of cells updated per step",
+        "C": "The probability of a cell being updated",
+        "D": "The number of distinct rules used"
+      },
+      "answer": "B",
+      "explanation": "s is the perturbation rate in the s-skewed model, numerically equal to the size of the contiguous block selected for update each step."
+    },
+    {
+      "id": 55,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In an s-skewed ECA, 'n' denotes:",
+      "choices": {
+        "A": "The noise probability",
+        "B": "The total number of cells in the lattice",
+        "C": "The number of rules",
+        "D": "The block starting position"
+      },
+      "answer": "B",
+      "explanation": "n is the total lattice size \u2014 the number of cells. The perturbation rate s ranges from 1 to n."
+    },
+    {
+      "id": 56,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Using formal notation, the s-skewed update can be written as: x_j^{t+1} = R(x_{j-1}^t, x_j^t, x_{j+1}^t) if j \u2208 B_t, and x_j^{t+1} = x_j^t otherwise. Here B_t refers to:",
+      "choices": {
+        "A": "The set of all n cells",
+        "B": "The set {i, i+1, ..., i+(s-1)} where i is chosen uniformly at random at time t",
+        "C": "The set of cells with state 1 at time t",
+        "D": "A fixed predetermined block that never changes"
+      },
+      "answer": "B",
+      "explanation": "B_t is the randomly chosen block at time t: a contiguous set of s cells {i, i+1, ..., i+(s-1)} where i is drawn uniformly from {0,...,n-1} at each step."
+    },
+    {
+      "id": 57,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Write the complete formal mathematical definition of one time step of an s-skewed ECA. Define all variables used.",
+      "answer": "Let the ECA have n cells on a periodic lattice, rule R, and perturbation rate s \u2208 {1,...,n}. Let x^t = (x_0^t, x_1^t, ..., x_{n-1}^t) \u2208 {0,1}^n be the configuration at time t. One step proceeds as: (1) Draw i uniformly at random from {0,1,...,n-1}. (2) Set block B_t = {i mod n, (i+1) mod n, ..., (i+s-1) mod n}. (3) For each cell j \u2208 {0,...,n-1}: x_j^{t+1} = R(x_{(j-1) mod n}^t, x_j^t, x_{(j+1) mod n}^t) if j \u2208 B_t; x_j^{t+1} = x_j^t if j \u2209 B_t.",
+      "explanation": "Complete formal definition: random i \u2192 block B_t \u2192 rule application for block cells \u2192 idle for non-block cells."
+    },
+    {
+      "id": 58,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider an s-skewed ECA with n=4, s=2, Rule 90 (XOR of neighbours). Configuration at time t is [1,0,1,0] (periodic). If i=1 is drawn, what is the configuration at t+1?",
+      "choices": {
+        "A": "[1, 1, 0, 0]",
+        "B": "[1, 0, 0, 0]",
+        "C": "[1, 1, 1, 0]",
+        "D": "[0, 1, 1, 0]"
+      },
+      "answer": "B",
+      "explanation": "Block = {1,2}. Rule 90: new_state(j) = x_{j-1} XOR x_{j+1}. Cell 1: x0 XOR x2 = 1 XOR 1 = 0. Cell 2: x1 XOR x3 = 0 XOR 0 = 0. Cells 0 and 3 remain: 1 and 0. Configuration at t+1: [1, 0, 0, 0]."
+    },
+    {
+      "id": 59,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider an s-skewed ECA with n=4, s=2, Rule 0 (all-zero rule). Starting from any configuration, after a sufficient number of steps, the configuration will:",
+      "choices": {
+        "A": "Always be [0,0,0,0] after exactly 1 step",
+        "B": "Converge to [0,0,0,0] eventually with probability 1",
+        "C": "Never change",
+        "D": "Oscillate indefinitely"
+      },
+      "answer": "B",
+      "explanation": "Rule 0 maps every neighbourhood to 0. Each step zeros out a block of 2 cells. Since i is chosen uniformly at random, every cell will eventually be in an updated block (probability = 2/4 = 0.5 per step per cell). With probability 1, all cells will eventually be set to 0, so the all-zero fixed point is reached with probability 1."
+    },
+    {
+      "id": 60,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=5, s=2, Rule 255 (all-one rule), and initial config [0,0,0,0,0]: trace all possible configurations at t=1 and state the probability of each.",
+      "answer": "Rule 255 maps every neighbourhood to 1. Block of size s=2 sets both chosen cells to 1. Starting from [0,0,0,0,0], the 5 possible starting positions and resulting t=1 configs are: i=0\u2192[1,1,0,0,0]; i=1\u2192[0,1,1,0,0]; i=2\u2192[0,0,1,1,0]; i=3\u2192[0,0,0,1,1]; i=4\u2192[1,0,0,0,1] (periodic: cells 4 and 0). Each occurs with probability 1/5 = 0.2. There are 5 distinct configurations at t=1, each with probability 1/5.",
+      "explanation": "Rule 255 sets everything to 1; only the block changes. Five equally likely starting positions give five distinct t=1 configs."
+    },
+    {
+      "id": 61,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=4, s=2, Rule 90 (XOR rule), initial config x^0=[1,1,0,0] with periodic boundaries: compute all possible configurations at t=1 and their probabilities.",
+      "answer": "Rule 90: new_state(j) = x_{j-1} XOR x_{j+1}. Initial: x0=1, x1=1, x2=0, x3=0 (periodic: x_{-1}=x3=0, x4=x0=1). Possible blocks (i \u2192 {i, i+1 mod 4}): i=0: block {0,1}. Cell 0: x3 XOR x1 = 0 XOR 1 = 1. Cell 1: x0 XOR x2 = 1 XOR 0 = 1. Others unchanged: x2=0, x3=0 \u2192 [1,1,0,0]. i=1: block {1,2}. Cell 1: x0 XOR x2 = 1 XOR 0 = 1. Cell 2: x1 XOR x3 = 1 XOR 0 = 1. Others: x0=1, x3=0 \u2192 [1,1,1,0]. i=2: block {2,3}. Cell 2: x1 XOR x3 = 1 XOR 0 = 1. Cell 3: x2 XOR x0 = 0 XOR 1 = 1. Others: x0=1, x1=1 \u2192 [1,1,1,1]. i=3: block {3,0}. Cell 3: x2 XOR x0 = 0 XOR 1 = 1. Cell 0: x3 XOR x1 = 0 XOR 1 = 1. Others: x1=1, x2=0 \u2192 [1,1,0,1]. Summary: P([1,1,0,0])=1/4, P([1,1,1,0])=1/4, P([1,1,1,1])=1/4, P([1,1,0,1])=1/4.",
+      "explanation": "Each of 4 starting positions occurs with probability 1/4, yielding 4 equally likely distinct configurations at t=1."
+    },
+    {
+      "id": 62,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The term 'skewed' in 's-skewed noise' refers to:",
+      "choices": {
+        "A": "A skewed (asymmetric) probability distribution over rules",
+        "B": "The skewing of the update schedule \u2014 only a contiguous block is updated rather than all cells",
+        "C": "A skewed neighbourhood that extends further to one side",
+        "D": "Statistical skewness of the cell state distribution"
+      },
+      "answer": "B",
+      "explanation": "'Skewed' refers to the perturbation of the synchronous update schedule: instead of updating all cells (synchronous), the schedule is 'skewed' to update only a contiguous block of s cells."
+    },
+    {
+      "id": 63,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following real-world phenomena could s-skewed noise model?",
+      "choices": {
+        "A": "A region-wise power outage causing only some processors in a distributed system to update at a given time",
+        "B": "Random mutation of individual DNA bases",
+        "C": "Temperature fluctuations in a gas",
+        "D": "Random delays affecting every node independently and simultaneously"
+      },
+      "answer": "A",
+      "explanation": "s-skewed noise models spatially contiguous partial updates \u2014 e.g., a localised failure or processing wave that updates only a consecutive chunk of agents/processors per step, akin to a region-wise outage."
+    },
+    {
+      "id": 64,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why is the contiguity (consecutive nature) of the s-cell block a meaningful structural choice in the s-skewed model?",
+      "choices": {
+        "A": "It simplifies computation but has no physical meaning",
+        "B": "It models spatially localised disturbances \u2014 phenomena where updates propagate in a wave or region, not scattered randomly across the lattice",
+        "C": "It ensures that rule R is never applied",
+        "D": "It guarantees convergence to a fixed point"
+      },
+      "answer": "B",
+      "explanation": "Contiguity captures the idea of a spatial disturbance or wave that affects a connected region of the lattice. This is physically meaningful for modelling propagating signals, localised faults, or region-wise updates \u2014 unlike \u03b1-async which scatters updates uniformly."
+    },
+    {
+      "id": 65,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "If an ECA under s-skewed noise with s < n exhibits the same long-term statistical behaviour as the synchronous ECA for all initial conditions, what can be concluded?",
+      "choices": {
+        "A": "Rule R is the all-zero rule",
+        "B": "The rule is insensitive to the update schedule \u2014 its attractors and statistics are robust to this form of asynchrony",
+        "C": "s must equal n-1",
+        "D": "The lattice is size 1"
+      },
+      "answer": "B",
+      "explanation": "If the long-run statistics are identical between s-skewed (s<n) and synchronous dynamics, it means the attractor structure and statistical behaviour of that particular rule R are invariant to this perturbation \u2014 the rule is robust to s-skewed asynchrony."
+    },
+    {
+      "id": 66,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Why is it important that in s-skewed noise the same rule R is used throughout \u2014 not two rules like in stochastic models?",
+      "answer": "Using a single fixed rule R throughout ensures that any change in dynamics compared to the synchronous ECA is attributable solely to the perturbation of the update schedule (asynchrony), not to any change in the local rule. This is a controlled experimental design: the s-skewed model isolates the effect of synchrony/asynchrony as the independent variable. If two rules were used, any observed differences could be confounded by rule mixing. By keeping R constant and only varying which cells update, s-skewed noise cleanly measures how much of an ECA's behaviour is a consequence of synchrony versus its rule.",
+      "explanation": "Single rule = isolates update-schedule perturbation; rule mixing would confound the two sources of variation."
+    },
+    {
+      "id": 67,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Critically compare s-skewed noise as a model of physical asynchrony against \u03b1-asynchronous noise. Which is more spatially realistic and why?",
+      "answer": "s-skewed noise is more spatially realistic for many physical systems because it models asynchrony as a spatially contiguous event \u2014 a connected block of cells updates together. This mirrors real-world phenomena such as propagating signal waves, localised processor failures, or region-wise clock synchronisation. \u03b1-asynchronous noise, by contrast, models each cell as updating independently with probability \u03b1, producing a random scattered pattern of active cells with no spatial correlation. While \u03b1-asynchrony is statistically elegant and convenient, it assumes independence between neighbouring cells' update events, which is unrealistic when disturbances are spatially correlated (e.g., a power failure affects a rack of servers, not random individual servers). Therefore, s-skewed noise captures spatial locality of asynchrony more faithfully, at the cost of introducing a different type of stochasticity (random position of a fixed-size block).",
+      "explanation": "s-skewed = spatially correlated contiguous disturbance; \u03b1-async = i.i.d. independent cell updates. Physical locality favours s-skewed for spatially coupled systems."
+    },
+    {
+      "id": 68,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA with n=6 and s=3, what is the probability that two adjacent cells j and j+1 are BOTH in the updated block at the same time step?",
+      "choices": {
+        "A": "1/2",
+        "B": "1/3",
+        "C": "2/3",
+        "D": "1/6"
+      },
+      "answer": "A",
+      "explanation": "Cells j and j+1 are both in the block iff i \u2208 {j, j-1, j-2} (positions that place both j and j+1 within the block of size 3). That's 3 starting positions. P = 3/6 = 1/2."
+    },
+    {
+      "id": 69,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA, what is the probability that two cells that are exactly s positions apart (cells j and j+s) are BOTH updated in the same step?",
+      "choices": {
+        "A": "s/n",
+        "B": "0",
+        "C": "1/n",
+        "D": "2s/n"
+      },
+      "answer": "C",
+      "explanation": "Cells j and j+s are both in the block {i,...,i+s-1} iff j = i and j+s = i+s, which requires i=j. That is exactly one starting position. P = 1/n."
+    },
+    {
+      "id": 70,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n cells and block size s, the expected number of cells updated over T time steps is:",
+      "choices": {
+        "A": "T",
+        "B": "s \u00b7 T",
+        "C": "T/s",
+        "D": "n \u00b7 T"
+      },
+      "answer": "B",
+      "explanation": "Exactly s cells are updated per time step deterministically. Over T steps, the expected total number of cell-updates is s\u00b7T. (Note: the same cell may be updated multiple times.)"
+    },
+    {
+      "id": 71,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n cells and block size s, derive the expected number of time steps until every cell has been updated at least once (the 'cover time').",
+      "answer": "This is a variant of the coupon collector problem with non-uniform block sampling. Each step covers a block of s consecutive cells; we need all n cells covered. By linearity of expectation, the expected cover time can be bounded. Since each cell is updated per step with probability s/n, the time until a single specific cell is first updated is geometric with mean n/s. However, because blocks overlap, the full cover time is larger. By a union bound / coupon collector analogy, the expected cover time is approximately (n/s)\u00b7H_n = (n/s)\u00b7(ln n + \u03b3) for independent coverage, but s-skewed blocks are correlated (contiguous). A cleaner lower bound is n/s (time to update each cell once in expectation), and the exact expected cover time depends on s and n due to block overlap structure. For s=1 (one cell per step), it equals the standard coupon collector: n\u00b7H_n \u2248 n\u00b7ln(n).",
+      "explanation": "Cover time \u2248 (n/s)\u00b7ln(n) for large n by analogy with coupon collector; exact value depends on block correlation structure."
+    },
+    {
+      "id": 72,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=20 and s=5, after exactly 1 time step, the expected number of cells that have been updated is:",
+      "choices": {
+        "A": "1",
+        "B": "5",
+        "C": "10",
+        "D": "20"
+      },
+      "answer": "B",
+      "explanation": "Exactly s=5 cells are updated per step with certainty (not in expectation \u2014 exactly). After 1 step, always exactly 5 cells have been updated."
+    },
+    {
+      "id": 73,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=8 and s=4, calculate the probability that a specific pair of cells (cells 2 and 5) are BOTH updated in the same time step.",
+      "answer": "Cells 2 and 5 are both in block {i,...,i+3} iff both 2 \u2208 {i,i+1,i+2,i+3} and 5 \u2208 {i,i+1,i+2,i+3} simultaneously. This requires i \u2264 2 and i+3 \u2265 5, i.e., i \u2264 2 and i \u2265 2 \u2192 i = 2 exactly. With periodic boundaries, only i=2 gives block {2,3,4,5} which contains both cells 2 and 5. P = 1/8 = 0.125.",
+      "explanation": "Only i=2 gives a block {2,3,4,5} spanning both cells; probability = 1/n = 1/8."
+    },
+    {
+      "id": 74,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "s-skewed noise is classified as a perturbation of which aspect of ECA?",
+      "choices": {
+        "A": "The rule space",
+        "B": "The state space",
+        "C": "The update schedule / synchrony",
+        "D": "The neighbourhood radius"
+      },
+      "answer": "C",
+      "explanation": "s-skewed noise is a perturbation of the update schedule \u2014 specifically, it breaks full synchrony by updating only a subset of cells per step."
+    },
+    {
+      "id": 75,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which statement best characterises the relationship between s-skewed noise and synchronous ECA?",
+      "choices": {
+        "A": "They are completely unrelated models",
+        "B": "Synchronous ECA is a special case of s-skewed ECA when s=n",
+        "C": "s-skewed ECA is a special case of synchronous ECA when s=1",
+        "D": "s-skewed ECA uses a different lattice topology"
+      },
+      "answer": "B",
+      "explanation": "Synchronous ECA is recovered exactly when s=n in the s-skewed model, making synchronous ECA a degenerate (special) case of the more general s-skewed framework."
+    },
+    {
+      "id": 76,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Is the synchronous ECA a special case of the s-skewed model? Justify your answer formally.",
+      "answer": "Yes. The synchronous ECA is a special case of the s-skewed model with s=n. When s=n, the block {i, i+1,...,i+(n-1)} on a periodic lattice of size n always contains all n cells, regardless of the chosen starting position i. Therefore, every cell is updated at every time step by rule R \u2014 exactly the synchronous update. The randomness in choosing i becomes irrelevant since all choices lead to the same outcome. Thus, the s-skewed model with s=n reduces exactly to the standard synchronous ECA.",
+      "explanation": "s=n \u2192 block = full lattice \u2192 synchronous update. Formal containment: synchronous ECA \u2282 s-skewed ECA as the s=n boundary case."
+    },
+    {
+      "id": 77,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following correctly identifies the s-skewed noise model?",
+      "choices": {
+        "A": "Each cell updates independently with probability s at each step",
+        "B": "A random contiguous block of s cells is updated per step, with the starting cell chosen uniformly",
+        "C": "All cells update, but s of them randomly flip their state",
+        "D": "s rules are applied simultaneously to all cells"
+      },
+      "answer": "B",
+      "explanation": "s-skewed: random starting cell i \u2192 update contiguous block {i, i+1,...,i+(s-1)} using rule R \u2192 all other cells idle."
+    },
+    {
+      "id": 78,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "An ECA variant updates cells 3,4,5 (out of 10) at t=1; cells 7,8,9 at t=2; and cells 1,2,3 at t=3, applying rule R each time. Which noise model does this most likely represent?",
+      "choices": {
+        "A": "\u03b1-asynchronous noise",
+        "B": "Spatial stochastic noise",
+        "C": "s-skewed noise with s=3",
+        "D": "Temporal stochastic noise"
+      },
+      "answer": "C",
+      "explanation": "A contiguous block of exactly 3 cells is updated each step, with a random starting position. This is the defining behaviour of s-skewed noise with s=3."
+    },
+    {
+      "id": 79,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "You observe an ECA experiment where at each step a contiguous block of cells is updated. How would you distinguish whether it follows s-skewed noise versus a deterministic cyclic update (where blocks are updated in a fixed rotating order)?",
+      "answer": "To distinguish s-skewed from deterministic cyclic update: (1) Record the starting position i of the updated block at each time step over many steps. (2) For s-skewed noise, the starting positions should be uniformly distributed over {0,...,n-1} \u2014 any statistical test of uniformity (e.g., chi-square goodness-of-fit) on the sequence of i values would confirm this. (3) For a deterministic cyclic update, the sequence of starting positions would follow a fixed periodic pattern (e.g., 0, s, 2s, 3s,... mod n), which is deterministic and non-uniform if we look at temporal autocorrelation. (4) Additionally, s-skewed starting positions should be i.i.d. (no temporal autocorrelation), while cyclic updates have perfect periodicity. A runs test or autocorrelation analysis of the starting-position sequence would reveal the difference.",
+      "explanation": "Key test: are starting positions i.i.d. uniform (s-skewed) or deterministically periodic (cyclic)? Statistical tests on the block position sequence distinguish them."
+    },
+    {
+      "id": 80,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under s-skewed noise with 1 < s < n, the transition function of the ECA becomes a set of n deterministic maps T_0, T_1, ..., T_{n-1} (one per starting position). The overall dynamics are governed by:",
+      "choices": {
+        "A": "A deterministic composition of all n maps in a fixed order",
+        "B": "A random i.i.d. selection of one map T_i at each step, forming a random dynamical system (iterated function system)",
+        "C": "The average of all n maps applied simultaneously",
+        "D": "The map corresponding to the most recently applied T_i"
+      },
+      "answer": "B",
+      "explanation": "s-skewed dynamics form a random dynamical system (RDS) or iterated function system: at each step, one of n deterministic maps T_i is selected i.i.d. uniformly at random and applied. This is a classical framework for studying stochastic dynamics arising from deterministic components."
+    },
+    {
+      "id": 81,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Discuss whether an s-skewed ECA can have strictly more fixed points than the corresponding synchronous ECA, and give a justification.",
+      "answer": "Yes, an s-skewed ECA can have strictly more fixed points than the synchronous ECA. A configuration x* is a fixed point of the s-skewed dynamics iff for every block starting position i, applying rule R to the block {i,...,i+(s-1)} in x* leaves those cells unchanged. This is equivalent to: R(x_{j-1}, x_j, x_{j+1}) = x_j for all j in any possible block. Since any cell can be in a block, this means x* must satisfy R(x_{j-1}, x_j, x_{j+1}) = x_j for all j \u2014 which is exactly the fixed-point condition for synchronous ECA. Therefore, the set of fixed points of s-skewed dynamics (for any s \u2208 [1,n]) is identical to the set of fixed points of the synchronous ECA. S-skewed does NOT create additional fixed points. However, it can create new periodic orbits (limit cycles) of the Markov chain that are not periodic orbits of the synchronous system.",
+      "explanation": "Fixed points of s-skewed = fixed points of synchronous ECA (same condition). New periodic behaviour may emerge but not new fixed points."
+    },
+    {
+      "id": 82,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA treated as a Markov chain on {0,1}^n, the chain is always:",
+      "choices": {
+        "A": "Irreducible (any configuration can reach any other configuration)",
+        "B": "Absorbing (every state eventually reaches a fixed absorbing state)",
+        "C": "At least aperiodic when the synchronous ECA has at least one fixed point",
+        "D": "Periodic with period exactly 2"
+      },
+      "answer": "C",
+      "explanation": "If the synchronous ECA has a fixed point x*, it is also a fixed point of every T_i map, hence an absorbing state of the Markov chain. An absorbing state has a self-loop, which makes the chain aperiodic. However, irreducibility depends on the specific rule and is not guaranteed in general."
+    },
+    {
+      "id": 83,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a very large lattice (n \u2192 \u221e) with fixed s, describe qualitatively how the s-skewed dynamics differ from synchronous ECA, focusing on the fraction of cells updated per step and its implications.",
+      "answer": "As n \u2192 \u221e with fixed s, the fraction of cells updated per step is s/n \u2192 0. This means that at any given time step, a vanishingly small proportion of the lattice is active. The dynamics slow down dramatically relative to synchronous ECA: the 'effective time' experienced by any region of the lattice becomes sparse. Information from one part of the lattice propagates to other parts very slowly, since only s cells (an infinitesimally small fraction) advance per step. The system behaves almost like a frozen lattice with occasional local perturbations. Emergent global patterns that depend on long-range synchronisation in the synchronous ECA would be destroyed or severely delayed. Conversely, purely local properties may be well-preserved. This limit highlights that s-skewed noise with fixed s in large lattices is an extreme form of asynchrony where global synchronisation is effectively absent.",
+      "explanation": "Fixed s, n \u2192 \u221e: fraction s/n \u2192 0 \u2192 extreme asynchrony \u2192 frozen lattice with local perturbations \u2192 loss of global synchronisation."
+    },
+    {
+      "id": 84,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In s-skewed noise, the cells i, i+1, ..., i+(s-1) that form the update block must be:",
+      "choices": {
+        "A": "Randomly scattered across the lattice",
+        "B": "Consecutive / contiguous",
+        "C": "Every other cell starting from i",
+        "D": "The s cells with the highest state values"
+      },
+      "answer": "B",
+      "explanation": "By definition, the block in s-skewed noise is always a consecutive (contiguous) set of cells: i, i+1, i+2, ..., i+(s-1)."
+    },
+    {
+      "id": 85,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "If we want the s-skewed model to be as close as possible to the synchronous ECA without being identical, which value of s should be chosen (for a lattice of size n)?",
+      "choices": {
+        "A": "s = 1",
+        "B": "s = n/2",
+        "C": "s = n - 1",
+        "D": "s = 0"
+      },
+      "answer": "C",
+      "explanation": "s=n-1 updates all but one cell per step, making the dynamics nearly synchronous. This is the closest to s=n (synchronous) without being identical."
+    },
+    {
+      "id": 86,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "State the range of the perturbation parameter s in the s-skewed model and explain what the two endpoints mean physically.",
+      "answer": "The perturbation parameter s \u2208 [1, n], where n is the lattice size. At s=1 (lower endpoint), exactly one cell is updated per step \u2014 this is the maximum perturbation, corresponding to a fully asynchronous update where the system deviates most from synchronous ECA. At s=n (upper endpoint), all n cells are updated per step regardless of the starting position, which is identical to the traditional synchronous ECA \u2014 zero perturbation.",
+      "explanation": "s \u2208 [1,n]: s=1 \u2192 max perturbation (fully asynchronous); s=n \u2192 zero perturbation (synchronous ECA)."
+    },
+    {
+      "id": 87,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n cells and block size s, two different starting positions i and j (i \u2260 j) can produce the same next configuration x^{t+1} from x^t. When does this occur?",
+      "choices": {
+        "A": "Never \u2014 each starting position always produces a unique configuration",
+        "B": "Always \u2014 all starting positions yield the same configuration",
+        "C": "When the cells in the block for position i and the block for position j happen to compute the same output values, e.g., if the local rule gives the same result for all differing cells",
+        "D": "Only when s = n"
+      },
+      "answer": "C",
+      "explanation": "Two starting positions i and j produce the same next configuration when, for every cell that is in one block but not the other, rule R happens to give the same value as the cell's current state (so updating or not updating that cell makes no difference). This is rule- and configuration-dependent."
+    },
+    {
+      "id": 88,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In one sentence, state the key distinction between the update mechanism of s-skewed ECA and traditional synchronous ECA.",
+      "answer": "In traditional synchronous ECA all n cells apply rule R simultaneously at every time step, whereas in s-skewed ECA only a randomly chosen contiguous block of s cells applies rule R per step while the remaining n-s cells stay idle.",
+      "explanation": "Core distinction: all-cells-update (synchronous) vs. random-block-of-s-cells-update (s-skewed)."
+    },
+    {
+      "id": 89,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In which sense is s-skewed noise 'deterministic given i'?",
+      "choices": {
+        "A": "The starting cell i is chosen deterministically",
+        "B": "Once i is fixed, the transition from x^t to x^{t+1} is fully determined by rule R \u2014 no further randomness",
+        "C": "The rule R changes deterministically based on i",
+        "D": "All cells including those outside the block update deterministically"
+      },
+      "answer": "B",
+      "explanation": "Given a current configuration x^t and a starting position i, the next configuration x^{t+1} is uniquely and deterministically determined by applying rule R to the block. The only source of randomness is the selection of i itself."
+    },
+    {
+      "id": 90,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "List four key identifying features of the s-skewed noise model that distinguish it from all other noise models discussed (\u03b1-async, spatial stochastic, temporal stochastic).",
+      "answer": "Four key identifying features of s-skewed noise: (1) Update schedule perturbation: only the schedule of which cells update is modified; rule R remains fixed and uniform (unlike stochastic models that modify rule selection). (2) Contiguous block: the updated cells always form a consecutive block {i, i+1,...,i+(s-1)}, unlike \u03b1-async where updated cells are scattered non-consecutively. (3) Fixed block size: exactly s cells are updated per step (deterministic count), unlike \u03b1-async where the count is a random variable. (4) Single random variable per step: the only randomness at each step is the choice of starting position i \u2208 {0,...,n-1}, drawn uniformly \u2014 a much simpler stochastic structure than \u03b1-async (n independent Bernoulli trials) or temporal stochastic (one Bernoulli selecting which rule all cells follow).",
+      "explanation": "Distinguishing features: (1) schedule not rule, (2) contiguous block, (3) fixed size s, (4) single uniform random variable per step."
+    },
+    {
+      "id": 91,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "When s=1 in the s-skewed model, the number of cells updated per step is:",
+      "choices": {
+        "A": "0",
+        "B": "1",
+        "C": "n",
+        "D": "n/2"
+      },
+      "answer": "B",
+      "explanation": "When s=1, the block size is 1: only the single chosen cell i is updated. This is the minimum possible update under s-skewed noise."
+    },
+    {
+      "id": 92,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The s-skewed ECA with perturbation rate s on lattice size n can be formally viewed as which type of mathematical object?",
+      "choices": {
+        "A": "A deterministic finite automaton",
+        "B": "A discrete-time Markov chain on {0,1}^n",
+        "C": "A continuous-time stochastic differential equation",
+        "D": "A deterministic recurrence relation"
+      },
+      "answer": "B",
+      "explanation": "The s-skewed ECA is a discrete-time stochastic process on the finite state space {0,1}^n (all binary configurations). The transition probabilities are determined by the uniform distribution over n starting positions. This is exactly a finite discrete-time Markov chain."
+    },
+    {
+      "id": 93,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain why the s-skewed dynamics are non-deterministic despite using a deterministic rule R.",
+      "answer": "The s-skewed dynamics are non-deterministic because at each time step, the starting cell i is drawn uniformly at random from the lattice. This means that from any fixed configuration x^t, there are up to n distinct possible next configurations x^{t+1} (one for each possible block), each occurring with probability 1/n. Even though rule R is a fully deterministic local function, the non-determinism arises from the random selection of which cells are updated. The trajectory of the system is therefore a sample path of a stochastic process, not a fixed deterministic sequence.",
+      "explanation": "Rule R is deterministic; stochasticity comes entirely from the random choice of starting block position i."
+    },
+    {
+      "id": 94,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Unlike spatial stochastic noise and temporal stochastic noise, s-skewed noise does NOT involve:",
+      "choices": {
+        "A": "Any form of randomness",
+        "B": "Two rules R1 and R2",
+        "C": "Contiguous cell blocks",
+        "D": "A lattice of cells"
+      },
+      "answer": "B",
+      "explanation": "Spatial stochastic and temporal stochastic noise both use two rules R1 and R2 with a mixing parameter. s-skewed noise uses only one fixed rule R; its perturbation is purely in the update schedule, not the rule."
+    },
+    {
+      "id": 95,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Name the four ECA noise models discussed and for each, state the single most important parameter that controls the noise level.",
+      "answer": "The four noise models and their key parameters are: (1) s-skewed noise: parameter s \u2208 [1,n] \u2014 the block size / perturbation rate (number of consecutive cells updated per step). (2) \u03b1-asynchronous noise: parameter \u03b1 \u2208 [0,1] \u2014 the probability that each cell is updated at each step. (3) Spatial stochastic noise: parameter \u03bb \u2208 [0,1] \u2014 the per-cell probability of applying R2 instead of R1. (4) Temporal stochastic noise: parameter \u03c4 \u2208 [0,1] \u2014 the probability that all cells apply R2 instead of R1 at a given time step.",
+      "explanation": "Four models, four parameters: s (integer block size), \u03b1 (cell-update probability), \u03bb (spatial rule-mixing), \u03c4 (temporal rule-mixing)."
+    },
+    {
+      "id": 96,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=12 and s=4, how many cells remain idle (unchanged) at each time step?",
+      "choices": {
+        "A": "4",
+        "B": "8",
+        "C": "12",
+        "D": "3"
+      },
+      "answer": "B",
+      "explanation": "n - s = 12 - 4 = 8 cells remain idle per step."
+    },
+    {
+      "id": 97,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For two s-skewed ECA experiments: Experiment A has n=10, s=2 and Experiment B has n=20, s=4. Which has higher perturbation from synchrony?",
+      "choices": {
+        "A": "Experiment A (s/n = 0.2, more cells idle)",
+        "B": "Experiment B (s/n = 0.2, same fraction)",
+        "C": "Both have identical perturbation levels (s/n is the same)",
+        "D": "Experiment B (larger lattice always means more perturbation)"
+      },
+      "answer": "C",
+      "explanation": "The perturbation level as a fraction is s/n. Experiment A: 2/10=0.2. Experiment B: 4/20=0.2. Both have the same fraction of cells updated per step, so they have equivalent perturbation levels relative to their lattice sizes."
+    },
+    {
+      "id": 98,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In the s-skewed model, what is the minimum number of time steps that must pass before every cell has had the opportunity to be updated at least once, in the worst case?",
+      "answer": "In the worst case, even after many steps, the same block could theoretically be chosen repeatedly. There is no guaranteed finite worst-case time since the block is chosen randomly (i.i.d.). However, in terms of minimum possible steps: if the n starting positions tile the lattice perfectly (i.e., n is divisible by s), then with the ideal sequence of non-overlapping blocks, every cell could be updated in exactly n/s steps (choosing i=0, s, 2s,...,n-s in sequence). So the minimum number of steps needed for full coverage, with the ideal (non-random) block selection sequence, is \u2308n/s\u2309. In the stochastic setting, full coverage is not guaranteed in any fixed number of steps but occurs with probability 1 as t\u2192\u221e.",
+      "explanation": "Best case (ideal sequence): \u2308n/s\u2309 steps. Worst case (random): no finite guarantee \u2014 full coverage a.s. only as t\u2192\u221e."
+    },
+    {
+      "id": 99,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Consider a traditional synchronous ECA with Rule R and a configuration x*  that is NOT a fixed point of R (i.e., R(x*) \u2260 x*). Under s-skewed noise with s=1, the probability that x* transitions to itself in one step is:",
+      "choices": {
+        "A": "0 always",
+        "B": "1/n if and only if applying R to the single updated cell j gives x*_j back (i.e., R(x*_{j-1},x*_j,x*_{j+1}) = x*_j for all j)",
+        "C": "1 always",
+        "D": "Equal to 1/(2^n)"
+      },
+      "answer": "B",
+      "explanation": "With s=1, one cell j is updated. For x^{t+1} = x*, we need R(x*_{j-1},x*_j,x*_{j+1}) = x*_j. If this holds for all j (i.e., x* is a fixed point of synchronous ECA), then P = 1. If x* is NOT a fixed point, some cell positions j have R(...)\u2260x*_j and those do not self-loop. The probability of staying at x* is (# positions j where R(x*_{j-1},x*_j,x*_{j+1})=x*_j) / n."
+    },
+    {
+      "id": 100,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In one or two sentences, explain why s-skewed noise and \u03b1-asynchronous noise are both categorised as 'asynchronous' perturbations of ECA.",
+      "answer": "Both s-skewed and \u03b1-asynchronous noise break the global clock assumption of traditional ECA: instead of all n cells updating simultaneously at every step, only a subset of cells updates at any given time. This departure from synchronous simultaneous updating defines them as asynchronous perturbations, even though the mechanism by which the subset is chosen differs between the two models.",
+      "explanation": "Both = subset of cells updates per step = break synchrony = asynchronous perturbation. Mechanism differs (contiguous block vs. i.i.d. Bernoulli) but the category is the same."
+    },
+    {
+      "id": 101,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In an ECA, the neighbourhood of cell i at time t consists of:",
+      "choices": {
+        "A": "Cells i-2, i-1, i, i+1, i+2",
+        "B": "Cells i-1, i, i+1",
+        "C": "Cells i and i+1 only",
+        "D": "All cells in the lattice"
+      },
+      "answer": "B",
+      "explanation": "ECA has radius r=1: the neighbourhood of cell i is the triple (x_{i-1}, x_i, x_{i+1}), giving 3 cells."
+    },
+    {
+      "id": 102,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The state space of each cell in an ECA is:",
+      "choices": {
+        "A": "{0, 1, 2}",
+        "B": "Any real number in [0, 1]",
+        "C": "{0, 1}",
+        "D": "Any non-negative integer"
+      },
+      "answer": "C",
+      "explanation": "ECA cells are binary: each cell has state 0 or 1 at every time step."
+    },
+    {
+      "id": 103,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Rule 90 in an ECA is defined by the mapping: new state of cell i = XOR of its left and right neighbours. What is the output for neighbourhood (1, 0, 1)?",
+      "choices": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "Undefined"
+      },
+      "answer": "A",
+      "explanation": "Rule 90 computes x_{i-1} XOR x_{i+1} = 1 XOR 1 = 0. The centre cell's own state is irrelevant in Rule 90."
+    },
+    {
+      "id": 104,
+      "type": "mcq",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A configuration of an ECA with n=5 cells is a vector in:",
+      "choices": {
+        "A": "R^5 (5-dimensional real space)",
+        "B": "{0,1}^5 (5-dimensional binary space with 32 possible configurations)",
+        "C": "Z^5 (5-dimensional integer space)",
+        "D": "{0,1,2}^5 (ternary space)"
+      },
+      "answer": "B",
+      "explanation": "With n=5 binary cells, configurations are 5-bit binary strings: {0,1}^5 has 2^5=32 elements."
+    },
+    {
+      "id": 105,
+      "type": "short_answer",
+      "topic": 1,
+      "topic_name": "ECA Fundamentals",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Rule 110 is one of the most studied ECA rules. Its rule table (for neighbourhoods 111 down to 000) is: 0,1,1,0,1,1,1,0. Compute the next state of cell i=3 (0-indexed) in the configuration [0,1,1,0,1] with periodic boundaries under synchronous Rule 110.",
+      "answer": "Cell i=3 has neighbourhood (x_2, x_3, x_4) = (1, 0, 1). In binary, 101 = 5. Rule 110's bit-5 (counting from bit 0 for neighbourhood 000): the rule number 110 in binary is 01101110. Bit positions 7 to 0: 0,1,1,0,1,1,1,0. Bit 5 = 1. So the next state of cell 3 is 1.",
+      "explanation": "Rule 110 in binary: 01101110. Neighbourhood (1,0,1)=5 in decimal \u2192 bit 5 of 01101110 = 1."
+    },
+    {
+      "id": 106,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Under s-skewed noise, the rule used to update the selected block of cells is:",
+      "choices": {
+        "A": "A randomly chosen rule from the 256 ECA rules",
+        "B": "The fixed rule R, the same rule used in the corresponding synchronous ECA",
+        "C": "A different rule for each cell in the block",
+        "D": "No rule \u2014 cells are flipped randomly"
+      },
+      "answer": "B",
+      "explanation": "s-skewed noise only perturbs the update schedule. The rule R remains fixed and uniform \u2014 the same rule as the base synchronous ECA."
+    },
+    {
+      "id": 107,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the s-skewed model, the neighbourhood used to compute the new state of a cell j in the selected block at time t is:",
+      "choices": {
+        "A": "The states of j's neighbours at time t+1 (already updated values)",
+        "B": "The states of j's neighbours at time t (current values, before any update)",
+        "C": "The average of states at times t and t-1",
+        "D": "Only the state of j itself at time t"
+      },
+      "answer": "B",
+      "explanation": "Like synchronous ECA, all cells in the block read from the configuration at time t when computing their t+1 state. The update is parallel within the block using time-t values."
+    },
+    {
+      "id": 108,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=7 and s=3, cell i=5 is chosen as the starting cell. With periodic boundaries, which cells are updated?",
+      "choices": {
+        "A": "5, 6, 7",
+        "B": "5, 6, 0",
+        "C": "4, 5, 6",
+        "D": "5 only"
+      },
+      "answer": "B",
+      "explanation": "Block: {5, (5+1)%7=6, (5+2)%7=0}. With periodic boundaries on n=7, cell 7 does not exist; after cell 6 comes cell 0."
+    },
+    {
+      "id": 109,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA, can the same cell be updated at two consecutive time steps t and t+1?",
+      "choices": {
+        "A": "No \u2014 each cell can only be updated once every n steps",
+        "B": "Yes \u2014 if the same or overlapping block is chosen at both steps",
+        "C": "Yes \u2014 but only if the cell's state changed at step t",
+        "D": "No \u2014 the model ensures no repetition"
+      },
+      "answer": "B",
+      "explanation": "The starting cell i is drawn i.i.d. each step. The same i (or a nearby i that places cell j in the block) can be drawn on consecutive steps, causing cell j to be updated twice in a row."
+    },
+    {
+      "id": 110,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=6 and s=4, what is the probability that the block at time t+1 overlaps with the block at time t by exactly 3 cells?",
+      "choices": {
+        "A": "1/3",
+        "B": "1/6",
+        "C": "2/6",
+        "D": "1/2"
+      },
+      "answer": "C",
+      "explanation": "Given block at time t starts at position i, the block at t+1 starts at position j chosen uniformly from {0,...,5}. Block [j, j+3] overlaps [i, i+3] by exactly 3 cells when j = i+1 or j = i-1 (mod 6) \u2014 2 positions out of 6. P = 2/6 = 1/3."
+    },
+    {
+      "id": 111,
+      "type": "short_answer",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=4, s=2, and current configuration [1,1,0,1] (periodic, Rule 0 \u2014 all outputs 0): list every possible next configuration and label which block produces it.",
+      "answer": "Rule 0 maps every neighbourhood to 0. The four possible blocks and their results: i=0\u2192block{0,1}: cells 0 and 1 become 0; result [0,0,0,1]. i=1\u2192block{1,2}: cells 1 and 2 become 0; result [1,0,0,1]. i=2\u2192block{2,3}: cells 2 and 3 become 0; result [1,1,0,0]. i=3\u2192block{3,0}: cells 3 and 0 become 0; result [0,1,0,0]. Each occurs with probability 1/4.",
+      "explanation": "Rule 0 zeros out any updated cell. Four blocks \u2192 four distinct next configs, each with P=1/4."
+    },
+    {
+      "id": 112,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For a lattice of n=100 cells, which value of s gives the most 'asynchronous' behaviour?",
+      "choices": {
+        "A": "s = 50",
+        "B": "s = 99",
+        "C": "s = 1",
+        "D": "s = 100"
+      },
+      "answer": "C",
+      "explanation": "s=1 updates only a single cell per step \u2014 maximum departure from synchrony, maximum asynchrony."
+    },
+    {
+      "id": 113,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "At s=n-1 in an s-skewed ECA on a lattice of size n, what fraction of cells is idle per step?",
+      "choices": {
+        "A": "0",
+        "B": "1/n",
+        "C": "(n-1)/n",
+        "D": "1/2"
+      },
+      "answer": "B",
+      "explanation": "n-s = n-(n-1) = 1 cell is idle per step. The idle fraction is 1/n."
+    },
+    {
+      "id": 114,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=6 and s=6, show explicitly that regardless of which starting cell i is chosen, the resulting next configuration is always identical to the synchronous ECA update.",
+      "answer": "With n=6 and s=6, the block for any starting cell i is {i, i+1, i+2, i+3, i+4, i+5} mod 6. Since there are exactly 6 cells in the lattice and the block has size 6, every cell appears exactly once in the block for any i. For example: i=0\u2192{0,1,2,3,4,5}; i=3\u2192{3,4,5,0,1,2}. In both cases, all 6 cells are in the block and all apply rule R using their time-t neighbours. The set of updated cells is always the complete lattice {0,1,2,3,4,5}, and all use time-t state values. This is identical to the synchronous update. Therefore, regardless of i, x^{t+1} = R_sync(x^t).",
+      "explanation": "Any block of size n on a periodic lattice of size n covers all n cells \u2192 always equivalent to synchronous ECA."
+    },
+    {
+      "id": 115,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with s=1, the probability that a specific cell j is NOT updated in k consecutive time steps is:",
+      "choices": {
+        "A": "(1 - 1/n)^k",
+        "B": "(1/n)^k",
+        "C": "k/n",
+        "D": "1 - k/n"
+      },
+      "answer": "A",
+      "explanation": "With s=1, P(cell j not updated in one step) = (n-1)/n = 1-1/n. Over k i.i.d. steps: P = (1-1/n)^k."
+    },
+    {
+      "id": 116,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under temporal stochastic noise (R1,R2)[\u03c4], the randomness at each step determines:",
+      "choices": {
+        "A": "Which cells are updated",
+        "B": "Which single rule ALL cells apply at that time step",
+        "C": "Which rule each individual cell independently applies",
+        "D": "The block size for that step"
+      },
+      "answer": "B",
+      "explanation": "Temporal stochastic: one Bernoulli(\u03c4) draw per time step decides whether all cells use R1 or all use R2. One coin flip governs all cells \u2014 unlike spatial stochastic where each cell flips independently."
+    },
+    {
+      "id": 117,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which noise model introduces the most fine-grained (per-cell) randomness at each time step?",
+      "choices": {
+        "A": "s-skewed noise (one uniform draw for block position)",
+        "B": "Temporal stochastic noise (one Bernoulli draw per step)",
+        "C": "\u03b1-asynchronous noise (n independent Bernoulli draws, one per cell)",
+        "D": "They all have identical randomness structure"
+      },
+      "answer": "C",
+      "explanation": "\u03b1-asynchronous noise draws n independent Bernoulli(\u03b1) random variables per step \u2014 one per cell. This is the finest-grained: n random bits per step vs. 1 for temporal stochastic or 1 uniform draw for s-skewed."
+    },
+    {
+      "id": 118,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A researcher observes that in an ECA experiment, at each time step all cells update but some apply rule R1 and others apply R2. This describes:",
+      "choices": {
+        "A": "s-skewed noise",
+        "B": "\u03b1-asynchronous noise",
+        "C": "Spatial stochastic noise",
+        "D": "Temporal stochastic noise"
+      },
+      "answer": "C",
+      "explanation": "Spatial stochastic noise: all cells update synchronously, but each cell independently applies R1 (with prob 1-\u03bb) or R2 (with prob \u03bb). Different cells may apply different rules at the same step \u2014 spatial variation in rule application."
+    },
+    {
+      "id": 119,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Construct a table comparing all four noise models (s-skewed, \u03b1-async, spatial stochastic, temporal stochastic) along the dimensions: (a) what is perturbed, (b) number of random variables per step, (c) parameter range, (d) whether all cells update every step.",
+      "answer": "| Model | What is Perturbed | RVs per Step | Parameter Range | All Cells Update? | |---|---|---|---|---| | s-skewed | Update schedule (which cells) | 1 uniform on {0,...,n-1} | s \u2208 {1,...,n} (integer) | No \u2014 only s cells | | \u03b1-asynchronous | Update schedule (which cells) | n Bernoulli(\u03b1) | \u03b1 \u2208 [0,1] (real) | No \u2014 Binomial(n,\u03b1) cells on average | | Spatial stochastic | Rule applied (per cell) | n Bernoulli(\u03bb) | \u03bb \u2208 [0,1] (real) | Yes \u2014 all n cells | | Temporal stochastic | Rule applied (all cells) | 1 Bernoulli(\u03c4) | \u03c4 \u2208 [0,1] (real) | Yes \u2014 all n cells |",
+      "explanation": "Systematic comparison across four axes: perturbation target, stochastic structure, parameter type, update coverage."
+    },
+    {
+      "id": 120,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Spatial stochastic noise (R1,R2)[\u03bb] and temporal stochastic noise (R1,R2)[\u03c4] both require:",
+      "choices": {
+        "A": "A contiguous block of cells to update",
+        "B": "Two rules R1 and R2 and a mixing parameter",
+        "C": "Fewer than n cells to update per step",
+        "D": "The global clock to be removed"
+      },
+      "answer": "B",
+      "explanation": "Both stochastic models require two rules R1 and R2 along with a mixing parameter (\u03bb for spatial, \u03c4 for temporal). They differ only in whether rule selection is per-cell or per-step."
+    },
+    {
+      "id": 121,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=10 and s=5, what is the variance of the number of cells updated per step?",
+      "choices": {
+        "A": "5",
+        "B": "2.5",
+        "C": "0",
+        "D": "1"
+      },
+      "answer": "C",
+      "explanation": "In s-skewed noise, the number of cells updated is always exactly s=5 \u2014 it is a constant, not a random variable. Therefore its variance is 0."
+    },
+    {
+      "id": 122,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n cells, how many distinct transition maps T_i (one per starting position) are there?",
+      "choices": {
+        "A": "s",
+        "B": "2^n",
+        "C": "n",
+        "D": "n - s"
+      },
+      "answer": "C",
+      "explanation": "There are n possible starting positions i \u2208 {0,...,n-1}, each defining one deterministic transition map T_i. So there are exactly n distinct maps (though some may be identical in certain configurations)."
+    },
+    {
+      "id": 123,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=4 and s=2, how many distinct next configurations can be reached from a given configuration x^t in ONE step?",
+      "choices": {
+        "A": "Always exactly 4",
+        "B": "At most 4, but possibly fewer if different starting positions yield the same result",
+        "C": "Always exactly 2",
+        "D": "Always 2^4 = 16"
+      },
+      "answer": "B",
+      "explanation": "There are n=4 starting positions, each giving a (possibly distinct) next configuration. But if two different blocks produce the same outcome (e.g., when the updated cells already have the same state under rule R), the number of reachable configurations can be fewer than 4."
+    },
+    {
+      "id": 124,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA, define the transition probability matrix P of the induced Markov chain. What are its dimensions and what does entry P[x,y] represent?",
+      "answer": "The Markov chain state space is {0,1}^n, so P is a 2^n \u00d7 2^n matrix. Entry P[x,y] is the probability of transitioning from configuration x to configuration y in one step: P[x,y] = |{i \u2208 {0,...,n-1} : T_i(x) = y}| / n, where T_i(x) is the configuration obtained by applying rule R to the block starting at i in configuration x. Each row sums to 1. P[x,y] \u2208 {0, 1/n, 2/n, ..., 1}, taking values that are multiples of 1/n.",
+      "explanation": "2^n \u00d7 2^n stochastic matrix; entry = (number of starting positions mapping x to y) / n."
+    },
+    {
+      "id": 125,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Let n=4, s=4 (synchronous case). How many non-zero entries does the transition matrix of the s-skewed Markov chain have per row?",
+      "choices": {
+        "A": "16",
+        "B": "4",
+        "C": "Exactly 1",
+        "D": "2"
+      },
+      "answer": "C",
+      "explanation": "With s=n=4, all starting positions yield the same (synchronous) next configuration. Thus each row has exactly one non-zero entry (probability 1 for the synchronous successor) \u2014 the chain is deterministic."
+    },
+    {
+      "id": 126,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In terms of the perturbation rate s, what does 'more noise' mean for the s-skewed model?",
+      "choices": {
+        "A": "Larger s",
+        "B": "Smaller s",
+        "C": "s = n/2",
+        "D": "Noise level is independent of s"
+      },
+      "answer": "B",
+      "explanation": "Smaller s \u2192 fewer cells updated \u2192 greater departure from synchronous ECA \u2192 more perturbation/noise."
+    },
+    {
+      "id": 127,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "An engineer wants to simulate an ECA with 'mild perturbation' from synchrony using s-skewed noise with n=100. Which value of s best represents mild perturbation?",
+      "choices": {
+        "A": "s = 1",
+        "B": "s = 10",
+        "C": "s = 90",
+        "D": "s = 50"
+      },
+      "answer": "C",
+      "explanation": "s=90 means 90/100 = 90% of cells update per step, close to fully synchronous (s=100). This is mild perturbation. s=1 is extreme; s=50 is moderate; s=10 is strong perturbation."
+    },
+    {
+      "id": 128,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Discuss what happens to the 'effective speed' of information propagation in an s-skewed ECA as s decreases from n to 1. How does this relate to the perturbation level?",
+      "answer": "In a synchronous ECA (s=n), information can propagate at most 1 cell per time step (bounded by the neighbourhood radius r=1). As s decreases, most cells are idle each step: only the s cells in the block update. If cell j is far from the current block, it may take many steps before it is updated and 'receives' information from its neighbourhood. Effectively, the propagation speed decreases because cells outside the block are frozen \u2014 information cannot reach or leave them. At s=1, only one cell updates per step, making information propagation extremely slow (O(n) steps per 'wave'). Higher perturbation (lower s) thus slows global information propagation, potentially altering long-range correlation structure and pattern formation relative to the synchronous ECA.",
+      "explanation": "Lower s \u2192 more cells idle \u2192 slower information propagation \u2192 altered long-range correlations. This is a direct consequence of the perturbation's effect on update frequency."
+    },
+    {
+      "id": 129,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA, the all-zeros configuration [0,0,...,0] is a fixed point under Rule 0 for any s because:",
+      "choices": {
+        "A": "No cells are ever updated",
+        "B": "Rule 0 maps every neighbourhood to 0, so updating any block of an all-zero configuration returns all zeros",
+        "C": "The starting cell i is always 0 for the all-zero config",
+        "D": "Rule 0 only applies to non-zero configurations"
+      },
+      "answer": "B",
+      "explanation": "Rule 0 outputs 0 for every neighbourhood. Updating any block of cells in [0,...,0] gives 0 for each updated cell (which was already 0). So the configuration is unchanged regardless of which block is chosen."
+    },
+    {
+      "id": 130,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The all-ones configuration [1,1,...,1] is a fixed point of synchronous ECA under Rule 255 (all outputs 1). Under s-skewed noise with s < n, it is:",
+      "choices": {
+        "A": "No longer a fixed point",
+        "B": "Still a fixed point for any s, since updating any block with Rule 255 sets those cells to 1 (unchanged)",
+        "C": "A fixed point only when s=1",
+        "D": "Destroyed as an attractor"
+      },
+      "answer": "B",
+      "explanation": "Rule 255 outputs 1 for every neighbourhood. In [1,...,1], all cells already have state 1. Updating any block with Rule 255 computes 1 for each cell in the block, leaving the configuration unchanged. It remains a fixed point for any s."
+    },
+    {
+      "id": 131,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with s < n, a period-2 orbit {A, B} of the synchronous ECA (A\u2192B\u2192A) is guaranteed to remain a period-2 orbit of the s-skewed dynamics only if:",
+      "choices": {
+        "A": "s > n/2",
+        "B": "Every partial block update of A gives B and every partial block update of B gives A",
+        "C": "There is no general condition \u2014 it always breaks",
+        "D": "No cell in A differs from its synchronous successor in B"
+      },
+      "answer": "B",
+      "explanation": "For {A,B} to be a period-2 orbit of the s-skewed chain, every possible block update of A must produce B, and every block update of B must produce A. This is a very strict condition rarely satisfied for s<n."
+    },
+    {
+      "id": 132,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Explain what a 'transient' and an 'attractor' are in the context of s-skewed ECA dynamics viewed as a Markov chain.",
+      "answer": "In the Markov chain induced by s-skewed dynamics on {0,1}^n: A transient state is a configuration that the chain will eventually leave and never return to with probability 1. Transient configurations lie on paths leading to attractors but are not part of any recurring cycle. An attractor (recurrent communicating class) is a set of configurations that the chain, once entered, stays within and visits repeatedly. For a finite state Markov chain, every state is either transient or belongs to a recurrent class. Attractors of the s-skewed chain correspond to sets of configurations that are mutually reachable via block updates and from which no escape is possible. Fixed points of the ECA are trivial (singleton) attractors; the chain may also have larger recurrent classes corresponding to probabilistic cycling among multiple configurations.",
+      "explanation": "Transient = visited finitely often; recurrent/attractor = visited infinitely often. Markov chain framework applied to s-skewed configuration space."
+    },
+    {
+      "id": 133,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "What is the most common boundary condition assumed for s-skewed ECA analysis?",
+      "choices": {
+        "A": "Fixed (null) boundaries \u2014 cells outside the lattice have state 0",
+        "B": "Periodic (circular) boundaries \u2014 the lattice wraps around",
+        "C": "Absorbing boundaries \u2014 end cells never update",
+        "D": "Reflecting boundaries \u2014 end cells mirror their neighbour"
+      },
+      "answer": "B",
+      "explanation": "Periodic (circular) boundaries are standard in ECA analysis, including s-skewed models. They eliminate edge effects and allow uniform treatment of all cells."
+    },
+    {
+      "id": 134,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under periodic boundary conditions in an s-skewed ECA with n=5 and s=3, when i=3 is chosen, what is the right neighbour of cell 4 (i.e., cell i+s-1=4+1) when computing cell 4's new state?",
+      "choices": {
+        "A": "Cell 5 (out of bounds \u2014 error)",
+        "B": "Cell 0 (wraps around)",
+        "C": "Cell 4 itself (reflecting)",
+        "D": "State 0 (null boundary)"
+      },
+      "answer": "B",
+      "explanation": "With periodic (mod n=5) boundary, cell 4's right neighbour is cell (4+1) mod 5 = 0. This ensures consistent treatment of edge cells."
+    },
+    {
+      "id": 135,
+      "type": "short_answer",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under non-periodic (fixed, null-boundary) conditions for an s-skewed ECA with n cells and block size s, how does the set of valid starting positions change, and what effect does this have on the uniformity of coverage?",
+      "answer": "Under fixed (null) boundaries, the block {i, i+1,...,i+(s-1)} must lie entirely within [0, n-1], so the valid starting positions are i \u2208 {0, 1,..., n-s}. This gives only n-s+1 valid positions instead of n. The uniformity of coverage is broken: cells near the centre of the lattice can be covered by up to s different starting positions (i \u2208 {max(0,j-s+1),...,min(n-s,j)}), while cells near the boundaries (especially cells 0 and n-1) can only be covered by 1 starting position (i=0 for cell 0, i=n-s for cell n-1). This means boundary cells are updated less frequently (probability 1/(n-s+1)) than central cells (probability s/(n-s+1)), introducing a spatial non-uniformity in update frequency that does not exist under periodic boundaries.",
+      "explanation": "Fixed boundaries: n-s+1 valid starting positions; boundary cells covered by only 1 position vs. s positions for central cells \u2192 non-uniform coverage."
+    },
+    {
+      "id": 136,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the s-skewed notation, 'i' denotes:",
+      "choices": {
+        "A": "The iteration counter (same as t)",
+        "B": "The randomly chosen starting index of the update block",
+        "C": "The rule number",
+        "D": "The number of idle cells"
+      },
+      "answer": "B",
+      "explanation": "i is the randomly chosen starting cell index at each time step, anchoring the contiguous block {i, i+1,...,i+(s-1)}."
+    },
+    {
+      "id": 137,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following is the correct expression for the block B_t in an s-skewed ECA with periodic boundaries?",
+      "choices": {
+        "A": "B_t = {i, i+1, ..., i+s-1} (without mod \u2014 linear indexing)",
+        "B": "B_t = {i mod n, (i+1) mod n, ..., (i+s-1) mod n}",
+        "C": "B_t = {0, 1, ..., s-1} always",
+        "D": "B_t = {i} only"
+      },
+      "answer": "B",
+      "explanation": "With periodic boundaries (mod n indexing), the block is B_t = {(i+k) mod n : k = 0, 1, ..., s-1}, ensuring wrap-around for cells near the end of the lattice."
+    },
+    {
+      "id": 138,
+      "type": "short_answer",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Express the s-skewed update as a weighted mixture of deterministic maps. Using this representation, write the expected next configuration E[x^{t+1} | x^t] in terms of the n deterministic maps T_0,...,T_{n-1}.",
+      "answer": "The s-skewed update selects T_i with equal probability 1/n for each i \u2208 {0,...,n-1}. The distribution over next configurations is: P(x^{t+1} = y | x^t = x) = (1/n) \u00b7 |{i : T_i(x) = y}|. The expected next configuration (treating binary states as numbers) is: E[x^{t+1} | x^t = x] = (1/n) \u00b7 \u03a3_{i=0}^{n-1} T_i(x). Each T_i(x) is a binary vector; the expectation is a real-valued vector in [0,1]^n where each component j is E[x_j^{t+1}] = (1/n) \u00b7 \u03a3_{i: j \u2208 B_i} R(x_{j-1}, x_j, x_{j+1}) + (1/n) \u00b7 \u03a3_{i: j \u2209 B_i} x_j = (s/n) \u00b7 R(x_{j-1}, x_j, x_{j+1}) + (1-s/n) \u00b7 x_j.",
+      "explanation": "E[x_j^{t+1}] = (s/n)\u00b7R(neighbourhood of j) + (1-s/n)\u00b7x_j \u2014 a convex combination of the synchronous update and the current state, weighted by the update probability s/n."
+    },
+    {
+      "id": 139,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "From the formula E[x_j^{t+1}] = (s/n)\u00b7R(x_{j-1},x_j,x_{j+1}) + (1-s/n)\u00b7x_j, what does this reveal when s=n?",
+      "choices": {
+        "A": "E[x_j^{t+1}] = x_j (no change)",
+        "B": "E[x_j^{t+1}] = R(x_{j-1},x_j,x_{j+1}) (pure synchronous update)",
+        "C": "E[x_j^{t+1}] = 0.5 (uniform distribution)",
+        "D": "E[x_j^{t+1}] = 0 (all cells go to 0)"
+      },
+      "answer": "B",
+      "explanation": "When s=n: E[x_j^{t+1}] = (n/n)\u00b7R(x_{j-1},x_j,x_{j+1}) + 0\u00b7x_j = R(x_{j-1},x_j,x_{j+1}). The expected next state equals the synchronous rule output \u2014 confirming s=n recovers synchronous ECA."
+    },
+    {
+      "id": 140,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider s-skewed ECA with n=3, s=1, Rule 0 (all outputs 0), and initial config [1,1,1] (periodic). After one step with i=1, the configuration is:",
+      "choices": {
+        "A": "[1,1,1]",
+        "B": "[1,0,1]",
+        "C": "[0,0,0]",
+        "D": "[1,1,0]"
+      },
+      "answer": "B",
+      "explanation": "s=1 \u2192 only cell i=1 is updated. Rule 0 maps any neighbourhood to 0. Cell 1's new state = 0. Cells 0 and 2 remain 1. Result: [1,0,1]."
+    },
+    {
+      "id": 141,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider s-skewed ECA with n=4, s=4 (full update), Rule 90, initial config [1,0,0,0] (periodic). The configuration after one step is (Rule 90: new_state = left XOR right):",
+      "choices": {
+        "A": "[0,1,0,1]",
+        "B": "[1,1,0,1]",
+        "C": "[0,1,0,0]",
+        "D": "[1,0,1,0]"
+      },
+      "answer": "A",
+      "explanation": "With s=n=4, this is synchronous Rule 90. Cell 0: x3 XOR x1 = 0 XOR 0 = 0. Cell 1: x0 XOR x2 = 1 XOR 0 = 1. Cell 2: x1 XOR x3 = 0 XOR 0 = 0. Cell 3: x2 XOR x0 = 0 XOR 1 = 1. Result: [0,1,0,1]."
+    },
+    {
+      "id": 142,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=5, s=3, Rule 128 (outputs 1 only for neighbourhood 111, else 0), initial config [1,1,1,0,0] (periodic): compute all possible t=1 configurations.",
+      "answer": "Rule 128: only neighbourhood (1,1,1) \u2192 1; all others \u2192 0. Initial: x=[1,1,1,0,0]. Neighbourhoods at t=0 (periodic): Cell 0: (x4,x0,x1)=(0,1,1)\u21920. Cell 1: (x0,x1,x2)=(1,1,1)\u21921. Cell 2: (x1,x2,x3)=(1,1,0)\u21920. Cell 3: (x2,x3,x4)=(1,0,0)\u21920. Cell 4: (x3,x4,x0)=(0,0,1)\u21920. Possible blocks (starting i, cells in block): i=0\u2192{0,1,2}: new vals (0,1,0) vs current (1,1,1) \u2192 cells 0\u21920,1\u21921(unchanged),2\u21920: [0,1,0,0,0]. i=1\u2192{1,2,3}: cells 1\u21921,2\u21920,3\u21920: [1,1,0,0,0]. i=2\u2192{2,3,4}: cells 2\u21920,3\u21920,4\u21920: [1,1,0,0,0]. i=3\u2192{3,4,0}: cells 3\u21920,4\u21920,0\u21920: [0,1,1,0,0]. i=4\u2192{4,0,1}: cells 4\u21920,0\u21920,1\u21921: [0,1,1,0,0]. Distinct configs: [0,1,0,0,0] (P=1/5), [1,1,0,0,0] (P=2/5), [0,1,1,0,0] (P=2/5).",
+      "explanation": "5 starting positions; some produce identical configs. Three distinct reachable configs at t=1 with probabilities 1/5, 2/5, 2/5."
+    },
+    {
+      "id": 143,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For s-skewed ECA with n=4, s=2, Rule 204 (identity rule: outputs = centre cell state), initial config [1,0,1,0] (periodic). After one step, what is the probability that the configuration is unchanged?",
+      "choices": {
+        "A": "0",
+        "B": "1/4",
+        "C": "1",
+        "D": "1/2"
+      },
+      "answer": "C",
+      "explanation": "Rule 204 is the identity: new state of cell j = x_j (the centre cell's current state). Updating any block with Rule 204 computes x_j for each j in the block \u2014 which equals the current state. The configuration never changes regardless of which block is chosen. P(unchanged) = 1."
+    },
+    {
+      "id": 144,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The name 's-skewed noise' implies the update schedule is 'skewed' relative to which baseline?",
+      "choices": {
+        "A": "The fully asynchronous (one-cell-at-a-time) update",
+        "B": "The fully synchronous (all-cells-at-once) update",
+        "C": "The stochastic rule update",
+        "D": "The two-rule mixing update"
+      },
+      "answer": "B",
+      "explanation": "The baseline is the fully synchronous ECA. s-skewed noise 'skews' (departs from) this baseline by updating only a subset (block of s cells) rather than all cells."
+    },
+    {
+      "id": 145,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A key consequence of s-skewed noise is that at any given step, cells outside the block are in a 'frozen' state. What does this imply for the perceived 'age' of different cells?",
+      "choices": {
+        "A": "All cells always have the same effective age",
+        "B": "Cells that are frequently outside the block accumulate fewer effective updates and appear 'older' in information terms",
+        "C": "Cells outside the block age faster because they are not reset",
+        "D": "The concept of cell age is irrelevant to s-skewed noise"
+      },
+      "answer": "B",
+      "explanation": "Cells outside the block do not update \u2014 they remain at their last updated state. Over time, cells that happen to be selected less often (by chance) will have fewer updates and thus carry 'older' information, creating desynchronisation in the effective information age across the lattice."
+    },
+    {
+      "id": 146,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under what condition would the s-skewed ECA with some s < n produce IDENTICAL long-run behaviour to synchronous ECA?",
+      "choices": {
+        "A": "Never \u2014 any s < n always changes the dynamics",
+        "B": "When the rule R has only fixed-point attractors that are also fixed points of every partial map T_i",
+        "C": "When n is a prime number",
+        "D": "When s > n/2 always"
+      },
+      "answer": "B",
+      "explanation": "If every attractor of the synchronous ECA consists only of fixed points, and these fixed points are also fixed under every partial map T_i (true for synchronous fixed points), then starting from any initial condition, the long-run behaviour (convergence to fixed points) is the same for both models, even if the transient paths differ."
+    },
+    {
+      "id": 147,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Explain intuitively why two s-skewed ECA with the same s but different n (say n=10 vs n=100) might behave quite differently, even though the block size is the same.",
+      "answer": "With the same block size s but different n, the fraction of cells updated per step is s/n \u2014 much smaller for larger n. For n=10, s=3 updates 30% of cells; for n=100, s=3 updates only 3%. In the larger lattice, most of the system is frozen at any given step. Information propagates much more slowly, patterns take far longer to form, and global coordination between distant parts of the lattice is much harder to achieve. Additionally, the cover time (expected steps until every cell is updated at least once) scales as approximately (n/s)\u00b7log(n), which grows much faster than linearly \u2014 so the n=100 case takes far more steps to 'feel' the effect of even a single update at all cells. The dynamics become increasingly local and slow in large lattices with fixed s.",
+      "explanation": "Same s, larger n \u2192 smaller s/n \u2192 slower dynamics, slower propagation, longer cover time, more local behaviour."
+    },
+    {
+      "id": 148,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=10 and s=2, the expected number of steps until cell 7 is updated for the first time follows which distribution?",
+      "choices": {
+        "A": "Uniform on {1,...,10}",
+        "B": "Poisson with \u03bb=2",
+        "C": "Geometric with success probability 2/10 = 0.2",
+        "D": "Binomial(10, 0.2)"
+      },
+      "answer": "C",
+      "explanation": "Cell 7 is updated with probability s/n=2/10=0.2 per step, independently. The first update follows a Geometric distribution with p=0.2, with expected value 1/p = 5 steps."
+    },
+    {
+      "id": 149,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=6 and s=3, what is the probability that cells 0, 1, and 2 are ALL updated in the same step?",
+      "choices": {
+        "A": "1/6",
+        "B": "1/2",
+        "C": "3/6 = 1/2",
+        "D": "1/3"
+      },
+      "answer": "A",
+      "explanation": "Cells {0,1,2} are all in the block iff the block is exactly {0,1,2}, which happens only when i=0. P = 1/6."
+    },
+    {
+      "id": 150,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=8 and s=4, the variance of the indicator variable I_j = 1 if cell j is updated at a given step is:",
+      "choices": {
+        "A": "4/8 = 0.5",
+        "B": "(4/8)(1 - 4/8) = 0.25",
+        "C": "0 (deterministic)",
+        "D": "1"
+      },
+      "answer": "B",
+      "explanation": "I_j is a Bernoulli random variable with p = s/n = 4/8 = 0.5. Var(I_j) = p(1-p) = 0.5 \u00b7 0.5 = 0.25."
+    },
+    {
+      "id": 151,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=8 and s=4, compute the covariance Cov(I_j, I_k) where I_j and I_k are indicator variables for cells j and k being updated in the same step, for two cells that are distance d apart (d < s).",
+      "answer": "Let p_j = P(I_j=1) = s/n = 1/2 and p_k = P(I_k=1) = 1/2. For cells j and k at distance d < s, both are in the block iff i \u2208 {j, j-1,...,j-(s-d)} (the starting positions that include both j and k = j+d in a block of size s). That is s-d valid starting positions. P(I_j=1, I_k=1) = (s-d)/n = (4-d)/8. Cov(I_j, I_k) = P(I_j=1,I_k=1) - P(I_j=1)P(I_k=1) = (4-d)/8 - (1/2)(1/2) = (4-d)/8 - 1/4 = (4-d-2)/8 = (2-d)/8. For d=1: Cov = 1/8 > 0 (positive correlation). For d=2: Cov = 0. For d=3: Cov = -1/8 < 0 (slight negative correlation \u2014 less likely to both be updated).",
+      "explanation": "Cov(I_j,I_k) = (s-d)/n - (s/n)^2 = s(s-d-s\u00b7(s/n)\u00b7(n/1))/... simplified to (s-d)/n - (s/n)^2. For n=8,s=4: (4-d)/8 - 1/4 = (2-d)/8."
+    },
+    {
+      "id": 152,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Which of the following is a necessary but not sufficient condition for a configuration x to be a fixed point of the s-skewed ECA with any s \u2208 [1,n]?",
+      "choices": {
+        "A": "x is the all-zero configuration",
+        "B": "x is a fixed point of the synchronous ECA (i.e., R(x_{j-1},x_j,x_{j+1})=x_j for all j)",
+        "C": "x has an equal number of 0s and 1s",
+        "D": "x is a fixed point of the synchronous ECA, and this is both necessary AND sufficient"
+      },
+      "answer": "D",
+      "explanation": "A configuration x* is a fixed point of s-skewed dynamics for any s iff every cell satisfies R(x_{j-1},x_j,x_{j+1})=x_j. This is exactly the synchronous fixed-point condition \u2014 it is both necessary and sufficient. Updating any block of such a configuration leaves it unchanged."
+    },
+    {
+      "id": 153,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For the s-skewed model viewed as a random dynamical system, the synchronous ECA transition function F_sync is related to the s-skewed maps by:",
+      "choices": {
+        "A": "F_sync = T_0 \u2218 T_1 \u2218 ... \u2218 T_{n-1} (composition in order)",
+        "B": "F_sync = T_i for any single i when s=n",
+        "C": "F_sync = (1/n) \u03a3 T_i (average of all maps)",
+        "D": "F_sync has no relation to the T_i maps"
+      },
+      "answer": "B",
+      "explanation": "When s=n, every map T_i (for any starting position i) updates all n cells \u2014 yielding the same result as the synchronous update F_sync. Therefore T_i = F_sync for all i when s=n."
+    },
+    {
+      "id": 154,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In what precise sense is s-skewed noise a 'generalisation' of synchronous ECA? What extra structure does it add?",
+      "answer": "s-skewed noise generalises synchronous ECA by parameterising the update scheme with s \u2208 {1,...,n}. The synchronous ECA corresponds to the degenerate case s=n. The extra structure added is: (1) a random variable \u2014 the starting position i chosen uniformly at each step, making the dynamics stochastic; (2) partial updating \u2014 only s < n cells update per step for s < n, introducing asynchrony. In other words, s-skewed ECA is a one-parameter family of stochastic processes that contains synchronous ECA as a deterministic limiting case, and spans a continuum of asynchrony levels from maximally asynchronous (s=1) to fully synchronous (s=n).",
+      "explanation": "s-skewed is a parametric family; s=n = synchronous ECA; s<n adds randomness + partial updating."
+    },
+    {
+      "id": 155,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which of the following observations would definitively rule out the s-skewed noise model?",
+      "choices": {
+        "A": "Different numbers of cells are updated at different time steps",
+        "B": "The same rule R is applied at every step",
+        "C": "The updated cells are always consecutive",
+        "D": "The starting cell is chosen at random"
+      },
+      "answer": "A",
+      "explanation": "In s-skewed noise, the block size is always exactly s \u2014 constant at every step. If the number of updated cells varies between steps, it cannot be s-skewed noise (it might be \u03b1-async or some other model)."
+    },
+    {
+      "id": 156,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "An experiment shows: (1) exactly 5 cells update per step, (2) updated cells are always consecutive, (3) the same rule applies throughout. But some steps update cells {2,3,4,5,6} and others {8,9,0,1,2}. This is consistent with:",
+      "choices": {
+        "A": "\u03b1-asynchronous noise",
+        "B": "s-skewed noise with s=5",
+        "C": "Temporal stochastic noise",
+        "D": "Synchronous ECA"
+      },
+      "answer": "B",
+      "explanation": "Fixed block size 5, always consecutive, same rule, random starting position \u2014 all hallmarks of s-skewed noise with s=5. Wrap-around (e.g., {8,9,0,1,2}) is consistent with periodic boundary conditions."
+    },
+    {
+      "id": 157,
+      "type": "short_answer",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "A colleague claims their ECA uses 's-skewed noise with s=7 on a lattice of n=7'. What is wrong with this claim, and what does it actually describe?",
+      "answer": "There is nothing logically wrong \u2014 s=7 and n=7 is the valid boundary case s=n. However, this is not a noisy or perturbed system: when s=n, every starting position i causes all 7 cells to update, which is identical to the standard synchronous ECA. There is no stochasticity in the outcome (though i is still randomly drawn, the result is the same regardless). The colleague should recognise that s=n is simply the synchronous ECA, and calling it 's-skewed noise' is technically valid but misleading \u2014 there is zero perturbation from synchrony.",
+      "explanation": "s=n is valid but reduces to synchronous ECA; calling it 'noise' is misleading since there is zero perturbation."
+    },
+    {
+      "id": 158,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The s-skewed dynamics form a random dynamical system (RDS). Which property of the maps T_i is key to ensuring the RDS is well-defined?",
+      "choices": {
+        "A": "Each T_i must be invertible",
+        "B": "Each T_i must be a well-defined function from {0,1}^n to {0,1}^n",
+        "C": "All T_i must be identical",
+        "D": "T_i must be linear"
+      },
+      "answer": "B",
+      "explanation": "For the RDS to be well-defined, each map T_i must be a valid function from configurations to configurations. Since T_i applies the deterministic rule R to a fixed block, it is always a well-defined function {0,1}^n \u2192 {0,1}^n."
+    },
+    {
+      "id": 159,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA, if we apply all n maps T_0, T_1, ..., T_{n-1} in sequence (composition), the result is equivalent to:",
+      "choices": {
+        "A": "Exactly one synchronous ECA step",
+        "B": "n synchronous ECA steps",
+        "C": "An s-skewed update with s=n",
+        "D": "A deterministic non-synchronous update that depends on the order of composition"
+      },
+      "answer": "D",
+      "explanation": "Composing T_0, T_1,...,T_{n-1} in sequence (sequential update) is NOT the same as a synchronous update. In sequential composition, later maps see already-updated cell states. This is a different update scheme (Gauss-Seidel style vs. Jacobi style), and the result depends on the order. It is neither equivalent to synchronous ECA nor to a single s-skewed step."
+    },
+    {
+      "id": 160,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Discuss whether the s-skewed Markov chain on {0,1}^n is ergodic (irreducible and aperiodic) in general. What conditions on R and s are needed?",
+      "answer": "Ergodicity of the s-skewed Markov chain requires both irreducibility and aperiodicity. Irreducibility (any configuration reachable from any other): This is NOT guaranteed in general. If rule R has absorbing states or if the block updates can never connect certain parts of configuration space, the chain may have multiple communicating classes. For example, under Rule 0 (all outputs 0), the all-zero configuration is absorbing and no other state can be reached from it. Aperiodicity: If the chain has any state with a non-zero self-loop probability (i.e., a configuration x such that some T_i(x)=x), then that state is aperiodic. Most non-trivial rules have fixed points, making the chain aperiodic. Conditions needed for ergodicity: R must be such that from any configuration, every other configuration can be reached through some sequence of block updates. This requires R to be 'mixing enough' \u2014 e.g., rules where every pattern of 0s and 1s can eventually be generated. For most ECA rules, the chain is not irreducible due to absorbing states.",
+      "explanation": "Ergodicity requires irreducibility + aperiodicity. Most s-skewed chains are NOT irreducible due to absorbing fixed points. Aperiodicity usually holds. Full ergodicity requires R to have no absorbing states and to mix configurations sufficiently."
+    },
+    {
+      "id": 161,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "In the s-skewed model, at a given time step t, cells outside the block B_t satisfy x_j^{t+1} = ___.",
+      "choices": {
+        "A": "0",
+        "B": "1",
+        "C": "x_j^t (unchanged)",
+        "D": "R(x_{j-1}^t, x_j^t, x_{j+1}^t)"
+      },
+      "answer": "C",
+      "explanation": "Cells outside the block are idle: they simply carry forward their time-t state unchanged to time t+1."
+    },
+    {
+      "id": 162,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For which value of s is the expected number of steps for a specific cell to be updated exactly 2 steps, in an s-skewed ECA with n=8?",
+      "choices": {
+        "A": "s = 1",
+        "B": "s = 2",
+        "C": "s = 4",
+        "D": "s = 8"
+      },
+      "answer": "C",
+      "explanation": "Expected steps until cell j is first updated = 1/p where p = s/n. For E = 2: 1/(s/8) = 2 \u2192 s/8 = 1/2 \u2192 s=4."
+    },
+    {
+      "id": 163,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=10 and s=3, the probability that cell 5 is NOT updated in 5 consecutive steps is:",
+      "choices": {
+        "A": "(7/10)^5",
+        "B": "(3/10)^5",
+        "C": "1 - (3/10)^5",
+        "D": "5 \u00b7 (3/10) \u00b7 (7/10)^4"
+      },
+      "answer": "A",
+      "explanation": "P(cell 5 not updated in one step) = 1 - s/n = 1 - 3/10 = 7/10. Over 5 independent steps: P = (7/10)^5."
+    },
+    {
+      "id": 164,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=8 and s=4, find the expected number of steps until a specific cell j is updated exactly twice.",
+      "answer": "Let p = s/n = 4/8 = 1/2. Cell j is updated each step with probability p=1/2, i.i.d. The number of steps until the k-th update follows a Negative Binomial distribution. For k=2 (second update), the expected number of steps until the 2nd success in Bernoulli trials with p=1/2 is k/p = 2/(1/2) = 4 steps.",
+      "explanation": "Steps until k-th update ~ NegBin(k,p); E = k/p = 2/(1/2) = 4."
+    },
+    {
+      "id": 165,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which statement best describes the source of non-determinism in the s-skewed ECA?",
+      "choices": {
+        "A": "The rule R is randomly selected at each step",
+        "B": "The number of cells to update is randomly chosen",
+        "C": "The starting cell i of the update block is randomly chosen",
+        "D": "Cell states are randomly flipped with some probability"
+      },
+      "answer": "C",
+      "explanation": "In s-skewed noise, the only randomness is in the selection of the starting cell i, chosen uniformly at random from {0,...,n-1} at each step."
+    },
+    {
+      "id": 166,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Under s-skewed noise, the configuration space {0,1}^n has:",
+      "choices": {
+        "A": "n configurations",
+        "B": "2n configurations",
+        "C": "2^n configurations",
+        "D": "n^2 configurations"
+      },
+      "answer": "C",
+      "explanation": "Each of the n binary cells can independently be 0 or 1, giving 2^n total configurations."
+    },
+    {
+      "id": 167,
+      "type": "short_answer",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Consider an s-skewed ECA with Rule 90 (XOR rule) and n=4, s=4 (synchronous). The configuration [1,0,0,0] is not a fixed point. Show that after two synchronous steps, we return to a configuration, and trace the cycle.",
+      "answer": "Rule 90: new_j = x_{j-1} XOR x_{j+1} (periodic). Step 1 from [1,0,0,0]: Cell 0: x3 XOR x1=0 XOR 0=0. Cell 1: x0 XOR x2=1 XOR 0=1. Cell 2: x1 XOR x3=0 XOR 0=0. Cell 3: x2 XOR x0=0 XOR 1=1. \u2192 [0,1,0,1]. Step 2 from [0,1,0,1]: Cell 0: x3 XOR x1=1 XOR 1=0. Cell 1: x0 XOR x2=0 XOR 0=0. Cell 2: x1 XOR x3=1 XOR 1=0. Cell 3: x2 XOR x0=0 XOR 0=0. \u2192 [0,0,0,0]. Step 3 from [0,0,0,0]: all XORs = 0 \u2192 [0,0,0,0]. So [1,0,0,0] \u2192 [0,1,0,1] \u2192 [0,0,0,0] \u2192 fixed point. The config reaches [0,0,0,0] in 2 steps \u2014 not a cycle back to [1,0,0,0]. [0,0,0,0] is the fixed-point attractor.",
+      "explanation": "[1,0,0,0] \u2192 [0,1,0,1] \u2192 [0,0,0,0] (fixed point) under synchronous Rule 90 with n=4."
+    },
+    {
+      "id": 168,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In an s-skewed ECA with n=8, s=3, if i=6 is chosen (0-indexed, periodic), which cells form the block?",
+      "choices": {
+        "A": "6, 7, 8",
+        "B": "6, 7, 0",
+        "C": "5, 6, 7",
+        "D": "6 only"
+      },
+      "answer": "B",
+      "explanation": "Block: {6, (6+1)%8=7, (6+2)%8=0}. Cell 8 does not exist; under mod 8, 8\u22610."
+    },
+    {
+      "id": 169,
+      "type": "mcq",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=10 and s=5, in how many time steps would you expect to see each cell updated exactly once (the 'expected hits-per-cell' reaches 1)?",
+      "choices": {
+        "A": "n/s = 2 steps",
+        "B": "s/n = 0.5 steps",
+        "C": "n = 10 steps",
+        "D": "s = 5 steps"
+      },
+      "answer": "A",
+      "explanation": "Each cell is updated with probability s/n = 5/10 = 0.5 per step. Expected steps until 1 update = 1/(s/n) = n/s = 10/5 = 2. After 2 steps, on average each cell has been updated once."
+    },
+    {
+      "id": 170,
+      "type": "mcq",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "In \u03b1-asynchronous noise with \u03b1=1, what happens?",
+      "choices": {
+        "A": "No cells are ever updated",
+        "B": "Each cell updates with probability 1, equivalent to synchronous ECA",
+        "C": "Only one cell updates per step",
+        "D": "Rules are randomly shuffled"
+      },
+      "answer": "B",
+      "explanation": "With \u03b1=1, every cell updates with certainty (probability 1) at every step \u2014 this is the fully synchronous ECA. \u03b1=1 is the synchronous boundary for \u03b1-async, just as s=n is the synchronous boundary for s-skewed."
+    },
+    {
+      "id": 171,
+      "type": "short_answer",
+      "topic": 4,
+      "topic_name": "s-Skewed vs Other Noise Models",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Can s-skewed noise and spatial stochastic noise be combined in a single model? If so, describe what such a combined model would look like.",
+      "answer": "Yes, the two noises can be combined. A combined model would have two rules R1 and R2, a spatial mixing parameter \u03bb, and a block size s. At each step: (1) a starting cell i is chosen uniformly at random, defining block B_t = {i,...,i+(s-1)}; (2) each cell j in B_t independently applies R1 with probability 1-\u03bb or R2 with probability \u03bb (spatial stochastic rule selection within the block); (3) cells outside B_t remain idle. This hybrid introduces two independent noise sources: schedule perturbation (which cells update, controlled by s) and rule perturbation (which rule each active cell applies, controlled by \u03bb). The s-skewed model is recovered when \u03bb=0 (or \u03bb=1), and spatial stochastic is approached when s=n.",
+      "explanation": "Combined model: s-skewed schedule + per-cell rule mixing. Both noises operate independently. s-skewed recovered at \u03bb=0; spatial stochastic approached at s=n."
+    },
+    {
+      "id": 172,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For s=n, the probability that any specific cell j is updated at a given step is:",
+      "choices": {
+        "A": "0",
+        "B": "1/n",
+        "C": "s/n = 1",
+        "D": "0.5"
+      },
+      "answer": "C",
+      "explanation": "When s=n, s/n = n/n = 1. Every cell is updated at every step with certainty."
+    },
+    {
+      "id": 173,
+      "type": "mcq",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Two s-skewed ECA models are run: Model A with (n=50, s=10) and Model B with (n=100, s=10). Which has higher absolute perturbation in terms of idle cells per step?",
+      "choices": {
+        "A": "Model A (40 idle cells per step)",
+        "B": "Model B (90 idle cells per step)",
+        "C": "Both have the same absolute idle count",
+        "D": "Neither \u2014 idle cells are probabilistic"
+      },
+      "answer": "B",
+      "explanation": "Model A: n-s = 50-10 = 40 idle cells. Model B: n-s = 100-10 = 90 idle cells. In absolute terms, Model B has more idle cells per step. (Though in relative terms, 40/50=80% vs 90/100=90% idle, Model B is also relatively more perturbed.)"
+    },
+    {
+      "id": 174,
+      "type": "short_answer",
+      "topic": 6,
+      "topic_name": "s-Skewed Noise: Perturbation Rate Interpretation",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For an s-skewed ECA with n=16 and s=4, what fraction of the lattice is updated per step and what fraction is idle?",
+      "answer": "Updated fraction = s/n = 4/16 = 1/4 = 25%. Idle fraction = 1 - s/n = 12/16 = 3/4 = 75%. At each step, 4 cells update and 12 cells remain idle.",
+      "explanation": "Updated = s/n = 4/16 = 25%; Idle = (n-s)/n = 12/16 = 75%."
+    },
+    {
+      "id": 175,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "The stochastic process induced by s-skewed noise can be characterised as having what type of memory?",
+      "choices": {
+        "A": "Infinite memory \u2014 the full history of configurations is needed",
+        "B": "Memory-2 \u2014 the last two configurations determine the next",
+        "C": "Memoryless (Markovian) \u2014 only the current configuration determines the transition probabilities",
+        "D": "No memory \u2014 transitions are independent of all past states"
+      },
+      "answer": "C",
+      "explanation": "The s-skewed ECA is a Markov chain: the probability distribution over x^{t+1} depends only on x^t (the current configuration) and the i.i.d. random choice of i. Past history is irrelevant \u2014 the Markov property holds."
+    },
+    {
+      "id": 176,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "A researcher claims: 'Under s-skewed noise, patterns formed by synchronous ECA will always be disrupted.' Is this claim correct?",
+      "choices": {
+        "A": "Yes \u2014 any s < n always destroys all synchronous patterns",
+        "B": "No \u2014 for some rules, patterns (especially fixed points) are preserved under s-skewed noise",
+        "C": "Yes \u2014 but only for rules with complex behaviour",
+        "D": "No \u2014 s-skewed noise never affects patterns for any rule"
+      },
+      "answer": "B",
+      "explanation": "The claim is too strong. Fixed points of synchronous ECA are also fixed points of every s-skewed map T_i, so they are preserved exactly. More generally, rules with robust attractors may show qualitatively similar patterns even under s < n. The degree of disruption is rule-dependent."
+    },
+    {
+      "id": 177,
+      "type": "short_answer",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Why is s called the 'perturbation rate' rather than just 'block size'? What does the word 'rate' convey?",
+      "answer": "While s literally measures the block size (number of cells updated), calling it a 'perturbation rate' conveys how much the update scheme departs from synchronous ECA. The word 'rate' suggests a measure of intensity: s/n is the fraction of the lattice updated, which is a rate of activity. Higher s means a higher rate of update (closer to synchronous), while lower s means a lower rate \u2014 more perturbation per step relative to the synchronous baseline. The term 'rate' also aligns with similar parameters in other noise models (\u03b1 is a per-cell update rate, \u03c4 is a per-step rule-switch rate), providing conceptual consistency across the noise framework.",
+      "explanation": "'Rate' = fraction of lattice updated per step = s/n. Emphasises intensity of update relative to synchronous baseline."
+    },
+    {
+      "id": 178,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under s-skewed dynamics, what is the entropy rate H of the Markov chain (intuitively)?",
+      "choices": {
+        "A": "H = 0 (deterministic)",
+        "B": "H = log2(n) bits per step (from the uniform choice of i)",
+        "C": "H = n bits per step",
+        "D": "H = s bits per step"
+      },
+      "answer": "B",
+      "explanation": "The sole source of randomness per step is the uniform choice of i \u2208 {0,...,n-1}. The entropy of this choice is log2(n) bits. Thus the external entropy injected per step is log2(n) bits, regardless of the current configuration."
+    },
+    {
+      "id": 179,
+      "type": "mcq",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For a rule R where the synchronous ECA has a unique fixed point x*, the s-skewed Markov chain will:",
+      "choices": {
+        "A": "Have an absorbing state at x* and be absorbed into it with probability 1 from any initial configuration, provided the chain is irreducible on the transient states",
+        "B": "Never reach x*",
+        "C": "Have a uniform stationary distribution over all 2^n configurations",
+        "D": "Cycle between all 2^n configurations equally"
+      },
+      "answer": "A",
+      "explanation": "x* is a fixed point of every T_i, so once reached it is never left \u2014 it is an absorbing state. If the chain can reach x* from any configuration (irreducibility of transient paths to x*), it will be absorbed into x* with probability 1. This depends on the rule and the connectivity of the configuration graph."
+    },
+    {
+      "id": 180,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "What is a stationary distribution of the s-skewed Markov chain, and under what conditions does one exist?",
+      "answer": "A stationary distribution \u03c0 is a probability distribution over {0,1}^n such that \u03c0\u00b7P = \u03c0, where P is the transition matrix of the s-skewed Markov chain. By the Perron-Frobenius theorem, any finite Markov chain has at least one stationary distribution. If the chain is irreducible and aperiodic (ergodic), there is a unique stationary distribution and the chain converges to it from any initial configuration. If the chain has absorbing states (e.g., fixed points), the stationary distributions are supported on the absorbing states, and the chain converges to one depending on the initial condition. In the case of multiple absorbing states, the stationary distribution is a mixture, with mixing proportions determined by absorption probabilities from the initial configuration.",
+      "explanation": "Stationary distribution: \u03c0 = \u03c0P. Unique if ergodic; otherwise supported on absorbing states. Existence always guaranteed for finite chains."
+    },
+    {
+      "id": 181,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA, cells within the update block B_t use time-t states of their neighbours \u2014 even if those neighbours are also in B_t. This means the update within the block is:",
+      "choices": {
+        "A": "Sequential (Gauss-Seidel style) \u2014 later cells in the block use already-updated earlier cells",
+        "B": "Parallel (Jacobi style) \u2014 all cells in the block read from time-t states simultaneously",
+        "C": "Random \u2014 each cell independently decides which time step to read from",
+        "D": "Backwards \u2014 cells read from time t+1"
+      },
+      "answer": "B",
+      "explanation": "In s-skewed noise (as defined), all cells in the block compute their new state simultaneously using the configuration at time t. This is parallel/Jacobi-style update \u2014 identical to how synchronous ECA works, just restricted to the block. No cell reads another cell's already-updated state within the same step."
+    },
+    {
+      "id": 182,
+      "type": "mcq",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The s-skewed model with s=n has how many distinct next configurations from any given state x^t?",
+      "choices": {
+        "A": "n (one per starting position)",
+        "B": "2^n",
+        "C": "Exactly 1",
+        "D": "Exactly 2"
+      },
+      "answer": "C",
+      "explanation": "With s=n, all n starting positions produce the same next configuration (the synchronous ECA update). There is exactly 1 possible next configuration \u2014 the dynamics are deterministic."
+    },
+    {
+      "id": 183,
+      "type": "short_answer",
+      "topic": 13,
+      "topic_name": "s-Skewed Noise: Relationship to Synchrony",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Formulate a measure of 'distance from synchrony' for the s-skewed model and explain how it varies with s.",
+      "answer": "One natural measure is the normalised block size deficiency: D(s) = 1 - s/n \u2208 [0, 1]. D(s)=0 when s=n (zero distance \u2014 fully synchronous); D(s)\u21921 when s\u21921/n (maximum distance). Alternatively, for a specific configuration x, the expected Hamming distance between x^{t+1} (s-skewed) and F_sync(x^t) (synchronous next state) measures how much the update deviates. This is: E[H(x^{t+1}, F_sync(x^t))] = (1/n) \u03a3_i H(T_i(x), F_sync(x)). As s decreases, more cells are left idle (carrying their time-t state rather than their synchronous update), increasing this expected Hamming distance. Thus both measures (1-s/n) and the expected Hamming distance are monotonically non-increasing in s \u2014 smaller s = farther from synchrony.",
+      "explanation": "Distance from synchrony = 1 - s/n or expected Hamming distance from synchronous successor. Both decrease monotonically as s increases toward n."
+    },
+    {
+      "id": 184,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For an s-skewed ECA with n=20 and s=5, how many cells are idle each step?",
+      "choices": {
+        "A": "5",
+        "B": "10",
+        "C": "15",
+        "D": "20"
+      },
+      "answer": "C",
+      "explanation": "n - s = 20 - 5 = 15 cells are idle each step."
+    },
+    {
+      "id": 185,
+      "type": "mcq",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For an s-skewed ECA with n=4, s=4, Rule 255 (all outputs 1), starting from [0,0,0,0]: what is the configuration after one step?",
+      "choices": {
+        "A": "[0,0,0,0]",
+        "B": "[1,1,1,1]",
+        "C": "[0,1,0,1]",
+        "D": "[1,0,1,0]"
+      },
+      "answer": "B",
+      "explanation": "s=n=4: all cells update. Rule 255 maps everything to 1. Every cell becomes 1: [1,1,1,1]."
+    },
+    {
+      "id": 186,
+      "type": "short_answer",
+      "topic": 10,
+      "topic_name": "s-Skewed Noise: Worked Examples",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=5, s=1, Rule 90 (XOR rule), and initial config [1,0,0,0,0] (periodic): list all possible configurations after one step and their probabilities.",
+      "answer": "s=1: only cell i updates. Rule 90: new_state(j) = x_{j-1} XOR x_{j+1}. Initial: x=[1,0,0,0,0]. Neighbourhoods (periodic): Cell 0: x4 XOR x1=0 XOR 0=0. Cell 1: x0 XOR x2=1 XOR 0=1. Cell 2: x1 XOR x3=0 XOR 0=0. Cell 3: x2 XOR x4=0 XOR 0=0. Cell 4: x3 XOR x0=0 XOR 1=1. For each i \u2208 {0,1,2,3,4}: i=0: cell 0\u21920; [0,0,0,0,0]. i=1: cell 1\u21921; [1,1,0,0,0]. i=2: cell 2\u21920; [1,0,0,0,0] (unchanged). i=3: cell 3\u21920; [1,0,0,0,0] (unchanged). i=4: cell 4\u21921; [1,0,0,0,1]. Results: [0,0,0,0,0] P=1/5; [1,1,0,0,0] P=1/5; [1,0,0,0,0] P=2/5; [1,0,0,0,1] P=1/5.",
+      "explanation": "5 starting positions; cells 2 and 3 already have Rule-90 output equal to their current state (0), so those blocks leave config unchanged. Three distinct configs plus the original."
+    },
+    {
+      "id": 187,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "You observe an ECA where at each step, 3 cells update, and they are always consecutive. The starting cell appears to follow a non-uniform distribution (some positions appear more often). Is this s-skewed noise?",
+      "choices": {
+        "A": "Yes \u2014 block size is fixed at 3, so it must be s-skewed",
+        "B": "No \u2014 in s-skewed noise the starting cell is always chosen UNIFORMLY; a non-uniform distribution violates this",
+        "C": "Yes \u2014 any model with consecutive block updates of fixed size is s-skewed",
+        "D": "Impossible to determine without more information"
+      },
+      "answer": "B",
+      "explanation": "s-skewed noise specifically requires the starting cell i to be chosen UNIFORMLY at random. A non-uniform distribution over starting positions is a different (generalised) model \u2014 not the standard s-skewed noise model as defined."
+    },
+    {
+      "id": 188,
+      "type": "mcq",
+      "topic": 2,
+      "topic_name": "s-Skewed Noise: Definition and Mechanics",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "If we observe an s-skewed ECA for T time steps, the total number of cell-update operations performed is:",
+      "choices": {
+        "A": "n \u00b7 T",
+        "B": "s \u00b7 T",
+        "C": "T",
+        "D": "s \u00b7 n"
+      },
+      "answer": "B",
+      "explanation": "Exactly s cells are updated per time step. Over T steps, the total number of cell-update operations is s\u00b7T."
+    },
+    {
+      "id": 189,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For an s-skewed ECA with n=9 and s=3, what is the probability that in two consecutive steps t and t+1, the same block is chosen both times?",
+      "answer": "At each step, the starting cell i is chosen uniformly from {0,...,8}, giving 9 equally likely blocks. Since steps are i.i.d., the probability that the same starting position i is chosen at step t+1 as at step t is 1/9. If 'same block' means the same set of 3 consecutive cells (which corresponds to the same starting position i), then P = 1/9 \u2248 0.111.",
+      "explanation": "P(same block twice in a row) = P(same i drawn) = 1/n = 1/9, since i is i.i.d. uniform."
+    },
+    {
+      "id": 190,
+      "type": "mcq",
+      "topic": 7,
+      "topic_name": "s-Skewed Noise: Dynamics and Behaviour",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Under s-skewed noise, which type of ECA rule is most likely to produce dynamics that are qualitatively similar to its synchronous counterpart regardless of s?",
+      "choices": {
+        "A": "Class III (chaotic) rules",
+        "B": "Class IV (complex/edge of chaos) rules",
+        "C": "Class I (convergent to fixed point) rules \u2014 rules where all configurations converge to a single fixed point",
+        "D": "Class II (periodic) rules with complex cycles"
+      },
+      "answer": "C",
+      "explanation": "Class I rules converge all configurations to a fixed point under synchronous ECA. Since fixed points of synchronous ECA are also fixed points of every s-skewed map, the long-run behaviour (convergence to the fixed point) is qualitatively preserved under any s. The path to convergence may differ, but the ultimate attractor is the same."
+    },
+    {
+      "id": 191,
+      "type": "mcq",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For s-skewed ECA with s=1 on lattice n, after exactly n steps, the expected number of distinct cells that have been updated at least once is approximately:",
+      "choices": {
+        "A": "n (all cells updated)",
+        "B": "n(1 - (1-1/n)^n) \u2248 n(1-1/e) \u2248 0.632n",
+        "C": "n/2",
+        "D": "1 (only one cell updated in total)"
+      },
+      "answer": "B",
+      "explanation": "This is the birthday problem / coupon collector result. After n steps of choosing 1 cell uniformly from n, the expected number of distinct cells chosen is n\u00b7(1-(1-1/n)^n) \u2248 n(1-1/e) \u2248 0.632n. About 63.2% of cells are expected to have been updated at least once."
+    },
+    {
+      "id": 192,
+      "type": "short_answer",
+      "topic": 3,
+      "topic_name": "s-Skewed Noise: Parameter Boundary Cases",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "For what value of s in an s-skewed ECA with n=12 does the expected number of steps until a specific cell is first updated equal 3?",
+      "answer": "E[first update of cell j] = 1/P(cell j updated) = 1/(s/n) = n/s. Setting n/s = 3: s = n/3 = 12/3 = 4. So s=4.",
+      "explanation": "E[first update] = n/s = 3 \u2192 s = n/3 = 4."
+    },
+    {
+      "id": 193,
+      "type": "mcq",
+      "topic": 8,
+      "topic_name": "s-Skewed Noise: Boundary Conditions",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "In an s-skewed ECA with fixed (null) boundaries (cells outside [0,n-1] have state 0), n=10, s=3, the probability that cell 0 is updated at a given step is:",
+      "choices": {
+        "A": "3/10",
+        "B": "1/8",
+        "C": "3/8",
+        "D": "1/10"
+      },
+      "answer": "B",
+      "explanation": "With fixed boundaries, valid starting positions are i \u2208 {0,...,n-s} = {0,...,7} (8 positions). Cell 0 is in the block only when i=0 (block {0,1,2}). P(cell 0 updated) = 1/8."
+    },
+    {
+      "id": 194,
+      "type": "mcq",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA, define the 'overlap' between consecutive blocks as the number of cells shared between B_t and B_{t+1}. Given n=10 and s=4, what is the expected overlap between two consecutive randomly chosen blocks?",
+      "choices": {
+        "A": "s^2/n = 1.6",
+        "B": "s(s-1)/n = 1.2",
+        "C": "s\u00b7(2s-1)/(2n) \u2248 2.8",
+        "D": "s/2 = 2"
+      },
+      "answer": "A",
+      "explanation": "The block at t starts at i (uniform), the block at t+1 starts at j (uniform, independent). The expected number of shared cells = \u03a3_k P(k \u2208 B_i and k \u2208 B_j) = n \u00b7 (s/n)^2 = s^2/n = 16/10 = 1.6. By linearity of expectation and the fact that P(each cell is in both blocks) = (s/n)^2 by independence."
+    },
+    {
+      "id": 195,
+      "type": "short_answer",
+      "topic": 5,
+      "topic_name": "s-Skewed Noise: Mathematical Properties",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "For an s-skewed ECA with n=25 and s=5, answer: (a) how many cells update per step? (b) how many are idle? (c) what is the probability any specific cell is updated?",
+      "answer": "(a) s = 5 cells update per step. (b) n - s = 25 - 5 = 20 cells are idle per step. (c) P(specific cell updated) = s/n = 5/25 = 1/5 = 0.2.",
+      "explanation": "Directly apply formulas: updated = s; idle = n-s; P = s/n."
+    },
+    {
+      "id": 196,
+      "type": "mcq",
+      "topic": 11,
+      "topic_name": "s-Skewed Noise: Conceptual Understanding",
+      "difficulty": 2,
+      "difficulty_name": "Medium",
+      "question": "Under s-skewed noise, which pair of cells will always have a positive correlation in their update indicators I_j and I_k (i.e., being updated in the same step)?",
+      "choices": {
+        "A": "Two cells that are exactly s cells apart",
+        "B": "Two cells that are more than s cells apart",
+        "C": "Two cells that are fewer than s cells apart (distance d < s)",
+        "D": "All pairs always have zero correlation"
+      },
+      "answer": "C",
+      "explanation": "From the covariance formula: Cov(I_j, I_k) = (s-d)/n - (s/n)^2 = s(s-d-s^2/n)... For d < s, there are s-d > 0 starting positions placing both cells in the block, giving P(both updated) = (s-d)/n > (s/n)^2, hence positive covariance. Adjacent cells (d=1) have the strongest positive correlation."
+    },
+    {
+      "id": 197,
+      "type": "mcq",
+      "topic": 14,
+      "topic_name": "s-Skewed Noise: Identification and Classification",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "Which is the correct classification of s-skewed noise in terms of its effect on ECA?",
+      "choices": {
+        "A": "Rule perturbation \u2014 changes the rule applied",
+        "B": "State perturbation \u2014 randomly flips cell states",
+        "C": "Schedule perturbation \u2014 changes which cells are updated each step",
+        "D": "Neighbourhood perturbation \u2014 changes the radius of the neighbourhood"
+      },
+      "answer": "C",
+      "explanation": "s-skewed noise is a schedule perturbation: it changes which cells are updated at each step (a random block of size s) while keeping rule R and neighbourhood structure fixed."
+    },
+    {
+      "id": 198,
+      "type": "short_answer",
+      "topic": 12,
+      "topic_name": "s-Skewed Noise: Quantitative Reasoning",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "For an s-skewed ECA with n=6 and s=2, find the probability that over 3 consecutive steps, cell 4 is updated at least once.",
+      "answer": "P(cell 4 updated in one step) = s/n = 2/6 = 1/3. P(cell 4 NOT updated in one step) = 1 - 1/3 = 2/3. Over 3 independent steps: P(never updated) = (2/3)^3 = 8/27. P(updated at least once) = 1 - 8/27 = 19/27 \u2248 0.704.",
+      "explanation": "P(at least once in 3 steps) = 1 - (1-s/n)^3 = 1 - (2/3)^3 = 1 - 8/27 = 19/27."
+    },
+    {
+      "id": 199,
+      "type": "mcq",
+      "topic": 9,
+      "topic_name": "s-Skewed Noise: Notation and Formalism",
+      "difficulty": 1,
+      "difficulty_name": "Easy",
+      "question": "The parameter s in s-skewed noise is always:",
+      "choices": {
+        "A": "A real number in (0, 1)",
+        "B": "A positive integer between 1 and n inclusive",
+        "C": "A probability between 0 and 1",
+        "D": "Equal to n/2"
+      },
+      "answer": "B",
+      "explanation": "s \u2208 {1, 2,..., n}: s is a positive integer representing the block size, bounded between 1 (single cell) and n (full lattice)."
+    },
+    {
+      "id": 200,
+      "type": "short_answer",
+      "topic": 15,
+      "topic_name": "s-Skewed Noise: Advanced Properties",
+      "difficulty": 3,
+      "difficulty_name": "Hard",
+      "question": "Summarise the s-skewed noise model in terms of its definition, key parameter, relationship to synchronous ECA, and one distinguishing feature compared to each of the other three noise models.",
+      "answer": "Definition: At each time step t, a starting cell i is chosen uniformly at random from {0,...,n-1}; the contiguous block B_t = {i,...,i+(s-1) mod n} applies rule R while all other cells remain idle. Key parameter: s \u2208 {1,...,n} \u2014 the block size / perturbation rate. Relationship to synchronous ECA: Synchronous ECA is the special case s=n; s=1 is maximally asynchronous. Compared to \u03b1-asynchronous: both are schedule perturbations, but s-skewed uses a fixed-size contiguous block (one uniform draw) while \u03b1-async uses n independent Bernoulli draws giving a variable-size, non-contiguous updated set. Compared to spatial stochastic: s-skewed perturbs which cells update (schedule); spatial stochastic perturbs which rule cells apply (per-cell rule mixing with two rules R1,R2). Compared to temporal stochastic: s-skewed perturbs the schedule with one random block; temporal stochastic perturbs the rule globally (one Bernoulli draw decides which rule ALL cells use), keeping the schedule synchronous.",
+      "explanation": "Comprehensive summary: definition + parameter + boundary cases + contrast with all three other models."
+    }
+  ]

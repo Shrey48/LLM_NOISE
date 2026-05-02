@@ -1,0 +1,123 @@
+{
+  "dataset_id": "alphaK",
+  "filename": "eca_alpha_async.json",
+  "noise_type": "α-Asynchronous ECA",
+  "noise_description": "Each cell updates independently with probability α at each time step; non-updated cells retain their previous state.",
+  "noise_parameter": {
+    "symbol": "α",
+    "range": "[0, 1]",
+    "type": "scalar",
+    "boundary_cases": {
+      "alpha=0": "No cells update; system is frozen.",
+      "alpha=1": "All cells update synchronously; equivalent to standard deterministic ECA."
+    }
+  },
+  "total_questions": 200,
+  "id_range": {
+    "min": 1,
+    "max": 200
+  },
+  "duplicates": 0,
+  "question_formats": {
+    "mcq": {
+      "count": 165,
+      "percentage": 82.5,
+      "description": "Multiple-choice with 4 options (A/B/C/D), exactly one correct answer. Scored binary: 1 correct, 0 otherwise."
+    },
+    "short_answer": {
+      "count": 35,
+      "percentage": 17.5,
+      "description": "Free-form response (numerical value, formula, derivation, or brief explanation). Scored 0/1/2 by judge model (Grok-3) and normalised to [0,1] by dividing by 2."
+    }
+  },
+  "difficulty_levels": {
+    "Easy": {
+      "level_id": 1,
+      "count": 66,
+      "percentage": 33.0,
+      "description": "Definitional recall and basic comprehension; answerable directly from the noise model definition."
+    },
+    "Medium": {
+      "level_id": 2,
+      "count": 82,
+      "percentage": 41.0,
+      "description": "Understanding of mechanics and properties; requires knowing implications, not just definitions."
+    },
+    "Hard": {
+      "level_id": 3,
+      "count": 52,
+      "percentage": 26.0,
+      "description": "Quantitative reasoning, derivation, or cross-model comparison; requires multi-step reasoning."
+    }
+  },
+  "topics": {
+    "count": 6,
+    "distribution": [
+      {
+        "topic_id": 1,
+        "topic_name": "ECA Fundamentals",
+        "question_count": 28,
+        "percentage": 14.0
+      },
+      {
+        "topic_id": 2,
+        "topic_name": "α-Async Noise: Definition & Parameters",
+        "question_count": 34,
+        "percentage": 17.0
+      },
+      {
+        "topic_id": 3,
+        "topic_name": "Update Mechanics",
+        "question_count": 40,
+        "percentage": 20.0
+      },
+      {
+        "topic_id": 4,
+        "topic_name": "Mathematical Properties",
+        "question_count": 40,
+        "percentage": 20.0
+      },
+      {
+        "topic_id": 5,
+        "topic_name": "Behavioral Effects & Dynamics",
+        "question_count": 30,
+        "percentage": 15.0
+      },
+      {
+        "topic_id": 6,
+        "topic_name": "Comparisons & Contrasts",
+        "question_count": 28,
+        "percentage": 14.0
+      }
+    ]
+  },
+  "scoring": {
+    "mcq": "Binary: 1 for correct answer, 0 otherwise.",
+    "short_answer": "Three-point rubric by independent judge (Grok-3): 2=fully correct, 1=partially correct, 0=incorrect or missing. Normalised to [0,1] by dividing by 2.",
+    "overall_accuracy": "Mean of all normalised scores across both question types."
+  },
+  "purpose": "Knowledge-check dataset. Confirms that LLM failures on the identification task reflect structural inability to read spatiotemporal patterns, not gaps in domain knowledge. A model with strong domain knowledge should achieve near-perfect accuracy. No question requires solving the inverse problem.",
+  "pdf_discrepancies": {
+    "note": "Table 4 in the PDF reports different format/difficulty counts from the actual JSON data. JSON (actual data) is authoritative.",
+    "mcq": {
+      "pdf": 178,
+      "json_actual": 165
+    },
+    "short_answer": {
+      "pdf": 22,
+      "json_actual": 35
+    },
+    "easy": {
+      "pdf": 80,
+      "json_actual": 66
+    },
+    "medium": {
+      "pdf": 68,
+      "json_actual": 82
+    },
+    "hard": {
+      "pdf": 52,
+      "json_actual": 52
+    }
+  }
+}

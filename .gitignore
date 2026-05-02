@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+**/.DS_Store
+# Large orbit files (exceed GitHub 100MB limit — regenerate with datagen scripts)
+dataset/eca_identification_dataset/alpha_async/phase1/train/orbits.npy
+dataset/eca_identification_dataset/alpha_async/phase2/train/orbits.npy
+dataset/eca_identification_dataset/s_skewed/phase1/train/orbits.npy
+dataset/eca_identification_dataset/s_skewed/phase2/train/orbits.npy
+dataset/eca_identification_dataset/s_skewed/phase2/test/orbits.npy
+
+# Python
+__pycache__/
+*.pyc
