@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this code or dataset, please cite our paper."
+title: "ECA Noise Identification — LLM & Transformer Benchmark"
+abstract: >
+  A benchmark repository for studying rule and noise-parameter identification
+  in Elementary Cellular Automata (ECA) under four distinct noise models
+  (alpha-asynchronous, s-skewed, stochastic, temporal stochastic), using
+  both purpose-built transformer architectures and large language models.
+authors:
+  - name: "Anonymous Authors"
+version: 1.0.0
+date-released: 2026-05-03
+url: "https://github.com/Shrey48/LLM_NOISE"
+license: MIT
+keywords:
+  - elementary-cellular-automata
+  - noise-identification
+  - transformer
+  - large-language-models
+  - benchmark
+  - NeurIPS
