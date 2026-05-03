@@ -146,7 +146,7 @@ This file is committed to the repository for reproducibility.
 
 ---
 
-## Checklist (NeurIPS Reproducibility)
+## Checklist (Reproducibility)
 
 - [x] Code is publicly available
 - [x] Dataset is publicly available (Zenodo DOI: 10.5281/zenodo.XXXXXXX)
