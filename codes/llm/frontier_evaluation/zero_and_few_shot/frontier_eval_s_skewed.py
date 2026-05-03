@@ -1,5 +1,5 @@
 """
-frontier_eval_skewECA.py  —  NeurIPS 2026 submission (anonymous)
+frontier_eval_skewECA.py  
 =================================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the skewECA
 identification task (s-skewed noise).
