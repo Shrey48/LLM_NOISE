@@ -5,12 +5,6 @@ Directory: temporal_v9/
 
 Generates TSCA_Data/ used by TRAIN_TSCA.py and FINAL_TEST_TSCA.py.
 
-If you already have TSCA_Data/ from temporal_v5 (N_ORBITS=8, same SEED=42
-rule split), you can symlink instead of regenerating:
-
-    ln -s <path_to>/temporal_v5/TSCA_Data \
-          /home/shovik.roy/.../temporal_v9/TSCA_Data
-
 This script regenerates it from scratch if needed (identical output).
 
 Output:
@@ -38,7 +32,7 @@ import os, sys, time
 from collections import Counter
 
 # ══════════════════════════════════════════════════════════
-BASE_DIR   = "/home/shovik.roy/Shrey/new_check_model/ECA_temporal_stocastic/temporal_v9"
+BASE_DIR   = "/home/new_check_model/ECA_temporal_stocastic/temporal_v9"
 OUTPUT_DIR = os.path.join(BASE_DIR, "TSCA_Data")
 # ══════════════════════════════════════════════════════════
 
