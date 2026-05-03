@@ -1,6 +1,6 @@
 # baselines_alphaECA — Architectural Baseline Comparison for αECA
 
-> Companion code for **NeurIPS 2026** submission.  
+> Companion code submission.  
 > Trains and evaluates four architectural baselines against the signal-matched transformer **αM** on the α-asynchronous ECA identification task.
 
 ---
@@ -210,7 +210,7 @@ Add the following paragraph after the αM description in Section 4:
 
 ## Fix Log Summary
 
-The script incorporates 14 fixes relative to an earlier draft, all cross-checked against `neurips_2026_v7.pdf`. The most significant:
+The script incorporates 14 fixes relative to an earlier draft. The most significant:
 
 | Fix | Description |
 |---|---|
