@@ -1,5 +1,5 @@
 """
-frontier_eval_alphaECA.py  —  NeurIPS 2026 camera-ready version
+frontier_eval_alphaECA.py  
 ================================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the αECA
 identification task.
