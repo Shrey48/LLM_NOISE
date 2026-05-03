@@ -31,72 +31,6 @@ Metrics (identical to paper Section 6):
   ─ Rule: 8-bit exact match
   ─ Noise: tolerance accuracy ±0.05 on continuous α
 
-COMPLETE FIX LOG (cross-checked against neurips_2026_v7.pdf):
-
-  [F1]  StatPool MLP: paper has 512→256(+LN(256)+Dropout)→128 (App C eq. 990).
-        Draft had wrong hidden dims and missing LayerNorm between projections.
-        Fixed: StatPool now matches eq. 990 exactly.
-
-  [F2]  Alpha head: paper has 3-layer MLP (128→64→32→10) with Dropout only
-        on first layer (App C eq. 995). Draft's VanillaTransformer alpha_head
-        had 2-layer (128→64→10). Fixed in all baselines.
-
-  [F3]  Rule head: paper has Linear(128→64)→GELU→Dropout→Linear(64→8)
-        — Dropout IS present (App C eq. 974). All baselines now match.
-
-  [F4]  TripletPE2D: paper uses SEPARATE 64-dim sinusoidal encodings for
-        the temporal (t) and spatial (i) axes, concatenated into 128-dim.
-        VanillaTransformer intentionally keeps flat 1D-PE as the ablation
-        point; this is documented explicitly.
-
-  [F5]  Phase 1 validation — CORRECTED FROM PREVIOUS DRAFT:
-        The previous fix log claimed "Phase 1 training data is NOT split"
-        citing App B.2.4. This was a misreading. App D.4 (the authoritative
-        training spec) states: "For αM and skewM, 15% of EACH PHASE's
-        training data is held out as a fixed validation split before training
-        begins." App D.3 further states: "The Phase 1 checkpoint that achieves
-        the best validation rule exact match is saved to phase1_best.pt. Phase 2
-        begins from this checkpoint, not from the last Phase 1 epoch."
-        App B.2.4 says "Phase 1 training data is not split" only in the context
-        of comparing αM/skewM to tempM/stocM (which have no fixed split at
-        all). It does NOT mean Phase 1 has no val split.
-        FIXED: Phase 1 now holds out 15% as val (seed=42), trains for all
-        P1_EPOCHS, saves best val-rule checkpoint, and Phase 2 loads that
-        best checkpoint.
-
-  [F6]  Phase 2 LR: paper uses 1e-4 peak, 1e-6 min (Table 23). Fixed.
-
-  [F7]  Loss weighting: paper weights α CE by λ_α=0.3, not 1.0 (Table 22).
-        Fixed in the combined loss computation.
-
-  [F8]  DataLoader: pin_memory=True (Table 23). Added throughout.
-
-  [F9]  TransformerEncoder: enable_nested_tensor=False (App C). Added.
-
-  [F10] Weight initialisation: paper uses N(0,0.02) / zeros (App C).
-        Added _init_weights() to all models.
-
-  [F11] Hybrid estimator is part of αM's INFERENCE, not training. The
-        baselines have no such estimator — which is correct. Added a note
-        clarifying this so the comparison is fair: baselines use the neural
-        alpha head only. αM paper numbers include the hybrid, so the reported
-        gap is a lower bound on αM's advantage.
-
-  [F12] random_split order: paper code (App D.4) uses [n_val, n_tr] with
-        p_val, p_tr = random_split(..., [n_val, n_tr], ...) — val first,
-        train second. The previous draft had [n_tr, n_val] (train first).
-        This affects which samples land in each split. Fixed for both
-        Phase 1 and Phase 2 splits.
-
-  [F13] AdamW epsilon: Table 23 specifies eps=1e-8. Added explicitly
-        (PyTorch default is 1e-8, but specifying it makes reproducibility
-        explicit and guards against framework version differences).
-
-  [F14] Phase 1 val sizes: App D.4 gives exact sizes:
-        Phase 1 val = floor(35,800 × 0.15) = 5,370 samples
-        Phase 2 val = floor(89,500 × 0.15) = 13,425 samples
-        These are verified at runtime via assertion.
-
 Usage
 -----
   python baselines_alphaECA.py --data_dir ECA_Data_New --output_dir baseline_results
@@ -1014,7 +948,7 @@ def compute_trivial_baselines(data_dir: str) -> list[dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
-        description="Architectural baseline comparison for αECA (NeurIPS 2026)"
+        description="Architectural baseline comparison for αECA"
     )
     parser.add_argument("--data_dir",   default="ECA_Data_New")
     parser.add_argument("--output_dir", default="baseline_results")
