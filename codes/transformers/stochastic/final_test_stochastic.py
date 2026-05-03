@@ -32,7 +32,7 @@ from torch.utils.data import Dataset, DataLoader
 from collections import defaultdict
 
 # ══════════════════════════════════════════════════════════════════
-BASE_DIR  = "/home/shovik.roy/Shrey/new_check_model/ECA_temporal_stocastic/stochastic_v1"
+BASE_DIR  = "/home/new_check_model/ECA_temporal_stocastic/stochastic_v1"
 CKPT_DIR  = os.path.join(BASE_DIR, "checkpoints_sca_v1")
 DATA_DIR  = os.path.join(BASE_DIR, "SCA_Data")
 TEST_PATH = os.path.join(DATA_DIR, "test")
