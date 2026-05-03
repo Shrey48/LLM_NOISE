@@ -34,7 +34,7 @@ import os, sys, time
 from collections import Counter
 
 # ══════════════════════════════════════════════════════════════════
-BASE_DIR   = "/home/shovik.roy/Shrey/new_check_model/ECA_temporal_stocastic/stochastic_v1"
+BASE_DIR   = "/home/shovik.roy/new_check_model/ECA_temporal_stocastic/stochastic_v1"
 OUTPUT_DIR = os.path.join(BASE_DIR, "SCA_Data")
 # ══════════════════════════════════════════════════════════════════
 
