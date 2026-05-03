@@ -1,5 +1,5 @@
 """
-frontier_eval_tempECA.py  —  Anonymous submission
+frontier_eval_tempECA.py 
 =================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the tempECA
 identification task (temporally stochastic ECA).
