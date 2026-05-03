@@ -1,5 +1,5 @@
 """
-frontier_eval_stocECA.py  —  Anonymous submission, under review
+frontier_eval_stocECA.py  
 ===============================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the stocECA
 identification task (spatial stochastic noise, two-rule mixture).
