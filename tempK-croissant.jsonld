@@ -1,0 +1,116 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "tempK Knowledge-Check Dataset for Temporal Stochastic ECA Noise",
+  "description": "200-question knowledge-check dataset for temporal stochastic ECA noise. Covers 14 topics in MCQ (134) and short-answer (66) formats across three difficulty levels: Easy (49), Medium (85), Hard (66). Most short-answer questions and hardest difficulty distribution, reflecting the subtle mathematical reasoning required for temporal noise including per-timestep rule switching and symmetric identifiability.",
+  "url": "https://anonymous.4open.science/r/LLM_NOISE-9DC1",
+  "license": "https://spdx.org/licenses/CC-BY-4.0.html",
+  "datePublished": "2026-05-04",
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "sc:name": "Anonymous Author",
+      "sc:email": "anonymous@example.com"
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "rai:dataBiases": "No bias \u2014 dataset consists of authored mathematical and definitional questions. No human subject data. Questions grounded in first principles of temporal stochastic noise mechanics.",
+  "rai:dataLimitations": "Limited to temporal stochastic noise domain only. Short-answer scoring depends on judge model (Grok-3). The fundamental symmetry (R1,R2,tau) vs (R2,R1,1-tau) makes some hard questions inherently ambiguous at tau=0.5.",
+  "rai:dataUseCases": "Established: diagnosing whether LLM failures on tempECA identification reflect missing domain knowledge; evaluating LLM reasoning about temporal rule switching, entropy, and identifiability limits. Not established: general LLM benchmarking outside CA domain.",
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal or sensitive information of any kind. All data is fully synthetically generated from elementary cellular automata simulations. No human subjects, demographic data, geographic data, health data, political or religious beliefs, or any other personally identifiable information is present.",
+  "rai:hasSyntheticData": true,
+  "prov:wasDerivedFrom": "The dataset is not derived from any existing dataset. All data is generated from first principles using elementary cellular automata simulation code. The ECA rule space (256 rules) follows the standard Wolfram ECA rule numbering scheme. No external data sources were used.",
+  "prov:wasGeneratedBy": "Fully synthetically generated using deterministic simulation code at https://anonymous.4open.science/r/LLM_NOISE-9DC1. Rule partition: 256 ECA rules permuted under numpy.random.default_rng(seed=42), split 179 train / 77 test, strictly disjoint. Initial configurations sampled uniformly from {0,1}^n subject to non-triviality constraint (rejection sampling).",
+  "rai:dataSocialImpact": "Positive impacts: advances scientific understanding of LLM reasoning over spatiotemporal data, contributes reproducible benchmarks for the ML community, and provides open tools for studying noise robustness in dynamical systems. The dataset is fully synthetic with no human subjects, eliminating risks of privacy violation or demographic harm. Negative impacts or misuse risks: minimal given the purely synthetic and abstract nature of the data. Not intended for safety-critical, clinical, or socially consequential decision-making.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "tempk_questions",
+      "name": "eca_temp_stochastic_knowledge_check",
+      "description": "200 knowledge-check questions for temporal stochastic ECA noise.",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/temp_stochastic/eca_temp_stochastic_knowledge_check.json",
+      "encodingFormat": "application/json",
+      "md5": "ed441867fa25568749a91c65b019cb6d"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "tempk_metadata",
+      "name": "metadata_temp_stochastic",
+      "description": "Metadata for the tempK knowledge-check dataset.",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/temp_stochastic/metadata_temp_stochastic.json",
+      "encodingFormat": "application/json",
+      "md5": "eae5eebf4e27c13f62284535a20a7ec4"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "tempK_records",
+      "name": "tempK_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "tempK_records/question",
+          "name": "question",
+          "description": "Knowledge-check question text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "tempk_questions"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

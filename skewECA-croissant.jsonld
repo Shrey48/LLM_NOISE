@@ -1,0 +1,260 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "skewECA Benchmark Dataset for CA Identification under S-Skewed Noise",
+  "description": "Identification dataset for s-skewed noise applied to ECA. Each sample presents a noisy space-time orbit; the task is to recover the ECA rule and s noise parameter. 256 ECA rules split 179 train / 77 test (seed=42). Two-phase: Phase 1 synchronous baseline (s=n=20), Phase 2 stratified across 20 discrete s levels {1,...,20} with 25 samples per (rule,s) pair. Grid n=20, timesteps t=200. Total: 125,300 train, 23,100 test samples.",
+  "url": "https://anonymous.4open.science/r/LLM_NOISE-9DC1",
+  "license": "https://spdx.org/licenses/CC-BY-4.0.html",
+  "datePublished": "2026-05-04",
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "sc:name": "Anonymous Author",
+      "sc:email": "anonymous@example.com"
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Rule sampling covers all four Wolfram classes. Every (rule,s) pair appears exactly 25 train / 10 test times \u2014 zero imbalance by construction. Longer evolution (t=200) required because only a small fraction of cells get updated per timestep at low s.",
+  "rai:dataLimitations": "Restricted to 1D binary ECA. S-skewed noise only. At s=1 very few cells update per timestep making rule identification extremely hard. Class C1 rules produce nearly uninformative orbits at low s. Not recommended for real-world physical or biological system identification.",
+  "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for s-skewed CA identification; training specialised transformer models (skewM); studying effects of partial synchrony. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal or sensitive information of any kind. All data is fully synthetically generated from elementary cellular automata simulations. No human subjects, demographic data, geographic data, health data, political or religious beliefs, or any other personally identifiable information is present.",
+  "rai:hasSyntheticData": true,
+  "prov:wasDerivedFrom": "The dataset is not derived from any existing dataset. All data is generated from first principles using elementary cellular automata simulation code. The ECA rule space (256 rules) follows the standard Wolfram ECA rule numbering scheme. No external data sources were used.",
+  "prov:wasGeneratedBy": "Fully synthetically generated using deterministic simulation code at https://anonymous.4open.science/r/LLM_NOISE-9DC1. Rule partition: 256 ECA rules permuted under numpy.random.default_rng(seed=42), split 179 train / 77 test, strictly disjoint. Initial configurations sampled uniformly from {0,1}^n subject to non-triviality constraint (rejection sampling).",
+  "rai:dataSocialImpact": "Positive impacts: advances scientific understanding of LLM reasoning over spatiotemporal data, contributes reproducible benchmarks for the ML community, and provides open tools for studying noise robustness in dynamical systems. The dataset is fully synthetic with no human subjects, eliminating risks of privacy violation or demographic harm. Negative impacts or misuse risks: minimal given the purely synthetic and abstract nature of the data. Not intended for safety-critical, clinical, or socially consequential decision-making.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_train_rules",
+      "name": "train_rules",
+      "description": "Training rule IDs. int32 [179].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/train_rules.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "1d4e0534e54e9dc91152ecbff340ecb7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_test_rules",
+      "name": "test_rules",
+      "description": "Test rule IDs. int32 [77].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/test_rules.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "87248ddb067bb3257562ed3fe839412b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_train_orbits",
+      "name": "phase1_train_orbits",
+      "description": "Phase 1 training orbits. int8 [35800,200,20].",
+      "contentUrl": "https://zenodo.org/records/19996227/files/orbits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "ec138b738c8b13ce2b4ec89584b3e7e7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_train_rule_bits",
+      "name": "phase1_train_rule_bits",
+      "description": "Phase 1 training rule bits. int8 [35800,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/train/rule_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "3ecfaa629786073abae88737348b2d60"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_train_s_values",
+      "name": "phase1_train_s_values",
+      "description": "Phase 1 training s values. int32 [35800].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/train/s_values.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "c363d95bb001144a2d8f1c45ea809953"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_train_rule_ids",
+      "name": "phase1_train_rule_ids",
+      "description": "Phase 1 training rule IDs. int32 [35800].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/train/rule_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "a1ce2b8d30c7d11970b14a0fbc066e5e"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_test_orbits",
+      "name": "phase1_test_orbits",
+      "description": "Phase 1 test orbits. int8 [7700,200,20].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/test/orbits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "f54f8666cca966bd46858ae26e3e2afa"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_test_rule_bits",
+      "name": "phase1_test_rule_bits",
+      "description": "Phase 1 test rule bits. int8 [7700,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/test/rule_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "52428b06b74681d503ff34cd4a04aec6"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_test_s_values",
+      "name": "phase1_test_s_values",
+      "description": "Phase 1 test s values. int32 [7700].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/test/s_values.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "71e1f31e4c15b979d7e10dda47490eab"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p1_test_rule_ids",
+      "name": "phase1_test_rule_ids",
+      "description": "Phase 1 test rule IDs. int32 [7700].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase1/test/rule_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "c0a876459489b64f120764e65cc96ac3"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_train_orbits",
+      "name": "phase2_train_orbits",
+      "description": "Phase 2 training orbits. int8 [89500,200,20].",
+      "contentUrl": "https://zenodo.org/records/19996242/files/orbits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "bae469ed146bda3e921fa89c787abedd"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_train_rule_bits",
+      "name": "phase2_train_rule_bits",
+      "description": "Phase 2 training rule bits. int8 [89500,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/train/rule_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "446eac3f55f6a28ed48133b45d55ac3f"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_train_s_values",
+      "name": "phase2_train_s_values",
+      "description": "Phase 2 training s values. int32 [89500].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/train/s_values.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "4ecc073e5c9c1e639b02581c9dbc46a6"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_train_rule_ids",
+      "name": "phase2_train_rule_ids",
+      "description": "Phase 2 training rule IDs. int32 [89500].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/train/rule_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "69f902e5b9a38cce0ed7e12b807a9389"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_test_orbits",
+      "name": "phase2_test_orbits",
+      "description": "Phase 2 test orbits. int8 [15400,200,20].",
+      "contentUrl": "https://zenodo.org/records/19996332/files/orbits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "fbb7a6ae4739cd12e0904f39a009c1b1"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_test_rule_bits",
+      "name": "phase2_test_rule_bits",
+      "description": "Phase 2 test rule bits. int8 [15400,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/test/rule_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "72f3a3fa99117c8afa1f66ce332007ee"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_test_s_values",
+      "name": "phase2_test_s_values",
+      "description": "Phase 2 test s values. int32 [15400].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/test/s_values.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "7bbc32b4279b562779a434eed6a73263"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "skew_p2_test_rule_ids",
+      "name": "phase2_test_rule_ids",
+      "description": "Phase 2 test rule IDs. int32 [15400].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/s_skewed/phase2/test/rule_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "1338ea3062d87e25af1344a552a61dde"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "skewECA_records",
+      "name": "skewECA_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "skewECA_records/rule_id",
+          "name": "rule_id",
+          "description": "ECA rule number (0-255)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "skew_p2_train_rule_ids"
+            },
+            "extract": {
+              "column": "rule_ids"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

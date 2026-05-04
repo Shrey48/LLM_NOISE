@@ -1,0 +1,206 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "stocECA Benchmark Dataset for CA Identification under Stochastic Noise",
+  "description": "Identification dataset for spatial stochastic noise applied to ECA. Each sample presents orbits from a mixture of two rules; the task is to recover the rule pair (R1,R2) and mixing parameter lambda. 256 ECA rules split 179 train / 77 test (seed=42). Training data generated on-the-fly (8,000 samples/epoch, 160 epochs). Fixed test set: 500 pairs x 20 samples = 10,000 samples. Grid n=50, timesteps t=200, k=8 orbits per sample.",
+  "url": "https://anonymous.4open.science/r/LLM_NOISE-9DC1",
+  "license": "https://spdx.org/licenses/CC-BY-4.0.html",
+  "datePublished": "2026-05-04",
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "sc:name": "Anonymous Author",
+      "sc:email": "anonymous@example.com"
+    }
+  ],
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Training pair sampling provides implicit but not guaranteed Wolfram class-combination balance. Fixed test set explicitly stratified across all six Wolfram class-pair combinations. Noise parameter lambda sampled uniformly from [0.1,0.9] \u2014 approximately uniform but not exactly stratified.",
+  "rai:dataLimitations": "Restricted to 1D binary ECA. Stochastic cell-level noise only. Known identifiability limit: within-variance signal is zero for agreeing rule pairs. At lambda=0.5 the orientation of the mixture (which rule is R1 vs R2) is unrecoverable. Training data never stored to disk. Not recommended for real-world system identification.",
+  "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for stochastic CA identification; training specialised transformer models (stocM); studying cell-level rule mixing. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
+  "rai:personalSensitiveInformation": "None. The dataset contains no personal or sensitive information of any kind. All data is fully synthetically generated from elementary cellular automata simulations. No human subjects, demographic data, geographic data, health data, political or religious beliefs, or any other personally identifiable information is present.",
+  "rai:hasSyntheticData": true,
+  "prov:wasDerivedFrom": "The dataset is not derived from any existing dataset. All data is generated from first principles using elementary cellular automata simulation code. The ECA rule space (256 rules) follows the standard Wolfram ECA rule numbering scheme. No external data sources were used.",
+  "prov:wasGeneratedBy": "Fully synthetically generated using deterministic simulation code at https://anonymous.4open.science/r/LLM_NOISE-9DC1. Rule partition: 256 ECA rules permuted under numpy.random.default_rng(seed=42), split 179 train / 77 test, strictly disjoint. Initial configurations sampled uniformly from {0,1}^n subject to non-triviality constraint (rejection sampling).",
+  "rai:dataSocialImpact": "Positive impacts: advances scientific understanding of LLM reasoning over spatiotemporal data, contributes reproducible benchmarks for the ML community, and provides open tools for studying noise robustness in dynamical systems. The dataset is fully synthetic with no human subjects, eliminating risks of privacy violation or demographic harm. Negative impacts or misuse risks: minimal given the purely synthetic and abstract nature of the data. Not intended for safety-critical, clinical, or socially consequential decision-making.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_train_rules",
+      "name": "train_rules",
+      "description": "Training rule IDs. int32 [179].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/train_rules.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "1d4e0534e54e9dc91152ecbff340ecb7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_rules",
+      "name": "test_rules",
+      "description": "Test rule IDs. int32 [77].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test_rules.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "87248ddb067bb3257562ed3fe839412b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_train_pairs",
+      "name": "train_pairs",
+      "description": "Training rule pairs. int32 [500,2].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/train_pairs.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "5c859c5d4ad4cfccbe1ffaee43b4366d"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_pairs",
+      "name": "test_pairs",
+      "description": "Test rule pairs. int32 [500,2].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test_pairs.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "8d32fdffe19790db69d48ac246e3edbb"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_orbits",
+      "name": "test_orbits",
+      "description": "Test orbits. float32 [10000,8,200,50].",
+      "contentUrl": "https://zenodo.org/records/20019070/files/orbits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "4742b5cf83d8eed01b73b3930c97abff"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_frac_stats",
+      "name": "test_frac_stats",
+      "description": "Test fraction statistics. float32 [10000,24].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/frac_stats.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "9fbb5de372aff6a8e6974e4d669381be"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_within_var",
+      "name": "test_within_var_stats",
+      "description": "Test within-timestep variance statistics. float32 [10000,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/within_var_stats.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "4cc12e3873e5dfbb69bd293bf69976e1"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_lambdas",
+      "name": "test_lambdas",
+      "description": "Test lambda values. float32 [10000].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/lambdas.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "316a79cada562f4b2af3199af590fe94"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_rule_f_bits",
+      "name": "test_rule_f_bits",
+      "description": "Test rule F bits. float32 [10000,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/rule_f_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "fe85757257ba51d4e85bbd54b0fb16fa"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_rule_f_ids",
+      "name": "test_rule_f_ids",
+      "description": "Test rule F IDs. int32 [10000].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/rule_f_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "30ae65a71f326e99f807efb05832930b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_rule_g_bits",
+      "name": "test_rule_g_bits",
+      "description": "Test rule G bits. float32 [10000,8].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/rule_g_bits.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "604b1ad8dbaeb08d6a14721afb6831d7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "stoc_test_rule_g_ids",
+      "name": "test_rule_g_ids",
+      "description": "Test rule G IDs. int32 [10000].",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_identification_dataset/stochastic/test/rule_g_ids.npy",
+      "encodingFormat": "application/octet-stream",
+      "md5": "ded33b40f4edfdd137ba22dfbb59a5fd"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "stocECA_records",
+      "name": "stocECA_records",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "stocECA_records/rule_f_id",
+          "name": "rule_f_id",
+          "description": "ECA rule R1 number",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "stoc_test_rule_f_ids"
+            },
+            "extract": {
+              "column": "rule_f_ids"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
