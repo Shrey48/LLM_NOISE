@@ -194,4 +194,4 @@ Each file is a list of MCQ objects:
 | stochastic | — | 10,000 | 50 × 200 | 8 |
 | temp_stochastic | — | 10,000 | 50 × 200 | 8 |
 
-All experiments use **88 minimal representative rules** (one per symmetry equivalence class under reflection and complement), split into 179 training rules and 77 test rules (SEED = 42).
+All experiments use the **full set of 256 rules**, split into 179 training rules and 77 test rules (SEED = 42). The **88 minimal representative rules** (one per symmetry equivalence class under reflection and complement) are used exclusively for **class-wise accuracy analysis**.
