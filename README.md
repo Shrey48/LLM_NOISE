@@ -197,7 +197,7 @@ Classical statistical and mean-field baselines. See `README.md` inside this fold
 
 ### ECA Rule Space
 
-Each ECA rule is a function f: {0,1}³ → {0,1}, identified by its Wolfram code (0–255). The **Rule Mean Term (RMT)** index r = 4a + 2b + c encodes the neighbourhood (a=left, b=centre, c=right). All experiments use the **88 minimal representative rules** (one per symmetry equivalence class under reflection and complement).
+Each ECA rule is a function f: {0,1}³ → {0,1}, identified by its Wolfram code (0–255). The **Rule Mean Term (RMT)** index r = 4a + 2b + c encodes the neighbourhood (a=left, b=centre, c=right). All experiments use the **full set of 256 rules**, split into 179 training rules and 77 test rules (SEED=42). The **88 minimal representative rules** (one per symmetry equivalence class under reflection and complement) are used exclusively for **class-wise accuracy analysis**.
 
 ### Wolfram Classification
 
