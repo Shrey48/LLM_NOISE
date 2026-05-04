@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this code or dataset, please cite our paper."
+title: "Natural System Reasoning in LLMs: Insights from the identification problem"
+abstract: >
+  A benchmark repository for studying rule and noise-parameter identification
+  in Elementary Cellular Automata (ECA) under four distinct noise models
+  (alpha-asynchronous, s-skewed, stochastic, temporal stochastic), using
+  both purpose-built transformer architectures and large language models.
+  Evaluating Qwen, Llama, Mixtral families (7-72B parameters) alongside
+  frontier models under zero-shot, few-shot, and fine-tuned settings, we
+  find near-perfect knowledge accuracy but poor task performance. We design
+  four specialised transformer models (skewM, alphaM, stocM, tempM) achieving
+  up to 99.22% rule exact match and 96.97% noise tolerance accuracy with
+  at most 6.02M parameters.
+authors:
+  - name: "Anonymous Authors"
+version: 1.0.0
+date-released: 2026-05-03
+url: "https://anonymous.4open.science/r/LLM_NOISE-9DC1/"
+license: MIT
+keywords:
+  - elementary-cellular-automata
+  - noise-identification
+  - transformer
+  - large-language-models
+  - benchmark
+  - spatiotemporal-reasoning
+  - NeurIPS
+preferred-citation:
+  type: conference-paper
+  title: "Natural System Reasoning in LLMs: Insights from the identification problem"
+  authors:
+    - name: "Anonymous Authors"
+  conference:
+    name: "40th Conference on Neural Information Processing Systems (NeurIPS 2026)"
+  year: 2026
+  url: "https://anonymous.4open.science/r/LLM_NOISE-9DC1/"
