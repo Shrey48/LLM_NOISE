@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "No bias \u2014 dataset consists of authored mathematical and definitional questions. No human subject data. Questions grounded in first principles of temporal stochastic noise mechanics.",
   "rai:dataLimitations": "Limited to temporal stochastic noise domain only. Short-answer scoring depends on judge model (Grok-3). The fundamental symmetry (R1,R2,tau) vs (R2,R1,1-tau) makes some hard questions inherently ambiguous at tau=0.5.",
   "rai:dataUseCases": "Established: diagnosing whether LLM failures on tempECA identification reflect missing domain knowledge; evaluating LLM reasoning about temporal rule switching, entropy, and identifiability limits. Not established: general LLM benchmarking outside CA domain.",
