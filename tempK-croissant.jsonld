@@ -84,7 +84,7 @@
       "@id": "tempk_metadata",
       "name": "metadata_temp_stochastic",
       "description": "Metadata for the tempK knowledge-check dataset.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/temp_stochastic/metadata_temp_stochastic.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/temp_stochastic/metadata_temp_stochastic.json",
       "encodingFormat": "application/json",
       "md5": "eae5eebf4e27c13f62284535a20a7ec4"
     }
