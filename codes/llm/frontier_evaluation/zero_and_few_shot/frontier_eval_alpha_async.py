@@ -961,7 +961,7 @@ def verify_paper_results(paper_results: list[dict]) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 def main() -> None:
    parser = argparse.ArgumentParser(
-       description="Frontier LLM evaluation on αECA — NeurIPS 2026 camera-ready"
+       description="Frontier LLM evaluation on αECA"
    )
    parser.add_argument(
        "--data_dir", default="ECA_Data_New",
@@ -1113,7 +1113,7 @@ def main() -> None:
    print("-" * COL)
 
 
-   print("  — Open-source LLMs (paper Table 29, N=500) —")
+   print("  — Open-source LLMs (N=500) —")
    for r in PAPER_RESULTS:
        print(
            f"  {r['model']:<34} {r['setting']:<12} "
