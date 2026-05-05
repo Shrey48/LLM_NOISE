@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "No bias \u2014 dataset consists of authored mathematical and definitional questions about ECA noise mechanics. No human subject data, no demographic information. Questions are grounded in first principles.",
   "rai:dataLimitations": "Limited to alpha-asynchronous noise domain only. 200 questions may not cover all aspects of the noise model. Short-answer scoring depends on judge model (Grok-3) which may have its own limitations.",
   "rai:dataUseCases": "Established: diagnosing whether LLM failures on alphaECA identification reflect missing domain knowledge vs architectural limitations; evaluating LLM mathematical reasoning about stochastic update mechanics. Not established: general LLM benchmarking outside CA domain.",
