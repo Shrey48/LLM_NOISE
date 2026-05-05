@@ -24,9 +24,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR    = "/data/eca_stochastic"
-MODELS_DIR  = "/data/models"
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Skew")   # actual folder name on disk
+BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_stochastic"))
+MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
+DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Stoc")   # actual folder name on disk
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "zero_shot")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
 SEED        = 42
