@@ -32,7 +32,7 @@ import os, sys, time
 from collections import Counter
 
 # ══════════════════════════════════════════════════════════
-BASE_DIR   = "/home/new_check_model/ECA_temporal_stocastic/temporal_v9"
+BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR = os.path.join(BASE_DIR, "TSCA_Data")
 # ══════════════════════════════════════════════════════════
 
