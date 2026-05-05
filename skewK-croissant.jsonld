@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "No bias \u2014 dataset consists of authored mathematical and definitional questions. No human subject data. Questions grounded in first principles of s-skewed noise mechanics.",
   "rai:dataLimitations": "Limited to s-skewed noise domain only. Short-answer scoring depends on judge model (Grok-3).",
   "rai:dataUseCases": "Established: diagnosing whether LLM failures on skewECA identification reflect missing domain knowledge; evaluating LLM reasoning about partial synchrony and spatial update patterns. Not established: general LLM benchmarking outside CA domain.",
