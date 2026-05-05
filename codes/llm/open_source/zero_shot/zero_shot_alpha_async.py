@@ -19,8 +19,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR    = "/home/user/ECA_alpha_async"
-MODELS_DIR  = "/home/user/models"
+BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_alpha_async"))
+MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
 DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_New")
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "zero_shot")
 # Fixed test indices saved here so all three eval modes use identical samples
