@@ -1035,7 +1035,7 @@ def verify_paper_results(paper_results: list[dict]) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Frontier LLM evaluation on tempECA — anonymous submission"
+        description="Frontier LLM evaluation on tempECA"
     )
     parser.add_argument(
         "--data_dir", default="TSCA_Data",
