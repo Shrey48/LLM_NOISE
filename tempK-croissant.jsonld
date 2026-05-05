@@ -75,7 +75,7 @@
       "@id": "tempk_questions",
       "name": "eca_temp_stochastic_knowledge_check",
       "description": "200 knowledge-check questions for temporal stochastic ECA noise.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/temp_stochastic/eca_temp_stochastic_knowledge_check.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/temp_stochastic/eca_temp_stochastic_knowledge_check.json",
       "encodingFormat": "application/json",
       "md5": "ed441867fa25568749a91c65b019cb6d"
     },
