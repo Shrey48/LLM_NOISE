@@ -1017,7 +1017,7 @@ def verify_paper_results(paper_results: list[dict]) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Frontier LLM evaluation on stocECA — anonymous submission, under review"
+        description="Frontier LLM evaluation on stocECA"
     )
     parser.add_argument(
         "--data_dir", default="SCA_Data",
@@ -1244,7 +1244,7 @@ def main() -> None:
                 "max_tokens":     MAX_TOKENS_ALL,
                 "gpt_reasoning":  args.gpt_reasoning,
                 "max_retries":    MAX_RETRIES,
-                "paper_table":    "Table 29 (stocECA, N=200)",
+                "paper_table":    "(stocECA, N=200)",
                 "run_timestamp":  datetime.now(tz=timezone.utc).isoformat(),
             },
             f,
