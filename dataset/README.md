@@ -69,10 +69,12 @@ dataset/
 │   │   │   │   ├── orbits.npy                # int8   [35800, 100, 20]  ← NOT on GitHub
 │   │   │   │   ├── rule_bits.npy             # int8   [35800, 8]
 │   │   │   │   └── alphas.npy                # float32 [35800]
+│   │   │   │   └── rules_ids.npy
 │   │   │   └── test/
 │   │   │       ├── orbits.npy                # int8   [7700, 100, 20]
 │   │   │       ├── rule_bits.npy             # int8   [7700, 8]
 │   │   │       └── alphas.npy                # float32 [7700]
+│   │   │       └── rules_ids.npy
 │   │   └── phase2/
 │   │       ├── train/
 │   │       │   ├── orbits.npy                # int8   [89500, 100, 20]  ← NOT on GitHub
