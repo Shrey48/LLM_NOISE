@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Training pair sampling provides implicit but not guaranteed Wolfram class-combination balance. Fixed test set explicitly stratified across all six Wolfram class-pair combinations. Noise parameter lambda sampled uniformly from [0.1,0.9] \u2014 approximately uniform but not exactly stratified.",
   "rai:dataLimitations": "Restricted to 1D binary ECA. Stochastic cell-level noise only. Known identifiability limit: within-variance signal is zero for agreeing rule pairs. At lambda=0.5 the orientation of the mixture (which rule is R1 vs R2) is unrecoverable. Training data never stored to disk. Not recommended for real-world system identification.",
   "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for stochastic CA identification; training specialised transformer models (stocM); studying cell-level rule mixing. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
