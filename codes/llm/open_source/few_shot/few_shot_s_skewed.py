@@ -15,8 +15,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR    = "/data/eca_s_skewed"
-MODELS_DIR  = "/data/models"
+BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_s_skewed"))
+MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
 DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Skew")
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "few_shot")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
