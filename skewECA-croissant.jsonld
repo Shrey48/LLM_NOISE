@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Rule sampling covers all four Wolfram classes. Every (rule,s) pair appears exactly 25 train / 10 test times \u2014 zero imbalance by construction. Longer evolution (t=200) required because only a small fraction of cells get updated per timestep at low s.",
   "rai:dataLimitations": "Restricted to 1D binary ECA. S-skewed noise only. At s=1 very few cells update per timestep making rule identification extremely hard. Class C1 rules produce nearly uninformative orbits at low s. Not recommended for real-world physical or biological system identification.",
   "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for s-skewed CA identification; training specialised transformer models (skewM); studying effects of partial synchrony. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
