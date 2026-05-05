@@ -75,7 +75,7 @@
       "@id": "stock_questions",
       "name": "eca_stochastic_knowledge_check",
       "description": "200 knowledge-check questions for stochastic ECA noise.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/stochastic/eca_stochastic_knowledge_check.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/stochastic/eca_stochastic_knowledge_check.json",
       "encodingFormat": "application/json",
       "md5": "c5c5ed3a451f07244b8dae5f8fce6722"
     },
@@ -84,7 +84,7 @@
       "@id": "stock_metadata",
       "name": "metadata_stochastic",
       "description": "Metadata for the stocK knowledge-check dataset.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/stochastic/metadata_stochastic.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/stochastic/metadata_stochastic.json",
       "encodingFormat": "application/json",
       "md5": "cfe97ae6699f727a44feb5013f81078f"
     }
