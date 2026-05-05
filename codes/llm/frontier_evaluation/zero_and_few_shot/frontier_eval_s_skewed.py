@@ -83,7 +83,7 @@ Usage
   python frontier_eval_skewECA.py --models model_a --n_samples 200
 
   # Model B with reasoning (results go to separate checkpoint files):
-  python frontier_eval_skewECA.py --models model_b --model_b_reasoning low
+  python frontier_eval_skewECA.py --models model_b --model_a_reasoning low
 """
 
 from __future__ import annotations
@@ -511,9 +511,9 @@ MODEL_CONFIGS: dict[str, dict] = {
 }
 
 
-def build_client(cfg: dict, model_b_reasoning: str = "none"):
+def build_client(cfg: dict, model_a_reasoning: str = "none"):
     c, a = cfg["client"], cfg["api_id"]
-    if c == "model_a": return ModelAClient(a, reasoning_effort=model_b_reasoning)
+    if c == "model_a": return ModelAClient(a, reasoning_effort=model_a_reasoning)
     if c == "model_b": return ModelBClient(a)
     raise ValueError(f"Unknown client type: {c}")
 
@@ -532,21 +532,21 @@ def evaluate_one(
     shots_used:       list[dict],
     ckpt_dir:         str,
     raw_dir:          str,
-    model_b_reasoning: str = "none",
+    model_a_reasoning: str = "none",
     retries:          int = 2,
 ) -> dict:
 
     cfg     = MODEL_CONFIGS[model_key]
     display = cfg["display"]
-    if model_key == "model_a" and model_b_reasoning != "none":
-        display = f"LLM-A (reasoning={model_b_reasoning})"
+    if model_key == "model_a" and model_a_reasoning != "none":
+        display = f"LLM-A (reasoning={model_a_reasoning})"
 
     delay   = 60.0 / cfg["rpm"]
     n_total = len(test_orbits)
 
     reason_sfx = (
-        f"_re{model_b_reasoning}"
-        if model_key == "model_a" and model_b_reasoning != "none"
+        f"_re{model_a_reasoning}"
+        if model_key == "model_a" and model_a_reasoning != "none"
         else ""
     )
     ckpt_path = os.path.join(
@@ -556,7 +556,7 @@ def evaluate_one(
     print(f"\n  [{display}] [{setting}]  k={k_shots}  N={n_total}")
 
     try:
-        client = build_client(cfg, model_b_reasoning=model_b_reasoning)
+        client = build_client(cfg, model_a_reasoning=model_a_reasoning)
     except (ImportError, EnvironmentError) as e:
         print(f"    SKIP: {e}")
         return {
@@ -806,7 +806,7 @@ def verify_paper_results(paper_results: list[dict]) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Frontier LLM evaluation on skewECA — NeurIPS 2026 anonymous submission"
+        description="Frontier LLM evaluation on skewECA "
     )
     parser.add_argument("--data_dir",   default="ECA_Data_Skew")
     parser.add_argument("--output_dir", default="frontier_results_skew")
@@ -825,7 +825,7 @@ def main() -> None:
         "--k_shots", nargs="+", type=int, default=DEFAULT_K_LIST,
     )
     parser.add_argument(
-        "--model_b_reasoning", default="none",
+        "--model_a_reasoning", default="none",
         choices=["none", "low", "medium", "high"],
     )
     parser.add_argument("--skip_verify", action="store_true")
@@ -885,7 +885,7 @@ def main() -> None:
             shots_used         = shots_k,
             ckpt_dir           = ckpt_dir,
             raw_dir            = raw_dir,
-            model_b_reasoning  = args.model_b_reasoning,
+            model_a_reasoning  = args.model_a_reasoning,
         )
         all_metrics.append(m)
 
