@@ -149,5 +149,5 @@
     "mcq": "Binary: 1 for correct answer, 0 otherwise.",
     "short_answer": "Three-point rubric by independent judge (Grok-3): 2=fully correct, 1=partially correct, 0=incorrect or missing. Normalised to [0,1] by dividing by 2.",
     "overall_accuracy": "Mean of all normalised scores across both question types."
-  },
+  }
 }
