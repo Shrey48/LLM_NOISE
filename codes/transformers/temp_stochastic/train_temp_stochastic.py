@@ -72,7 +72,7 @@ import os, sys, time
 from torch.utils.data import Dataset, DataLoader
 
 # ══════════════════════════════════════════════════════════
-BASE_DIR = "/home/new_check_model/ECA_temporal_stocastic/temporal_v9"
+BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "TSCA_Data")
 CKPT_DIR = os.path.join(BASE_DIR, "checkpoints_tsca_v9")
 # ══════════════════════════════════════════════════════════
