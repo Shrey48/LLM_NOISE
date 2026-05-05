@@ -75,7 +75,7 @@
       "@id": "skewk_questions",
       "name": "eca_s_skew_knowledge_check",
       "description": "200 knowledge-check questions for s-skewed ECA noise.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/s_skewed/eca_s_skew_knowledge_check.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/s_skewed/eca_s_skew_knowledge_check.json",
       "encodingFormat": "application/json",
       "md5": "3c3b0ad3308b3a26dbd14d6ab85c33cd"
     },
@@ -84,7 +84,7 @@
       "@id": "skewk_metadata",
       "name": "metadata_s_skewed",
       "description": "Metadata for the skewK knowledge-check dataset.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/s_skewed/metadata_s_skewed.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/s_skewed/metadata_s_skewed.json",
       "encodingFormat": "application/json",
       "md5": "6e742f183eb75c4f895371ff431fc804"
     }
