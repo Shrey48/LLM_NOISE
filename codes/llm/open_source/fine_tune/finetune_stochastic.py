@@ -24,9 +24,9 @@ from peft import LoraConfig, get_peft_model, TaskType, PeftModel
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR    = "/home/user/project/ECA_stochastic"
-MODELS_DIR  = "/home/user/models"
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Skew")
+BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_stochastic"))
+MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
+DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Stoc")
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "finetune")
 CKPT_DIR    = os.path.join(BASE_DIR, "checkpoints", "finetune")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
