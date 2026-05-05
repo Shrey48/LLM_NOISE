@@ -75,7 +75,7 @@
       "@id": "alphak_questions",
       "name": "eca_alpha_async_knowledge_check",
       "description": "200 knowledge-check questions over 6 topics for alpha-asynchronous ECA noise in MCQ and short-answer format.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/alpha_async/eca_alpha_async_knowledge_check.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/alpha_async/eca_alpha_async_knowledge_check.json",
       "encodingFormat": "application/json",
       "md5": "c23b7440bd3b3247304955abc60cd67f"
     },
@@ -84,7 +84,7 @@
       "@id": "alphak_metadata",
       "name": "metadata_alpha_async",
       "description": "Metadata for the alphaK knowledge-check dataset.",
-      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/alpha_async/metadata_alpha_async.json",
+      "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/dataset/eca_knowledgecheck_dataset/alpha_async/metadata_alpha_async.json",
       "encodingFormat": "application/json",
       "md5": "88b4e87fe015337fc8c773f341a3850b"
     }
