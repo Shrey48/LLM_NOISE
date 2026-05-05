@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Training pair sampling provides implicit but not guaranteed Wolfram class-combination balance. Fixed test set explicitly stratified across all six Wolfram class-pair combinations. Noise parameter tau sampled uniformly from [0.1,0.9].",
   "rai:dataLimitations": "Restricted to 1D binary ECA. Temporal stochastic noise only. Known fundamental identifiability limit: system (R1,R2,tau) is statistically indistinguishable from (R2,R1,1-tau) \u2014 rule pair orientation is unrecoverable at tau=0.5. Training data never stored to disk. Not recommended for real-world system identification.",
   "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for temporal stochastic CA identification; training specialised transformer models (tempM); studying row-level rule switching. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
