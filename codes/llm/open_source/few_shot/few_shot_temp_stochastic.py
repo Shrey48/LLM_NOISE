@@ -15,8 +15,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR    = "/home/user/project/ECA_TEMP"
-MODELS_DIR  = "/home/user/models"
+BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_TEMP"))
+MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
 DATA_DIR    = os.path.join(BASE_DIR, "TSCA_Data")
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "few_shot")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
