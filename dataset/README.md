@@ -95,10 +95,12 @@ dataset/
 │   │   │   │   ├── orbits.npy                # int8   [35800, 200, 20]  ← NOT on GitHub
 │   │   │   │   ├── rule_bits.npy
 │   │   │   │   └── s_values.npy
+│   │   |   │   └── rule_ids.npy
 │   │   │   └── test/
 │   │   │       ├── orbits.npy                # int8   [7700, 200, 20]   ← NOT on GitHub
 │   │   │       ├── rule_bits.npy
 │   │   │       └── s_values.npy
+│   │   │       └── rule_ids.npy
 │   │   └── phase2/
 │   │       ├── train/
 │   │       │   ├── orbits.npy                # int8   [89500, 200, 20]  ← NOT on GitHub
