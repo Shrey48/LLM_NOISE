@@ -60,7 +60,7 @@
       "sc:email": "anonymous@example.com"
     }
   ],
-  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
   "rai:dataBiases": "Fully synthetically generated. No human subjects or demographic data. Rule sampling covers all four Wolfram classes (C1:10.1% train, C2:71.5% train, C3+C4:18.4% train). C3+C4 slightly over-represented in test (22.1%). Every (rule,alpha) pair appears exactly 50 train / 20 test times \u2014 zero imbalance by construction.",
   "rai:dataLimitations": "Restricted to 1D binary ECA. Alpha noise only. Known identifiability limit: Rule 204 renders alpha unrecoverable from cell-change statistics. Class C1 rules produce nearly uninformative orbits at low alpha. Not recommended for real-world physical or biological system identification.",
   "rai:dataUseCases": "Established: benchmarking LLM/model spatiotemporal reasoning for alpha-asynchronous CA identification; training specialised transformer models (alphaM); studying phase transitions under alpha noise. Not established: real-world system identification, generalisation beyond 1D binary CA, safety-critical applications.",
