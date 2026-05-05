@@ -74,7 +74,7 @@
       "@type": "cr:FileObject",
       "@id": "alphak_questions",
       "name": "eca_alpha_async_knowledge_check",
-      "description": "200 knowledge-check questions for alpha-asynchronous ECA noise in MCQ and short-answer format.",
+      "description": "200 knowledge-check questions over 6 topics for alpha-asynchronous ECA noise in MCQ and short-answer format.",
       "contentUrl": "https://anonymous.4open.science/r/LLM_NOISE-9DC1/blob/main/dataset/eca_knowledgecheck_dataset/alpha_async/eca_alpha_async_knowledge_check.json",
       "encodingFormat": "application/json",
       "md5": "c23b7440bd3b3247304955abc60cd67f"
