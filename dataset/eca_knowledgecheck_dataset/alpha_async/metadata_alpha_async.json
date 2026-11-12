@@ -1,6 +1,6 @@
 {
   "dataset_id": "alphaK",
-  "filename": "eca_alpha_async.json",
+  "filename": "eca_alpha_async_knowledge_check.json",
   "noise_type": "α-Asynchronous ECA",
   "noise_description": "Each cell updates independently with probability α at each time step; non-updated cells retain their previous state.",
   "noise_parameter": {

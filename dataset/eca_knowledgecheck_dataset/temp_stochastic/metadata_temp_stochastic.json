@@ -1,6 +1,6 @@
 {
   "dataset_id": "tempK",
-  "filename": "eca_temp_stochastic.json",
+  "filename": "eca_temp_stochastic_knowledge_check.json",
   "noise_type": "Temporal Stochastic ECA",
   "noise_description": "At each time step the entire lattice applies rule R1 with probability (1-τ) or rule R2 with probability τ; the rule switch is global and per-timestep.",
   "noise_parameter": {

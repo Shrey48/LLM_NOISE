@@ -1,6 +1,6 @@
 {
   "dataset_id": "skewK",
-  "filename": "eca_s_skew.json",
+  "filename": "eca_s_skew_knowledge_check.json",
   "noise_type": "s-Skewed ECA",
   "noise_description": "Exactly s contiguous cells are updated per time step; s=W reduces to synchronous ECA and s=1 to fully asynchronous.",
   "noise_parameter": {

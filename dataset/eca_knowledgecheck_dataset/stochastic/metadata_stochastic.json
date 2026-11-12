@@ -1,6 +1,6 @@
 {
   "dataset_id": "stocK",
-  "filename": "eca_stochastic.json",
+  "filename": "eca_stochastic_knowledge_check.json",
   "noise_type": "Spatial Stochastic ECA",
   "noise_description": "Each cell independently applies rule R1 with probability (1-λ) and rule R2 with probability λ at each time step.",
   "noise_parameter": {

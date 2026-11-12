@@ -105,7 +105,7 @@ Root-level files (each variant): `train_rules.npy · test_rules.npy · train_pai
 
 ### Knowledge-Check Dataset (`dataset/eca_knowledgecheck_dataset/`)
 
-**800 questions total** (multiple-choice and short-answer; 200 per noise model) for evaluating LLM conceptual understanding of ECA noise mechanics. Each entry:
+**800 questions total** (600 multiple-choice and 200 short-answer; 200 per noise model) for evaluating LLM conceptual understanding of ECA noise mechanics. Each entry:
 
 ```json
 {

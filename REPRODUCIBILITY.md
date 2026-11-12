@@ -103,7 +103,7 @@ python few_shot_alpha_async.py --model all --n_samples 200
 cd codes/llm/open_source/fine_tune
 python finetune_alpha_async.py --model Qwen2.5-7B-Instruct --n_train 5000 --epochs 3
 
-# Knowledge check (800 MCQs)
+# Knowledge check (800 questions: 600 multiple-choice, 200 short-answer)
 cd codes/llm/open_source/knowledge_check
 python knowledge_check_open_source.py
 ```
