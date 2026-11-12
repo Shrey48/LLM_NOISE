@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or dataset, please cite our paper."
-title: "Natural System Reasoning in LLMs: Insights from the identification problem"
+title: "Bridging the Knowledge-Reasoning Gap in Natural Systems: A Benchmark for Inductive Rule and Noise Recovery in Cellular Automata"
 abstract: >
   A benchmark repository for studying rule and noise-parameter identification
   in Elementary Cellular Automata (ECA) under four distinct noise models
@@ -13,10 +13,22 @@ abstract: >
   up to 99.22% rule exact match and 96.97% noise tolerance accuracy with
   at most 6.02M parameters.
 authors:
-  - name: "Anonymous Authors"
+  - family-names: "Salvi"
+    given-names: "Shrey Vimalbhai"
+    email: "shrey.salvi@iairo.ai"
+  - family-names: "Shelat"
+    given-names: "Shlok"
+    email: "shlok.shelat@iairo.ai"
+  - family-names: "Gaur"
+    given-names: "Manas"
+    email: "manas@umbc.edu"
+  - family-names: "Roy"
+    given-names: "Souvik"
+    email: "souvik.roy@ahduni.edu.in"
 version: 1.0.0
 date-released: 2026-05-03
-url: "https://anonymous.4open.science/r/LLM_NOISE-9DC1/"
+url: "https://github.com/Shrey48/LLM_NOISE"
+repository-code: "https://github.com/Shrey48/LLM_NOISE"
 license: MIT
 keywords:
   - elementary-cellular-automata
@@ -25,13 +37,18 @@ keywords:
   - large-language-models
   - benchmark
   - spatiotemporal-reasoning
-  - NeurIPS
 preferred-citation:
-  type: conference-paper
-  title: "Natural System Reasoning in LLMs: Insights from the identification problem"
+  type: article
+  title: "Bridging the Knowledge-Reasoning Gap in Natural Systems: A Benchmark for Inductive Rule and Noise Recovery in Cellular Automata"
   authors:
-    - name: "Anonymous Authors"
-  conference:
-    name: "40th Conference on Neural Information Processing Systems (NeurIPS 2026)"
+    - family-names: "Salvi"
+      given-names: "Shrey Vimalbhai"
+    - family-names: "Shelat"
+      given-names: "Shlok"
+    - family-names: "Gaur"
+      given-names: "Manas"
+    - family-names: "Roy"
+      given-names: "Souvik"
   year: 2026
-  url: "https://anonymous.4open.science/r/LLM_NOISE-9DC1/"
+  url: "https://github.com/Shrey48/LLM_NOISE"
+  notes: "Under review at the Journal of Data-centric Machine Learning Research (DMLR)."

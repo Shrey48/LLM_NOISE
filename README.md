@@ -22,7 +22,7 @@ The four noise models studied are:
 The repository contains:
 - **Transformer models** (ECANet family) — purpose-built architectures trained to identify rules and noise parameters from orbit data
 - **LLM evaluation** — zero-shot, few-shot, and fine-tuned open-source LLMs + frontier model evaluation
-- **Datasets** — identification datasets (numpy orbits) and knowledge-check datasets (200 MCQs each)
+- **Datasets** — identification datasets (numpy orbits) and knowledge-check datasets (200 questions each, multiple-choice and short-answer)
 
 ---
 
@@ -43,7 +43,7 @@ The repository contains:
 │   │   └── temp_stochastic/              # Test split only (training on-the-fly)
 │   │       └── test/
 │   │
-│   └── eca_knowledgecheck_dataset/       # 200 MCQs per variant for LLM evaluation
+│   └── eca_knowledgecheck_dataset/       # 200 questions per variant for LLM evaluation
 │       ├── alpha_async/
 │       ├── s_skewed/
 │       ├── stochastic/
@@ -105,7 +105,7 @@ Root-level files (each variant): `train_rules.npy · test_rules.npy · train_pai
 
 ### Knowledge-Check Dataset (`dataset/eca_knowledgecheck_dataset/`)
 
-**800 MCQs total** (200 per noise model) for evaluating LLM conceptual understanding of ECA noise mechanics. Each entry:
+**800 questions total** (multiple-choice and short-answer; 200 per noise model) for evaluating LLM conceptual understanding of ECA noise mechanics. Each entry:
 
 ```json
 {
@@ -248,4 +248,4 @@ Python ≥ 3.9, PyTorch ≥ 2.0. CUDA recommended; scripts also detect Apple MPS
 
 ## License
 
-MIT License — see `LICENSE` for details.
+Code: MIT License. Datasets: CC BY 4.0. See `LICENSE` for details.

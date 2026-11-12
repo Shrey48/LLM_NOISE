@@ -97,7 +97,7 @@ dataset/
 │   │   │   │   └── s_values.npy
 │   │   |   │   └── rule_ids.npy
 │   │   │   └── test/
-│   │   │       ├── orbits.npy                # int8   [7700, 200, 20]   ← NOT on GitHub
+│   │   │       ├── orbits.npy                # int8   [7700, 200, 20]
 │   │   │       ├── rule_bits.npy
 │   │   │       └── s_values.npy
 │   │   │       └── rule_ids.npy
@@ -143,11 +143,11 @@ dataset/
 │           ├── step_labels.npy               # int8    [10000, 8, 199]
 │           └── frac_stats.npy                # float32 [10000, 24]
 │
-└── eca_knowledgecheck_dataset/               ← 800 MCQs (200 per noise model)
-    ├── alpha_async_mcq.json
-    ├── s_skewed_mcq.json
-    ├── stochastic_mcq.json
-    └── temp_stochastic_mcq.json
+└── eca_knowledgecheck_dataset/               ← 800 questions (200 per noise model)
+    ├── alpha_async/       eca_alpha_async_knowledge_check.json, metadata_alpha_async.json
+    ├── s_skewed/          eca_s_skew_knowledge_check.json, metadata_s_skewed.json
+    ├── stochastic/        eca_stochastic_knowledge_check.json, metadata_stochastic.json
+    └── temp_stochastic/   eca_temp_stochastic_knowledge_check.json, metadata_temp_stochastic.json
 ```
 
 ---
@@ -170,7 +170,7 @@ dataset/
 
 ### Knowledge-Check Dataset (`.json`)
 
-Each file is a list of MCQ objects:
+Each file is a list of question objects (multiple-choice or short-answer). A multiple-choice example:
 
 ```json
 {
@@ -193,9 +193,9 @@ Each file is a list of MCQ objects:
 
 | Variant | Train samples | Test samples | Grid size (W×T) | Orbits/sample |
 |---|---|---|---|---|
-| alpha_async | 89,500 | 15,400 | 20 × 100 | 1 |
-| s_skewed | 89,500 | 15,400 | 20 × 200 | 1 |
-| stochastic | — | 10,000 | 50 × 200 | 8 |
-| temp_stochastic | — | 10,000 | 50 × 200 | 8 |
+| alpha_async | 125,300 (35,800 Phase 1 + 89,500 Phase 2) | 23,100 (7,700 + 15,400) | 20 × 100 | 1 |
+| s_skewed | 125,300 (35,800 Phase 1 + 89,500 Phase 2) | 23,100 (7,700 + 15,400) | 20 × 200 | 1 |
+| stochastic | generated on the fly (8,000 per epoch, 1,280,000 in total; not stored) | 10,000 | 50 × 200 | 8 |
+| temp_stochastic | generated on the fly (8,000 per epoch, 1,280,000 in total; not stored) | 10,000 | 50 × 200 | 8 |
 
 All experiments use the **full set of 256 rules**, split into 179 training rules and 77 test rules (SEED = 42). 

@@ -23,7 +23,7 @@ This document provides all information needed to reproduce the results in the pa
 ## Installation
 
 ```bash
-git clone https://anonymous.4open.science/r/LLM_NOISE-9DC1/
+git clone https://github.com/Shrey48/LLM_NOISE.git
 cd LLM_NOISE
 pip install -r requirements.txt
 ```
@@ -149,9 +149,9 @@ This file is committed to the repository for reproducibility.
 ## Checklist (Reproducibility)
 
 - [x] Code is publicly available
-- [x] Dataset is publicly available (Zenodo DOI: 10.5281/zenodo.XXXXXXX)
+- [x] Dataset is publicly available (GitHub `dataset/`; the seven large orbit files are on Zenodo, DOIs listed in `dataset/README.md`)
 - [x] All random seeds are fixed and documented (SEED = 42)
-- [x] Hyperparameters are reported in paper Appendix (Tables 23–26)
+- [x] Hyperparameters are reported in paper Appendix C (Tables 14–17)
 - [x] Prompts are reported verbatim in paper Appendix F
 - [x] Compute budget is reported above
 - [x] Hardware specifications are reported above
