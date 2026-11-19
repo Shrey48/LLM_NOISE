@@ -7,12 +7,12 @@ Key differences from alpha/skew versions:
   - Tolerance +-0.05 on lambda; rule prediction uses unordered-pair accuracy
     since (f, g, lambda) == (g, f, 1-lambda)
   - W=50, T=200, K=8 orbits per sample (we show one orbit to the LLM)
-  - Test data in ECA_Data_Skew/test/ (no phase1/phase2 structure)
+  - Test data in SCA_Data/test/ (no phase1/phase2 structure)
   - Training data is on-the-fly (no train split on disk)
 
 Usage:
-  python zero_shot_stoc.py --model Qwen2.5-7B-Instruct --n_samples 200
-  python zero_shot_stoc.py --model all --n_samples 200
+  python zero_shot_stochastic.py --model Qwen2.5-7B-Instruct --n_samples 200
+  python zero_shot_stochastic.py --model all --n_samples 200
 """
 
 import os, json, time, argparse, re
@@ -26,7 +26,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_stochastic"))
 MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Stoc")   # actual folder name on disk
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "SCA_Data")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "zero_shot")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
 SEED        = 42

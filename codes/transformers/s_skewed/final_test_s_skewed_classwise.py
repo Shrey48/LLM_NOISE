@@ -26,7 +26,7 @@ WHAT THIS DOES
       - Per-s-value breakdown within class
 
 Usage:
-    python FINAL_TEST_SKEW_CLASSWISE.py
+    python final_test_s_skewed_classwise.py
     (No data files needed — generated on the fly)
 """
 
@@ -40,7 +40,7 @@ from collections import defaultdict
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_SKEW import (ECANetSkew, simulate_eca_skewed, orbit_to_tokens,
+from model_s_skewed import (ECANetSkew, simulate_eca_skewed, orbit_to_tokens,
                         rule_to_bits, bits_to_rule, build_rule_table,
                         W, T, N_TOK, N_BITS, TOKEN_DIM, S_VALUES, N_S_CLASSES,
                         s_logits_to_value)

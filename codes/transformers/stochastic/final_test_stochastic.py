@@ -21,7 +21,7 @@ REPORTS:
   8. Verdict
 
 Usage:
-    python FINAL_TEST_SCA.py
+    python final_test_stochastic.py
     (Run DATAGEN_SCA.py and TRAIN_SCA.py first)
 """
 
@@ -34,14 +34,14 @@ from collections import defaultdict
 # ══════════════════════════════════════════════════════════════════
 BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
 CKPT_DIR  = os.path.join(BASE_DIR, "checkpoints_sca_v1")
-DATA_DIR  = os.path.join(BASE_DIR, "SCA_Data")
+DATA_DIR  = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "SCA_Data")  # override with ECA_DATA_DIR
 TEST_PATH = os.path.join(DATA_DIR, "test")
 BATCH     = 8
 # ══════════════════════════════════════════════════════════════════
 
-sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # model_*.py lives next to this script
 
-from MODEL_SCA import (
+from model_stochastic import (
     ECANetSCA, orbit_to_tokens,
     W, T, N_ORBITS, N_TOK, N_TRANS, FRAC_DIM, WVAR_DIM, LAM_MIN, LAM_MAX
 )

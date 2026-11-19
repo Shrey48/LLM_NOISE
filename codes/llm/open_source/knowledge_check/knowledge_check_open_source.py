@@ -26,7 +26,7 @@ Usage
 -----
     export OPENROUTER_API_KEY="sk-or-..."
     export JUDGE_API_KEY="..."          # key for the judge's API endpoint
-    python eval_pipeline.py
+    python knowledge_check_open_source.py
 
 Dependencies
 ------------

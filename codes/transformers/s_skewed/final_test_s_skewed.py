@@ -22,7 +22,7 @@ Results saved to:
     split test result.txt   -- human-readable full report
     split test result.json  -- machine-readable structured results
 
-Usage: python FINAL_TEST_SKEW.py
+Usage: python final_test_s_skewed.py
 """
 
 import torch
@@ -37,7 +37,7 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_SKEW import (ECANetSkew, simulate_eca_skewed, orbit_to_tokens,
+from model_s_skewed import (ECANetSkew, simulate_eca_skewed, orbit_to_tokens,
                         rule_to_bits, bits_to_rule, build_rule_table,
                         W, T, N_TOK, N_BITS, TOKEN_DIM, S_VALUES, N_S_CLASSES,
                         s_logits_to_value)
@@ -46,7 +46,7 @@ from MODEL_SKEW import (ECANetSkew, simulate_eca_skewed, orbit_to_tokens,
 ORBITS_PER_PAIR = 20
 RANDOM_SEED     = 42
 CHECKPOINT_PATH = os.path.join(SCRIPT_DIR, "checkpoints_skew", "phase2_best.pt")
-DATA_DIR        = os.path.join(SCRIPT_DIR, "ECA_Data_Skew")
+DATA_DIR        = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_Skew")  # override with ECA_DATA_DIR
 PRINT_FULL_ROWS = True
 
 

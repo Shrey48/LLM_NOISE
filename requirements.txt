@@ -18,6 +18,9 @@ pandas>=2.0
 scipy>=1.11
 scikit-learn>=1.3
 
+# Image rendering (vlm_eval_alpha_*.py)
+pillow>=10.0
+
 # Visualisation
 matplotlib>=3.7
 plotly>=5.18

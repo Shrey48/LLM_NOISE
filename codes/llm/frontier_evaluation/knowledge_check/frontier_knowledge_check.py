@@ -46,7 +46,7 @@ Usage
     export DATASET_PATH="dataset.json"
     export OUTPUT_DIR="results"
 
-    python eval_frontier.py
+    python frontier_knowledge_check.py
 
 Dependencies
 ------------

@@ -7,8 +7,8 @@ finetune_eval.py  --  LoRA fine-tuning + evaluation on alpha-asynchronous ECA in
 - 70B models loaded in 8-bit to fit in 2x H100
 
 Usage:
-  python finetune_eval.py --model Qwen2.5-7B-Instruct --n_train 5000 --n_test 500 --epochs 3
-  python finetune_eval.py --model all --n_train 5000 --n_test 500 --epochs 3
+  python finetune_alpha_async.py --model Qwen2.5-7B-Instruct --n_train 5000 --n_test 500 --epochs 3
+  python finetune_alpha_async.py --model all --n_train 5000 --n_test 500 --epochs 3
 
 Requirements:
   pip install peft accelerate bitsandbytes
@@ -30,7 +30,7 @@ from peft import LoraConfig, get_peft_model, TaskType, PeftModel
 
 BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_alpha_async"))
 MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_New")
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "ECA_Data_New")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "finetune")
 CKPT_DIR    = os.path.join(BASE_DIR, "checkpoints", "finetune")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")

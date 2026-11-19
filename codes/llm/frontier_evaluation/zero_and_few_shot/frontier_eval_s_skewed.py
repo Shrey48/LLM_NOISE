@@ -1,5 +1,5 @@
 """
-frontier_eval_skewECA.py  
+frontier_eval_s_skewed.py  
 =================================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the skewECA
 identification task (s-skewed noise).
@@ -39,7 +39,7 @@ ECA_s_skewed/
 │   └── raw/
 │       └── <model>_<setting>_<idx:04d>.txt
 │
-└── frontier_eval_skewECA.py            ← THIS FILE
+└── frontier_eval_s_skewed.py            ← THIS FILE
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PROMPT FIDELITY
@@ -71,19 +71,19 @@ Setup
 Usage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # Full run — all models, zero-shot + k=1,3,5:
-  python frontier_eval_skewECA.py --data_dir ECA_Data_Skew --n_samples 200
+  python frontier_eval_s_skewed.py --data_dir ECA_Data_Skew --n_samples 200
 
   # Model A only, zero-shot:
-  python frontier_eval_skewECA.py --models model_a --settings zero_shot
+  python frontier_eval_s_skewed.py --models model_a --settings zero_shot
 
   # All shot settings:
-  python frontier_eval_skewECA.py --models model_a model_b
+  python frontier_eval_s_skewed.py --models model_a model_b
 
   # Resume interrupted run (already-done samples are auto-skipped):
-  python frontier_eval_skewECA.py --models model_a --n_samples 200
+  python frontier_eval_s_skewed.py --models model_a --n_samples 200
 
   # Model B with reasoning (results go to separate checkpoint files):
-  python frontier_eval_skewECA.py --models model_b --model_a_reasoning low
+  python frontier_eval_s_skewed.py --models model_b --model_a_reasoning low
 """
 
 from __future__ import annotations
@@ -808,7 +808,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Frontier LLM evaluation on skewECA "
     )
-    parser.add_argument("--data_dir",   default="ECA_Data_Skew")
+    parser.add_argument("--data_dir",   default=os.environ.get("ECA_DATA_DIR", "ECA_Data_Skew"))
     parser.add_argument("--output_dir", default="frontier_results_skew")
     parser.add_argument("--n_samples",  type=int, default=200)
     parser.add_argument(

@@ -1,5 +1,5 @@
 """
-frontier_eval_stocECA.py  
+frontier_eval_stochastic.py  
 ===============================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the stocECA
 identification task (spatial stochastic noise, two-rule mixture).
@@ -39,7 +39,7 @@ ECA_stochastic/
 │   └── raw/
 │       └── <model>_<setting>_<idx:04d>.txt
 │
-└── frontier_eval_stocECA.py            ← THIS FILE
+└── frontier_eval_stochastic.py            ← THIS FILE
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PROMPT FIDELITY
@@ -73,22 +73,22 @@ Setup
 Usage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # Full run — all models, zero-shot + k=1,3,5:
-  python frontier_eval_stocECA.py --data_dir SCA_Data --n_samples 200
+  python frontier_eval_stochastic.py --data_dir SCA_Data --n_samples 200
 
   # LLM-A only, zero-shot:
-  python frontier_eval_stocECA.py --models llm_a --settings zero_shot
+  python frontier_eval_stochastic.py --models llm_a --settings zero_shot
 
   # LLM-A few-shot k=5, 100 samples:
-  python frontier_eval_stocECA.py --models llm_a --settings few_shot --k_shots 5 --n_samples 100
+  python frontier_eval_stochastic.py --models llm_a --settings few_shot --k_shots 5 --n_samples 100
 
   # LLM-A + LLM-B comparison, all shot settings:
-  python frontier_eval_stocECA.py --models llm_a llm_b
+  python frontier_eval_stochastic.py --models llm_a llm_b
 
   # Resume interrupted run (already-done samples are auto-skipped):
-  python frontier_eval_stocECA.py --models llm_a --n_samples 200
+  python frontier_eval_stochastic.py --models llm_a --n_samples 200
 
   # GPT-based model with reasoning:
-  python frontier_eval_stocECA.py --models gpt_model --gpt_reasoning low
+  python frontier_eval_stochastic.py --models gpt_model --gpt_reasoning low
 """
 
 from __future__ import annotations
@@ -1020,7 +1020,7 @@ def main() -> None:
         description="Frontier LLM evaluation on stocECA"
     )
     parser.add_argument(
-        "--data_dir", default="SCA_Data",
+        "--data_dir", default=os.environ.get("ECA_DATA_DIR", "SCA_Data"),
         help="stocECA data root (contains test/ and train_pairs.npy)",
     )
     parser.add_argument(

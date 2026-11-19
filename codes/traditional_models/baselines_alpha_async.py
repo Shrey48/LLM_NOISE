@@ -33,10 +33,10 @@ Metrics (identical to paper Section 6):
 
 Usage
 -----
-  python baselines_alphaECA.py --data_dir ECA_Data_New --output_dir baseline_results
+  python baselines_alpha_async.py --data_dir ECA_Data_New --output_dir baseline_results
 
   # Run only specific models:
-  python baselines_alphaECA.py --models cnn vanilla_transformer
+  python baselines_alpha_async.py --models cnn vanilla_transformer
 
 Output
 ------
@@ -950,7 +950,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Architectural baseline comparison for αECA"
     )
-    parser.add_argument("--data_dir",   default="ECA_Data_New")
+    parser.add_argument("--data_dir",   default=os.environ.get("ECA_DATA_DIR", "ECA_Data_New"))
     parser.add_argument("--output_dir", default="baseline_results")
     parser.add_argument(
         "--models", nargs="+",

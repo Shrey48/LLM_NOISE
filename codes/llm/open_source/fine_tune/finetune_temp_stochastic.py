@@ -8,8 +8,8 @@ Key differences from stochastic version:
   - Same data folder: TSCA_Data/
 
 Usage:
-  python finetune_temp.py --model Qwen2.5-7B-Instruct --n_train 2000 --n_test 200 --epochs 3
-  python finetune_temp.py --model all --n_train 2000 --n_test 200 --epochs 3
+  python finetune_temp_stochastic.py --model Qwen2.5-7B-Instruct --n_train 2000 --n_test 200 --epochs 3
+  python finetune_temp_stochastic.py --model all --n_train 2000 --n_test 200 --epochs 3
 """
 
 import os, json, time, argparse, re
@@ -25,7 +25,7 @@ from peft import LoraConfig, get_peft_model, TaskType, PeftModel
 
 BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_TEMP"))
 MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "TSCA_Data")
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "TSCA_Data")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "finetune")
 CKPT_DIR    = os.path.join(BASE_DIR, "checkpoints", "finetune")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")

@@ -45,13 +45,13 @@ from torch.utils.data import Dataset, DataLoader
 
 # ══════════════════════════════════════════════════════════════════
 BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "SCA_Data")
+DATA_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "SCA_Data")  # override with ECA_DATA_DIR
 CKPT_DIR = os.path.join(BASE_DIR, "checkpoints_sca_v1")
 # ══════════════════════════════════════════════════════════════════
 
-sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # model_*.py lives next to this script
 
-from MODEL_SCA import (
+from model_stochastic import (
     ECANetSCA, orbit_to_tokens, simulate_sca,
     random_init, rule_to_bits, compute_frac_stats, compute_within_var_stats,
     W, T, N_ORBITS, N_TOK, N_TRANS, N_BITS, FRAC_DIM, WVAR_DIM,
@@ -621,7 +621,7 @@ def main():
     print(f"  Both exact     : {both:.2f}%  (symmetric)")
     print(f"  Lambda MAE     : {lmae:.4f}  (symmetric min(|pred-lam|,|pred-(1-lam)|))")
     print(f"  Total time     : {fmt(time.time()-t_start)}")
-    print(f"\n  Next: python FINAL_TEST_SCA.py")
+    print(f"\n  Next: python final_test_stochastic.py")
 
 
 if __name__ == "__main__":

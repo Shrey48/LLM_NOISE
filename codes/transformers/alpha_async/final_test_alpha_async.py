@@ -49,31 +49,18 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-try:
-    from model_alpha_async import (
-        ECANetNew, simulate_eca, orbit_to_tokens,
-        rule_to_bits, bits_to_rule,
-        W, T, N_TOK, N_BITS, ALPHA_VALUES,
-        alpha_logits_to_value,
-    )
-except ModuleNotFoundError:
-    try:
-        from MODEL_NEW import (
-            ECANetNew, simulate_eca, orbit_to_tokens,
-            rule_to_bits, bits_to_rule,
-            W, T, N_TOK, N_BITS, ALPHA_VALUES,
-            alpha_logits_to_value,
-        )
-    except ModuleNotFoundError as e:
-        print("ERROR: Could not import model. Make sure one of these files is in the same folder:")
-        print("   model_alpha_async.py  OR  MODEL_NEW.py")
-        raise e
+from model_alpha_async import (
+    ECANetNew, simulate_eca, orbit_to_tokens,
+    rule_to_bits, bits_to_rule,
+    W, T, N_TOK, N_BITS, ALPHA_VALUES,
+    alpha_logits_to_value,
+)
 
 # ── Config ────────────────────────────────────────────────────────────────────
 ORBITS_PER_PAIR = 20        # orbits per (rule, alpha) -- matches original
 RANDOM_SEED     = 42
 CHECKPOINT_PATH = os.path.join(SCRIPT_DIR, "checkpoints_new", "phase2_best.pt")
-DATA_DIR        = os.path.join(SCRIPT_DIR, "ECA_Data_New")
+DATA_DIR        = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_New")  # override with ECA_DATA_DIR
 PRINT_FULL_ROWS = True      # set False to suppress per-pair lines
 
 # ── Paper-defined 77 test rules (seed=42 split, identical to datagen) ─────────
@@ -143,10 +130,7 @@ def hybrid_alpha_estimate(orbit, predicted_rule_num):
     Returns None if rule never produces cell changes (e.g. rule 0/255).
     Output snapped to nearest 0.1 grid.
     """
-    try:
-        from model_alpha_async import build_rule_table
-    except ModuleNotFoundError:
-        from MODEL_NEW import build_rule_table
+    from model_alpha_async import build_rule_table
     rule_table    = build_rule_table(predicted_rule_num)
     should_change = 0
     did_change    = 0

@@ -42,7 +42,10 @@ Results are deterministic given the same hardware and software versions.
 
 ### 1. Transformer Models (ECANet family)
 
-Each noise variant follows the same 3-step pipeline:
+Each noise variant follows the same 3-step pipeline. Scripts read and write their data folder
+(`ECA_Data_New`, `ECA_Data_Skew`, `SCA_Data`, `TSCA_Data`) next to the script by default; set
+`ECA_DATA_DIR` to use the copy shipped in `dataset/eca_identification_dataset/<variant>/` instead
+(after downloading the Zenodo orbit files listed in `dataset/README.md`).
 
 ```bash
 # Alpha-Asynchronous (αM — Table 1)
@@ -52,60 +55,61 @@ python train_alpha_async.py          # ~6 h on A100
 python final_test_alpha_async.py     # ~10 min
 
 # s-Skewed (skewM — Table 2)
-cd codes/transformers/s_skewed
+cd ../s_skewed
 python datagen_s_skewed.py
 python train_s_skewed.py
 python final_test_s_skewed.py
 
 # Stochastic (stocM — Table 3)
-cd codes/transformers/stochastic
+cd ../stochastic
 python datagen_stochastic.py
 python train_stochastic.py
 python final_test_stochastic.py
 
 # Temporal Stochastic (tempM — Table 4)
-cd codes/transformers/temp_stochastic
+cd ../temp_stochastic
 python datagen_temp_stochastic.py
 python train_temp_stochastic.py
 python final_test_temp_stochastic.py
 ```
 
-**SLURM users:** each folder contains a `submit.sh`:
-
-```bash
-mkdir -p logs && sbatch submit.sh
-```
+**SLURM users:** wrap the commands above in your own batch script; the only SLURM templates in the
+repository are `codes/traditional_models/Run_vit_from_scratch.sh` and `run_reasoning_eval.sh`.
 
 ### 2. Architectural Baselines (Table 3 in paper)
 
 ```bash
 cd codes/traditional_models
-python baselines_alphaECA.py --data_dir ECA_Data_New --output_dir baseline_results
+python baselines_alpha_async.py --data_dir ECA_Data_New --output_dir baseline_results
 ```
 
 Output: `baseline_results/results_summary.csv` (paste directly into paper table).
 
 ### 3. Open-Source LLM Evaluation
 
+Each script reads `$BASE_DIR/<data folder>` (or `$ECA_DATA_DIR` if set), loads checkpoints from
+`$MODELS_DIR/<model name>`, and writes to `$BASE_DIR/results/`. Use one `BASE_DIR` per noise family.
+
 ```bash
 # Zero-shot (all 4 variants)
 cd codes/llm/open_source/zero_shot
-python zero_shot_alpha_async.py --model all --n_samples 200
-python zero_shot_s_skewed.py    --model all --n_samples 200
+python zero_shot_alpha_async.py --model all --n_samples 500
+python zero_shot_s_skewed.py    --model all --n_samples 500
 python zero_shot_stochastic.py  --model all --n_samples 200
 python zero_shot_temp_stochastic.py --model all --n_samples 200
 
 # Few-shot (k = 1, 3, 5)
-cd codes/llm/open_source/few_shot
-python few_shot_alpha_async.py --model all --n_samples 200
+cd ../few_shot
+python few_shot_eval.py --model all --n_samples 500 --k_shots 5
 
 # Fine-tuning (LoRA)
-cd codes/llm/open_source/fine_tune
+cd ../fine_tune
 python finetune_alpha_async.py --model Qwen2.5-7B-Instruct --n_train 5000 --epochs 3
 
-# Knowledge check (800 questions: 600 multiple-choice, 200 short-answer)
-cd codes/llm/open_source/knowledge_check
-python knowledge_check_open_source.py
+# Knowledge check (200 questions per noise family; one JSON file per run)
+cd ../knowledge_check
+DATASET_PATH=../../../../dataset/eca_knowledgecheck_dataset/alpha_async/eca_alpha_async_knowledge_check.json \
+  OUTPUT_DIR=results/alphaK python knowledge_check_open_source.py
 ```
 
 ### 4. Frontier LLM Evaluation
@@ -114,14 +118,16 @@ python knowledge_check_open_source.py
 cd codes/llm/frontier_evaluation/zero_and_few_shot
 python frontier_eval_alpha_async.py    --n_samples 500
 python frontier_eval_s_skewed.py       --n_samples 500
-python frontier_eval_stochastic.py     --n_samples 500
-python frontier_eval_temp_stochastic.py --n_samples 500
+python frontier_eval_stochastic.py     --n_samples 200
+python frontier_eval_temp_stochastic.py --n_samples 200
 
-cd codes/llm/frontier_evaluation/knowledge_check
-python frontier_knowledge_check.py
+cd ../knowledge_check
+DATASET_PATH=../../../../dataset/eca_knowledgecheck_dataset/alpha_async/eca_alpha_async_knowledge_check.json \
+  OUTPUT_DIR=results/alphaK python frontier_knowledge_check.py
 ```
 
-> **API keys required:** Set `OPENAI_API_KEY` and/or `ANTHROPIC_API_KEY` as environment variables.
+> **API keys required:** `OPENAI_API_KEY` (GPT-5.1 / GPT-4.1) and `ANTHROPIC_API_KEY` (Claude Haiku 4.5);
+> the knowledge checks also need `JUDGE_API_KEY` (and `OPENROUTER_API_KEY` for the open-weight models).
 
 ---
 
@@ -140,9 +146,10 @@ python frontier_knowledge_check.py
 
 ## Key Fixed Test Indices
 
-All scripts share a `fixed_test_indices.npy` file (generated on first run, then reused)
-to ensure every method is evaluated on **exactly the same test samples**.
-This file is committed to the repository for reproducibility.
+All LLM scripts share a `results/fixed_test_indices.npy` file so that every method is evaluated
+on **exactly the same test samples**. It is not stored in the repository: the first run draws it
+with `numpy.random.default_rng(42)` and saves it, and later runs reuse it. Make the first run use
+the paper's sample size (N=500 for alphaECA/skewECA, N=200 for stocECA/tempECA).
 
 ---
 

@@ -118,7 +118,7 @@ def evaluate(model, loader, device):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_dir", default="ECA_Data_New")
+    ap.add_argument("--data_dir", default=os.environ.get("ECA_DATA_DIR", "ECA_Data_New"))
     ap.add_argument("--epochs", type=int, default=30)
     ap.add_argument("--batch_size", type=int, default=32)
     ap.add_argument("--lr", type=float, default=3e-4)

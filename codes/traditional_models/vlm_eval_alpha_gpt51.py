@@ -230,7 +230,7 @@ def evaluate(data_dir, n_samples, reasoning_effort, output_dir, sleep_s):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_dir", default="ECA_Data_New")
+    ap.add_argument("--data_dir", default=os.environ.get("ECA_DATA_DIR", "ECA_Data_New"))
     ap.add_argument("--n_samples", type=int, default=30)
     ap.add_argument("--reasoning_effort", default="medium", choices=["none", "low", "medium", "high"])
     ap.add_argument("--output_dir", default="vlm_results")

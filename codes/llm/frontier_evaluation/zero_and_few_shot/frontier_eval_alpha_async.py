@@ -68,35 +68,35 @@ Setup
 Usage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  # Full run — all models (GPT-5.1 + Claude Haiku 4.5), zero-shot + k=1,3,5:
- python frontier_eval_alphaECA.py --data_dir ECA_Data_New --n_samples 200
+ python frontier_eval_alpha_async.py --data_dir ECA_Data_New --n_samples 200
 
 
  # Match paper's 500-sample open-source eval:
- python frontier_eval_alphaECA.py --n_samples 500
+ python frontier_eval_alpha_async.py --n_samples 500
 
 
  # Zero-shot only, GPT only:
- python frontier_eval_alphaECA.py --settings zero_shot --models gpt51
+ python frontier_eval_alpha_async.py --settings zero_shot --models gpt51
 
 
  # Claude Haiku 4.5 only, zero-shot:
- python frontier_eval_alphaECA.py --models claude_haiku --settings zero_shot
+ python frontier_eval_alpha_async.py --models claude_haiku --settings zero_shot
 
 
  # Claude few-shot k=5, 100 samples:
- python frontier_eval_alphaECA.py --models claude_haiku --settings few_shot --k_shots 5 --n_samples 100
+ python frontier_eval_alpha_async.py --models claude_haiku --settings few_shot --k_shots 5 --n_samples 100
 
 
  # Claude + GPT comparison, all shot settings:
- python frontier_eval_alphaECA.py --models claude_haiku gpt51
+ python frontier_eval_alpha_async.py --models claude_haiku gpt51
 
 
  # Resume interrupted run (already-done samples are auto-skipped):
- python frontier_eval_alphaECA.py --models gpt51 --n_samples 200
+ python frontier_eval_alpha_async.py --models gpt51 --n_samples 200
 
 
  # GPT-5.1 with reasoning (results go to separate checkpoint files):
- python frontier_eval_alphaECA.py --models gpt51 --gpt51_reasoning low
+ python frontier_eval_alpha_async.py --models gpt51 --gpt51_reasoning low
 """
 
 
@@ -964,7 +964,7 @@ def main() -> None:
        description="Frontier LLM evaluation on αECA"
    )
    parser.add_argument(
-       "--data_dir", default="ECA_Data_New",
+       "--data_dir", default=os.environ.get("ECA_DATA_DIR", "ECA_Data_New"),
        help="Root data dir containing phase2/test/ and phase2/train/",
    )
    parser.add_argument(

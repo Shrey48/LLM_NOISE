@@ -42,7 +42,7 @@ GPU:  CUDA (NVIDIA RTX A1000) -> MPS (Apple) -> CPU  (in that order)
       All Windows-safe: no unicode chars, num_workers=0
 
 Usage:
-  python TRAIN_NEW.py            # auto-detects resume or fresh start
+  python train_alpha_async.py            # auto-detects resume or fresh start
 """
 
 import torch
@@ -57,12 +57,12 @@ from torch.utils.data import Dataset, DataLoader, random_split
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_NEW import (ECANetNew, orbit_to_tokens, bits_to_rule,
+from model_alpha_async import (ECANetNew, orbit_to_tokens, bits_to_rule,
                        W, T, N_TOK, N_BITS, D_MODEL, ALPHA_VALUES,
                        alpha_logits_to_value, alpha_value_to_class)
 
 # -- Config -------------------------------------------------------------------
-DATA_DIR   = os.path.join(SCRIPT_DIR, "ECA_Data_New")
+DATA_DIR   = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_New")  # override with ECA_DATA_DIR
 CKPT_DIR   = os.path.join(SCRIPT_DIR, "checkpoints_new")
 
 # Phase 1
@@ -570,7 +570,7 @@ def main():
     print(f"  Phase 1 best val exact  : {best_p1:.2f}%  (sync, rule only)")
     print(f"  Phase 2 best val exact  : {best_p2:.2f}%  (async, rule+alpha)")
     print(f"  Total time              : {format_time(time.time()-t_start)}")
-    print(f"\n  Next step: python FINAL_TEST_NEW.py")
+    print(f"\n  Next step: python final_test_alpha_async.py")
     print("=" * 65)
 
 

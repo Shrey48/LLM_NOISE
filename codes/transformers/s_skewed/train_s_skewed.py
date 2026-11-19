@@ -9,7 +9,7 @@ The regression auxiliary enforces ordinal structure.
 
 Model outputs: rule_logits [B,8], s_logits [B,20], s_reg [B,1]
 
-Usage: python TRAIN_SKEW.py
+Usage: python train_s_skewed.py
 """
 
 import torch
@@ -23,11 +23,11 @@ from torch.utils.data import Dataset, DataLoader, random_split
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_SKEW import (ECANetSkew, orbit_to_tokens, bits_to_rule,
+from model_s_skewed import (ECANetSkew, orbit_to_tokens, bits_to_rule,
                         W, T, N_TOK, N_BITS, TOKEN_DIM, D_MODEL, S_VALUES,
                         s_logits_to_value, s_value_to_class, s_reg_to_value)
 
-DATA_DIR   = os.path.join(SCRIPT_DIR, "ECA_Data_Skew")
+DATA_DIR   = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_Skew")  # override with ECA_DATA_DIR
 CKPT_DIR   = os.path.join(SCRIPT_DIR, "checkpoints_skew")
 
 # Phase 1
@@ -410,7 +410,7 @@ def main():
     print(f"\n{'='*65}")
     print(f"  COMPLETE  P1={best_p1:.2f}%  P2={best_p2:.2f}%  "
           f"Time={format_time(time.time()-t_start)}")
-    print(f"  Next: python FINAL_TEST_SKEW.py")
+    print(f"  Next: python final_test_s_skewed.py")
     print("=" * 65)
 
 

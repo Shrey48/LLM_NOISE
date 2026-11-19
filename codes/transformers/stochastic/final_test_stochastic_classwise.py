@@ -28,7 +28,7 @@ WHAT THIS DOES
       - Rule list with names
 
 Usage:
-    python FINAL_TEST_SCA_CLASSWISE.py
+    python final_test_stochastic_classwise.py
     (No pre-saved data needed; directory must contain MODEL_SCA.py and checkpoint)
 """
 
@@ -43,7 +43,7 @@ from torch.utils.data import Dataset, DataLoader
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_SCA import (
+from model_stochastic import (
     ECANetSCA, orbit_to_tokens,
     simulate_sca, compute_frac_stats, compute_within_var_stats,
     rule_to_bits, random_init,

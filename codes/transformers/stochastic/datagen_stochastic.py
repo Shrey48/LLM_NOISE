@@ -35,12 +35,12 @@ from collections import Counter
 
 # ══════════════════════════════════════════════════════════════════
 BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_DIR = os.path.join(BASE_DIR, "SCA_Data")
+OUTPUT_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "SCA_Data")  # override with ECA_DATA_DIR
 # ══════════════════════════════════════════════════════════════════
 
-sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # model_*.py lives next to this script
 
-from MODEL_SCA import (
+from model_stochastic import (
     simulate_sca, compute_frac_stats, compute_within_var_stats,
     rule_to_bits, random_init,
     W, T, N_ORBITS, LAM_MIN, LAM_MAX
@@ -273,7 +273,7 @@ def main():
     print(f"\n  Test samples : {len(test_data[0]):,}")
     print(f"  Time         : {time.time()-t0:.1f}s")
     print(f"\n  Training data generated on-the-fly — no train split needed.")
-    print(f"  Next: python TRAIN_SCA.py")
+    print(f"  Next: python train_stochastic.py")
     print("=" * 70)
 
 

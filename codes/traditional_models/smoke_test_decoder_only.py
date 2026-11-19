@@ -22,7 +22,7 @@ def check(name, ok, detail=""):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_dir", default="ECA_Data_New")
+    ap.add_argument("--data_dir", default=os.environ.get("ECA_DATA_DIR", "ECA_Data_New"))
     args = ap.parse_args()
 
     all_ok = True

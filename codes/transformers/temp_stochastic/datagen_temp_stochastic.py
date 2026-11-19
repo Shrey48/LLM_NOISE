@@ -33,12 +33,12 @@ from collections import Counter
 
 # ══════════════════════════════════════════════════════════
 BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_DIR = os.path.join(BASE_DIR, "TSCA_Data")
+OUTPUT_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "TSCA_Data")  # override with ECA_DATA_DIR
 # ══════════════════════════════════════════════════════════
 
-sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # model_*.py lives next to this script
 
-from MODEL_TSCA import (
+from model_temp_stochastic import (
     simulate_labeled, compute_frac_stats,
     rule_to_bits, random_init,
     W, T, N_ORBITS, TAU_MIN, TAU_MAX
@@ -257,7 +257,7 @@ def main():
     print(f"\n  Test samples : {len(test_data[0]):,}")
     print(f"  Time         : {time.time()-t0:.1f}s")
     print(f"\n  Training data generated on-the-fly — no train split needed.")
-    print(f"  Next: python TRAIN_TSCA.py")
+    print(f"  Next: python train_temp_stochastic.py")
     print("=" * 70)
 
 

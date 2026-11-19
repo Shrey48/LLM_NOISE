@@ -27,7 +27,7 @@ within each alpha group. DataLoader shuffle=True handles training order.
 Rule split: SEED=42 (same as TRAIN3 -- results are directly comparable).
 
 Usage:
-  python DATAGEN_NEW.py
+  python datagen_alpha_async.py
 
 Output folder structure:
   ECA_Data_New/
@@ -65,7 +65,7 @@ P2_SAMPLES_TEST      = 20  # per (rule, alpha) -- 77  x 10 x 20 = 15,400
 ALPHA_VALUES = [round(a * 0.1, 1) for a in range(1, 11)]  # 0.1 .. 1.0
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "ECA_Data_New")
+OUTPUT_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_New")  # override with ECA_DATA_DIR
 
 
 # ── ECA Simulation ────────────────────────────────────────────────────────────
@@ -287,7 +287,7 @@ def main():
     print(f"  Phase 2 test  : {len(p2_te[0]):>7,} samples  (all alphas, stratified)")
     print(f"  Total storage : ~{total_size:.0f} MB")
     print(f"  Total time    : {time.time()-t_total:.1f}s")
-    print(f"\n  Next step: python TRAIN_NEW.py")
+    print(f"\n  Next step: python train_alpha_async.py")
     print(f"  {'='*55}")
 
 

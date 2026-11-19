@@ -9,7 +9,7 @@ Phase 1: 179 rules x 200 samples = 35,800  (s=20, synchronous)
 Phase 2: 179 rules x 20 s-values x 25 samples = 89,500  (stratified)
 Test splits: 77 rules, same structure.
 
-Usage: python DATAGEN_SKEW.py
+Usage: python datagen_s_skewed.py
 """
 
 import numpy as np
@@ -34,7 +34,7 @@ P2_SAMPLES_TEST    = 10
 S_VALUES = list(range(1, W + 1))
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "ECA_Data_Skew")
+OUTPUT_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(SCRIPT_DIR, "ECA_Data_Skew")  # override with ECA_DATA_DIR
 
 
 # ── ECA Simulation ────────────────────────────────────────────────────────────
@@ -203,7 +203,7 @@ def main():
     print(f"\n  {'='*55}")
     print(f"  SUMMARY: {len(p1_tr[0])+len(p1_te[0])+len(p2_tr[0])+len(p2_te[0]):,} "
           f"samples  ~{total_size:.0f} MB  {time.time()-t_total:.1f}s")
-    print(f"  Next: python TRAIN_SKEW.py")
+    print(f"  Next: python train_s_skewed.py")
     print(f"  {'='*55}")
 
 

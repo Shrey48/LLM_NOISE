@@ -2,8 +2,8 @@
 few_shot_stoc.py  --  Few-shot LLM evaluation on stochastic ECA inverse problem.
 
 Usage:
-  python few_shot_stoc.py --model Qwen2.5-7B-Instruct --n_samples 200 --k_shots 3
-  python few_shot_stoc.py --model all --n_samples 200 --k_shots 5
+  python few_shot_stochastic.py --model Qwen2.5-7B-Instruct --n_samples 200 --k_shots 3
+  python few_shot_stochastic.py --model all --n_samples 200 --k_shots 5
 """
 
 import os, json, time, argparse, re
@@ -17,7 +17,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_stochastic"))
 MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Skew")
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "SCA_Data")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "few_shot")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")
 SEED        = 42

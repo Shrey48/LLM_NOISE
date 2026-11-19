@@ -29,7 +29,7 @@ WHAT THIS DOES
       - Participation in pairs from this class
 
 Usage:
-    python FINAL_TEST_TSCA_CLASSWISE.py
+    python final_test_temp_stochastic_classwise.py
     (No pre-saved data needed; BASE_DIR must contain MODEL_TSCA.py and checkpoint)
 
 BASE_DIR is auto-set to the directory containing this script.
@@ -46,7 +46,7 @@ from torch.utils.data import Dataset, DataLoader
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_TSCA import (
+from model_temp_stochastic import (
     ECANetTSCA, orbit_to_tokens, simulate_labeled, compute_frac_stats,
     rule_to_bits, random_init,
     W, T, N_ORBITS, N_TOK, N_TRANS, FRAC_DIM, TAU_MIN, TAU_MAX

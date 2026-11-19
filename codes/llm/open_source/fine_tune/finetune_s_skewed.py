@@ -6,8 +6,8 @@ finetune_skew.py  --  LoRA fine-tuning + evaluation on s-skewed ECA inverse prob
 - Resume support throughout
 
 Usage:
-  python finetune_skew.py --model Qwen2.5-7B-Instruct --n_train 5000 --n_test 500 --epochs 3
-  python finetune_skew.py --model all --n_train 5000 --n_test 500 --epochs 3
+  python finetune_s_skewed.py --model Qwen2.5-7B-Instruct --n_train 5000 --n_test 500 --epochs 3
+  python finetune_s_skewed.py --model all --n_train 5000 --n_test 500 --epochs 3
 """
 
 import os, json, time, argparse, re
@@ -23,7 +23,7 @@ from peft import LoraConfig, get_peft_model, TaskType, PeftModel
 
 BASE_DIR   = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_s_skewed"))
 MODELS_DIR = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_Skew")
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "ECA_Data_Skew")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "finetune")
 CKPT_DIR    = os.path.join(BASE_DIR, "checkpoints", "finetune")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")

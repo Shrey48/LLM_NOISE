@@ -1,5 +1,5 @@
 """
-frontier_eval_tempECA.py 
+frontier_eval_temp_stochastic.py 
 =================================================
 Zero-shot and few-shot (k=1,3,5) evaluation of frontier LLMs on the tempECA
 identification task (temporally stochastic ECA).
@@ -36,7 +36,7 @@ ECA_TEMP/
 │   └── raw/
 │       └── <model>_<setting>_<idx:04d>.txt
 │
-└── frontier_eval_tempECA.py            ← THIS FILE
+└── frontier_eval_temp_stochastic.py            ← THIS FILE
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PROMPT FIDELITY
@@ -70,22 +70,22 @@ Setup
 Usage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # Full run — all models, zero-shot + k=1,3,5:
-  python frontier_eval_tempECA.py --data_dir TSCA_Data --n_samples 200
+  python frontier_eval_temp_stochastic.py --data_dir TSCA_Data --n_samples 200
 
   # Model-A only, zero-shot:
-  python frontier_eval_tempECA.py --models model_a --settings zero_shot
+  python frontier_eval_temp_stochastic.py --models model_a --settings zero_shot
 
   # Model-B few-shot k=5, 100 samples:
-  python frontier_eval_tempECA.py --models model_b --settings few_shot --k_shots 5 --n_samples 100
+  python frontier_eval_temp_stochastic.py --models model_b --settings few_shot --k_shots 5 --n_samples 100
 
   # Both models, all shot settings:
-  python frontier_eval_tempECA.py --models model_a model_b
+  python frontier_eval_temp_stochastic.py --models model_a model_b
 
   # Resume interrupted run (already-done samples are auto-skipped):
-  python frontier_eval_tempECA.py --models model_a --n_samples 200
+  python frontier_eval_temp_stochastic.py --models model_a --n_samples 200
 
   # Model-C with reasoning:
-  python frontier_eval_tempECA.py --models model_c --model_c_reasoning low
+  python frontier_eval_temp_stochastic.py --models model_c --model_c_reasoning low
 """
 
 from __future__ import annotations
@@ -1038,7 +1038,7 @@ def main() -> None:
         description="Frontier LLM evaluation on tempECA"
     )
     parser.add_argument(
-        "--data_dir", default="TSCA_Data",
+        "--data_dir", default=os.environ.get("ECA_DATA_DIR", "TSCA_Data"),
         help="Root data dir containing test/ and train_pairs.npy",
     )
     parser.add_argument(

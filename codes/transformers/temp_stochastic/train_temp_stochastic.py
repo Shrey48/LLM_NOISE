@@ -73,13 +73,13 @@ from torch.utils.data import Dataset, DataLoader
 
 # ══════════════════════════════════════════════════════════
 BASE_DIR = os.environ.get("BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "TSCA_Data")
+DATA_DIR = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "TSCA_Data")  # override with ECA_DATA_DIR
 CKPT_DIR = os.path.join(BASE_DIR, "checkpoints_tsca_v9")
 # ══════════════════════════════════════════════════════════
 
-sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # model_*.py lives next to this script
 
-from MODEL_TSCA import (
+from model_temp_stochastic import (
     ECANetTSCA, orbit_to_tokens, simulate_labeled,
     random_init, rule_to_bits, compute_frac_stats,
     W, T, N_ORBITS, N_TOK, N_TRANS, N_BITS, FRAC_DIM,
@@ -676,7 +676,7 @@ def main():
     print(f"  Both exact     : {both:.2f}%  (symmetric)")
     print(f"  Tau MAE        : {tmae:.4f}  (symmetric min(|pred-tau|,|pred-(1-tau)|))")
     print(f"  Total time     : {fmt(time.time()-t_start)}")
-    print(f"\n  Next: python FINAL_TEST_TSCA.py")
+    print(f"\n  Next: python final_test_temp_stochastic.py")
 
 
 if __name__ == "__main__":

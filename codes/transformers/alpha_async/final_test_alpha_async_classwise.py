@@ -25,7 +25,7 @@ WHAT THIS DOES
       - Per-alpha breakdown within the class
 
 Usage:
-    python FINAL_TEST_NEW_CLASSWISE.py
+    python final_test_alpha_async_classwise.py
     (No data files needed — generated on the fly)
 """
 
@@ -39,7 +39,7 @@ from collections import defaultdict
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
-from MODEL_NEW import (ECANetNew, simulate_eca, orbit_to_tokens,
+from model_alpha_async import (ECANetNew, simulate_eca, orbit_to_tokens,
                        rule_to_bits, bits_to_rule, build_rule_table,
                        W, T, N_TOK, N_BITS, ALPHA_VALUES,
                        alpha_logits_to_value)

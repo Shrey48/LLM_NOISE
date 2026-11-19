@@ -11,3 +11,47 @@ dataset/eca_identification_dataset/s_skewed/phase2/test/orbits.npy
 # Python
 __pycache__/
 *.pyc
+
+# Remaining large orbit files hosted on Zenodo (see dataset/README.md)
+dataset/eca_identification_dataset/stochastic/test/orbits.npy
+dataset/eca_identification_dataset/temp_stochastic/test/orbits.npy
+
+# Generated datasets (datagen_*.py write next to the script by default)
+ECA_Data_New/
+ECA_Data_Skew/
+SCA_Data/
+TSCA_Data/
+
+# Checkpoints and model weights
+checkpoints/
+checkpoints_new/
+checkpoints_skew/
+checkpoints_sca_v1/
+checkpoints_tsca_v9/
+*.pt
+*.pth
+*.safetensors
+models/
+
+# Run outputs
+results/
+frontier_results*/
+baseline_results/
+algorithmic_baseline_results/
+decoder_only_results/
+vit_results/
+vlm_results/
+logs/
+split test result.*
+final_test_*_classwise.log
+query_cache*
+
+# Local environment / editors
+.env
+.venv/
+venv/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.swp
+*.zip

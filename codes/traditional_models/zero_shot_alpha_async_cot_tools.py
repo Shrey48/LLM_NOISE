@@ -34,7 +34,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 BASE_DIR    = os.environ.get("BASE_DIR",   os.path.join(os.getcwd(), "ECA_alpha_async"))
 MODELS_DIR  = os.environ.get("MODELS_DIR", os.path.join(os.getcwd(), "models"))
-DATA_DIR    = os.path.join(BASE_DIR, "ECA_Data_New")
+DATA_DIR    = os.environ.get("ECA_DATA_DIR") or os.path.join(BASE_DIR, "ECA_Data_New")  # override with ECA_DATA_DIR
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "zero_shot_cot_tools")
 INDEX_FILE  = os.path.join(BASE_DIR, "results", "fixed_test_indices.npy")  # same indices as the main protocol
 SEED        = 42
